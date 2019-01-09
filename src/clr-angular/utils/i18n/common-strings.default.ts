@@ -35,6 +35,8 @@ export const commonStringsDefault: ClrCommonStrings = {
   totalPages: 'Total Pages',
   minValue: 'Min value',
   maxValue: 'Max value',
+  detailPaneStart: 'Start of row details',
+  detailPaneEnd: 'End of row details',
   modalContentStart: 'Beginning of Modal Content',
   modalContentEnd: 'End of Modal Content',
   showColumnsMenuDescription: 'Show or hide columns menu',

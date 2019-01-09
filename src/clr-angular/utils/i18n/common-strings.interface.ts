@@ -105,10 +105,10 @@ export interface ClrCommonStrings {
    */
   currentPage?: string;
   /**
-   * Datagird: total pages
+   * Datagrid: total pages
    */
   totalPages?: string;
-  /*
+  /**
    * Datagrid numeric filter: min
    */
   minValue?: string;
@@ -116,6 +116,14 @@ export interface ClrCommonStrings {
    * Datagrid numeric filter: max
    */
   maxValue?: string;
+  /**
+   * Datagrid: detail pane start content for screen reader
+   */
+  detailPaneStart?: string;
+  /**
+   * Datagrid: detail pane end content for screen reader
+   */
+  detailPaneEnd?: string;
   /**
    * Modal start of content
    */

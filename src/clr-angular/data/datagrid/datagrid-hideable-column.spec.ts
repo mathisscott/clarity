@@ -17,6 +17,7 @@ import { By } from '@angular/platform-browser';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClrDatagridModule } from './datagrid.module';
 import { DatagridColumnChanges } from './enums/column-changes.enum';
+import { DetailService } from './providers/detail.service';
 
 const PROVIDERS_NEEDED = [
   Sort,
@@ -25,6 +26,7 @@ const PROVIDERS_NEEDED = [
   DomAdapter,
   Page,
   StateDebouncer,
+  DetailService,
   TableSizeService,
   Renderer2,
   ColumnsService,

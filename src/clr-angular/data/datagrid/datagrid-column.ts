@@ -14,6 +14,7 @@ import {
   Output,
   ViewContainerRef,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -35,6 +36,7 @@ import { ClrCommonStringsService } from '../../utils/i18n/common-strings.service
 import { ClrPopoverPositionService } from '../../utils/popover/providers/popover-position.service';
 import { ClrPopoverEventsService } from '../../utils/popover/providers/popover-events.service';
 import { ClrPopoverToggleService } from '../../utils/popover/providers/popover-toggle.service';
+import { DetailService } from './providers/detail.service';
 
 @Component({
   selector: 'clr-dg-column',
@@ -73,8 +75,8 @@ import { ClrPopoverToggleService } from '../../utils/popover/providers/popover-t
           <span class="datagrid-column-title" *ngIf="!sortable">
               <ng-container *ngTemplateOutlet="columnTitle"></ng-container>
           </span>
-
-            <clr-dg-column-separator></clr-dg-column-separator>
+          
+          <clr-dg-column-separator *ngIf="showSeparator"></clr-dg-column-separator>
         </div>
     `,
   providers: [ClrPopoverPositionService, ClrPopoverEventsService, ClrPopoverToggleService],
@@ -91,33 +93,48 @@ export class ClrDatagridColumn<T = any> extends DatagridFilterRegistrar<T, ClrDa
     private _sort: Sort<T>,
     filters: FiltersProvider<T>,
     private vcr: ViewContainerRef,
-    public commonStrings: ClrCommonStringsService
+    public commonStrings: ClrCommonStringsService,
+    public detailService: DetailService,
+    private changeDetectionRef: ChangeDetectorRef
   ) {
     super(filters);
-    this._sortSubscription = _sort.change.subscribe(sort => {
-      // We're only listening to make sure we emit an event when the column goes from sorted to unsorted
-      if (this.sortOrder !== ClrDatagridSortOrder.UNSORTED && sort.comparator !== this._sortBy) {
-        this._sortOrder = ClrDatagridSortOrder.UNSORTED;
-        this.sortOrderChange.emit(this._sortOrder);
-        // removes the sortIcon when column becomes unsorted
-        this.sortIcon = null;
-      }
-      // deprecated: to be removed - START
-      if (this.sorted && sort.comparator !== this._sortBy) {
-        this._sorted = false;
-        this.sortedChange.emit(false);
-      }
-      // deprecated: to be removed - END
-    });
+    this.subscriptions.push(
+      _sort.change.subscribe(sort => {
+        // We're only listening to make sure we emit an event when the column goes from sorted to unsorted
+        if (this.sortOrder !== ClrDatagridSortOrder.UNSORTED && sort.comparator !== this._sortBy) {
+          this._sortOrder = ClrDatagridSortOrder.UNSORTED;
+          this.sortOrderChange.emit(this._sortOrder);
+          // removes the sortIcon when column becomes unsorted
+          this.sortIcon = null;
+        }
+        // deprecated: to be removed - START
+        if (this.sorted && sort.comparator !== this._sortBy) {
+          this._sorted = false;
+          this.sortedChange.emit(false);
+        }
+        // deprecated: to be removed - END
+      })
+    );
+    this.subscriptions.push(
+      this.detailService.stateChange.subscribe(state => {
+        if (this.showSeparator !== !state) {
+          this.showSeparator = !state;
+          // Have to manually change because of OnPush
+          this.changeDetectionRef.markForCheck();
+        }
+      })
+    );
   }
+
+  public showSeparator = true;
 
   /**
    * Subscription to the sort service changes
    */
-  private _sortSubscription: Subscription;
+  private subscriptions: Subscription[] = [];
 
   ngOnDestroy() {
-    this._sortSubscription.unsubscribe();
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
   /*

@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 
 import { ClrDatagridActionOverflow } from './datagrid-action-overflow';
 import { TestContext } from './helpers.spec';

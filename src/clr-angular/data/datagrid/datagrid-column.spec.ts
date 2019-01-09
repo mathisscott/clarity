@@ -17,31 +17,26 @@ import { ClrDatagridComparatorInterface } from './interfaces/comparator.interfac
 import { ClrDatagridFilterInterface } from './interfaces/filter.interface';
 import { ClrDatagridStringFilterInterface } from './interfaces/string-filter.interface';
 import { FiltersProvider } from './providers/filters';
-import { Page } from './providers/page';
 import { Sort } from './providers/sort';
-import { StateDebouncer } from './providers/state-debouncer.provider';
-import { ClrCommonStringsService } from '../../utils/i18n/common-strings.service';
-import { commonStringsDefault } from 'src/clr-angular/utils/i18n/common-strings.default';
+import { commonStringsDefault } from '../../utils/i18n/common-strings.default';
 
 export default function(): void {
   describe('DatagridColumn component', function() {
     describe('Typescript API', function() {
+      let context: TestContext<ClrDatagridColumn, SimpleTest>;
       let sortService: Sort<number>;
-      let filtersService: FiltersProvider<number>;
       let comparator: TestComparator;
       let component: ClrDatagridColumn<number>;
-      const commonStrings = new ClrCommonStringsService();
 
       beforeEach(function() {
-        const stateDebouncer = new StateDebouncer();
-        sortService = new Sort(stateDebouncer);
-        filtersService = new FiltersProvider(new Page(stateDebouncer), stateDebouncer);
+        context = this.create(ClrDatagridColumn, SimpleTest, DATAGRID_SPEC_PROVIDERS);
+        sortService = context.getClarityProvider(Sort);
+        component = context.clarityDirective;
         comparator = new TestComparator();
-        component = new ClrDatagridColumn(sortService, filtersService, null, commonStrings);
       });
 
-      afterEach(() => {
-        component.ngOnDestroy();
+      afterEach(function() {
+        context.fixture.destroy();
         const popoverContent = document.querySelectorAll('.clr-popover-content');
         popoverContent.forEach(content => document.body.removeChild(content));
       });

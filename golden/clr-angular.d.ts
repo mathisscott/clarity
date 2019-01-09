@@ -268,6 +268,8 @@ export interface ClrCommonStrings {
     daypickerSRCurrentMonthPhrase?: string;
     daypickerSRCurrentYearPhrase?: string;
     detailExpandableAriaLabel?: string;
+    detailPaneEnd?: string;
+    detailPaneStart?: string;
     expand?: string;
     firstPage?: string;
     hide?: string;
@@ -333,6 +335,7 @@ export declare class ClrDatagrid<T = any> implements AfterContentInit, AfterView
     columns: QueryList<ClrDatagridColumn<T>>;
     commonStrings: ClrCommonStringsService;
     datagridTable: ElementRef;
+    detailService: DetailService;
     expandableRows: ExpandableRowsCount;
     items: Items<T>;
     iterator: ClrDatagridItems<T>;
@@ -348,7 +351,7 @@ export declare class ClrDatagrid<T = any> implements AfterContentInit, AfterView
     selection: Selection<T>;
     singleSelected: T;
     singleSelectedChanged: EventEmitter<T>;
-    constructor(organizer: DatagridRenderOrganizer, items: Items<T>, expandableRows: ExpandableRowsCount, selection: Selection<T>, rowActionService: RowActionService, stateProvider: StateProvider<T>, displayMode: DisplayModeService, renderer: Renderer2, el: ElementRef, page: Page, commonStrings: ClrCommonStringsService);
+    constructor(organizer: DatagridRenderOrganizer, items: Items<T>, expandableRows: ExpandableRowsCount, selection: Selection<T>, rowActionService: RowActionService, detailService: DetailService, stateProvider: StateProvider<T>, displayMode: DisplayModeService, renderer: Renderer2, el: ElementRef, page: Page, datagridId: string, commonStrings: ClrCommonStringsService);
     dataChanged(): void;
     ngAfterContentInit(): void;
     ngAfterViewInit(): void;
@@ -382,10 +385,12 @@ export declare class ClrDatagridColumn<T = any> extends DatagridFilterRegistrar<
     colType: 'string' | 'number';
     commonStrings: ClrCommonStringsService;
     customFilter: boolean;
+    detailService: DetailService;
     field: string;
     filterValue: string | [number, number];
     filterValueChange: EventEmitter<{}>;
     projectedFilter: any;
+    showSeparator: boolean;
     sortBy: ClrDatagridComparatorInterface<T> | string;
     sortIcon: any;
     sortOrder: ClrDatagridSortOrder;
@@ -394,7 +399,7 @@ export declare class ClrDatagridColumn<T = any> extends DatagridFilterRegistrar<
     sorted: boolean;
     sortedChange: EventEmitter<boolean>;
     updateFilterValue: string | [number, number];
-    constructor(_sort: Sort<T>, filters: FiltersProvider<T>, vcr: ViewContainerRef, commonStrings: ClrCommonStringsService);
+    constructor(_sort: Sort<T>, filters: FiltersProvider<T>, vcr: ViewContainerRef, commonStrings: ClrCommonStringsService, detailService: DetailService, changeDetectionRef: ChangeDetectorRef);
     ngOnDestroy(): void;
     ngOnInit(): void;
     sort(reverse?: boolean): void;
@@ -422,6 +427,13 @@ export interface ClrDatagridComparatorInterface<T> {
     compare(a: T, b: T): number;
 }
 
+export declare class ClrDatagridDetail {
+    commonStrings: ClrCommonStringsService;
+    detailService: DetailService;
+    constructor(detailService: DetailService, commonStrings: ClrCommonStringsService);
+    closeCheck(): void;
+}
+
 export declare class ClrDatagridFilter<T = any> extends DatagridFilterRegistrar<T, ClrDatagridFilterInterface<T>> implements CustomFilter, OnDestroy {
     readonly active: boolean;
     anchor: ElementRef;
@@ -445,10 +457,11 @@ export interface ClrDatagridFilterInterface<T, S = any> {
 
 export declare class ClrDatagridFooter<T = any> {
     SELECTION_TYPE: typeof SelectionType;
+    detailService: DetailService;
     readonly hasHideableColumns: boolean;
     selection: Selection<T>;
     toggle: ClrDatagridColumnToggle;
-    constructor(selection: Selection<T>, columnsService: ColumnsService);
+    constructor(selection: Selection<T>, detailService: DetailService, columnsService: ColumnsService);
 }
 
 export declare class ClrDatagridHideableColumn implements OnDestroy {
@@ -484,6 +497,7 @@ export declare class ClrDatagridPagination implements OnDestroy, OnInit {
     currentChanged: EventEmitter<number>;
     currentPage: number;
     currentPageInputRef: ElementRef;
+    detailService: DetailService;
     readonly firstItem: number;
     readonly lastItem: number;
     lastPage: number;
@@ -491,7 +505,7 @@ export declare class ClrDatagridPagination implements OnDestroy, OnInit {
     page: Page;
     pageSize: number;
     totalItems: number;
-    constructor(page: Page, commonStrings: ClrCommonStringsService);
+    constructor(page: Page, commonStrings: ClrCommonStringsService, detailService: DetailService);
     next(): void;
     ngOnDestroy(): void;
     ngOnInit(): void;
@@ -512,6 +526,10 @@ export declare class ClrDatagridRow<T = any> implements AfterContentInit, AfterV
     readonly _view: any;
     checkboxId: string;
     commonStrings: ClrCommonStringsService;
+    detailButton: any;
+    detailCloseLabel: string;
+    detailOpenLabel: string;
+    detailService: DetailService;
     dgCells: QueryList<ClrDatagridCell>;
     displayCells: boolean;
     expand: DatagridIfExpandService;
@@ -528,7 +546,7 @@ export declare class ClrDatagridRow<T = any> implements AfterContentInit, AfterV
     selected: boolean;
     selectedChanged: EventEmitter<boolean>;
     selection: Selection<T>;
-    constructor(selection: Selection<T>, rowActionService: RowActionService, globalExpandable: ExpandableRowsCount, expand: DatagridIfExpandService, displayMode: DisplayModeService, vcr: ViewContainerRef, renderer: Renderer2, el: ElementRef, commonStrings: ClrCommonStringsService);
+    constructor(selection: Selection<T>, rowActionService: RowActionService, globalExpandable: ExpandableRowsCount, expand: DatagridIfExpandService, displayMode: DisplayModeService, detailService: DetailService, vcr: ViewContainerRef, renderer: Renderer2, el: ElementRef, commonStrings: ClrCommonStringsService);
     ngAfterContentInit(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
@@ -805,6 +823,14 @@ export declare class ClrIfActive implements OnDestroy {
     constructor(ifActiveService: IfActiveService, id: number, template: TemplateRef<any>, container: ViewContainerRef);
     ngOnDestroy(): void;
     updateView(value: boolean): void;
+}
+
+export declare class ClrIfDetail implements OnInit, OnDestroy {
+    state: any;
+    stateChange: EventEmitter<any>;
+    constructor(templateRef: TemplateRef<any>, viewContainer: ViewContainerRef, detailService: DetailService);
+    ngOnDestroy(): void;
+    ngOnInit(): void;
 }
 
 export declare class ClrIfDragged<T> implements OnDestroy {

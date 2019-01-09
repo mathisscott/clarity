@@ -5,7 +5,7 @@
   -->
 
 <ng-content select="clr-dg-action-bar"></ng-content>
-<div class="datagrid" #datagrid>
+<div class="datagrid" #datagrid [attr.aria-hidden]="detailService.isOpen ? true : null">
     <div class="datagrid-table-wrapper">
       <div role="grid" class="datagrid-table" tabindex="-1" #datagridTable>
         <div role="rowgroup" class="datagrid-header">
@@ -43,11 +43,11 @@
               </div>
             </div>
           </div>
+          <ng-container #displayedRows></ng-container>
+          <!-- Custom placeholder overrides the default empty one -->
+          <ng-content select="clr-dg-placeholder"></ng-content>
+          <clr-dg-placeholder *ngIf="!placeholder"></clr-dg-placeholder>
         </div>
-        <ng-container #displayedRows></ng-container>
-        <!-- Custom placeholder overrides the default empty one -->
-        <ng-content select="clr-dg-placeholder"></ng-content>
-        <clr-dg-placeholder *ngIf="!placeholder"></clr-dg-placeholder>
       </div>
     </div>
 </div>
@@ -55,6 +55,8 @@
 <div class="datagrid-spinner" *ngIf="loading">
     <clr-spinner clrMedium>Loading</clr-spinner>
 </div>
+
+<ng-content select="[clrIfDetail],clr-dg-detail"></ng-content>
 
 <div class="datagrid-calculation-table">
     <div class="datagrid-calculation-header">
