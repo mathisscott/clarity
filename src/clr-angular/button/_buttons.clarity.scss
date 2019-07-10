@@ -2,6 +2,10 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
+:root {
+  --global-button-color: red;
+}
+
 @function getActiveWidthBoxShadowTop($type: default) {
   @if type == primary {
     @return 1px;
