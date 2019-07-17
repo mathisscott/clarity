@@ -18,8 +18,8 @@ import { LandingComponent } from './landing.component';
 import '@clr/base/src/lib/components/simple-button/simple-button';
 
 // 2019-07-17: theoretically this will work!
-// import { runCssVarsPolyfill } from '@clr/base/src/lib/utils/css-vars/css-vars';
-// runCssVarsPolyfill();
+import { runCssVarsPolyfill } from '@clr/base/src';
+runCssVarsPolyfill();
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
