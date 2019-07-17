@@ -16,7 +16,7 @@ interface ShadyWindow extends Window {
     <style>
       :host {
         all: initial;
-        display: inline-block;
+        display: block;
         contain: content;
         max-width: 500px;
         margin: 0 auto;
@@ -48,7 +48,14 @@ interface ShadyWindow extends Window {
         background: #ad3d55;
         color: white;
       }
+
+      .bright {
+        color: #ffa500;
+        font-size: 0.75rem;
+        margin-bottom: 0.25rem;
+      }
     </style>
+    <span class="bright">My custom element lives here</span>
     <button type="button">This is a button</button>
   `;
 
@@ -75,7 +82,7 @@ interface ShadyWindow extends Window {
               shadowDOM: true,
               onlyLegacy: true,
               onComplete: function() {
-                console.log('ohai!');
+                console.log('css vars ran in simple button');
               },
             }),
           1

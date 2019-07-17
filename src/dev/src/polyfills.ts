@@ -92,6 +92,10 @@ import '@webcomponents/custom-elements';
  */
 import 'web-animations-js'; // Run `npm install --save web-animations-js`.
 
+// 2019-07-17: TOCHECK... FROM CORY
+// Something with the CLI in prod mode is breaking web component styles in general I think.
+// In chrome if I run in prod mode with the cli the styles are broken for me
+
 /***************************************************************************************************
  * Zone JS is required by Angular itself.
  */

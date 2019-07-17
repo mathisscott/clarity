@@ -43,6 +43,7 @@ export function runCssVarsPolyfill(config?: any): void {
         onlyLegacy: true,
         onComplete: function() {
           window.__ClarityInternals.polyfills.cssVarsHasRun = true;
+          console.log('css vars ran with default config');
         },
       };
     }
