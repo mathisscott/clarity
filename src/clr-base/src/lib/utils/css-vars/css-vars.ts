@@ -5,6 +5,7 @@
  */
 
 import IWindow from '../../interfaces/window.interface';
+import cssVars from 'css-vars-ponyfill/dist/css-vars-ponyfill.esm.js';
 
 declare var window: IWindow;
 
@@ -31,14 +32,20 @@ export function cssVarsPolyfillHasRun(win: IWindow): boolean {
   }
 }
 
-export function runCssVarsPolyfill(): void {
-  if (typeof window !== 'undefined' && hasCssVars(window) && !cssVarsPolyfillHasRun(window)) {
-    window.cssVars({
-      shadowDOM: true,
-      onlyLegacy: true,
-      onComplete: function() {
-        window.__ClarityInternals.polyfills.cssVarsHasRun = true;
-      },
-    });
+export function runCssVarsPolyfill(config?: any): void {
+  if (typeof window !== 'undefined' && hasCssVars(window)) {
+    window.cssVars = cssVars;
+  }
+  if (!cssVarsPolyfillHasRun(window)) {
+    if (typeof config === 'undefined') {
+      config = {
+        shadowDOM: true,
+        onlyLegacy: true,
+        onComplete: function() {
+          window.__ClarityInternals.polyfills.cssVarsHasRun = true;
+        },
+      };
+    }
+    cssVars(config);
   }
 }

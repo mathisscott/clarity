@@ -79,11 +79,12 @@ import '@webcomponents/template';
 import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js';
 import '@webcomponents/custom-elements';
 
-// import 'css-vars-ponyfill/dist/css-vars-ponyfill.min.js';
+// 2019-07-17: loading the ponyfill here passes "undefined" as the global object
+// should we try loading this in scripts?! <= didn't work. same problem.
+// import 'css-vars-ponyfill/dist/css-vars-ponyfill.js';
 
-/*
- ####LEFTOFF: SEE "vv" NOTES ABOVE.
-*/
+// 2019-07-17: trying to load as a module in the clr-base?!
+// import 'css-vars-ponyfill/dist/css-vars-ponyfill.js';
 
 /*
  * Required to support Web Animations `@angular/animation`.

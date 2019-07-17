@@ -29,7 +29,7 @@
               }
             ],
             "styles": ["src/clr-icons/clr-icons.scss", "src/dev/src/styles.scss"],
-            "scripts": ["dist/clr-base/lib/components/simple-button/simple-button.js"]
+            "scripts": ["node_modules/css-vars-ponyfill/dist/css-vars-ponyfill.min.js"]
           },
           "configurations": {
             "production": {

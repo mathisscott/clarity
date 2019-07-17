@@ -3,6 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import cssVars from 'css-vars-ponyfill/dist/css-vars-ponyfill.esm.js';
 
 interface ShadyWindow extends Window {
   ShadyCSS: any;
@@ -63,9 +64,22 @@ interface ShadyWindow extends Window {
       if (!this._loaded) {
         // this.innerHTML = "<p>Ohai</p>";
 
-        this.attachShadow({ mode: 'open' });
+        const root = this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
         this._loaded = true;
+
+        setTimeout(
+          () =>
+            cssVars({
+              rootElement: root,
+              shadowDOM: true,
+              onlyLegacy: true,
+              onComplete: function() {
+                console.log('ohai!');
+              },
+            }),
+          1
+        );
       }
     }
   }

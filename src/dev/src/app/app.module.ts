@@ -15,9 +15,11 @@ import { ROUTING } from './app.routing';
 import { AppContentContainerComponent } from './content-container.component';
 import { LandingComponent } from './landing.component';
 
-// import { runCssVarsPolyfill } from '@clr/base';
+import '@clr/base/src/lib/components/simple-button/simple-button';
 
-// runCssVarsPolyfill();
+// 2019-07-17: theoretically this will work!
+import { runCssVarsPolyfill } from '@clr/base';
+runCssVarsPolyfill();
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
