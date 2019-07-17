@@ -3,10 +3,6 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 @include exports('typography.clarity') {
-  :root {
-    --global-h1-color: magenta;
-  }
-
   //Headings
   h1 {
     // color: $clr-h1-color;

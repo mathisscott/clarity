@@ -39,8 +39,10 @@ export function runCssVarsPolyfill(config?: any): void {
   if (!cssVarsPolyfillHasRun(window)) {
     if (typeof config === 'undefined') {
       config = {
-        shadowDOM: true,
         onlyLegacy: true,
+        shadowDOM: true,
+        watch: true,
+        updateURLs: false,
         onComplete: function() {
           window.__ClarityInternals.polyfills.cssVarsHasRun = true;
           console.log('css vars ran with default config');

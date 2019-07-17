@@ -64,6 +64,13 @@ interface ShadyWindow extends Window {
     (window as ShadyWindow).ShadyCSS.prepareTemplate(template, 'simple-button', 'div');
   }
 
+  // TODO: This probably is a good candidate for a helper function
+  function getRoot(selector: string) {
+    return document.querySelector(selector).shadowRoot;
+  }
+
+  const componentTagName = 'simple-button';
+
   class MyElement extends HTMLElement {
     private _loaded = false;
 
@@ -75,21 +82,21 @@ interface ShadyWindow extends Window {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
         this._loaded = true;
 
-        setTimeout(
-          () =>
-            cssVars({
-              rootElement: root,
-              shadowDOM: true,
-              onlyLegacy: true,
-              onComplete: function() {
-                console.log('css vars ran in simple button');
-              },
-            }),
-          1
-        );
+        setTimeout(() => {
+          console.log('i am trying to call cssVars. this is my root: ', root);
+          cssVars({
+            include: 'style',
+            rootElement: getRoot(componentTagName),
+            shadowDOM: true,
+            onlyLegacy: true,
+            onComplete: function() {
+              console.log('css vars ran in simple button');
+            },
+          });
+        }, 1);
       }
     }
   }
 
-  window.customElements.define('simple-button', MyElement);
+  window.customElements.define(componentTagName, MyElement);
 })();

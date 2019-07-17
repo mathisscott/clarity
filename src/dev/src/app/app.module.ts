@@ -17,9 +17,9 @@ import { LandingComponent } from './landing.component';
 
 import '@clr/base/src/lib/components/simple-button/simple-button';
 
-// 2019-07-17: theoretically this will work!
-import { runCssVarsPolyfill } from '@clr/base/src';
-runCssVarsPolyfill();
+// 2019-07-17: theoretically this will work! <= it does work but not inside of shadowDOM!
+// import { runCssVarsPolyfill } from '@clr/base/src';
+// runCssVarsPolyfill();
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],

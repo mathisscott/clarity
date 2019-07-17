@@ -2,6 +2,13 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
+:root {
+  --global-h1-color: magenta;
+
+  --global-button-color: red;
+  --global-button-font-color: white;
+}
+
 // Clarity Internal Dependencies- Begin Part 1
 @import '../utils/normalize';
 @import '../utils/mixins.clarity';

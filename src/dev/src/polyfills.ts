@@ -71,13 +71,29 @@ import 'core-js/es6/reflect';
 // import '@webcomponents/custom-elements/src/native-shim';
 // import '@webcomponents/custom-elements';
 
+/*
 // following Cory's attempt we landed here...
 import '@webcomponents/shadydom';
 import '@webcomponents/shadycss/scoping-shim.min.js';
+// import '@webcomponents/shadycss/apply-shim.min.js';
 // import '@webcomponents/shadycss/custom-style-interface.min.js';
 import '@webcomponents/template';
 import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js';
 import '@webcomponents/custom-elements';
+*/
+
+// 2019-07-17: This is what was recommended. But it fails because ngCli
+// is moving the webcomponents files somewhere that the loader cannot find them
+// i tried using glob in angular.json to no avail because it appears these files
+// are getting munged up in webpack.
+// 2019-07-17: I am now trying these in scripts of angular.json per https://stackoverflow.com/questions/56511672/angular-application-v8-not-working-with-web-component-polyfills-in-ie11
+// 2019-07-17: that didn't work at
+// import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js';
+// import '@webcomponents/webcomponentsjs/webcomponents-loader.js';
+
+// 2019-07-17: these worked great actually. a bit of a sledgehammer approach but everything showed up as expected.
+import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js';
+import '@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js';
 
 // 2019-07-17: loading the ponyfill here passes "undefined" as the global object
 // should we try loading this in scripts?! <= didn't work. same problem.
@@ -91,6 +107,8 @@ import '@webcomponents/custom-elements';
  * Needed for: All but Chrome, Firefox and Opera. http://caniuse.com/#feat=web-animation
  */
 import 'web-animations-js'; // Run `npm install --save web-animations-js`.
+
+// 2019-07-17: i tried passing `this` as the rootElement to cssVars instead of shadowRoot. it did nothing in IE or anywhere else.
 
 // 2019-07-17: TOCHECK... FROM CORY
 // Something with the CLI in prod mode is breaking web component styles in general I think.
