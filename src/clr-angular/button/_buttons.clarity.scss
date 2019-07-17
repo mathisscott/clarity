@@ -4,6 +4,7 @@
 
 :root {
   --global-button-color: red;
+  --global-button-font-color: white;
 }
 
 @function getActiveWidthBoxShadowTop($type: default) {

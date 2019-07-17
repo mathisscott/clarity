@@ -15,6 +15,10 @@ import { ROUTING } from './app.routing';
 import { AppContentContainerComponent } from './content-container.component';
 import { LandingComponent } from './landing.component';
 
+// import { runCssVarsPolyfill } from '@clr/base';
+
+// runCssVarsPolyfill();
+
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

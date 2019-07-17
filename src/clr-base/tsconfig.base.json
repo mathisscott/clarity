@@ -3,14 +3,13 @@
   "compilerOptions": {
     "baseUrl": "./",
     "declaration": true,
-    "module": "es2015",
+    "module": "esnext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "../../dist/clr-base",
     "skipLibCheck": true,
-    "strict": true,
     "target": "es5",
     "lib": ["es2017", "dom"],
     "paths": {
