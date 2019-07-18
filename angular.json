@@ -26,11 +26,6 @@
                 "glob": "**/*",
                 "input": "src/dev/src/assets",
                 "output": "/assets"
-              },
-              {
-                "glob": "**/*.js",
-                "input": "node_modules/@webcomponents/webcomponentsjs",
-                "output": "webcomponents/"
               }
             ],
             "styles": ["src/clr-icons/clr-icons.scss", "src/dev/src/styles.scss"],
