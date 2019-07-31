@@ -9,10 +9,14 @@
     progress.</p>
 <p>Click on one of the components in the side navigation to explore more!</p>
 
-<p><simple-button></simple-button></p>
+<section class="clr-row">
+  <p class="clr-col-6"><simple-button></simple-button></p>
+  <p class="clr-col-6" *ngIf="secondButtonShown"><simple-button></simple-button></p>
+</section>
 
 <p>
   <button type="button" class="btn btn-primary" (click)="toggleTheme()">Toggle Theme</button>
   <button type="button" class="btn btn-success" (click)="useGreenTheme()">Go Green</button>
-  <button type="button" class="btn btn-outline" (click)="resetTheme()">Reset</button>
+  <button type="button" class="btn btn-outline" (click)="toggleSecondButton()">Toggle 2nd Button</button>
+  <button type="button" class="btn btn-link" (click)="resetTheme()">Reset</button>
 </p>

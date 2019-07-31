@@ -18,25 +18,16 @@ import 'core-js/shim';
 /* Evergreen browsers require these. */
 import 'core-js/es6/reflect';
 
-/* Polyfill for icons web components */
-// once we move icons to Lit this will no longer be needed
-// import '@webcomponents/custom-elements';
-
 /*
  * Required to support Web Animations `@angular/animation`.
  * Needed for: All but Chrome, Firefox and Opera. http://caniuse.com/#feat=web-animation
  */
 import 'web-animations-js'; // Run `npm install --save web-animations-js`.
 
-// 2019-07-17: i tried passing `this` as the rootElement to cssVars instead of shadowRoot. it did nothing in IE or anywhere else.
-
-// 2019-07-17: TOCHECK... FROM CORY
-// Something with the CLI in prod mode is breaking web component styles in general I think.
-// In chrome if I run in prod mode with the cli the styles are broken for me
-
 /***************************************************************************************************
  * Zone JS is required by Angular itself.
  */
+(window as any).__Zone_enable_cross_context_check = true;
 import 'zone.js/dist/zone'; // Included with Angular CLI.
 
 /***************************************************************************************************

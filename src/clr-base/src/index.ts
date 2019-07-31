@@ -4,13 +4,4 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import IWindow from './lib/interfaces/window.interface';
-import { runCssVarsPolyfill } from './lib/utils/css-vars/css-vars';
-
-declare var window: IWindow;
-
-if (typeof window !== 'undefined') {
-  runCssVarsPolyfill();
-}
-
 export * from './lib/utils/css-vars/css-vars';

@@ -5,7 +5,7 @@
  */
 
 import IWindow from '../../interfaces/window.interface';
-import cssVars from 'css-vars-ponyfill/dist/css-vars-ponyfill.esm.js';
+import { cssVars, variableStore } from './css-vars-ponyfill-fork.esm.js';
 
 declare var window: IWindow;
 
@@ -33,22 +33,55 @@ export function cssVarsPolyfillHasRun(win: IWindow): boolean {
 }
 
 export function runCssVarsPolyfill(config?: any): void {
+  const runCssVarsPolyfillStart = new Date();
   if (typeof window !== 'undefined' && hasCssVars(window)) {
     window.cssVars = cssVars;
   }
-  if (!cssVarsPolyfillHasRun(window)) {
-    if (typeof config === 'undefined') {
-      config = {
-        onlyLegacy: true,
-        shadowDOM: true,
-        watch: true,
-        updateURLs: false,
-        onComplete: function() {
-          window.__ClarityInternals.polyfills.cssVarsHasRun = true;
-          console.log('css vars ran with default config');
-        },
-      };
-    }
-    cssVars(config);
+
+  if (typeof config === 'undefined') {
+    // initial load 9-10 seconds
+    // switching them ~30 seconds
+    // toggling themes increased cssVars load time by about 9 seconds each theme switch
+    config = {
+      onlyLegacy: true,
+      // shadowDOM: true, // shaved off no time on initial load but 7-8 seconds on theme switch
+      // watch: true, // turning off watch altogether saved no time on initial load but reduced theme switching to 5 seconds; additionally, this function has to be called for every theme switch
+      updateURLs: false,
+      // preserveStatic: false, // makes things < 300 ms in IE but leaving off for concerns re: custom property limitations
+      updateDOM: true, // has to stay true
+      // preserveVars: true, // shaved off 1.5 seconds on initial load, ~9 seconds on theme switch
+      // onBeforeSend: function() {
+      //   console.log('css vars on before send');
+      // },
+      // onSuccess: function() {
+      //   console.log('css vars on success');
+      // },
+      onComplete: function(cssText) {
+        // window.__ClarityInternals.polyfills.cssVarsHasRun = true;
+        // console.log('css vars ran with default config - on complete');
+        // console.log(variableStore.dom);
+        const runCssVarsPolyfillEnd = new Date();
+        let shadyCssStyleDocumentEnd: Date;
+        console.log(
+          'cssVars took ',
+          runCssVarsPolyfillEnd.valueOf() - runCssVarsPolyfillStart.valueOf(),
+          ' milliseconds'
+        );
+        (window as any).ShadyCSS.styleDocument(variableStore.dom);
+        shadyCssStyleDocumentEnd = new Date();
+        console.log(
+          'shadyCssStyleDocument in cssVars onComplete took ',
+          shadyCssStyleDocumentEnd.valueOf() - runCssVarsPolyfillEnd.valueOf(),
+          ' milliseconds'
+        );
+      },
+    };
   }
+
+  // if (!cssVarsPolyfillHasRun(window)) {
+  //   cssVars(config);
+  // }
+  cssVars(config);
 }
+
+export { variableStore } from './css-vars-ponyfill-fork.esm.js';
