@@ -91,8 +91,18 @@ function getNewTheme(oldTheme: string): string {
 export class CustomPropsDemo implements OnInit {
   private _theme = 'default';
 
+  pctComplete = 10;
+
   cycleThemes(): void {
     this._theme = getNewTheme(this._theme);
+  }
+
+  plusFive() {
+    if (this.pctComplete + 5 > 100) {
+      this.pctComplete = 10;
+    } else {
+      this.pctComplete = this.pctComplete + 5;
+    }
   }
 
   ngOnInit() {

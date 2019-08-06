@@ -13,6 +13,7 @@ import { CustomPropsDemo } from './custom-props.demo';
 import { ROUTING } from './custom-props.routing';
 
 import '@clr/base/components/clr-wc-element';
+import '@clr/base/components/clr-wc-circular-progress';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, ClarityModule, ROUTING],
