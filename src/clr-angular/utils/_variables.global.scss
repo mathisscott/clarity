@@ -231,11 +231,9 @@ $grid-gutter-widths: (
 
 // Close button colors
 // Usage: ../emphasis/alert/_alert.clarity.scss
-$close-color--normal: $clr-color-neutral-600 !default; //deprecated
-$clr-close-color--normal: $close-color--normal !default;
+$clr-close-color--normal: $clr-color-neutral-600 !default;
 $clr-close-color--normal-opacity: 0.2 !default;
-$close-color--hover: $clr-color-neutral-1000 !default; //deprecated
-$clr-close-color--hover: $close-color--hover !default;
+$clr-close-color--hover: $clr-color-neutral-1000 !default;
 $clr-close-color--hover-opacity: 0.5 !default;
 
 // Box Shadow
