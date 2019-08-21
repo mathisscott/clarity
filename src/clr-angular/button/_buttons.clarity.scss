@@ -220,6 +220,8 @@
 }
 
 @include exports('buttons.clarity') {
+  @import './properties.button';
+
   .btn {
     @include generateButton();
     @include populateButtonProperties(default);
