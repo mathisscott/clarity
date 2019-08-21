@@ -160,5 +160,8 @@
 
     // For theme-able icon button color
     --clr-btn-icon-disabled-color: var(--clr-btn-default-disabled-color, $clr-btn-default-disabled-color);
+
+    // Button groups
+    --clr-btn-group-focus-outline: #{$clr-btn-group-focus-outline};
   }
 }

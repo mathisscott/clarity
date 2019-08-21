@@ -2,23 +2,23 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
+@mixin clr-toggle-transition-styles() {
+  @include css-var(
+    transition-duration,
+    clr-toggle-transition-time,
+    $clr-toggle-transition-time,
+    $clr-use-custom-properties
+  );
+  @include css-var(
+    transition-timing-function,
+    clr-toggle-transition-animation,
+    $clr-toggle-transition-animation,
+    $clr-use-custom-properties
+  );
+}
+
 @include exports('toggles.clarity') {
   @import '../../button/properties.toggles';
-
-  @mixin transition-styles() {
-    @include css-var(
-      transition-duration,
-      clr-toggle-transition-time,
-      $clr-toggle-transition-time,
-      $clr-use-custom-properties
-    );
-    @include css-var(
-      transition-timing-function,
-      clr-toggle-transition-animation,
-      $clr-toggle-transition-animation,
-      $clr-use-custom-properties
-    );
-  }
 
   //Remove the default checkbox appearance
   %custom-checkbox {
@@ -70,7 +70,7 @@
       top: ($clr-forms-baseline / 2);
       right: 0;
       left: -1 * ($clr-toggle-switch-base-width + $clr-toggle-switch-base-left-spacing);
-      @include transition-styles;
+      @include clr-toggle-transition-styles;
       transition-property: border-color, background-color;
     }
 
@@ -81,7 +81,7 @@
     input[type='checkbox']:checked + label::before {
       @include css-var(border-color, clr-toggle-bg-color-on, $clr-toggle-bg-color-on, $clr-use-custom-properties);
       @include css-var(background-color, clr-toggle-bg-color-on, $clr-toggle-bg-color-on, $clr-use-custom-properties);
-      @include transition-styles;
+      @include clr-toggle-transition-styles;
       transition-property: border-color, background-color;
     }
 
@@ -110,14 +110,14 @@
       top: ($clr_baselineRem_2px + $clr-forms-baseline / 2);
       right: 0;
       left: -1 * ($clr-toggle-switch-base-width + $clr-toggle-switch-base-left-spacing - $clr_baselineRem_2px);
-      @include transition-styles;
+      @include clr-toggle-transition-styles;
       transition-property: right, left;
     }
 
     input[type='checkbox']:checked + label::after {
       right: -1 * ($clr-toggle-switch-base-width + $clr-toggle-switch-base-left-spacing - $clr_baselineRem_2px);
       left: -1 * $clr-toggle-switch-left-spacing;
-      @include transition-styles;
+      @include clr-toggle-transition-styles;
       transition-property: right, left;
     }
 
