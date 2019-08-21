@@ -2,6 +2,10 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
+// Usage: ./_properties.clarity.scss
+// This will remove custom property declarations
+$clr-use-custom-properties: true !default;
+
 // Usage: ../typography/_typography.clarity.scss
 $clr-baseline-px: 24px;
 $clr-basefont-size: 125% !default; // TODO - switch on at the end...

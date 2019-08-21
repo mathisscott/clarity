@@ -3,6 +3,8 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 @include exports('accordion.clarity') {
+  @import './properties.accordion';
+
   .clr-accordion {
     display: block;
     counter-reset: accordion;
@@ -14,30 +16,45 @@
   }
 
   .clr-accordion-header {
-    color: $clr-accordion-text-color;
-    border: $clr_baselineRem_1px solid $clr-accordion-border-color;
-    box-shadow: inset $clr-accordion-border-left-width 0 0 $clr-accordion-border-left-color;
-    background: $clr-accordion-header-background-color;
+    $box-shadow-default: inset $clr-accordion-border-left-width 0 0 $clr-accordion-border-left-color;
+    @include css-var(color, clr-accordion-text-color, $clr-accordion-text-color, $clr-use-custom-properties);
+    border: $clr_baselineRem_1px solid;
+    @include css-var(border-color, clr-accordion-border-color, $clr-accordion-border-color, $clr-use-custom-properties);
+    @include css-var(box-shadow, clr-accordion-header-left-indicator, $box-shadow-default, $clr-use-custom-properties);
+    @include css-var(
+      background,
+      clr-accordion-header-background-color,
+      $clr-accordion-header-background-color,
+      $clr-use-custom-properties
+    );
     transition: all 200ms ease-in-out;
     border-bottom: 0;
     width: 100%;
-    font-size: $clr_baselineRem_0_65;
+    @include css-var(font-size, clr-accordion-header-font-size, $clr_baselineRem_0_65, $clr-use-custom-properties);
     text-align: left;
 
     &:hover {
-      background-color: $clr-accordion-header-hover-background-color;
+      @include css-var(
+        background-color,
+        clr-accordion-header-background-color,
+        $clr-accordion-header-background-color,
+        $clr-use-custom-properties
+      );
     }
   }
 
   .clr-accordion-panel:last-child {
     .clr-accordion-content,
     .clr-accordion-header {
-      border-bottom: $clr_baselineRem_1px solid $clr-accordion-border-color;
+      $border: $clr-global-borderwidth solid $clr-accordion-border-color;
+      @include css-var(border-bottom, clr-accordion-border, $border, $clr-use-custom-properties);
     }
   }
 
   .clr-accordion-number {
-    padding: 0 $clr_baselineRem_0_75;
+    padding: 0;
+    @include css-var(padding-left, clr-accordion-padding, $clr-accordion-padding, $clr-use-custom-properties);
+    @include css-var(padding-right, clr-accordion-padding, $clr-accordion-padding, $clr-use-custom-properties);
     display: none;
 
     &::before {
@@ -52,11 +69,11 @@
     flex: 1 1 0%;
     width: 100%;
     border: 0;
-    padding: $clr-accordion-padding;
+    @include css-var(padding, clr-accordion-padding, $clr-accordion-padding, $clr-use-custom-properties);
     background: transparent;
     text-align: left;
     cursor: pointer;
-    color: $clr-accordion-text-color;
+    @include css-var(color, clr-accordion-text-color, $clr-accordion-text-color, $clr-use-custom-properties);
 
     @media (min-width: $clr-accordion-responsive-breakpoint) {
       flex-flow: row;
@@ -114,7 +131,7 @@
   }
 
   .clr-accordion-inner-content {
-    padding: $clr_baselineRem_0_75;
+    @include css-var(padding, clr-accordion-padding, $clr-accordion-padding, $clr-use-custom-properties);
 
     @media (min-width: $clr-accordion-responsive-breakpoint) {
       padding: $clr_baselineRem_0_75 $clr_baselineRem_2_25;
@@ -146,14 +163,19 @@
     }
 
     .clr-accordion-header {
-      background: $clr-accordion-active-background-color;
+      @include css-var(
+        background,
+        clr-accordion-active-background-color,
+        $clr-accordion-active-background-color,
+        $clr-use-custom-properties
+      );
     }
   }
 
   .clr-accordion-panel-complete {
     .clr-accordion-complete-icon {
       display: inline-block;
-      color: $clr-accordion-complete-color;
+      @include css-var(color, clr-accordion-complete-color, $clr-accordion-complete-color, $clr-use-custom-properties);
     }
 
     .clr-accordion-angle {
@@ -161,7 +183,13 @@
     }
 
     .clr-accordion-header {
-      box-shadow: inset $clr-accordion-border-left-width 0 0 $clr-accordion-border-left-color-complete;
+      $box-shadow: inset $clr-accordion-border-left-width 0 0 $clr-accordion-border-left-color-complete;
+      @include css-var(
+        box-shadow,
+        clr-accordion-header-left-complete-indicator,
+        $box-shadow,
+        $clr-use-custom-properties
+      );
     }
 
     .ng-trigger.clr-accordion-content {
@@ -171,15 +199,32 @@
 
   .clr-accordion-panel-error {
     .clr-accordion-header {
-      border-color: $clr-accordion-border-left-color-error;
-      box-shadow: inset $clr-accordion-border-left-width 0 0 $clr-accordion-border-left-color-error;
-      border-bottom: $clr_baselineRem_1px solid $clr-accordion-border-left-color-error;
-      background-color: $clr-accordion-active-background-color;
+      $box-shadow: inset $clr-accordion-border-left-width 0 0 $clr-accordion-border-left-color-error;
+      @include css-var(
+        border-color,
+        clr-accordion-border-left-color-error,
+        $clr-accordion-border-left-color-error,
+        $clr-use-custom-properties
+      );
+      @include css-var(box-shadow, clr-accordion-header-left-error-indicator, $box-shadow, $clr-use-custom-properties);
+      @include css-var(
+        border-bottom-width,
+        clr-accordion-border-width,
+        $clr-global-borderwidth,
+        $clr-use-custom-properties
+      );
+      border-bottom-style: solid;
+      @include css-var(
+        background-color,
+        clr-accordion-active-background-color,
+        $clr-accordion-active-background-color,
+        $clr-use-custom-properties
+      );
     }
 
     .clr-accordion-error-icon {
       display: inline-block;
-      color: $clr-accordion-error-color;
+      @include css-var(color, clr-accordion-error-color, $clr-accordion-error-color, $clr-use-custom-properties);
     }
   }
 
@@ -196,33 +241,71 @@
     }
 
     .clr-accordion-panel:first-child .clr-accordion-header {
-      border-top-left-radius: $clr-accordion-border-radius;
-      border-top-right-radius: $clr-accordion-border-radius;
+      @include css-var(
+        border-top-left-radius,
+        clr-accordion-border-radius,
+        $clr-accordion-border-radius,
+        $clr-use-custom-properties
+      );
+      @include css-var(
+        border-top-right-radius,
+        clr-accordion-border-radius,
+        $clr-accordion-border-radius,
+        $clr-use-custom-properties
+      );
     }
 
-    .clr-accordion-panel:last-child {
-      .clr-accordion-header {
-        border-bottom-left-radius: $clr-accordion-border-radius;
-        border-bottom-right-radius: $clr-accordion-border-radius;
-      }
-
-      .clr-accordion-panel-open {
-        .clr-accordion-header {
-          border-bottom-left-radius: 0;
-          border-bottom-right-radius: 0;
-          border-bottom: 0;
-        }
-      }
+    .clr-accordion-panel:last-child .clr-accordion-header {
+      @include css-var(
+        border-bottom-left-radius,
+        clr-accordion-border-radius,
+        $clr-accordion-border-radius,
+        $clr-use-custom-properties
+      );
+      @include css-var(
+        border-bottom-right-radius,
+        clr-accordion-border-radius,
+        $clr-accordion-border-radius,
+        $clr-use-custom-properties
+      );
     }
 
     .clr-accordion-title {
-      font-weight: 500;
-      font-size: $clr_baselineRem_0_5416;
+      @include css-var(font-weight, clr-accordion-title-font-weight, 500, $clr-use-custom-properties);
+      @include css-var(font-size, clr-accordion-title-font-size, $clr_baselineRem_0_5416, $clr-use-custom-properties);
     }
 
     .clr-accordion-header-button {
-      padding: $clr_baselineRem_0_25 $clr_baselineRem_0_5;
-      font-size: $clr_baselineRem_0_5;
+      @include css-var(
+        font-size,
+        clr-accordion-header-button-font-size,
+        $clr_baselineRem_0_5,
+        $clr-use-custom-properties
+      );
+      @include css-var(
+        padding-top,
+        clr-accordion-header-button-vertical-padding,
+        $clr_baselineRem_0_25,
+        $clr-use-custom-properties
+      );
+      @include css-var(
+        padding-bottom,
+        clr-accordion-header-button-vertical-padding,
+        $clr_baselineRem_0_25,
+        $clr-use-custom-properties
+      );
+      @include css-var(
+        padding-left,
+        clr-accordion-header-button-horizontal-padding,
+        $clr_baselineRem_0_5,
+        $clr-use-custom-properties
+      );
+      @include css-var(
+        padding-right,
+        clr-accordion-header-button-horizontal-padding,
+        $clr_baselineRem_0_5,
+        $clr-use-custom-properties
+      );
     }
 
     .clr-accordion-content {
@@ -230,15 +313,38 @@
     }
 
     .clr-accordion-inner-content {
-      padding: $clr_baselineRem_0_25 $clr_baselineRem_1_4583;
+      @include css-var(
+        padding-top,
+        clr-accordion-inner-content-vertical-padding,
+        $clr_baselineRem_0_25,
+        $clr-use-custom-properties
+      );
+      @include css-var(
+        padding-bottom,
+        clr-accordion-inner-content-vertical-padding,
+        $clr_baselineRem_0_25,
+        $clr-use-custom-properties
+      );
+      @include css-var(
+        padding-left,
+        clr-accordion-inner-content-horizontal-padding,
+        $clr_baselineRem_1_4583,
+        $clr-use-custom-properties
+      );
+      @include css-var(
+        padding-right,
+        clr-accordion-inner-content-horizontal-padding,
+        $clr_baselineRem_1_4583,
+        $clr-use-custom-properties
+      );
     }
 
     .clr-accordion-status {
       width: $clr_baselineRem_0_8;
 
       clr-icon {
-        width: $clr_baselineRem_0_583;
-        height: $clr_baselineRem_0_583;
+        @include css-var(width, clr-accordion-status-icon-size, $clr_baselineRem_0_583, $clr-use-custom-properties);
+        @include css-var(height, clr-accordion-status-icon-size, $clr_baselineRem_0_583, $clr-use-custom-properties);
       }
     }
   }

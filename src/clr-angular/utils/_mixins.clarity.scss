@@ -82,3 +82,13 @@ $clr-outline-spread: 2px;
     }
   }
 }
+
+@mixin css-var($style: null, $var: null, $fallback: '', $do-custom-prop: true) {
+  @if $style != null and $var != null {
+    /* #{$var} */
+    #{$style}: $fallback;
+    @if $do-custom-prop == true {
+      #{$style}: var(-- #{$var}, $fallback);
+    }
+  }
+}
