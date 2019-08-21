@@ -180,7 +180,7 @@ a.btn-primary {
 
 .header .branding .clarity-logo {
   background-image: url(../assets/images/clarity-logo.svg);
-  margin-right: $clr_baselineRem_0_5 - 1;
+  margin-right: $clr_baselineRem_0_5 - $clr_baselineRem_1px;
   min-width: none;
   height: $clr_baselineRem_1_5;
   width: $clr_baselineRem_1_5;
