@@ -590,8 +590,6 @@ $clr-btn-inverse-checked-color: $clr-color-neutral-0 !default;
 
 // For theme-able icon button color
 $clr-btn-icon-disabled-color: $clr-btn-default-disabled-color !default;
-// @deprecated in 2.0 $clr-button prefix to be replaced by $clr-btn
-$clr-button-icon-disabled-color: $clr-btn-icon-disabled-color !default;
 
 @function lookupFromIconButtonColors($property: null) {
   @if $property == disabled-color {
