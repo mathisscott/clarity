@@ -2,24 +2,48 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
+@if $clr-use-custom-properties == true {
+    :root {
+
+
+
+/*
+
 // General
 // Usage: ./_buttons.clarity.scss
 // Usage: ../popover/tooltip/_tooltips.clarity.scss
-$clr-btn-vertical-margin: $clr_baselineRem_0_25 !default;
+// @deprecated in 2.0 $clr-button prefix to be replaced by $clr-btn
+$clr-button-vertical-margin: $clr_baselineRem_0_25 !default;
+$clr-btn-vertical-margin: $clr-button-vertical-margin !default;
 
 // Usage: ./_buttons.clarity.scss
 // Usage: ../popover/tooltip/_tooltips.clarity.scss
 // Usage: ../layout/_card.clarity.scss
-$clr-btn-horizontal-margin: $clr_baselineRem_0_5 !default;
+// @deprecated in 2.0 $clr-button prefix to be replaced by $clr-btn
+$clr-button-horizontal-margin: $clr_baselineRem_0_5 !default;
+$clr-btn-horizontal-margin: $clr-button-horizontal-margin !default;
 
 // Usage: ./_buttons.clarity.scss
 // Usage: ../popover/dropdown/_dropdown.clarity.scss
-$clr-btn-horizontal-padding: $clr_baselineRem_0_5 !default;
+// @deprecated in 2.0 $clr-button prefix to be replaced by $clr-btn
+$clr-button-horizontal-padding: $clr_baselineRem_0_5 !default;
+$clr-btn-horizontal-padding: $clr-button-horizontal-padding !default;
 
-$clr-btn-height: $clr_baselineRem_1_5 !default;
-$clr-btn-height-sm: $clr_baselineRem_1 !default;
-$clr-btn-font-weight: $clr-font-weight-semibold !default;
-$clr-btn-padding: 0 $clr-btn-horizontal-padding !default;
+// @deprecated in 2.0 $clr-button prefix to be replaced by $clr-btn
+$clr-button-height: $clr_baselineRem_1_5 !default;
+$clr-btn-height: $clr-button-height !default;
+
+// @deprecated in 2.0 $clr-button prefix to be replaced by $clr-btn
+$clr-button-height-sm: $clr_baselineRem_1 !default;
+$clr-btn-height-sm: $clr-button-height-sm !default;
+
+// @deprecated in 2.0 $clr-button prefix to be replaced by $clr-btn
+$clr-button-font-weight: $clr-font-weight-semibold !default;
+$clr-btn-font-weight: $clr-button-font-weight !default;
+
+// @deprecated in 2.0 $clr-button prefix to be replaced by $clr-btn
+$clr-button-padding: 0 $clr-btn-horizontal-padding !default;
+$clr-btn-padding: $clr-button-padding !default;
 
 $clr-btn-border-radius: $clr-global-borderradius !default;
 $clr-btn-border-width: $clr-global-borderwidth !default;
@@ -600,3 +624,10 @@ $clr-button-icon-disabled-color: $clr-btn-icon-disabled-color !default;
 
   @return null;
 }
+
+*/
+
+
+    }
+  }
+  
