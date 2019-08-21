@@ -3,13 +3,30 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 @include exports('toggles.clarity') {
+  @import '../../button/properties.toggles';
+
+  @mixin transition-styles() {
+    @include css-var(
+      transition-duration,
+      clr-toggle-transition-time,
+      $clr-toggle-transition-time,
+      $clr-use-custom-properties
+    );
+    @include css-var(
+      transition-timing-function,
+      clr-toggle-transition-animation,
+      $clr-toggle-transition-animation,
+      $clr-use-custom-properties
+    );
+  }
+
   //Remove the default checkbox appearance
   %custom-checkbox {
     @include clr-appearance-normal();
   }
 
   .clr-toggle-wrapper {
-    height: $clr-toggle-height;
+    @include css-var(height, clr-toggle-height, $clr-toggle-height, $clr-use-custom-properties);
     vertical-align: middle;
     position: relative;
     display: block;
@@ -19,7 +36,7 @@
       display: inline-block;
       position: relative;
       cursor: pointer;
-      height: $clr-toggle-height;
+      @include css-var(height, clr-toggle-height, $clr-toggle-height, $clr-use-custom-properties);
       margin-left: $clr-toggle-switch-base-width + $clr-toggle-switch-base-left-spacing;
       margin-right: 0;
     }
@@ -39,16 +56,21 @@
       position: absolute;
       display: inline-block;
       content: '';
-      height: $clr-toggle-switch-base-height;
-      width: $clr-toggle-switch-base-width;
+      @include css-var(
+        height,
+        clr-toggle-switch-base-height,
+        $clr-toggle-switch-base-height,
+        $clr-use-custom-properties
+      );
+      @include css-var(width, clr-toggle-switch-base-width, $clr-toggle-switch-base-width, $clr-use-custom-properties);
       border: $clr_baselineRem_2px solid;
       border-radius: $clr_baselineRem_0_375;
-      border-color: $clr-toggle-bg-color-off;
-      background-color: $clr-toggle-bg-color-off;
+      @include css-var(border-color, clr-toggle-bg-color-off, $clr-toggle-bg-color-off, $clr-use-custom-properties);
+      @include css-var(background-color, clr-toggle-bg-color-off, $clr-toggle-bg-color-off, $clr-use-custom-properties);
       top: ($clr-forms-baseline / 2);
       right: 0;
       left: -1 * ($clr-toggle-switch-base-width + $clr-toggle-switch-base-left-spacing);
-      transition: $clr-toggle-transition-time $clr-toggle-transition-animation;
+      @include transition-styles;
       transition-property: border-color, background-color;
     }
 
@@ -57,9 +79,9 @@
     }
 
     input[type='checkbox']:checked + label::before {
-      border-color: $clr-toggle-bg-color-on;
-      background-color: $clr-toggle-bg-color-on;
-      transition: $clr-toggle-transition-time $clr-toggle-transition-animation;
+      @include css-var(border-color, clr-toggle-bg-color-on, $clr-toggle-bg-color-on, $clr-use-custom-properties);
+      @include css-var(background-color, clr-toggle-bg-color-on, $clr-toggle-bg-color-on, $clr-use-custom-properties);
+      @include transition-styles;
       transition-property: border-color, background-color;
     }
 
@@ -68,24 +90,35 @@
       position: absolute;
       display: inline-block;
       content: '';
-      height: $clr-toggle-switch-height;
-      width: $clr-toggle-switch-height;
-      border: $clr-global-borderwidth solid $clr-toggle-handle-bg-color;
+      @include css-var(height, clr-toggle-switch-height, $clr-toggle-switch-height, $clr-use-custom-properties);
+      @include css-var(width, clr-toggle-switch-height, $clr-toggle-switch-height, $clr-use-custom-properties);
+      @include css-var(border-width, clr-global-borderwidth, $clr-global-borderwidth, $clr-use-custom-properties);
+      @include css-var(
+        border-color,
+        clr-toggle-handle-bg-color,
+        $clr-toggle-handle-bg-color,
+        $clr-use-custom-properties
+      );
+      border-style: solid;
       border-radius: 50%;
-      background-color: $clr-toggle-handle-bg-color;
-      // TOCHECK: COMPUTATION...
+      @include css-var(
+        background-color,
+        clr-toggle-handle-bg-color,
+        $clr-toggle-handle-bg-color,
+        $clr-use-custom-properties
+      );
       top: ($clr_baselineRem_2px + $clr-forms-baseline / 2);
       right: 0;
       left: -1 * ($clr-toggle-switch-base-width + $clr-toggle-switch-base-left-spacing - $clr_baselineRem_2px);
-      transition: right $clr-toggle-transition-time $clr-toggle-transition-animation;
-      transition-property: left;
+      @include transition-styles;
+      transition-property: right, left;
     }
 
     input[type='checkbox']:checked + label::after {
       right: -1 * ($clr-toggle-switch-base-width + $clr-toggle-switch-base-left-spacing - $clr_baselineRem_2px);
-      transition: right $clr-toggle-transition-time $clr-toggle-transition-animation;
       left: -1 * $clr-toggle-switch-left-spacing;
-      transition-property: left;
+      @include transition-styles;
+      transition-property: right, left;
     }
 
     &.disabled {
@@ -95,8 +128,18 @@
       }
 
       input[type='checkbox']:checked + label::before {
-        border-color: $clr-toggle-disabled-on-border-color; // No effect on our demos
-        background-color: $clr-toggle-disabled-on-bg-color; // No effect on our demos
+        @include css-var(
+          border-color,
+          clr-toggle-disabled-on-border-color,
+          $clr-toggle-disabled-on-border-color,
+          $clr-use-custom-properties
+        );
+        @include css-var(
+          background-color,
+          clr-toggle-disabled-on-border-color,
+          $clr-toggle-disabled-on-border-color,
+          $clr-use-custom-properties
+        );
       }
     }
 
@@ -106,34 +149,81 @@
 
       &::before {
         // toggle disabled/off bg color
-        background-color: $clr-toggle-disabled-off-bg-color;
+        @include css-var(
+          background-color,
+          clr-toggle-disabled-off-bg-color,
+          $clr-toggle-disabled-off-bg-color,
+          $clr-use-custom-properties
+        );
         // toggle disabled/off border color (excluding the handle circle)
-        border-color: $clr-toggle-disabled-off-border-color;
+        @include css-var(
+          border-color,
+          clr-toggle-disabled-off-border-color,
+          $clr-toggle-disabled-off-border-color,
+          $clr-use-custom-properties
+        );
       }
 
       &::after {
         // toggle handle color for disabled/off and inner part of handle disabled/on
-        background-color: $clr-toggle-disabled-off-bg-color;
+        @include css-var(
+          background-color,
+          clr-toggle-disabled-off-bg-color,
+          $clr-toggle-disabled-off-bg-color,
+          $clr-use-custom-properties
+        );
         // toggle handle color for disabled/off handle outer border circle
-        border: $clr_baselineRem_2px solid $clr-toggle-disabled-off-handle-border-color;
-        width: $clr-toggle-switch-base-height;
-        height: $clr-toggle-switch-base-height;
+        border-width: $clr_baselineRem_2px;
+        border-style: solid;
+        @include css-var(
+          border-width,
+          clr-toggle-disabled-off-handle-border-color,
+          $clr-toggle-disabled-off-handle-border-color,
+          $clr-use-custom-properties
+        );
+        @include css-var(
+          width,
+          clr-toggle-switch-base-height,
+          $clr-toggle-switch-base-height,
+          $clr-use-custom-properties
+        );
+        @include css-var(
+          height,
+          clr-toggle-switch-base-height,
+          $clr-toggle-switch-base-height,
+          $clr-use-custom-properties
+        );
         top: $clr_baselineRem_3px;
       }
     }
 
     input[type='checkbox']:checked:disabled + label::before {
       // toggle disabled/on border color
-      border-color: $clr-toggle-disabled-on-border-color;
+      @include css-var(
+        border-color,
+        clr-toggle-disabled-on-border-color,
+        $clr-toggle-disabled-on-border-color,
+        $clr-use-custom-properties
+      );
       // toggle disabled/on bg color
-      background-color: $clr-toggle-disabled-on-bg-color;
+      @include css-var(
+        background-color,
+        clr-toggle-disabled-on-bg-color,
+        $clr-toggle-disabled-on-bg-color,
+        $clr-use-custom-properties
+      );
     }
 
     input[type='checkbox']:checked:disabled + label::after {
       // toggle disabled on handle circle border color
-      border-color: $clr-toggle-disabled-on-handle-border-color;
-      width: $clr-toggle-switch-height;
-      height: $clr-toggle-switch-height;
+      @include css-var(
+        border-color,
+        clr-toggle-disabled-on-handle-border-color,
+        $clr-toggle-disabled-on-handle-border-color,
+        $clr-use-custom-properties
+      );
+      @include css-var(width, clr-toggle-switch-height, $clr-toggle-switch-height, $clr-use-custom-properties);
+      @include css-var(height, clr-toggle-switch-height, $clr-toggle-switch-height, $clr-use-custom-properties);
       top: $clr_baselineRem_5px;
       left: -1 * $clr-toggle-switch-left-spacing;
     }
