@@ -2,6 +2,8 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
+// NOTE: file added to prettierignore because it was added unwanted spaces in the css-var() mixin
+
 //Credit: Zurb Foundation for Apps https://github.com/zurb/foundation-apps/blob/master/scss/helpers/_functions.scss
 //Keep track of modules that have been imported, so we don't import more than once
 $imported-modules: () !default;
@@ -88,7 +90,7 @@ $clr-outline-spread: 2px;
     /* #{$var} */
     #{$style}: $fallback;
     @if $do-custom-prop == true {
-      #{$style}: var(-- #{$var}, $fallback);
+      #{$style}: var(--#{$var}, $fallback);
     }
   }
 }
