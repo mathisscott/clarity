@@ -180,7 +180,7 @@ $clr-app-alert-success-close-icon-hover-opacity: $clr-app-alert-close-icon-hover
   @return null;
 }
 
-@function getCssVarName($alert-type: 'info', $prop: bg-color) {
+@function getAlertCssVarName($alert-type: 'info', $prop: bg-color) {
   @if $prop == color {
     @return 'clr-alert-' + #{$alert-type} + '-font-' + $prop;
   }
@@ -194,7 +194,7 @@ $clr-app-alert-success-close-icon-hover-opacity: $clr-app-alert-close-icon-hover
 
 @function lookupInfoAlertColor($property: color, $type: 'sass-var') {
   @if $type == 'css-var' {
-    @return getCssVarName('alert-info', $property);
+    @return getAlertCssVarName('alert-info', $property);
   }
 
   @if $property == color {
@@ -242,7 +242,7 @@ $clr-app-alert-success-close-icon-hover-opacity: $clr-app-alert-close-icon-hover
 
 @function lookupSuccessAlertColor($property: color, $type: 'sass-var') {
   @if $type == 'css-var' {
-    @return getCssVarName('alert-success', $property);
+    @return getAlertCssVarName('alert-success', $property);
   }
 
   @if $property == color {
@@ -290,7 +290,7 @@ $clr-app-alert-success-close-icon-hover-opacity: $clr-app-alert-close-icon-hover
 
 @function lookupWarningAlertColor($property: color, $type: 'sass-var') {
   @if $type == 'css-var' {
-    @return getCssVarName('alert-warning', $property);
+    @return getAlertCssVarName('alert-warning', $property);
   }
 
   @if $property == color {
@@ -338,7 +338,7 @@ $clr-app-alert-success-close-icon-hover-opacity: $clr-app-alert-close-icon-hover
 
 @function lookupDangerAlertColor($property: color, $type: 'sass-var') {
   @if $type == 'css-var' {
-    @return getCssVarName('alert-danger', $property);
+    @return getAlertCssVarName('alert-danger', $property);
   }
 
   @if $property == color {
@@ -386,7 +386,7 @@ $clr-app-alert-success-close-icon-hover-opacity: $clr-app-alert-close-icon-hover
 
 @function lookupAppDangerAlertColor($property: color, $type: 'sass-var') {
   @if $type == 'css-var' {
-    @return getCssVarName('app-alert-danger', $property);
+    @return getAlertCssVarName('app-alert-danger', $property);
   }
 
   @if $property == color {
@@ -435,7 +435,7 @@ $clr-app-alert-success-close-icon-hover-opacity: $clr-app-alert-close-icon-hover
 // Deprecated in 3.0 for removal in 4.0
 @function lookupAppSuccessAlertColor($property: color, $type: 'sass-var') {
   @if $type == 'css-var' {
-    @return getCssVarName('app-alert-success', $property);
+    @return getAlertCssVarName('app-alert-success', $property);
   }
 
   @if $property == color {
@@ -483,7 +483,7 @@ $clr-app-alert-success-close-icon-hover-opacity: $clr-app-alert-close-icon-hover
 
 @function lookupAppInfoAlertColor($property: color, $type: 'sass-var') {
   @if $type == 'css-var' {
-    @return getCssVarName('app-alert-info', $property);
+    @return getAlertCssVarName('app-alert-info', $property);
   }
 
   @if $property == color {
@@ -531,7 +531,7 @@ $clr-app-alert-success-close-icon-hover-opacity: $clr-app-alert-close-icon-hover
 
 @function lookupAppWarningAlertColor($property: color, $type: 'sass-var') {
   @if $type == 'css-var' {
-    @return getCssVarName('app-alert-warning', $property);
+    @return getAlertCssVarName('app-alert-warning', $property);
   }
 
   @if $property == color {

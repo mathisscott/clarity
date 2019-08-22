@@ -479,8 +479,8 @@ $clr-header-6-bg-color: hsl(203, 30%, 8%);
   * There are five color options and four status types a Clarity label may have.
  
   */
-$clr-label-font-color: hsl(0, 0%, 100%);
-$clr-label-font-color-contrast: hsl(0, 0%, 0%);
+$clr-label-font-color-light: hsl(0, 0%, 100%);
+$clr-label-font-color-dark: hsl(0, 0%, 0%);
 $clr-label-bg-hover-color: hsl(0, 0%, 34%);
 $clr-label-gray-bg-color: hsl(211, 10%, 47%);
 $clr-label-purple-bg-color: hsl(281, 44%, 62%);
@@ -488,16 +488,16 @@ $clr-label-blue-bg-color: hsl(201, 100%, 36%);
 $clr-label-orange-bg-color: hsl(31, 100%, 60%);
 $clr-label-light-blue-bg-color: hsl(194, 57%, 71%);
 $clr-label-info-bg-color: hsl(198, 79%, 28%);
-$clr-label-info-font-color: $clr-label-font-color;
+$clr-label-info-font-color: $clr-label-font-color-light;
 $clr-label-info-border-color: $clr-label-info-bg-color;
 $clr-label-success-bg-color: hsl(122, 45%, 23%);
-$clr-label-success-font-color: $clr-label-font-color;
+$clr-label-success-font-color: $clr-label-font-color-light;
 $clr-label-success-border-color: $clr-label-success-bg-color;
 $clr-label-danger-bg-color: hsl(357, 50%, 35%);
-$clr-label-danger-font-color: $clr-label-font-color;
+$clr-label-danger-font-color: $clr-label-font-color-light;
 $clr-label-danger-border-color: $clr-label-danger-bg-color;
 $clr-label-warning-bg-color: hsl(47, 87%, 27%);
-$clr-label-warning-font-color: $clr-label-font-color;
+$clr-label-warning-font-color: $clr-label-font-color-light;
 $clr-label-warning-border-color: $clr-label-warning-bg-color;
 // END: Labels
 
