@@ -1150,7 +1150,7 @@
             $clr-tablerow-bordercolor,
             $clr-use-custom-properties
           );
-          @include css-var(border-width, clr-table-borderwidth, $clr-table-borderwidth, $clr-use-custom-properties);
+          border-width: $clr-table-borderwidth;
           border-style: solid;
           padding: $clr-table-topcellpadding $clr-table-cellpadding $clr-table-bottomcellpadding;
           vertical-align: top;

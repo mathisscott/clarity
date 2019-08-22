@@ -57,13 +57,7 @@ $styledInputs: 'input[type=text], input[type=password], input[type=number], inpu
     line-height: $clr-stack-view-line-height;
     letter-spacing: $clr-stack-view-letter-spacing;
     margin-top: 0;
-    border-style: solid;
-    @include css-var(
-      border-width,
-      clr-stack-view-border-width,
-      $clr-stack-view-border-width,
-      $clr-use-custom-properties
-    );
+    border-style: $clr-stack-view-border-width solid;
     @include css-var(
       border-color,
       clr-stack-view-border-color,

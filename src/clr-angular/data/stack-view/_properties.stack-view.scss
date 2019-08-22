@@ -5,7 +5,6 @@
 @if $clr-use-custom-properties == true {
   :root {
     // Usage: ../stack-view/_stack-view.clarity.scss
-    --clr-stack-view-border-width: #{$clr-stack-view-border-width};
     --clr-stack-view-border-radius: #{$clr-stack-view-border-radius};
     --clr-stack-view-border-color: var(--clr-color-neutral-400);
     --clr-stack-view-bg-color: var(--clr-color-neutral-50);

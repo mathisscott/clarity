@@ -6,8 +6,7 @@
 @mixin basic-table($table, $thead, $tbody, $tr, $th, $td) {
   #{$table} {
     border-collapse: separate;
-    border-style: solid;
-    @include css-var(border-width, clr-table-borderwidth, $clr-table-borderwidth, $clr-use-custom-properties);
+    border: $clr-table-borderwidth solid;
     @include css-var(border-color, clr-table-border-color, $clr-table-border-color, $clr-use-custom-properties);
     @include css-var(border-radius, clr-table-border-radius, $clr-table-border-radius, $clr-use-custom-properties);
     @include css-var(background-color, clr-table-bgcolor, $clr-table-bgcolor, $clr-use-custom-properties);
@@ -21,8 +20,7 @@
     #{$td} {
       font-size: $clr-table-fontsize;
       line-height: $clr-table-lineheight;
-      border-top-style: solid;
-      @include css-var(border-top-width, clr-table-borderwidth, $clr-table-borderwidth, $clr-use-custom-properties);
+      border-top: $clr-table-borderwidth solid;
       @include css-var(
         border-top-color,
         clr-tablerow-bordercolor,
@@ -49,8 +47,7 @@
       letter-spacing: $clr-thead-letter-spacing;
       @include css-var(background-color, clr-thead-bgcolor, $clr-thead-bgcolor, $clr-use-custom-properties);
       vertical-align: bottom;
-      border-bottom-style: solid;
-      @include css-var(border-bottom-width, clr-table-borderwidth, $clr-table-borderwidth, $clr-use-custom-properties);
+      border-bottom: $clr-table-borderwidth solid;
       @include css-var(
         border-bottom-color,
         clr-table-border-color,
@@ -66,8 +63,7 @@
 
     // in the rare event we have more than one tbody element.
     #{$tbody} + #{$tbody} {
-      border-top-style: solid;
-      @include css-var(border-top-width, clr-table-borderwidth, $clr-table-borderwidth, $clr-use-custom-properties);
+      border-top: $clr-table-borderwidth solid;
       @include css-var(border-top-color, clr-table-border-color, $clr-table-border-color, $clr-use-custom-properties);
     }
 
@@ -144,8 +140,7 @@
 
     th {
       border-bottom: 0;
-      border-top-style: solid;
-      @include css-var(border-top-width, clr-table-borderwidth, $clr-table-borderwidth, $clr-use-custom-properties);
+      border-top: $clr-table-borderwidth solid;
       @include css-var(border-top-color, clr-table-border-color, $clr-table-border-color, $clr-use-custom-properties);
       vertical-align: top;
     }
@@ -156,8 +151,7 @@
       @include css-var(border-color, clr-table-border-color, $clr-table-border-color, $clr-use-custom-properties);
 
       &:first-child {
-        border-right-style: solid;
-        @include css-var(border-right-width, clr-table-borderwidth, $clr-table-borderwidth, $clr-use-custom-properties);
+        border-right: $clr-table-borderwidth solid;
         @include css-var(
           border-right-color,
           clr-table-border-color,
