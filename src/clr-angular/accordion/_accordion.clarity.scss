@@ -46,15 +46,18 @@
   .clr-accordion-panel:last-child {
     .clr-accordion-content,
     .clr-accordion-header {
-      $border: $clr-global-borderwidth solid $clr-accordion-border-color;
-      @include css-var(border-bottom, clr-accordion-border, $border, $clr-use-custom-properties);
+      border-bottom: $clr-global-borderwidth solid;
+      @include css-var(
+        border-bottom-color,
+        clr-accordion-border-color,
+        $clr-accordion-border-color,
+        $clr-use-custom-properties
+      );
     }
   }
 
   .clr-accordion-number {
-    padding: 0;
-    @include css-var(padding-left, clr-accordion-padding, $clr-accordion-padding, $clr-use-custom-properties);
-    @include css-var(padding-right, clr-accordion-padding, $clr-accordion-padding, $clr-use-custom-properties);
+    padding: 0 $clr-accordion-padding;
     display: none;
 
     &::before {
@@ -69,7 +72,7 @@
     flex: 1 1 0%;
     width: 100%;
     border: 0;
-    @include css-var(padding, clr-accordion-padding, $clr-accordion-padding, $clr-use-custom-properties);
+    padding: $clr-accordion-padding;
     background: transparent;
     text-align: left;
     cursor: pointer;
@@ -131,7 +134,7 @@
   }
 
   .clr-accordion-inner-content {
-    @include css-var(padding, clr-accordion-padding, $clr-accordion-padding, $clr-use-custom-properties);
+    padding: $clr-accordion-padding;
 
     @media (min-width: $clr-accordion-responsive-breakpoint) {
       padding: $clr_baselineRem_0_75 $clr_baselineRem_2_25;
@@ -200,6 +203,7 @@
   .clr-accordion-panel-error {
     .clr-accordion-header {
       $box-shadow: inset $clr-accordion-border-left-width 0 0 $clr-accordion-border-left-color-error;
+      border-bottom: $clr-global-borderwidth solid;
       @include css-var(
         border-color,
         clr-accordion-border-left-color-error,
@@ -207,13 +211,6 @@
         $clr-use-custom-properties
       );
       @include css-var(box-shadow, clr-accordion-header-left-error-indicator, $box-shadow, $clr-use-custom-properties);
-      @include css-var(
-        border-bottom-width,
-        clr-accordion-border-width,
-        $clr-global-borderwidth,
-        $clr-use-custom-properties
-      );
-      border-bottom-style: solid;
       @include css-var(
         background-color,
         clr-accordion-active-background-color,
@@ -282,30 +279,7 @@
         $clr_baselineRem_0_5,
         $clr-use-custom-properties
       );
-      @include css-var(
-        padding-top,
-        clr-accordion-header-button-vertical-padding,
-        $clr_baselineRem_0_25,
-        $clr-use-custom-properties
-      );
-      @include css-var(
-        padding-bottom,
-        clr-accordion-header-button-vertical-padding,
-        $clr_baselineRem_0_25,
-        $clr-use-custom-properties
-      );
-      @include css-var(
-        padding-left,
-        clr-accordion-header-button-horizontal-padding,
-        $clr_baselineRem_0_5,
-        $clr-use-custom-properties
-      );
-      @include css-var(
-        padding-right,
-        clr-accordion-header-button-horizontal-padding,
-        $clr_baselineRem_0_5,
-        $clr-use-custom-properties
-      );
+      padding: $clr_baselineRem_0_25 $clr_baselineRem_0_5;
     }
 
     .clr-accordion-content {
@@ -313,38 +287,15 @@
     }
 
     .clr-accordion-inner-content {
-      @include css-var(
-        padding-top,
-        clr-accordion-inner-content-vertical-padding,
-        $clr_baselineRem_0_25,
-        $clr-use-custom-properties
-      );
-      @include css-var(
-        padding-bottom,
-        clr-accordion-inner-content-vertical-padding,
-        $clr_baselineRem_0_25,
-        $clr-use-custom-properties
-      );
-      @include css-var(
-        padding-left,
-        clr-accordion-inner-content-horizontal-padding,
-        $clr_baselineRem_1_4583,
-        $clr-use-custom-properties
-      );
-      @include css-var(
-        padding-right,
-        clr-accordion-inner-content-horizontal-padding,
-        $clr_baselineRem_1_4583,
-        $clr-use-custom-properties
-      );
+      padding: $clr_baselineRem_0_25 $clr_baselineRem_1_4583;
     }
 
     .clr-accordion-status {
       width: $clr_baselineRem_0_8;
 
       clr-icon {
-        @include css-var(width, clr-accordion-status-icon-size, $clr_baselineRem_0_583, $clr-use-custom-properties);
-        @include css-var(height, clr-accordion-status-icon-size, $clr_baselineRem_0_583, $clr-use-custom-properties);
+        width: $clr_baselineRem_0_583;
+        height: $clr_baselineRem_0_583;
       }
     }
   }

@@ -14,26 +14,14 @@
     --clr-accordion-header-font-size: #{$clr_baselineRem_0_65};
 
     --clr-accordion-header-button-font-size: #{$clr_baselineRem_0_5};
-    --clr-accordion-header-button-vertical-padding: #{$clr_baselineRem_0_25};
-    --clr-accordion-header-button-horizontal-padding: #{$clr_baselineRem_0_5};
-
-    --clr-accordion-inner-content-vertical-padding: #{$clr_baselineRem_0_25};
-    --clr-accordion-inner-content-horizontal-padding: #{$clr_baselineRem_1_4583};
-
     --clr-accordion-title-font-weight: 500;
     --clr-accordion-title-font-size: #{$clr_baselineRem_0_5416};
-
-    --clr-accordion-status-icon-size: #{$clr_baselineRem_0_583};
 
     --clr-accordion-error-color: var(--clr-global-error-color);
     --clr-accordion-complete-color: var(--clr-global-success-color);
 
     --clr-accordion-border-color: var(--clr-color-neutral-400);
-    --clr-accordion-border-width: var(--clr-global-borderwidth);
-    --clr-accordion-border: var(--clr-accordion-border-width) solid var(--clr-accordion-border-color);
     --clr-accordion-border-radius: var(--clr-global-borderradius);
-
-    --clr-accordion-padding: #{$clr_baselineRem_18px};
 
     --clr-accordion-border-left-color: #{$clr-accordion-border-left-color};
     --clr-accordion-border-left-width: #{$clr_baselineRem_0_25};
