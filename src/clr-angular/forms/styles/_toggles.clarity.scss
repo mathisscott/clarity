@@ -3,18 +3,8 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 @mixin clr-toggle-transition-styles() {
-  @include css-var(
-    transition-duration,
-    clr-toggle-transition-time,
-    $clr-toggle-transition-time,
-    $clr-use-custom-properties
-  );
-  @include css-var(
-    transition-timing-function,
-    clr-toggle-transition-animation,
-    $clr-toggle-transition-animation,
-    $clr-use-custom-properties
-  );
+  transition-duration: $clr-toggle-transition-time;
+  transition-timing-function: $clr-toggle-transition-animation;
 }
 
 @include exports('toggles.clarity') {
@@ -26,7 +16,7 @@
   }
 
   .clr-toggle-wrapper {
-    @include css-var(height, clr-toggle-height, $clr-toggle-height, $clr-use-custom-properties);
+    height: $clr-toggle-height;
     vertical-align: middle;
     position: relative;
     display: block;
@@ -36,7 +26,7 @@
       display: inline-block;
       position: relative;
       cursor: pointer;
-      @include css-var(height, clr-toggle-height, $clr-toggle-height, $clr-use-custom-properties);
+      height: $clr-toggle-height;
       margin-left: $clr-toggle-switch-base-width + $clr-toggle-switch-base-left-spacing;
       margin-right: 0;
     }
@@ -56,13 +46,8 @@
       position: absolute;
       display: inline-block;
       content: '';
-      @include css-var(
-        height,
-        clr-toggle-switch-base-height,
-        $clr-toggle-switch-base-height,
-        $clr-use-custom-properties
-      );
-      @include css-var(width, clr-toggle-switch-base-width, $clr-toggle-switch-base-width, $clr-use-custom-properties);
+      height: $clr-toggle-switch-base-height;
+      width: $clr-toggle-switch-base-width;
       border: $clr_baselineRem_2px solid;
       border-radius: $clr_baselineRem_0_375;
       @include css-var(border-color, clr-toggle-bg-color-off, $clr-toggle-bg-color-off, $clr-use-custom-properties);
@@ -90,9 +75,9 @@
       position: absolute;
       display: inline-block;
       content: '';
-      @include css-var(height, clr-toggle-switch-height, $clr-toggle-switch-height, $clr-use-custom-properties);
-      @include css-var(width, clr-toggle-switch-height, $clr-toggle-switch-height, $clr-use-custom-properties);
-      @include css-var(border-width, clr-global-borderwidth, $clr-global-borderwidth, $clr-use-custom-properties);
+      height: $clr-toggle-switch-height;
+      width: $clr-toggle-switch-height;
+      border-width: $clr-global-borderwidth;
       @include css-var(
         border-color,
         clr-toggle-handle-bg-color,
@@ -176,23 +161,13 @@
         border-width: $clr_baselineRem_2px;
         border-style: solid;
         @include css-var(
-          border-width,
+          border-color,
           clr-toggle-disabled-off-handle-border-color,
           $clr-toggle-disabled-off-handle-border-color,
           $clr-use-custom-properties
         );
-        @include css-var(
-          width,
-          clr-toggle-switch-base-height,
-          $clr-toggle-switch-base-height,
-          $clr-use-custom-properties
-        );
-        @include css-var(
-          height,
-          clr-toggle-switch-base-height,
-          $clr-toggle-switch-base-height,
-          $clr-use-custom-properties
-        );
+        width: $clr-toggle-switch-base-height;
+        height: $clr-toggle-switch-base-height;
         top: $clr_baselineRem_3px;
       }
     }
@@ -222,8 +197,8 @@
         $clr-toggle-disabled-on-handle-border-color,
         $clr-use-custom-properties
       );
-      @include css-var(width, clr-toggle-switch-height, $clr-toggle-switch-height, $clr-use-custom-properties);
-      @include css-var(height, clr-toggle-switch-height, $clr-toggle-switch-height, $clr-use-custom-properties);
+      width: $clr-toggle-switch-height;
+      height: $clr-toggle-switch-height;
       top: $clr_baselineRem_5px;
       left: -1 * $clr-toggle-switch-left-spacing;
     }

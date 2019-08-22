@@ -4,20 +4,6 @@
 
 @if $clr-use-custom-properties == true {
   :root {
-    // layout
-    --clr-toggle-height: #{$clr-toggle-height};
-
-    // switch
-    --clr-toggle-switch-base-height: #{$clr_baselineRem_0_75};
-    --clr-toggle-switch-base-width: #{$clr_baselineRem_1_375};
-    --clr-toggle-switch-height: #{$clr_baselineRem_0_583};
-    --clr-toggle-switch-base-left-spacing: #{$clr_baselineRem_0_375};
-    --clr-toggle-switch-left-spacing: #{$clr-toggle-switch-left-spacing};
-
-    // animation
-    --clr-toggle-transition-time: #{$clr-toggle-transition-time};
-    --clr-toggle-transition-animation: #{$clr-toggle-transition-animation};
-
     // colors
     --clr-toggle-bg-color-off: var(--clr-color-neutral-600);
     --clr-toggle-bg-color-on: var(--clr-color-success-500);
