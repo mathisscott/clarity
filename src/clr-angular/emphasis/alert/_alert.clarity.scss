@@ -19,8 +19,7 @@
   $border-prop: getAlertColor($alertType, border-color);
 
   @if $border-prop != 'none' {
-    border-style: solid;
-    @include css-var(border-width, clr-alert-borderwidth, $clr-alert-borderwidth, $clr-use-custom-properties);
+    border: $clr-alert-borderwidth solid;
     @include css-var(
       border-color,
       getAlertColor($alertType, border-color, 'css-var'),
