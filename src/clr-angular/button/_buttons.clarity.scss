@@ -179,12 +179,7 @@
     $clr-btn-appearance-standard-line-height,
     $clr-use-custom-properties
   );
-  @include css-var(
-    letter-spacing,
-    clr-btn-appearance-standard-letter-spacing,
-    $clr-btn-appearance-standard-letter-spacing,
-    $clr-use-custom-properties
-  );
+  letter-spacing: $clr-btn-appearance-standard-letter-spacing;
   @include css-var(
     font-size,
     clr-btn-appearance-standard-font-size,
@@ -232,12 +227,7 @@
       $clr-btn-appearance-form-line-height,
       $clr-use-custom-properties
     );
-    @include css-var(
-      letter-spacing,
-      clr-btn-appearance-form-letter-spacing,
-      $clr-btn-appearance-form-letter-spacing,
-      $clr-use-custom-properties
-    );
+    letter-spacing: $clr-btn-appearance-form-letter-spacing;
     @include css-var(
       font-size,
       clr-btn-appearance-form-font-size,
