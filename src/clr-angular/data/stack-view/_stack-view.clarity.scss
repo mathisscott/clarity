@@ -16,6 +16,8 @@ $styledInputs: 'input[type=text], input[type=password], input[type=number], inpu
 }
 
 @include exports('stack-view.clarity') {
+  @import './properties.stack-view';
+
   .stack-header {
     font-weight: $clr-stack-view-font-weight;
     display: flex;

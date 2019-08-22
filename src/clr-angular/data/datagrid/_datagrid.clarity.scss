@@ -89,7 +89,7 @@
   .datagrid-row {
     border-top-width: $clr-table-borderwidth;
     border-top-style: solid;
-    @include css-var(border-top-color, clr-table-bordercolor, $clr-table-bordercolor, $clr-use-custom-properties);
+    @include css-var(border-top-color, clr-table-border-color, $clr-table-border-color, $clr-use-custom-properties);
 
     &:first-of-type {
       border-top: none;
