@@ -97,6 +97,6 @@ $clr-outline-spread: 2px;
 
 @function css-variablize-string($str: null) {
   @if $str != null {
-    @return '--' + #{$str};
+    @return unquote('--' + #{$str});
   }
 }

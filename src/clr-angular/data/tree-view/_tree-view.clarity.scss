@@ -34,7 +34,19 @@
     }
 
     //Others
-    border-radius: $clr-tree-border-radius 0 0 $clr-tree-border-radius;
+    border-radius: 0;
+    @include css-var(
+      border-top-left-radius,
+      clr-tree-border-radius,
+      $clr-tree-border-radius,
+      $clr-use-custom-properties
+    );
+    @include css-var(
+      border-bottom-left-radius,
+      clr-tree-border-radius,
+      $clr-tree-border-radius,
+      $clr-use-custom-properties
+    );
     line-height: $clr-tree-node-touch-target;
 
     //Horrible. This, unfortunately, is carried over from earlier to make sure we don't break anything.
@@ -66,12 +78,18 @@
     //Others
     background: none;
     border: none;
-    color: $clr-tree-node-caret-color;
+    @include css-var(color, clr-tree-node-caret-color, $clr-tree-node-caret-color, $clr-use-custom-properties);
+
     cursor: pointer;
     outline-offset: -1 * $clr_baselineRem_5px; //TODO: Replace with the outline offset mixin after the rem value change.
 
     &:hover {
-      color: $clr-tree-node-caret-link-hover-color;
+      @include css-var(
+        color,
+        clr-tree-node-caret-link-hover-color,
+        $clr-tree-node-caret-link-hover-color,
+        $clr-use-custom-properties
+      );
     }
   }
 
@@ -117,7 +135,7 @@
     //Others
     background: transparent;
     border: 0;
-    color: $clr-tree-link-text-color;
+    @include css-var(color, clr-tree-link-text-color, $clr-tree-link-text-color, $clr-use-custom-properties);
     cursor: pointer;
     line-height: inherit;
     text-align: left;
@@ -132,7 +150,7 @@
 
     &:hover,
     &:focus {
-      background: $clr-tree-link-hover-color;
+      @include css-var(background, clr-tree-link-hover-color, $clr-tree-link-hover-color, $clr-use-custom-properties);
       text-decoration: none;
     }
 
@@ -142,8 +160,18 @@
     }
 
     &.active {
-      background: $clr-tree-link-selection-color;
-      color: $clr-tree-node-caret-link-hover-color;
+      @include css-var(
+        background,
+        clr-tree-link-selection-color,
+        $clr-tree-link-selection-color,
+        $clr-use-custom-properties
+      );
+      @include css-var(
+        color,
+        clr-tree-node-caret-link-hover-color,
+        $clr-tree-node-caret-link-hover-color,
+        $clr-use-custom-properties
+      );
     }
   }
 
