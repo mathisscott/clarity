@@ -39,15 +39,28 @@
 }
 
 // Standard Clarity Input Bottom Border Animation
-@mixin input-border-bottom-animation($border-color) {
+@mixin input-border-bottom-animation($border-color-sass, $border-color-prop: null, $use-custom-props: true) {
   // Border-bottom animation on focus
-  background: linear-gradient(to bottom, transparent 95%, $border-color 95%) no-repeat;
+  @if $border-color-prop == null or $use-custom-props != true {
+    background: linear-gradient(to bottom, transparent 95%, $border-color-sass 95%) no-repeat;
+  } @else {
+    background: linear-gradient(
+        to bottom,
+        transparent 95%,
+        var(css-variablize-string($border-color-prop), $border-color-sass) 95%
+      )
+      no-repeat;
+  }
   background-size: 0% 100%;
   transition: background-size 0.2s ease;
 
   &:focus,
   &.clr-focus {
-    border-bottom: $clr-global-borderwidth solid $border-color;
+    @if $border-color-prop == null {
+      border-bottom-color: $border-color-sass;
+    } @else {
+      @include css-var(border-bottom-color, $border-color-prop, $border-color-sass, $use-custom-props);
+    }
     background-size: 100% 100%;
   }
 }

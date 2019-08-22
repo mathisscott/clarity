@@ -90,7 +90,13 @@ $clr-outline-spread: 2px;
     /* #{$var} */
     #{$style}: $fallback;
     @if $do-custom-prop == true {
-      #{$style}: var(--#{$var}, $fallback);
+      #{$style}: var(css-variablize-string($var), $fallback);
     }
+  }
+}
+
+@function css-variablize-string($str: null) {
+  @if $str != null {
+    @return '--' + #{$str};
   }
 }
