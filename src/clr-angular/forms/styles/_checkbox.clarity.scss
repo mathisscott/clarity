@@ -20,7 +20,8 @@
       @include checkbox-radio-label-styles(
         $clr-forms-checkbox-label-height,
         $clr-forms-checkbox-padding-left,
-        $clr-forms-checkbox-label-color
+        $clr-forms-checkbox-label-color,
+        clr-forms-checkbox-label-color
       );
     }
 

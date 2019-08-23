@@ -18,7 +18,8 @@
       @include checkbox-radio-label-styles(
         $clr-forms-radio-label-height,
         $clr-forms-radio-padding-left,
-        $clr-forms-radio-label-color
+        $clr-forms-radio-label-color,
+        clr-forms-radio-label-color
       );
     }
 

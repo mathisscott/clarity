@@ -10,8 +10,8 @@
 
     select {
       @include custom-inputs($clr_baselineRem_1);
-      @include form-fields-appearance($clr-forms-border-color);
-      @include input-border-bottom-animation($clr-forms-focused-color);
+      @include form-fields-appearance();
+      @include input-border-bottom-animation();
       position: relative;
       padding: 0 ($clr-forms-select-caret-size + $clr-forms-baseline * 2) 0 $clr-forms-baseline;
       cursor: pointer;

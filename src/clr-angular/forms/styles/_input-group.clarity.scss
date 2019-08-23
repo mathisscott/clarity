@@ -4,8 +4,8 @@
 
 @include exports('forms.input-group') {
   .clr-input-group {
-    @include form-fields-appearance($clr-forms-border-color);
-    @include input-border-bottom-animation($clr-forms-focused-color);
+    @include form-fields-appearance();
+    @include input-border-bottom-animation();
     padding-right: $clr-forms-baseline * 4;
     max-width: calc(100% - #{$clr_baselineRem_1});
     height: $clr_baselineRem_1;
@@ -39,7 +39,11 @@
 
   .clr-error .clr-input-group {
     border-bottom-color: $clr-forms-invalid-color;
-    @include input-border-bottom-animation($clr-forms-invalid-color);
+    @include input-border-bottom-animation(
+      $clr-forms-invalid-color,
+      clr-forms-invalid-color,
+      $clr-use-custom-properties
+    );
     padding-right: $clr-forms-baseline;
   }
 

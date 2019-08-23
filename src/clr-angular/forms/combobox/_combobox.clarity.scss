@@ -22,8 +22,8 @@
     font-size: $clr-ng-select-font-size;
 
     //Mixins
-    @include form-fields-appearance($clr-forms-border-color);
-    @include input-border-bottom-animation($clr-forms-focused-color);
+    @include form-fields-appearance();
+    @include input-border-bottom-animation();
 
     //Others
     outline: none;
