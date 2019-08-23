@@ -28,7 +28,7 @@
 
     .clr-input-group-icon-action {
       @include clr-no-styles-button();
-      color: $clr-forms-focused-color;
+      @include css-var(color, clr-forms-focused-color, $clr-forms-focused-color, $clr-use-custom-properties);
       padding: 0 $clr-forms-baseline * 1.5;
     }
   }

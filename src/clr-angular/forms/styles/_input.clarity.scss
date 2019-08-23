@@ -29,7 +29,12 @@
   }
 
   .clr-error .clr-input:not([readonly]) {
-    border-bottom-color: $clr-forms-invalid-color;
+    @include css-var(
+      border-bottom-color,
+      clr-forms-invalid-color,
+      $clr-forms-invalid-color,
+      $clr-use-custom-properties
+    );
     @include input-border-bottom-animation(
       $clr-forms-invalid-color,
       clr-forms-invalid-color,
