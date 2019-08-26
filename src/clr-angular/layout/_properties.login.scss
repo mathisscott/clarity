@@ -19,5 +19,11 @@
 
     --clr-login-background-color: var(--clr-global-app-background);
     --clr-login-background: #{$clr-login-background};
+
+    --clr-login-error-background-color: var(--clr-color-danger-800);
+    --clr-login-error-border-radius: var(--clr-global-borderradius);
+
+    --clr-login-panel-line-color: var(--clr-color-neutral-1000);
+    --clr-login-panel-line-opacity: 0.1;
   }
 }
