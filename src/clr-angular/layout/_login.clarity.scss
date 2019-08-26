@@ -3,6 +3,8 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 @include exports('login.clarity') {
+  @import './properties.accordion';
+
   .login-wrapper {
     display: flex;
     height: 100%;
@@ -12,7 +14,7 @@
     background-repeat: no-repeat;
 
     .login {
-      background: $clr-login-background-color;
+      @include css-var(background, clr-login-background-color, $clr-login-background-color, $clr-use-custom-properties);
       position: relative;
       display: flex;
       flex-direction: column;
@@ -23,9 +25,19 @@
       width: $clr-login-width;
 
       .title {
-        color: $clr-login-title-color;
-        font-weight: $clr-login-title-font-weight;
-        font-family: $clr-login-title-font-family;
+        @include css-var(color, clr-login-title-color, $clr-login-title-color, $clr-use-custom-properties);
+        @include css-var(
+          font-weight,
+          clr-login-title-font-weight,
+          $clr-login-title-font-weight,
+          $clr-use-custom-properties
+        );
+        @include css-var(
+          font-family,
+          clr-login-title-font-family,
+          $clr-login-title-font-family,
+          $clr-use-custom-properties
+        );
         font-size: $clr-login-title-font-size;
         letter-spacing: $clr-login-title-letter-spacing;
         line-height: $clr-login-title-line-height;
@@ -35,7 +47,7 @@
         }
 
         .hint {
-          color: $clr-login-title-color;
+          @include css-var(color, clr-login-title-color, $clr-login-title-color, $clr-use-custom-properties);
           margin-top: $clr_baselineRem_1_25;
           font-size: $clr_baselineRem_0_583;
         }
