@@ -27,19 +27,19 @@
     }
 
     clr-icon[shape='circle'] {
-      color: $clr-gray;
+      color: $clr-timeline-incomplete-step-color;
     }
 
     clr-icon[shape='dot-circle'] {
-      color: $clr-action-blue;
+      color: $clr-timeline-current-step-color;
     }
 
     clr-icon[shape='success-standard'] {
-      color: $clr-green;
+      color: $clr-timeline-success-step-color;
     }
 
     clr-icon[shape='error-standard'] {
-      color: $clr-red;
+      color: $clr-timeline-error-step-color;
     }
 
     // style for the connecting line between icons
@@ -48,7 +48,8 @@
       background: $clr-timeline-line-color;
       height: $clr-timeline-line-thickness;
       width: calc(
-        100% - (#{$clr-timeline-icon-size} - 2 * #{$clr-timeline-icon-inner-padding}) + #{$clr-timeline-gutter-width}
+        100% - ($clr-timeline-icon-size - $clr_baselineRem_2px * $clr-timeline-icon-inner-padding) +
+          $clr-timeline-gutter-width
       );
       transform: translate(
         $clr-timeline-icon-size - $clr-timeline-icon-inner-padding,
@@ -112,7 +113,7 @@
       &:not(:last-of-type) .clr-timeline-step-body::before {
         position: absolute;
         width: $clr-timeline-line-thickness;
-        height: calc(100% + 2 * #{$clr-timeline-icon-inner-padding});
+        height: calc(100% + #{2 * $clr-timeline-icon-inner-padding});
         transform: translate(
           -0.5 * ($clr-timeline-icon-size - $clr-timeline-line-thickness) - $clr-timeline-icon-inner-padding - $clr-timeline-vertical-step-body-left-padding,
           $clr-timeline-icon-size - $clr-timeline-icon-inner-padding - $clr-timeline-vertical-step-body-top-padding
