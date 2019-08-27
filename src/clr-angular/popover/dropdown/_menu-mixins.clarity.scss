@@ -27,7 +27,7 @@
 }
 
 @mixin generate-dropdown-item() {
-  color: $clr-dropdown-item-text-color;
+  color: $clr-dropdown-item-color;
   font-size: $clr-dropdown-item-font-size;
   font-weight: $clr-dropdown-item-font-weight;
   letter-spacing: $clr-dropdown-item-letter-spacing;
@@ -44,7 +44,7 @@
 
   &:hover {
     background-color: $clr-dropdown-bg-hover-color;
-    color: $clr-dropdown-item-text-color;
+    color: $clr-dropdown-item-color;
     text-decoration: none;
   }
 
