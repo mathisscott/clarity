@@ -26,27 +26,6 @@
     --clr-global-success-color: #{$clr-global-success-color};
     --clr-global-error-color: #{$clr-global-error-color};
 
-    // app content area
-    --clr-content-area-padding: #{$clr_baselineRem_1};
-    --clr-content-area-padding-vertical: var(--clr-content-area-padding, #{$clr_baselineRem_1});
-    --clr-content-area-padding-horizontal: var(--clr-content-area-padding, #{$clr_baselineRem_1});
-    --clr-content-area-padding-top: var(
-      --clr-content-area-padding-vertical,
-      var(--clr-content-area-padding, #{$clr_baselineRem_1})
-    );
-    --clr-content-area-padding-bottom: var(
-      --clr-content-area-padding-vertical,
-      var(--clr-content-area-padding, #{$clr_baselineRem_1})
-    );
-    --clr-content-area-padding-right: var(
-      --clr-content-area-padding-horizontal,
-      var(--clr-content-area-padding, #{$clr_baselineRem_1})
-    );
-    --clr-content-area-padding-left: var(
-      --clr-content-area-padding-horizontal,
-      var(--clr-content-area-padding, #{$clr_baselineRem_1})
-    );
-
     // component close icon colors
     --clr-close-color--normal: #{$clr-close-color--normal};
     --clr-close-color--normal-opacity: #{$clr-close-color--normal-opacity};
