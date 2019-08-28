@@ -8,9 +8,12 @@
     margin: $clr_baselineRem_0_5 0;
   }
   pre {
-    border: $clr-global-borderwidth solid $clr-color-neutral-400;
+    @include css-var(border-color, clr-color-neutral-400, $clr-color-neutral-400, $clr-use-custom-properties);
+    @include css-var(border-width, clr-global-borderwidth, $clr-global-borderwidth, $clr-use-custom-properties);
+    border-style: solid;
     max-height: $clr_baselineRem_15;
     border-radius: $clr-global-borderradius;
+    @include css-var(border-radius, clr-global-borderradius, $clr-global-borderradius, $clr-use-custom-properties);
     overflow: auto;
   }
   pre code {
@@ -20,7 +23,7 @@
   // @deprecated Bootstrap dependencies are deprecated since 1.0. Review and edit before 2.0 if needed.
   code {
     &.clr-code {
-      color: $clr-color-danger-800;
+      @include css-var(color, clr-color-danger-800, $clr-color-danger-800, $clr-use-custom-properties);
       padding: 0;
       background: transparent;
     }
