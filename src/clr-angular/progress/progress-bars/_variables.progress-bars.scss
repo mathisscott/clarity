@@ -4,6 +4,7 @@
 
 // Usage: ../progress/progress-bars/_progress-bars.clarity.scss
 $clr-progress-defaultBarColor: $clr-color-action-600 !default;
+//  warning, success, and danger distinctions for progress bars are deprecated in 3.0
 $clr-progress-success-color: $clr-color-success-400 !default;
 $clr-progress-danger-color: $clr-color-danger-800 !default;
 $clr-progress-warning-color: $clr-progress-danger-color !default;
