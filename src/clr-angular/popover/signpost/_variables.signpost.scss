@@ -15,4 +15,4 @@ $clr-signpost-border-radius: $clr-global-borderradius !default;
 // TODO: should be able to theme the colors in these pointers...
 $clr-signpost-pointer-border: $clr-signpost-border-size solid $clr-signpost-content-border-color;
 $clr-signpost-pointer-invisible-border: $clr-signpost-border-size solid transparent;
-$clr-signpost-pointer-psuedo-border: $clr-signpost-border-size solid $clr-signpost-innerBlock;
+$clr-signpost-pointer-psuedo-border: $clr-signpost-border-size solid $clr-signpost-content-bg-color;

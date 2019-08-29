@@ -5,7 +5,7 @@
 @import 'utils/mixins.clarity';
 
 @include exports('progress-bars.clarity') {
-  @import './properties.clarity';
+  @import './properties.progress-bars';
 
   // KEY POINTS TO NOTE:
   // - Firefox does not handle transitions on progress bars yet. So the movement

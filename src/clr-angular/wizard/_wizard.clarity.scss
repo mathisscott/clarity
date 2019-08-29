@@ -9,7 +9,7 @@
 // INSIDE THE BUTTONS
 
 @include exports('wizard.clarity') {
-  @import './properties.card';
+  @import './properties.wizard';
 
   .clr-wizard {
     .modal-dialog {
@@ -227,8 +227,8 @@
       &.active {
         @include css-var(
           color,
-          unquote('clr-wizard-header-action-color--active'),
-          $clr-wizard-header-action-color--active,
+          unquote('clr-wizard-sidenav-text--active'),
+          $clr-wizard-sidenav-text--active,
           $clr-use-custom-properties
         );
         @include css-var(font-weight, clr-font-weight-semibold, $clr-font-weight-semibold, $clr-use-custom-properties);

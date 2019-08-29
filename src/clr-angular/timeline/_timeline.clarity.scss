@@ -3,7 +3,7 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 @include exports('timeline.clarity') {
-  @import './properties.card';
+  @import './properties.timeline';
 
   .clr-timeline {
     display: flex;

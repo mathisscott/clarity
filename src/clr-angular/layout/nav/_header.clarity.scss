@@ -88,9 +88,19 @@
     }
 
     .title {
-      @include css-var(color, clr-header-font-color, $clr-header-font-color, $clr-use-custom-properties);
-      @include css-var(font-weight, clr-header-font-weight, $clr-header-font-weight, $clr-use-custom-properties);
-      @include css-var(font-family, clr-header-font-family, $clr-header-font-family, $clr-use-custom-properties);
+      @include css-var(color, clr-header-title-color, $clr-header-title-color, $clr-use-custom-properties);
+      @include css-var(
+        font-weight,
+        clr-header-title-font-weight,
+        $clr-header-title-font-weight,
+        $clr-use-custom-properties
+      );
+      @include css-var(
+        font-family,
+        clr-header-title-font-family,
+        $clr-header-title-font-family,
+        $clr-use-custom-properties
+      );
       font-size: $clr-header-title-font-size;
       letter-spacing: $clr-header-title-letter-spacing;
       line-height: $clr-header-height;

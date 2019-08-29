@@ -209,12 +209,7 @@
         display: block;
         width: $clr_baselineRem_1px;
         height: 100%;
-        @include css-var(
-          background,
-          clr-login-panel-line-color,
-          $clr-login-panel-line-color,
-          $clr-use-custom-properties
-        );
+        @include css-var(background, clr-login-panel-line-color, $clr-color-neutral-1000, $clr-use-custom-properties);
         @include css-var(opacity, clr-login-panel-line-opacity, 0.1, $clr-use-custom-properties);
         top: 0;
         right: -1 * $clr_baselineRem_2px;
