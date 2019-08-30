@@ -41,7 +41,7 @@ h2 {
     position: absolute;
     top: $clr_baselineRem_1px;
     left: $clr_baselineRem_13px;
-    width: calc(100% - $clr_baselineRem_1_0833);
+    width: calc(100% - #{$clr_baselineRem_1_0833});
     height: $clr_baselineRem_1;
     display: block;
     background-color: $clr-color-neutral-0;

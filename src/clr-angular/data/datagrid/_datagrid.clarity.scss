@@ -746,7 +746,7 @@
   }
 
   .clr-form-control-disabled .datagrid-footer-select.clr-checkbox-wrapper input[type='checkbox']:checked + label {
-    top: calc(#{$clr_baselineRem_1} / 6);
+    top: $clr_baselineRem_4px;
     cursor: default;
 
     margin-right: $clr_baselineRem_0_375;

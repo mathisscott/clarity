@@ -84,8 +84,8 @@
   #{$table}-compact {
     #{$th},
     #{$td} {
-      padding-top: calc(#{$clr-table--compact-verticalPadding} + $clr_baselineRem_1px);
-      padding-bottom: calc(#{$clr-table--compact-verticalPadding});
+      padding-top: $clr-table--compact-verticalPadding + $clr_baselineRem_1px;
+      padding-bottom: $clr-table--compact-verticalPadding;
     }
   }
 }

@@ -190,7 +190,7 @@ $clr-searchbar-container-height-sm: $clr_baselineRem_4_5;
     &.sticky {
       position: fixed;
       top: $clr-header-height + $clr-searchbar-container-height;
-      max-height: calc(100vh - $clr_baselineRem_2_5);
+      max-height: calc(100vh - #{$clr_baselineRem_2_5});
       width: inherit;
     }
 
