@@ -10,7 +10,7 @@
     --clr-wizard-sidenav-text: var(--clr-color-neutral-900);
     --clr-wizard-sidenav-text--active: var(--clr-global-on-selection-color);
     --clr-wizard-title-text: var(--clr-color-neutral-1000);
-    --clr-wizard-stepnav-border-size: var(--clr_baselineRem_4px);
+    --clr-wizard-stepnav-border-size: #{$clr_baselineRem_4px};
     --clr-wizard-stepnav-border-color: var(--clr-color-neutral-200);
     --clr-wizard-stepnav-border-color--active: var(--clr-color-success-400);
     --clr-wizard-stepnav-active-bgcolor: var(--clr-global-selection-color);

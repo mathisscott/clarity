@@ -21,8 +21,12 @@
     //Vertical Nav - Trigger
     --clr-vertical-nav-toggle-icon-color: var(--clr-color-neutral-1000);
     --clr-vertical-nav-trigger-divider-border-width: var(--clr-global-borderwidth);
-    --clr-vertical-nav-trigger-divider-border-color: var(--clr-color-neutral-700);
-    --clr-vertical-nav-trigger-divider-opacity: 0.2;
+    --clr-vertical-nav-trigger-divider-border-color: rgba(
+      #{red($clr-color-neutral-700)},
+      #{green($clr-color-neutral-700)},
+      #{blue($clr-color-neutral-700)},
+      0.2
+    );
 
     // Vertical Nav - Header
     --clr-vertical-nav-header-font-weight: var(--clr-p4-font-weight);

@@ -78,6 +78,7 @@
 
       &::-webkit-progress-bar {
         border-radius: 0;
+        @include css-var(background-color, clr-progress-bg-color, $clr-progress-bgColor, $clr-use-custom-properties);
       }
 
       &::-webkit-progress-inner-element {
@@ -508,7 +509,7 @@
     /* warning, success, and danger distinctions for progress bars are deprecated in 3.0 */
     @each $type, $color, $prop in (success, $clr-progress-success-color, clr-progress-alt-color-1),
       (warning, $clr-progress-warning-color, clr-progress-alt-color-3),
-      (danger, $clr-progress-danger-color, clr-progress-alt-color-1)
+      (danger, $clr-progress-danger-color, clr-progress-alt-color-2)
     {
       &.#{$type} > .progress-meter::before {
         @include css-var(background-color, $prop, $color, $clr-use-custom-properties);

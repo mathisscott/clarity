@@ -8,9 +8,9 @@
     --clr-modal-close-color: var(--clr-color-neutral-600);
     --clr-modal-bg-color: var(--clr-color-neutral-0);
     --clr-modal-content-box-shadow-color: rgba(
-      red($clr-color-neutral-1000),
-      green($clr-color-neutral-1000),
-      blue($clr-color-neutral-1000),
+      #{red($clr-color-neutral-1000)},
+      #{green($clr-color-neutral-1000)},
+      #{blue($clr-color-neutral-1000)},
       0.2
     );
     --clr-modal-backdrop-color: var(--clr-color-neutral-900);

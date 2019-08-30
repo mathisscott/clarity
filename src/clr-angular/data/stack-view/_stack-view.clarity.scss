@@ -57,7 +57,9 @@ $styledInputs: 'input[type=text], input[type=password], input[type=number], inpu
     line-height: $clr-stack-view-line-height;
     letter-spacing: $clr-stack-view-letter-spacing;
     margin-top: 0;
-    border-style: $clr-stack-view-border-width solid;
+    border-width: $clr-stack-view-border-width;
+    border-style: solid;
+
     @include css-var(
       border-color,
       clr-stack-view-border-color,
@@ -89,10 +91,15 @@ $styledInputs: 'input[type=text], input[type=password], input[type=number], inpu
       display: flex;
       // Wrapping for nested stack-blocks
       flex-flow: row wrap;
-      border-style: solid;
-      @include css-var(border-width, clr-global-borderwidth, $clr-global-borderwidth, $clr-use-custom-properties);
       @include css-var(
-        border-color,
+        border-bottom-width,
+        clr-global-borderwidth,
+        $clr-global-borderwidth,
+        $clr-use-custom-properties
+      );
+      border-bottom-style: solid;
+      @include css-var(
+        border-bottom-color,
         clr-stack-view-stack-block-border-bottom,
         $clr-stack-view-stack-block-border-bottom,
         $clr-use-custom-properties

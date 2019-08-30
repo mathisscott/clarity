@@ -164,7 +164,7 @@
       @include css-var(border-right-width, clr-global-borderwidth, $clr-global-borderwidth, $clr-use-custom-properties);
       border-right-style: solid;
       @include css-var(
-        border-right-width,
+        border-right-color,
         clr-wizard-step-nav-border-color,
         $clr-wizard-step-nav-border-color,
         $clr-use-custom-properties

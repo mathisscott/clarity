@@ -94,7 +94,7 @@
 ) {
   @if $use-custom-props != true {
     color: $text-color-sass;
-    border-bottom: $clr-global-borderwidth solid $border-bottom-color;
+    border-bottom: $clr-global-borderwidth solid $border-color-sass;
   } @else {
     @include css-var(color, $text-color-prop, $text-color-sass, $use-custom-props);
     border-bottom: $clr-global-borderwidth solid;

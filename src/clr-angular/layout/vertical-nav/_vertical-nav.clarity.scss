@@ -85,9 +85,6 @@
         $clr-use-custom-properties
       );
       margin: $clr-vertical-nav-divider-margin 0;
-
-      //Others
-      @include css-var(opacity, clr-vertical-nav-trigger-divider-opacity, 0.2, $clr-use-custom-properties);
     }
 
     .nav-content {
