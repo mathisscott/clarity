@@ -3,7 +3,7 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 // Usage: ./_properties.clarity.scss
-// This will remove custom property declarations
+// This will remove custom property declarations if set to false
 $clr-use-custom-properties: true !default;
 
 // Usage: ../typography/_typography.clarity.scss
