@@ -50,7 +50,7 @@ import { ClrCommonStringsService } from '../../utils/i18n/common-strings.service
       <input 
         #currentPageInput 
         type="text" 
-        class="pagination-current" 
+        class="pagination-current clr-input" 
         [size]="page.last.toString().length" 
         [value]="page.current"
         (keydown.enter)="updateCurrentPage($event)" 
