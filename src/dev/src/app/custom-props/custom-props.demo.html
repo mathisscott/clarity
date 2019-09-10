@@ -21,3 +21,10 @@
     Try Elm. It's fun!
   </clr-wc-element>
 </section>
+
+<hr style="margin: 1rem 0">
+
+<section>
+  <div><clr-wc-icon [shape]="iconShape" (shape-changed)="handleShapeChange($event)"></clr-wc-icon></div>
+  <div><button type="button" (click)="cycleShapes()">Cycle Shapes</button></div>
+</section>

@@ -91,8 +91,18 @@ function getNewTheme(oldTheme: string): string {
 export class CustomPropsDemo implements OnInit {
   private _theme = 'default';
 
+  iconShape: string;
+
   cycleThemes(): void {
     this._theme = getNewTheme(this._theme);
+  }
+
+  cycleShapes(): void {
+    this.iconShape = this.iconShape === 'home' ? 'success' : 'home';
+  }
+
+  handleShapeChange(e: Event) {
+    console.log(e);
   }
 
   ngOnInit() {
