@@ -9,6 +9,7 @@ import { CheckboxesSpec } from './checkboxes';
 import { ColorSpec } from './color';
 import { ListsSpec } from './lists';
 import { TogglesSpec } from './toggles';
+import { DatagridSpec } from './datagrid';
 
 // Organized this way to make one batch for all of the tests in Applitools,
 // otherwise it treats each file as a different batch and makes it hard to
@@ -17,6 +18,7 @@ describe(`Clarity - ${Cypress.env('CLARITY_THEME')}`, () => {
   // ButtonSpecs();
   CheckboxesSpec();
   ColorSpec();
+  DatagridSpec();
   // ListsSpec();
   TogglesSpec();
 });

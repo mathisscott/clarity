@@ -9,6 +9,7 @@ export function checkEyes(testName, selector = '.content-area') {
     tag: testName,
     sizeMode: 'selector',
     selector,
+    ignore: [{ selector: '.applitools-ignore' }],
   });
 }
 

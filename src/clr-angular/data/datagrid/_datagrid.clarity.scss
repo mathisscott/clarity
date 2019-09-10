@@ -423,7 +423,6 @@
       flex: 1 1 auto;
       display: flex;
       justify-content: center;
-      border-top: $clr-default-borderwidth solid $clr-table-border-color;
     }
 
     .datagrid-placeholder {
@@ -759,7 +758,7 @@
   .datagrid-host {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto 1.5rem;
+    grid-template-rows: min-content auto min-content;
     grid-template-areas:
       'datagrid-actions'
       'datagrid'
@@ -767,7 +766,7 @@
   }
   .datagrid-host.datagrid-detail-open {
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: auto auto 1.5rem;
+    grid-template-rows: auto auto min-content;
     grid-template-areas:
       'datagrid-actions datagrid-actions'
       'datagrid datagrid-detail'
@@ -793,7 +792,7 @@
    */
   .datagrid-host.datagrid-detail-open {
     /* autoprefixer: ignore next */
-    -ms-grid-rows: auto minmax(0px, 100000px) 1.5rem;
+    -ms-grid-rows: min-content minmax(0px, 100000px) min-content;
   }
 
   .datagrid-detail-open {
