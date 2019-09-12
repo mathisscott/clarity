@@ -60,6 +60,7 @@ export default function(): void {
       expect(provider.columns[0].value).toEqual({ ...col1, ...diff });
       provider.resetToLastCache();
       expect(provider.columns[0].value).toEqual({ ...col1, changes: ALL_COLUMN_CHANGES });
+      expect(provider.hasCache()).toBeFalse();
     });
 
     it('does not emit a reset if there is no cache', () => {

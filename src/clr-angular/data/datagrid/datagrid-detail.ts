@@ -3,9 +3,10 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, HostListener } from '@angular/core';
+import { Component, ContentChild, HostListener } from '@angular/core';
 import { DetailService } from './providers/detail.service';
 import { ClrCommonStringsService } from '../../utils/i18n/common-strings.service';
+import { ClrDatagridDetailHeader } from './datagrid-detail-header';
 
 @Component({
   selector: 'clr-dg-detail',
@@ -15,7 +16,7 @@ import { ClrCommonStringsService } from '../../utils/i18n/common-strings.service
   // We put the *ngIf on the clrFocusTrap so it doesn't always exist on the page
   template: `
     <div clrFocusTrap class="datagrid-detail-pane-content" *ngIf="detailService.isOpen" role="dialog" 
-         [id]="detailService.id" aria-modal="true" [attr.aria-describedby]="detailService.id + '-title'">
+         [id]="detailService.id" aria-modal="true" [attr.aria-describedby]="header.titleId">
       <div class="clr-sr-only">{{commonStrings.keys.detailPaneStart}}</div>
       <ng-content></ng-content>
       <div class="clr-sr-only">{{commonStrings.keys.detailPaneEnd}}</div>
@@ -23,6 +24,9 @@ import { ClrCommonStringsService } from '../../utils/i18n/common-strings.service
     `,
 })
 export class ClrDatagridDetail {
+  @ContentChild(ClrDatagridDetailHeader, { static: false })
+  public header: ClrDatagridDetailHeader;
+
   constructor(public detailService: DetailService, public commonStrings: ClrCommonStringsService) {}
 
   @HostListener('document:keyup.esc')

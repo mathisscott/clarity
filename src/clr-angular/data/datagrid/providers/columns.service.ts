@@ -25,15 +25,12 @@ export class ColumnsService {
     return !!this._cache.length;
   }
 
-  resetToLastCache(clear = true) {
+  resetToLastCache() {
     this._cache.forEach((state, index) => {
       // Just emit the exact value from the cache
       this.columns[index].next({ ...state, changes: ALL_COLUMN_CHANGES });
     });
-
-    if (clear) {
-      this._cache = [];
-    }
+    this._cache = [];
   }
 
   get columnStates(): ColumnState[] {

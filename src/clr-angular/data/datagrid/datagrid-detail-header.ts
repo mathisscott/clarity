@@ -3,8 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component } from '@angular/core';
 import { DetailService } from './providers/detail.service';
 import { ClrCommonStringsService } from '../../utils/i18n/common-strings.service';
 
@@ -14,7 +13,7 @@ import { ClrCommonStringsService } from '../../utils/i18n/common-strings.service
     '[class.datagrid-detail-header]': 'true',
   },
   template: `
-    <div class="datagrid-detail-header-title" tabindex="0" #title [id]="detailService.id + '-title'">
+    <div class="datagrid-detail-header-title" clrFocusOnViewInit [id]="titleId">
       <ng-content></ng-content>
     </div>
     <div class="datagrid-detail-pane-close">
@@ -28,18 +27,9 @@ import { ClrCommonStringsService } from '../../utils/i18n/common-strings.service
   `,
 })
 export class ClrDatagridDetailHeader {
-  constructor(
-    public detailService: DetailService,
-    public commonStrings: ClrCommonStringsService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
-
-  @ViewChild('title', { static: false })
-  title;
-
-  ngAfterViewInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.title.nativeElement.focus();
-    }
+  get titleId() {
+    return `${this.detailService.id}-title`;
   }
+
+  constructor(public detailService: DetailService, public commonStrings: ClrCommonStringsService) {}
 }

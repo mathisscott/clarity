@@ -22,7 +22,7 @@ import { DetailService } from './providers/detail.service';
 })
 export class ClrIfDetail implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-  private skip = false;
+  private skip = false; // This keeps us from resetting the input and calling the toggle twice
 
   @Input('clrIfDetail')
   set state(model) {
@@ -57,7 +57,6 @@ export class ClrIfDetail implements OnInit, OnDestroy {
   private showPanel() {
     this.viewContainer.clear();
     this.viewContainer.createEmbeddedView(this.templateRef, { $implicit: this.detailService.state });
-    // This keeps us from resetting the input and calling the toggle twice
     this.skip = true;
     this.stateChange.emit(this.detailService.state);
   }

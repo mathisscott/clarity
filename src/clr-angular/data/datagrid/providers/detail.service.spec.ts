@@ -28,6 +28,16 @@ export default function(): void {
       expect(provider.isOpen).toBeFalse();
     });
 
+    it('should capture the button and focus on close', () => {
+      const button = document.createElement('button');
+      document.body.appendChild(button);
+      provider.open('value', button);
+      expect(provider.isOpen);
+      provider.close();
+      expect(document.activeElement).toEqual(button);
+      document.body.removeChild(button);
+    });
+
     it('exposes a stageChange observable that responds to open and close', () => {
       let state: boolean;
       subscription = provider.stateChange.subscribe(updated => (state = updated));

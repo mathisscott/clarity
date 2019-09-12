@@ -65,7 +65,7 @@
         <div *ngIf="detailService.enabled"
              class="datagrid-detail-caret datagrid-fixed-column datagrid-cell">
           <button (click)="detailService.toggle(item, detailButton)" type="button" #detailButton class="datagrid-detail-caret-button"
-                  [class.is-open]="detailService.isRowOpen(item)" [attr.aria-label]="detailService.isOpen ? detailCloseLabel : detailOpenLabel"
+                  [class.is-open]="detailService.isRowOpen(item)" [attr.aria-label]="detailService.isOpen ? clrDgDetailCloseLabel : clrDgDetailOpenLabel"
                   [attr.aria-expanded]="detailService.isOpen" [attr.aria-controls]="detailService.id" aria-haspopup="dialog">
             <clr-icon shape="angle-double"
                       [attr.dir]="detailService.isRowOpen(item) ? 'left' : 'right'"

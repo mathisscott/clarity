@@ -98,32 +98,8 @@ export class ClrDatagridColumn<T = any> extends DatagridFilterRegistrar<T, ClrDa
     private changeDetectionRef: ChangeDetectorRef
   ) {
     super(filters);
-    this.subscriptions.push(
-      _sort.change.subscribe(sort => {
-        // We're only listening to make sure we emit an event when the column goes from sorted to unsorted
-        if (this.sortOrder !== ClrDatagridSortOrder.UNSORTED && sort.comparator !== this._sortBy) {
-          this._sortOrder = ClrDatagridSortOrder.UNSORTED;
-          this.sortOrderChange.emit(this._sortOrder);
-          // removes the sortIcon when column becomes unsorted
-          this.sortIcon = null;
-        }
-        // deprecated: to be removed - START
-        if (this.sorted && sort.comparator !== this._sortBy) {
-          this._sorted = false;
-          this.sortedChange.emit(false);
-        }
-        // deprecated: to be removed - END
-      })
-    );
-    this.subscriptions.push(
-      this.detailService.stateChange.subscribe(state => {
-        if (this.showSeparator !== !state) {
-          this.showSeparator = !state;
-          // Have to manually change because of OnPush
-          this.changeDetectionRef.markForCheck();
-        }
-      })
-    );
+    this.subscriptions.push(this.listenForSortingChanges());
+    this.subscriptions.push(this.listenForDetailPaneChanges());
   }
 
   public showSeparator = true;
@@ -135,6 +111,34 @@ export class ClrDatagridColumn<T = any> extends DatagridFilterRegistrar<T, ClrDa
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
+  }
+
+  private listenForDetailPaneChanges() {
+    return this.detailService.stateChange.subscribe(state => {
+      if (this.showSeparator !== !state) {
+        this.showSeparator = !state;
+        // Have to manually change because of OnPush
+        this.changeDetectionRef.markForCheck();
+      }
+    });
+  }
+
+  private listenForSortingChanges() {
+    return this._sort.change.subscribe(sort => {
+      // We're only listening to make sure we emit an event when the column goes from sorted to unsorted
+      if (this.sortOrder !== ClrDatagridSortOrder.UNSORTED && sort.comparator !== this._sortBy) {
+        this._sortOrder = ClrDatagridSortOrder.UNSORTED;
+        this.sortOrderChange.emit(this._sortOrder);
+        // removes the sortIcon when column becomes unsorted
+        this.sortIcon = null;
+      }
+      // deprecated: to be removed - START
+      if (this.sorted && sort.comparator !== this._sortBy) {
+        this._sorted = false;
+        this.sortedChange.emit(false);
+      }
+      // deprecated: to be removed - END
+    });
   }
 
   /*

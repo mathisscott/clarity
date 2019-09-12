@@ -19,6 +19,7 @@ import { ClrDatagridStringFilterInterface } from './interfaces/string-filter.int
 import { FiltersProvider } from './providers/filters';
 import { Sort } from './providers/sort';
 import { commonStringsDefault } from '../../utils/i18n/common-strings.default';
+import { DetailService } from './providers/detail.service';
 
 export default function(): void {
   describe('DatagridColumn component', function() {
@@ -358,6 +359,14 @@ export default function(): void {
         context.clarityDirective.sort();
         context.detectChanges();
         expect(context.clarityElement.attributes['aria-sort'].value).toBe('descending');
+      });
+
+      it('hides the separator when detail pane is open', function() {
+        const detailService = context.getClarityProvider(DetailService);
+        expect(context.clarityElement.querySelector('.datagrid-column-separator')).toBeTruthy();
+        detailService.open({});
+        context.detectChanges();
+        expect(context.clarityElement.querySelector('.datagrid-column-separator')).toBeFalsy();
       });
     });
 

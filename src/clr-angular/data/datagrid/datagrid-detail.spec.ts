@@ -29,15 +29,6 @@ export default function(): void {
         context.fixture.destroy();
       });
 
-      it('should close and hide content', () => {
-        detailService.open({});
-        context.detectChanges();
-        expect(context.clarityElement.innerHTML).toContain(content);
-        detailService.close();
-        context.detectChanges();
-        expect(context.clarityElement.innerHTML).not.toContain(content);
-      });
-
       it('should wire up host bindings', () => {
         expect(context.clarityElement.className).toContain('datagrid-detail-pane');
       });

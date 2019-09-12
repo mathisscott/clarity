@@ -18,6 +18,7 @@ import { ClrExpandableAnimationModule } from '../../utils/animations/expandable-
 import { ClrSpinnerModule } from '../../progress/spinner/spinner.module';
 import { ClrPopoverModuleNext } from '../../utils/popover/popover.module';
 import { ClrFocusTrapModule } from '../../utils/focus-trap/focus-trap.module';
+import { ClrFocusOnViewInitModule } from '../../utils/focus/focus-on-view-init/focus-on-view-init.module';
 
 import { DatagridStringFilter } from './built-in/filters/datagrid-string-filter';
 import { DatagridNumericFilter } from './built-in/filters/datagrid-numeric-filter';
@@ -117,6 +118,7 @@ export const CLR_DATAGRID_DIRECTIVES: Type<any>[] = [
     ClrCommonPopoverModule,
     ClrPopoverModuleNext,
     ClrFocusTrapModule,
+    ClrFocusOnViewInitModule,
   ],
   declarations: [CLR_DATAGRID_DIRECTIVES],
   exports: [CLR_DATAGRID_DIRECTIVES],

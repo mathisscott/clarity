@@ -312,21 +312,20 @@ export default function(): void {
         context.detectChanges();
       });
 
-      it('toggles the detail pane open and caches old state', function() {
-        // context.detectChanges();
+      it('toggles the detail pane open and emits state changes for each column', function() {
         context.clarityDirective.toggleDetailPane(true);
         context.detectChanges();
         expect(columnsService.resetToLastCache).not.toHaveBeenCalled();
-        expect(columnsService.emitStateChangeAt).toHaveBeenCalled();
+        expect(columnsService.emitStateChangeAt).toHaveBeenCalledTimes(1);
       });
 
-      it('toggles the detail pane closed', function() {
+      it('toggles the detail pane closed and resets to cache', function() {
         context.clarityDirective.toggleDetailPane(false);
-        expect(columnsService.resetToLastCache).toHaveBeenCalled();
+        expect(columnsService.resetToLastCache).toHaveBeenCalledTimes(1);
         expect(columnsService.emitStateChangeAt).not.toHaveBeenCalled();
       });
 
-      it('toggles the currently active detail item', function() {
+      it('toggles the currently active detail item without clearing cache or closing', function() {
         context.clarityDirective.toggleDetailPane(true);
         expect(columnsService.resetToLastCache).not.toHaveBeenCalled();
         expect(columnsService.emitStateChangeAt).toHaveBeenCalledTimes(1);

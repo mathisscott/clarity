@@ -39,7 +39,7 @@ export default function(): void {
         expect(detailService.close).toHaveBeenCalled();
       });
 
-      it('should an input state', () => {
+      it('should project input state', () => {
         const input = `${content}${content}`;
         testComponent.detailState = input;
         fixture.detectChanges();

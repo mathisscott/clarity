@@ -423,6 +423,7 @@
       flex: 1 1 auto;
       display: flex;
       justify-content: center;
+      border-top: $clr-default-borderwidth solid $clr-table-border-color;
     }
 
     .datagrid-placeholder {
@@ -758,7 +759,7 @@
   .datagrid-host {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: min-content auto min-content;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
       'datagrid-actions'
       'datagrid'
@@ -766,7 +767,7 @@
   }
   .datagrid-host.datagrid-detail-open {
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: auto auto min-content;
+    grid-template-rows: auto auto calc(1.5rem + 1px); // Quirk because placeholder border is always visible and needs 1px
     grid-template-areas:
       'datagrid-actions datagrid-actions'
       'datagrid datagrid-detail'
@@ -792,7 +793,7 @@
    */
   .datagrid-host.datagrid-detail-open {
     /* autoprefixer: ignore next */
-    -ms-grid-rows: min-content minmax(0px, 100000px) min-content;
+    -ms-grid-rows: auto minmax(0px, 100000px) 1.5rem;
   }
 
   .datagrid-detail-open {
@@ -844,7 +845,7 @@
 
   .datagrid-detail-pane {
     margin-top: 0.5rem;
-    border: $clr-default-borderwidth solid $clr-datagrid-default-border-color;
+    border: $clr-global-borderwidth solid $clr-datagrid-default-border-color;
     border-left: none;
     border-top-right-radius: $clr-global-borderradius;
     border-bottom-right-radius: $clr-global-borderradius;
@@ -875,8 +876,6 @@
     flex-direction: row;
 
     .datagrid-detail-header-title {
-      // Intentional! Allows focus to move to the title for keyboard users/screen readers without outline
-      outline: none;
       flex: 1 1 auto;
     }
 
@@ -903,11 +902,11 @@
     .datagrid-detail-caret-button {
       @include clr-no-styles-button();
       cursor: pointer;
-      padding: calc(0.125rem - #{$clr-default-borderwidth}) $horizontalPadding 0.125rem;
+      padding: calc(0.125rem - #{$clr-global-borderwidth}) $horizontalPadding 0.125rem;
 
       &.is-open {
         background-color: $clr-action-blue;
-        border-radius: $clr-default-borderradius;
+        border-radius: $clr-global-borderradius;
 
         .datagrid-detail-caret-icon {
           color: $clr-white;

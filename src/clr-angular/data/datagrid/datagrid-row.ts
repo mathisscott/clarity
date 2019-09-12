@@ -164,18 +164,18 @@ export class ClrDatagridRow<T = any> implements AfterContentInit, AfterViewInit 
 
   private _detailOpenLabel = '';
   @Input()
-  set detailOpenLabel(label: string) {
+  set clrDgDetailOpenLabel(label: string) {
     this._detailOpenLabel = label;
   }
-  get detailOpenLabel(): string {
+  get clrDgDetailOpenLabel(): string {
     return this._detailOpenLabel ? this._detailOpenLabel : this.commonStrings.keys.open;
   }
   private _detailCloseLabel = '';
   @Input()
-  set detailCloseLabel(label: string) {
+  set clrDgDetailCloseLabel(label: string) {
     this._detailCloseLabel = label;
   }
-  get detailCloseLabel(): string {
+  get clrDgDetailCloseLabel(): string {
     return this._detailCloseLabel ? this._detailCloseLabel : this.commonStrings.keys.open;
   }
 

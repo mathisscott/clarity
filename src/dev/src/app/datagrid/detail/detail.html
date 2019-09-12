@@ -9,13 +9,21 @@
 <h3>Simple API</h3>
 
 <clr-datagrid [(clrDgSelected)]="selection">
+  <clr-dg-action-bar>
+    <div class="btn-group" role="group" aria-label="Available Actions">
+      <button type="button" class="btn btn-sm btn-secondary">Add to group</button>
+      <button type="button" class="btn btn-sm btn-secondary">Delete</button>
+      <button type="button" class="btn btn-sm btn-secondary">Edit</button>
+    </div>
+  </clr-dg-action-bar>
+
   <clr-dg-column [clrDgField]="'id'">User ID</clr-dg-column>
   <clr-dg-column [clrDgField]="'name'"><ng-container *clrDgHideableColumn>Name</ng-container></clr-dg-column>
   <clr-dg-column [clrDgField]="'creation'"><ng-container *clrDgHideableColumn>Creation date</ng-container></clr-dg-column>
   <clr-dg-column [clrDgField]="'pokemon.name'"><ng-container *clrDgHideableColumn>Pokemon</ng-container></clr-dg-column>
   <clr-dg-column [clrDgField]="'color'"><ng-container *clrDgHideableColumn>Favorite color</ng-container></clr-dg-column>
 
-  <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user" [detailOpenLabel]="'Open row details for ' + user.name" [detailCloseLabel]="'Open row details for ' + user.name">
+  <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user" [clrDgDetailOpenLabel]="'Open row details for ' + user.name" [clrDgDetailCloseLabel]="'Open row details for ' + user.name">
     <clr-dg-cell>{{user.id}}</clr-dg-cell>
     <clr-dg-cell>{{user.name}}</clr-dg-cell>
     <clr-dg-cell>{{user.creation | date}}</clr-dg-cell>
@@ -60,7 +68,7 @@
   <clr-dg-column [clrDgField]="'pokemon.name'"><ng-container *clrDgHideableColumn>Pokemon</ng-container></clr-dg-column>
   <clr-dg-column [clrDgField]="'color'"><ng-container *clrDgHideableColumn>Favorite color</ng-container></clr-dg-column>
 
-  <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user" [detailOpenLabel]="'Open row details for ' + user.name" [detailCloseLabel]="'Open row details for ' + user.name">
+  <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
     <clr-dg-cell>{{user.id}}</clr-dg-cell>
     <clr-dg-cell>{{user.name}}</clr-dg-cell>
     <clr-dg-cell>{{user.creation | date}}</clr-dg-cell>
@@ -107,7 +115,7 @@
   <clr-dg-column [clrDgField]="'pokemon.name'"><ng-container *clrDgHideableColumn>Pokemon</ng-container></clr-dg-column>
   <clr-dg-column [clrDgField]="'color'"><ng-container *clrDgHideableColumn>Favorite color</ng-container></clr-dg-column>
 
-  <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user" [detailOpenLabel]="'Open row details for ' + user.name" [detailCloseLabel]="'Open row details for ' + user.name">
+  <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
     <clr-dg-action-overflow>
       <button class="action-item">
         <clr-icon shape="note"></clr-icon>

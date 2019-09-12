@@ -13,7 +13,7 @@ export class DetailService {
   private _state: BehaviorSubject<boolean | null> = new BehaviorSubject<boolean>(this.toggleState);
   private cache: any;
   private _enabled = false;
-  public button: any;
+  private button: HTMLButtonElement;
   public id: string;
 
   get enabled(): boolean {
@@ -37,17 +37,15 @@ export class DetailService {
     }
   }
 
-  open(item: any, button?: any) {
+  open(item: any, button?: HTMLButtonElement) {
     this.cache = item;
     this.button = button;
     this.toggleState = true;
     this._state.next(this.toggleState);
   }
 
-  toggle(item: any, button?: any) {
-    if (this.toggleState && this.cache !== item) {
-      this.open(item, button);
-    } else if ((this.toggleState && this.cache === item) || !item) {
+  toggle(item: any, button?: HTMLButtonElement) {
+    if (this.isRowOpen(item) || !item) {
       this.close();
     } else {
       this.open(item, button);
@@ -58,7 +56,7 @@ export class DetailService {
     return this.cache;
   }
 
-  isRowOpen(item) {
+  isRowOpen(item: any) {
     return !!(this.toggleState && this.cache === item);
   }
 
