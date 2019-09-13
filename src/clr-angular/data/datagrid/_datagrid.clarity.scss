@@ -212,6 +212,7 @@
 
   .datagrid-table-wrapper {
     display: flex;
+    height: 100%;
   }
 
   .datagrid-table {
@@ -493,6 +494,7 @@
 
   .datagrid-footer {
     flex: 0 0 auto;
+    max-height: 1.5rem;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -801,6 +803,7 @@
       border-top-right-radius: 0;
       border-right: none;
     }
+    .datagrid-placeholder-container,
     .datagrid-row {
       border-right: 1px solid $clr-table-border-color;
     }
@@ -852,6 +855,7 @@
     background: $clr-datagrid-popover-bg-color;
     overflow: hidden;
     display: block;
+    height: calc(100% - 0.5rem - 1px);
   }
 
   .datagrid-detail-pane-content {
@@ -869,7 +873,7 @@
   .datagrid-detail-header {
     flex: 0 0 auto;
     font-size: 0.75rem;
-    line-height: 1.5rem;
+    line-height: 1.4em;
     padding-left: 1rem;
     margin-top: 0;
     display: flex;
@@ -877,16 +881,20 @@
 
     .datagrid-detail-header-title {
       flex: 1 1 auto;
+      padding-top: 0.666667rem;
     }
 
     .datagrid-detail-pane-close {
-      flex: 1 1 4rem;
+      flex: 1 1 1.5rem;
       padding: 0;
       display: flex;
       justify-content: flex-end;
 
       .btn.btn-link {
         color: $clr-modal-close-color;
+        margin-top: 0.483333rem;
+        margin-bottom: 0;
+        padding-right: 0;
       }
     }
   }
