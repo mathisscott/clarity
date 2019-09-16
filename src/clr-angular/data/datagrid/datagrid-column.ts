@@ -113,31 +113,45 @@ export class ClrDatagridColumn<T = any> extends DatagridFilterRegistrar<T, ClrDa
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  private updateSeparator(showTheSeparator: boolean) {
+    if (this.showSeparator !== !showTheSeparator) {
+      this.showSeparator = !showTheSeparator;
+      // Have to manually change because of OnPush
+      this.changeDetectionRef.markForCheck();
+    }
+  }
+
   private listenForDetailPaneChanges() {
     return this.detailService.stateChange.subscribe(state => {
-      if (this.showSeparator !== !state) {
-        this.showSeparator = !state;
-        // Have to manually change because of OnPush
-        this.changeDetectionRef.markForCheck();
-      }
+      this.updateSeparator(state);
     });
   }
 
-  private listenForSortingChanges() {
-    return this._sort.change.subscribe(sort => {
-      // We're only listening to make sure we emit an event when the column goes from sorted to unsorted
-      if (this.sortOrder !== ClrDatagridSortOrder.UNSORTED && sort.comparator !== this._sortBy) {
+  private updateSortOrderOnSortChange(sort: Sort) {
+    if (!this.isSortedByThisColumn(sort.comparator)) {
+      if (this.sortOrder !== ClrDatagridSortOrder.UNSORTED) {
         this._sortOrder = ClrDatagridSortOrder.UNSORTED;
         this.sortOrderChange.emit(this._sortOrder);
         // removes the sortIcon when column becomes unsorted
         this.sortIcon = null;
       }
       // deprecated: to be removed - START
-      if (this.sorted && sort.comparator !== this._sortBy) {
+      if (this.sorted) {
         this._sorted = false;
         this.sortedChange.emit(false);
       }
       // deprecated: to be removed - END
+    }
+  }
+
+  private isSortedByThisColumn(sortComparator: ClrDatagridComparatorInterface<T> | null): boolean {
+    return sortComparator === this._sortBy;
+  }
+
+  private listenForSortingChanges() {
+    return this._sort.change.subscribe(sort => {
+      // We're only listening to make sure we emit an event when the column goes from sorted to unsorted
+      this.updateSortOrderOnSortChange(sort);
     });
   }
 
