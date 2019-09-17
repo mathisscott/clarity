@@ -761,7 +761,7 @@
   .datagrid-host {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: fit-content(2rem) auto auto;
     grid-template-areas:
       'datagrid-actions'
       'datagrid'
@@ -769,7 +769,8 @@
   }
   .datagrid-host.datagrid-detail-open {
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: auto auto calc(1.5rem + 1px); // Quirk because placeholder border is always visible and needs 1px
+    // Quirk because placeholder border is always visible and needs 1px
+    grid-template-rows: fit-content(2rem) auto calc(1.5rem + 1px);
     grid-template-areas:
       'datagrid-actions datagrid-actions'
       'datagrid datagrid-detail'
@@ -781,6 +782,7 @@
   }
   .datagrid-action-bar {
     grid-area: datagrid-actions;
+    max-height: 2rem;
   }
   .datagrid-footer {
     grid-area: datagrid-footer;
