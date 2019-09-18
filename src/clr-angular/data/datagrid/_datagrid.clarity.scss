@@ -864,7 +864,7 @@
   .datagrid-detail-pane-content {
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto;
     height: 100%;
   }
 
