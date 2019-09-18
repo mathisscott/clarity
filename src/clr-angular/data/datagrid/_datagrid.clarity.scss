@@ -857,7 +857,8 @@
     background: $clr-datagrid-popover-bg-color;
     overflow: hidden;
     display: block;
-    height: calc(100% - 0.5rem - 1px);
+    // this 1px nudge keeps the bottom border of the detail pane aligned with the datagrid border on the left side
+    margin-bottom: $clr-global-borderwidth;
   }
 
   .datagrid-detail-pane-content {
