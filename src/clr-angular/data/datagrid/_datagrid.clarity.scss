@@ -46,7 +46,7 @@
     }
 
     .datagrid-expandable-caret-icon {
-      color: $clr-color-neutral-600;
+      color: $clr-datagrid-icon-color;
       // nudge down for vertical alignment...
       margin-top: 0.125rem;
       svg {
@@ -408,6 +408,7 @@
 
       .datagrid-action-toggle {
         @include clr-no-styles-button();
+        color: $clr-datagrid-icon-color;
         &:active {
           color: $clr-datagrid-action-toggle; // Fixed active state on this button for Safari.
         }
@@ -926,7 +927,7 @@
     }
 
     .datagrid-detail-caret-icon {
-      color: $clr-color-neutral-600;
+      color: $clr-datagrid-icon-color;
       // nudge down for vertical alignment...
       margin-top: (0.125rem - $clr-rem-1px);
     }
