@@ -59,6 +59,7 @@ import DatagridDetailSpecs from './datagrid-detail.spec';
 import DatagridDetailBodySpecs from './datagrid-detail-body.spec';
 import DatagridDetailHeaderSpecs from './datagrid-detail-header.spec';
 import DatagridIfDetailSpecs from './datagrid-if-detail.spec';
+import DatagridDetailRegistererSpecs from './providers/datagrid-detail-registerer.spec';
 
 describe('Datagrid', function() {
   addHelpers();
@@ -74,6 +75,7 @@ describe('Datagrid', function() {
     ColumnResizerServiceSpecs();
     DetailServiceSpecs();
     ColumnsServiceSpecs();
+    DatagridDetailRegistererSpecs();
   });
   describe('Components', function() {
     DatagridActionBarSpecs();

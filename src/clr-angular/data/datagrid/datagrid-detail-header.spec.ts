@@ -26,7 +26,7 @@ export default function(): void {
       });
     });
 
-    fdescribe('View', function() {
+    describe('View', function() {
       let context: TestContext<ClrDatagridDetailHeader, FullTest>;
       let detailService: DetailService;
 
