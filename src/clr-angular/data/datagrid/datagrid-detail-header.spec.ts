@@ -26,7 +26,7 @@ export default function(): void {
       });
     });
 
-    describe('View', function() {
+    fdescribe('View', function() {
       let context: TestContext<ClrDatagridDetailHeader, FullTest>;
       let detailService: DetailService;
 
@@ -45,6 +45,11 @@ export default function(): void {
         context.testElement.querySelector('.btn').click();
         context.detectChanges();
         expect(detailService.close).toHaveBeenCalled();
+      });
+
+      it(' -- titleId() should return formatted id', () => {
+        const detailId = detailService.id;
+        expect(context.testElement.querySelector('.datagrid-detail-header-title').id).toEqual(detailId + '-title');
       });
     });
   });
