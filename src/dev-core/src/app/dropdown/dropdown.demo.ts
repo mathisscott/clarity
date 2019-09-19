@@ -4,7 +4,10 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
+import { ClarityIcons, userIcon } from '@clr/core';
 import '@clr/core/test-dropdown';
+
+ClarityIcons.addIcon(['user', userIcon]);
 
 @Component({
   selector: 'app-dropdown-demo',

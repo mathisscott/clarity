@@ -144,6 +144,7 @@
     "@types/jasmine-matchers": "0.2.32",
     "@types/jasminewd2": "2.0.6",
     "@types/node": "8.9.5",
+    "@types/ramda": "0.26.1",
     "autoprefixer": "9.5.1",
     "awesome-typescript-loader": "5.2.1",
     "axe-cli": "3.0.0",

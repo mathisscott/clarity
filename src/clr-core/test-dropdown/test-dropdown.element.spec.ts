@@ -3,8 +3,11 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+
+/* tslint:disable:ordered-imports */
 import '@clr/core/test-dropdown';
 import { CwcTestDropdown } from '@clr/core/test-dropdown';
+import { existsInWindow } from '@clr/core/common';
 import {
   componentIsStable,
   createTestElement,
@@ -12,6 +15,7 @@ import {
   removeTestElement,
   waitForComponent,
 } from '@clr/core/test/utils';
+/* tslint:enable:ordered-imports */
 
 describe('dropdown test element', () => {
   let testElement: HTMLElement;

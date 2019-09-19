@@ -24,6 +24,8 @@ import { styles } from './test-dropdown.element.css';
 // @dynamic
 export class CwcTestDropdown extends LitElement {
   private _open = false;
+  private _id: number;
+
   get open() {
     return this._open;
   }
@@ -49,7 +51,7 @@ export class CwcTestDropdown extends LitElement {
 
   render() {
     return html`
-      <div class="dropdown">
+      <div class="dropdown" id="${this._id}">
         <button @click="${() => this.toggle()}" class="btn">${this.title}</button>
         ${
           this.open
