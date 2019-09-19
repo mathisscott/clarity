@@ -30,11 +30,13 @@ export default function(): void {
 
     it('should capture the button and focus on close', () => {
       const button = document.createElement('button');
+      spyOn(button, 'focus').and.callThrough();
       document.body.appendChild(button);
       provider.open('value', button);
       expect(provider.isOpen);
       provider.close();
       expect(document.activeElement).toEqual(button);
+      expect(button.focus).toHaveBeenCalled();
       document.body.removeChild(button);
     });
 
