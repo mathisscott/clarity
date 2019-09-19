@@ -54,16 +54,25 @@ export class ClrIfDetail implements OnInit, OnDestroy {
     );
   }
 
-  private showPanel() {
+  private togglePanel(showPanel: boolean) {
+    let stateChangeParams = null;
     this.viewContainer.clear();
-    this.viewContainer.createEmbeddedView(this.templateRef, { $implicit: this.detailService.state });
-    this.skip = true;
-    this.stateChange.emit(this.detailService.state);
+
+    if (showPanel === true) {
+      this.viewContainer.createEmbeddedView(this.templateRef, { $implicit: this.detailService.state });
+      this.skip = true;
+      stateChangeParams = this.detailService.state;
+    }
+
+    this.stateChange.emit(stateChangeParams);
+  }
+
+  private showPanel() {
+    this.togglePanel(true);
   }
 
   private hidePanel() {
-    this.viewContainer.clear();
-    this.stateChange.emit(null);
+    this.togglePanel(false);
   }
 
   ngOnDestroy() {

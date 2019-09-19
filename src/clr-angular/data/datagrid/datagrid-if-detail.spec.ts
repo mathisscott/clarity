@@ -58,9 +58,11 @@ export default function(): void {
 
       it('should not update the service when showing the panel through state change', () => {
         spyOn(detailService, 'toggle');
+        spyOn(testComponent.detail.stateChange, 'emit').and.callThrough();
         detailService.open(content);
         fixture.detectChanges();
         expect(detailService.toggle).not.toHaveBeenCalled();
+        expect(testComponent.detail.stateChange.emit).toHaveBeenCalledWith(testComponent.detailState);
       });
     });
 
