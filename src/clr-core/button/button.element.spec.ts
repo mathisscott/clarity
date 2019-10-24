@@ -27,4 +27,38 @@ describe('button element', () => {
     await componentIsStable(component);
     expect(component.shadowRoot.innerHTML.includes('Button Placeholder')).toBe(true);
   });
+
+  fdescribe('LoadingStateChange', () => {
+    const expectedTransform = 'translateZ(0px)';
+
+    it('should set default state as expected', async () => {
+      await componentIsStable(component);
+      component.state = 'blah';
+      await componentIsStable(component);
+      component.loadingStateChange('default');
+      await componentIsStable(component);
+      expect(component.style.width).toEqual('');
+      expect(component.style.transform).toEqual('');
+    });
+
+    it('should set loading state as expected', async () => {
+      await componentIsStable(component);
+      const size = component.getBoundingClientRect().width + 'px';
+      component.loadingStateChange('loading');
+      await componentIsStable(component);
+      expect(component.style.width).toEqual(size);
+      expect(component.style.transform).toEqual(expectedTransform);
+      expect(component.hasAttribute('disabled')).toEqual(true);
+    });
+
+    it('should set success state as expected', async () => {
+      await componentIsStable(component);
+      const size = component.getBoundingClientRect().width + 'px';
+      component.loadingStateChange('success');
+      await componentIsStable(component);
+      expect(component.style.width).toEqual(size);
+      expect(component.style.transform).toEqual(expectedTransform);
+      expect(component.hasAttribute('disabled')).toEqual(true);
+    });
+  });
 });
