@@ -44,7 +44,7 @@ $styledInputs: 'input[type=text], input[type=password], input[type=number], inpu
         &.btn-link {
           // Weird negative margin to make the button aligned with the stack view
           // in its default state. It then looks unaligned on hover only.
-          margin-right: -1 * $clr_baselineRem_0_5;
+          margin-right: $clr_baselineRem_-0_5;
         }
       }
     }
@@ -118,7 +118,7 @@ $styledInputs: 'input[type=text], input[type=password], input[type=number], inpu
 
     .stack-block-changed {
       > .stack-block-label {
-        margin-left: -1 * $clr_baselineRem_0_375;
+        margin-left: $clr_baselineRem_-0_375;
       }
       &::before {
         content: ' ';

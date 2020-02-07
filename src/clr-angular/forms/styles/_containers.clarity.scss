@@ -1,4 +1,4 @@
-// Copyright (c) 2016-2019 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
@@ -61,12 +61,12 @@
     @include min-equilateral($clr-forms-icon-size);
     @include css-var(color, clr-forms-invalid-color, $clr-forms-invalid-color, $clr-use-custom-properties);
     display: none;
-    margin-left: -1 * $clr_baselineRem_1;
+    margin-left: $clr_baselineRem_-1;
   }
 
   .clr-error {
     .clr-validate-icon {
-      margin-left: -1 * $clr_baselineRem_4px; // @TODO Figure out why there is this 4px gap between elements
+      margin-left: $clr_baselineRem_-4px; // @TODO Figure out why there is this 4px gap between elements
       display: inline-block;
     }
 

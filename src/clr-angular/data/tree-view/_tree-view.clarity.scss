@@ -1,4 +1,4 @@
-// Copyright (c) 2016-2019 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
@@ -75,7 +75,7 @@
     @include css-var(color, clr-tree-node-caret-color, $clr-tree-node-caret-color, $clr-use-custom-properties);
 
     cursor: pointer;
-    outline-offset: -1 * $clr_baselineRem_5px; //TODO: Replace with the outline offset mixin after the rem value change.
+    outline-offset: $clr_baselineRem_-5px; //TODO: Replace with the outline offset mixin after the rem value change.
 
     &:hover {
       @include css-var(

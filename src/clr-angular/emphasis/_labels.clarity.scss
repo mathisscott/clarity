@@ -1,4 +1,4 @@
-// Copyright (c) 2016-2019 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
@@ -141,7 +141,7 @@
     @include generateStatusLabelStyles(danger);
 
     & > .badge {
-      margin: 0 (-1 * $clr_baselineRem_0_375) 0 $clr_baselineRem_0_25;
+      margin: 0 $clr_baselineRem_-0_375 0 $clr_baselineRem_0_25;
       //-0.375 is -9px. 12px initial label padding plus a negative margin of 9
     }
   }

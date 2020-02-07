@@ -31,6 +31,10 @@ $clr-font-base-size: 14 !default; // Moved from original needs a better name
 // bringing these back to make rem (or baseline) changes easier vs. a baseline of 20px
 
 // Core rem values
+$clr_baselineRem_-1: base-10-rem(-2.4); // -24px
+$clr_baselineRem_-0_5: base-10-rem(-1.2); // -12px
+$clr_baselineRem_-0_25: base-10-rem(-0.6); // -6px
+$clr_baselineRem_-0_125: base-10-rem(-0.3); // -3px
 $clr_baselineRem_0_125: base-10-rem(0.3); // 3px
 $clr_baselineRem_0_25: base-10-rem(0.6); // 6px
 $clr_baselineRem_0_5: base-10-rem(1.2); // 12px
@@ -46,6 +50,10 @@ $clr_baselineRem_10: base-10-rem(24); // 240px
 $clr_baselineRem_15: base-10-rem(36); // 360px
 
 // Pixel-based utilities
+$clr_baselineRem_-5px: base-10-rem(-0.5); // -5px
+$clr_baselineRem_-4px: base-10-rem(-0.4);
+$clr_baselineRem_-3px: base-10-rem(-0.3);
+$clr_baselineRem_-2px: base-10-rem(-0.2);
 $clr_baselineRem_-1px: base-10-rem(-0.1);
 $clr_baselineRem_0_5px: base-10-rem(0.05); // used by cwc-tag to depress the tag .5px when user clicks
 $clr_baselineRem_1px: base-10-rem(0.1);
@@ -55,6 +63,7 @@ $clr_baselineRem_4px: base-10-rem(0.4);
 $clr_baselineRem_6px: $clr_baselineRem_0_25;
 $clr_baselineRem_8px: base-10-rem(0.8);
 $clr_baselineRem_10px: base-10-rem(1);
+$clr_baselineRem_11px: base-10-rem(1.1);
 $clr_baselineRem_12px: $clr_baselineRem_0_5;
 $clr_baselineRem_13px: base-10-rem(1.3);
 $clr_baselineRem_18px: $clr_baselineRem_0_75;
@@ -69,6 +78,7 @@ $clr_baselineRem_1080px: base-10-rem(108);
 // TODO: we should look into why these are needed; some may be better represented by math
 // (a.k.a. $horizontal-padding - $border-width vs. $baseline_0_41967
 // others may represent a proliferation of non-standard values
+$clr_baselineRem_-0_375: base-10-rem(-0.9); // -9px
 $clr_baselineRem_0_375: base-10-rem(0.9); // 9px
 $clr_baselineRem_0_667: base-10-rem(1.6); // 16px
 $clr_baselineRem_0_83: base-10-rem(2); // 20px
@@ -88,6 +98,7 @@ $clr_baselineRem_20: base-10-rem(48); // 480px
 $clr_baselineRem_40: base-10-rem(96); // 960px
 
 // Miscellaneous sizings - px
+$clr_baselineRem_-5px: base-10-rem(-0.5);
 $clr_baselineRem_5px: base-10-rem(0.5);
 $clr_baselineRem_7px: base-10-rem(0.7);
 $clr_baselineRem_9px: base-10-rem(0.9);
@@ -107,6 +118,10 @@ $clr_baselineRem_650px: base-10-rem(65);
 
 // Harmful
 // TODO: we should consider getting rid of these as they carry the rounding problem forward
+$clr_baselineRem_-0_55: base-10-rem(-1.32); // -13.2px
+$clr_baselineRem_-0_4: base-10-rem(-0.96); // -9.6px
+$clr_baselineRem_-0_3: base-10-rem(-0.72); // -7.2px
+$clr_baselineRem_-0_2: base-10-rem(-0.48); // -4.8px
 $clr_baselineRem_0_054167: base-10-rem(0.13); // 1.3px
 $clr_baselineRem_0_1: base-10-rem(0.24); // 2.4px
 $clr_baselineRem_0_2: base-10-rem(0.48); // 4.8px

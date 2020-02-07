@@ -1,4 +1,4 @@
-// Copyright (c) 2016-2019 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
@@ -127,8 +127,8 @@
   .alert-icon {
     $alert-icon-dim: $clr_baselineRem_1;
     @include equilateral($alert-icon-dim);
-    margin-left: -1 * $clr_baselineRem_0_125;
-    margin-top: -1 * $clr_baselineRem_4px;
+    margin-left: $clr_baselineRem_-0_125;
+    margin-top: $clr_baselineRem_-4px;
   }
 
   .alert-icon-wrapper {
@@ -152,7 +152,7 @@
 
   .alert-items {
     $vertPadding: $clr_baselineRem_8px;
-    $horizPadding: $clr_baselineRem_0_5 - $clr-alert-borderwidth;
+    $horizPadding: $clr_baselineRem_0_95833;
     flex: 1 1 auto;
     flex-flow: column nowrap;
     padding: $vertPadding $horizPadding;
@@ -225,7 +225,7 @@
 
       .dropdown:last-child {
         // used to align far-right dropdown inside an alert
-        margin-right: -1 * $clr_baselineRem_2px;
+        margin-right: $clr_baselineRem_-2px;
       }
 
       .dropdown-item {
@@ -268,8 +268,8 @@
       padding-right: $closeBtnNudge;
 
       clr-icon {
-        $alert-close-icon-dims: $clr_baselineRem_1 - $clr-alert-borderwidth;
-        margin-top: -1 * $clr_baselineRem_0_125;
+        $alert-close-icon-dims: $clr_baselineRem_0_95833;
+        margin-top: $clr_baselineRem_-0_125;
         @include equilateral($alert-close-icon-dims);
       }
     }
@@ -341,7 +341,7 @@
       overflow: hidden;
 
       clr-icon {
-        margin-top: -1 * $clr_baselineRem_5px;
+        margin-top: $clr_baselineRem_-5px;
       }
     }
 
@@ -353,22 +353,21 @@
 
   .alert-sm {
     $alertSmallLineHeight: $clr_baselineRem_0_667;
-    $alertSmallNudge: $clr_baselineRem_4px;
 
     // need to use 11 instead of 12 here or else vertical alignment is thrown off
     // by a pixel due to improper browser rounding; browsers aren't rendering on the
     // sub-pixel required but rounding up to the nearest whole pixel...
-    font-size: $clr_baselineRem_0_5 - $clr_baselineRem_1px;
+    font-size: $clr_baselineRem_11px;
     letter-spacing: normal;
     line-height: $alertSmallLineHeight;
 
     .alert-items {
-      padding: ($alertSmallNudge - $clr-alert-borderwidth) ($clr_baselineRem_0_25 - $clr-alert-borderwidth);
+      padding: $alertSmallNudge $clr_baselineRem_5px;
     }
 
     .alert-item {
       padding-top: $clr_baselineRem_1px;
-      margin-bottom: $alertSmallNudge;
+      margin-bottom: $clr_baselineRem_3px;
 
       &:last-child {
         margin-bottom: 0;
@@ -381,8 +380,8 @@
     }
 
     .alert-icon {
-      margin-left: -1 * $alertSmallNudge;
-      margin-top: -1 * $alertSmallNudge;
+      margin-left: $clr_baselineRem_-3px;
+      margin-top: $clr_baselineRem_-3px;
     }
 
     .alert-item > span,
@@ -398,10 +397,10 @@
 
       clr-icon {
         $smallAlertCloseIconDims: $clr_baselineRem_0_83;
-        margin-top: -1 * ($alertSmallNudge + $clr_baselineRem_1px);
-        margin-right: -1 * $clr_baselineRem_1px;
+        margin-top: $clr_baselineRem_4px;
+        margin-right: $clr_baselineRem_-1px;
         @include equilateral($smallAlertCloseIconDims);
-        line-height: $smallAlertCloseIconDims + $clr_baselineRem_1px;
+        line-height: $clr_baselineRem_0_875;
       }
     }
   }
@@ -426,7 +425,7 @@
         flex: 1 0 100%;
         padding-top: $clr_baselineRem_0_125;
         // TOCHECK: CALCULATIONS
-        padding-left: $clr-alert-icon-dimension-sm + $clr-icon-margin-right;
+        padding-left: $clr_baselineRem_0_916;
       }
     }
 

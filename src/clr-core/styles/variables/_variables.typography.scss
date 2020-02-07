@@ -1,4 +1,4 @@
-// Copyright (c) 2016-2019 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
@@ -98,6 +98,7 @@ $clr-p1-font-weight: $clr-font-weight-regular !default;
 $clr-p1-font-size: $clr_baselineRem_0_583 !default;
 $clr-p1-letter-spacing: $clr-kerning-lotsatext !default;
 $clr-p1-line-height: $clr_baselineRem_1 !default;
+$clr-p1-line-height-compact: $clr_baselineRem_0_95833 !default;
 
 //P2 - form_label, stackview_header
 $clr-p2-color: $clr-global-font-color !default;

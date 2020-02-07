@@ -1,4 +1,4 @@
-// Copyright (c) 2016-2019 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
@@ -149,7 +149,7 @@
         top: 50%;
         right: 100%;
         @include equilateral(0);
-        margin-top: -1 * $clr-datagrid-action-arrow-size;
+        margin-top: calc(-1 * #{$clr-datagrid-action-arrow-size});
         border-top: $clr-datagrid-action-arrow-size solid transparent;
         border-bottom: $clr-datagrid-action-arrow-size solid transparent;
         border-right-width: $clr-datagrid-action-arrow-size;
@@ -168,10 +168,10 @@
         top: 50%;
         right: 100%;
         @include equilateral(0);
-        margin-top: -1 * $clr-datagrid-action-arrow-size + $clr_baselineRem_1px;
-        border-top: ($clr-datagrid-action-arrow-size - $clr_baselineRem_1px) solid transparent;
-        border-bottom: ($clr-datagrid-action-arrow-size - $clr_baselineRem_1px) solid transparent;
-        border-right-width: ($clr-datagrid-action-arrow-size - $clr_baselineRem_1px);
+        margin-top: calc(-1 * #{$clr-datagrid-action-arrow-size} + #{$clr_baselineRem_1px});
+        border-top: calc(#{$clr-datagrid-action-arrow-size} - #{$clr_baselineRem_1px}) solid transparent;
+        border-bottom: calc(#{$clr-datagrid-action-arrow-size} - #{$clr_baselineRem_1px}) solid transparent;
+        border-right-width: calc(#{$clr-datagrid-action-arrow-size} - #{$clr_baselineRem_1px});
         border-right-style: solid;
         @include css-var(
           border-right-color,
@@ -236,7 +236,7 @@
 
         clr-icon {
           vertical-align: middle;
-          transform: translate3d(0px, -1 * $clr_baselineRem_1px, 0);
+          transform: translate3d(0px, $clr_baselineRem_-1px, 0);
         }
       }
     }
@@ -271,7 +271,7 @@
         right: 100%;
         width: 0;
         height: 0;
-        margin-top: -1 * $clr-datagrid-action-arrow-size;
+        margin-top: calc(-1 * $clr-datagrid-action-arrow-size);
         border-top: $clr-datagrid-action-arrow-size solid transparent;
         border-bottom: $clr-datagrid-action-arrow-size solid transparent;
         border-right-width: $clr-datagrid-action-arrow-size;
@@ -291,10 +291,10 @@
         right: 100%;
         width: 0;
         height: 0;
-        margin-top: -1 * $clr-datagrid-action-arrow-size + $clr_baselineRem_1px;
-        border-top: ($clr-datagrid-action-arrow-size - $clr_baselineRem_1px) solid transparent;
-        border-bottom: ($clr-datagrid-action-arrow-size - $clr_baselineRem_1px) solid transparent;
-        border-right-width: ($clr-datagrid-action-arrow-size - $clr_baselineRem_1px);
+        margin-top: calc(-1 * #{$clr-datagrid-action-arrow-size} + #{$clr_baselineRem_1px});
+        border-top: calc(#{$clr-datagrid-action-arrow-size} - #{$clr_baselineRem_1px}) solid transparent;
+        border-bottom: calc(#{$clr-datagrid-action-arrow-size} - #{$clr_baselineRem_1px}) solid transparent;
+        border-right-width: calc(#{$clr-datagrid-action-arrow-size} - #{$clr_baselineRem_1px});
         border-right-style: solid;
         @include css-var(
           border-right-color,
@@ -314,7 +314,7 @@
         border: 0;
         cursor: pointer;
         display: block;
-        line-height: $clr-dropdown-line-height - $clr_baselineRem_1px;
+        line-height: calc(#{$clr-dropdown-line-height} - #{$clr_baselineRem_1px});
         margin: 0;
         padding: $clr_baselineRem_1px $clr_baselineRem_1 0;
         text-align: left;
@@ -359,7 +359,7 @@
 
         clr-icon {
           vertical-align: middle;
-          transform: translate3d(0px, -1 * $clr_baselineRem_1px, 0);
+          transform: translate3d(0px, $clr_baselineRem_-1px, 0);
         }
       }
     }
@@ -394,7 +394,7 @@
         right: 100%;
         width: 0;
         height: 0;
-        margin-top: -1 * $clr-datagrid-action-arrow-size;
+        margin-top: calc(-1 * #{$clr-datagrid-action-arrow-size});
         border-right: $clr-datagrid-action-arrow-size solid;
         @include css-var(
           border-right-color,
@@ -414,10 +414,16 @@
         width: 0;
         height: 0;
         // not all browsers support calc() in psuedoelements
-        margin-top: -1 * $clr-datagrid-action-arrow-size + $clr_baselineRem_1px;
-        border-right: ($clr-datagrid-action-arrow-size - $clr_baselineRem_1px) solid $clr-datagrid-popover-bg-color;
-        border-top: ($clr-datagrid-action-arrow-size - $clr_baselineRem_1px) solid transparent;
-        border-bottom: ($clr-datagrid-action-arrow-size - $clr_baselineRem_1px) solid transparent;
+        margin-top: calc(-1 * #{$clr-datagrid-action-arrow-size} + #{$clr_baselineRem_1px});
+        border-top: calc(#{$clr-datagrid-action-arrow-size} - #{$clr_baselineRem_1px}) solid transparent;
+        border-bottom: calc(#{$clr-datagrid-action-arrow-size} - #{$clr_baselineRem_1px}) solid transparent;
+        border-right-width: calc(#{$clr-datagrid-action-arrow-size} - #{$clr_baselineRem_1px});
+
+        margin-top: calc(-1 * #{$clr-datagrid-action-arrow-size} + #{$clr_baselineRem_1px});
+        border-right: calc(#{$clr-datagrid-action-arrow-size} - #{$clr_baselineRem_1px}) solid
+          $clr-datagrid-popover-bg-color;
+        border-top: calc(#{$clr-datagrid-action-arrow-size} - #{$clr_baselineRem_1px}) solid transparent;
+        border-bottom: calc(#{$clr-datagrid-action-arrow-size} - #{$clr_baselineRem_1px}) solid transparent;
       }
 
       .action-item {
@@ -479,7 +485,7 @@
 
         clr-icon {
           vertical-align: middle;
-          transform: translate3d(0px, -1 * $clr_baselineRem_1px, 0);
+          transform: translate3d(0px, $clr_baselineRem_-1px, 0);
         }
       }
     }
@@ -503,7 +509,7 @@
     }
 
     .datagrid-signpost-trigger .signpost {
-      margin: (-1 * $clr_baselineRem_0_3) 0;
+      margin: $clr_baselineRem_-0_3;
       height: $clr_baselineRem_1_03;
       .signpost-trigger {
         height: inherit;
@@ -843,7 +849,7 @@
 
         // Override checkbox labels only when they are in a column. This allows them to be vertically centered.
         .clr-checkbox-wrapper .clr-control-label {
-          margin-top: -1 * $clr_baselineRem_0_4;
+          margin-top: $clr_baselineRem_-0_4;
         }
       }
 
@@ -873,9 +879,9 @@
         &::after {
           content: '';
           position: absolute;
-          height: calc(100% + #{$clr-datagrid-column-separator-expandby} - #{$clr-global-borderwidth});
+          height: calc(100% + $clr-datagrid-column-separator-expandby-plus-1px);
           width: $clr_baselineRem_1px;
-          top: calc(-0.5 * #{$clr-datagrid-column-separator-expandby} + #{$clr_baselineRem_1px});
+          top: calc(-0.5 * $clr-datagrid-column-separator-expandby-plus-1px);
           left: 0;
           @include css-var(
             background-color,
@@ -887,16 +893,16 @@
 
         .datagrid-column-handle {
           position: absolute;
-          width: $clr_baselineRem_0_5 + $clr_baselineRem_1px;
-          right: -1 * $clr_baselineRem_0_25;
-          top: -1 * $clr_baselineRem_0_25;
+          width: $clr_baselineRem_13px;
+          right: $clr_baselineRem_-0_25;
+          top: $clr_baselineRem_-0_25;
           cursor: col-resize;
-          height: calc(100% + #{$clr_baselineRem_0_5} - #{$clr-global-borderwidth});
+          height: calc(100% + $clr_baselineRem_13px);
           z-index: map-get($clr-layers, datagrid-header);
         }
         .datagrid-column-resize-tracker {
           position: absolute;
-          top: -1 * $clr_baselineRem_0_5;
+          top: $clr_baselineRem_-0_5;
           display: none;
           width: $clr_baselineRem_1px;
           height: 0;
@@ -919,7 +925,7 @@
       }
 
       .datagrid-signpost-trigger .signpost {
-        margin: (-1 * $clr_baselineRem_0_3) 0;
+        margin: $clr_baselineRem_-0_3 0;
         height: $clr_baselineRem_1_03;
         .signpost-trigger {
           height: inherit;
@@ -973,7 +979,7 @@
 
       // align toggle input to row hight
       .clr-toggle-wrapper {
-        margin-top: -1 * $clr_baselineRem_0_55;
+        margin-top: $clr_baselineRem_-0_55;
         padding-top: $clr_baselineRem_0_35;
       }
     }
@@ -1342,7 +1348,7 @@
   .datagrid-select {
     .clr-control-label {
       min-height: $clr_baselineRem_0_5;
-      margin-top: -1 * $clr_baselineRem_0_2;
+      margin-top: $clr_baselineRem_-0_2;
       padding-left: $clr_baselineRem_0_583;
     }
   }
@@ -1354,18 +1360,18 @@
     .datagrid-column .datagrid-column-separator {
       &::after {
         height: calc(100% + 0.5 * #{$clr-datagrid-column-separator-expandby} - #{$clr-global-borderwidth});
-        top: calc(-0.25 * #{$clr-datagrid-column-separator-expandby} + #{$clr_baselineRem_1px});
+        top: calc(-0.25 * $clr-datagrid-column-separator-expandby-plus-1px);
       }
     }
     .datagrid-cell {
       clr-icon {
-        margin-top: (-1 * $clr_baselineRem_0_125) - $clr_baselineRem_1px;
-        margin-bottom: -1 * $clr_baselineRem_0_125;
-        transform: translateY(-1 * $clr_baselineRem_1px);
+        margin-top: $clr_baselineRem_-4px;
+        margin-bottom: $clr_baselineRem_-0_125;
+        transform: translateY($clr_baselineRem_-1px);
       }
       .badge {
-        margin-top: -1 * $clr_baselineRem_0_125;
-        margin-bottom: -1 * $clr_baselineRem_1px;
+        margin-top: $clr_baselineRem_-0_125;
+        margin-bottom: $clr_baselineRem_-1px;
       }
     }
     .datagrid-expandable-caret {
@@ -1397,7 +1403,7 @@
 
     .datagrid-footer {
       padding: 0 $clr-table-cellpadding;
-      line-height: $clr_baselineRem_1 - $clr_baselineRem_1px;
+      line-height: $clr_baselineRem_0_95833;
       .pagination {
         line-height: $clr_baselineRem_1;
       }
@@ -1608,8 +1614,8 @@
         $clr-datagrid-popover-bg-color,
         $clr-use-custom-properties
       );
-      top: $clr_baselineRem_0_5 - $clr_baselineRem_1px;
-      right: -1 * $clr_baselineRem_1px;
+      top: $clr_baselineRem_0_458;
+      right: $clr_baselineRem_-1px;
     }
   }
 
@@ -1902,7 +1908,7 @@
       right: 100%;
       width: 0;
       height: 0;
-      margin-top: -1 * $clr-datagrid-action-arrow-size;
+      margin-top: $clr-datagrid-action-arrow-offset;
       border: $clr-datagrid-action-arrow-size solid transparent;
       border-left: 0 none;
       @include css-var(
@@ -1921,10 +1927,10 @@
       width: 0;
       height: 0;
       // not all browsers support calc() in psuedoelements
-      margin-top: -1 * $clr-datagrid-action-arrow-size + $clr_baselineRem_1px;
-      border-right: ($clr-datagrid-action-arrow-size - $clr_baselineRem_1px) solid $clr-datagrid-popover-bg-color;
-      border-top: ($clr-datagrid-action-arrow-size - $clr_baselineRem_1px) solid transparent;
-      border-bottom: ($clr-datagrid-action-arrow-size - $clr_baselineRem_1px) solid transparent;
+      margin-top: $clr-datagrid-action-arrow-offset-plus-1px;
+      border-right: $clr-datagrid-action-arrow-size-minus-1px solid $clr-datagrid-popover-bg-color;
+      border-top: $clr-datagrid-action-arrow-size-minus-1px solid transparent;
+      border-bottom: $clr-datagrid-action-arrow-size-minus-1px solid transparent;
     }
 
     .action-item {
@@ -1936,7 +1942,7 @@
       border: 0;
       cursor: pointer;
       display: block;
-      line-height: $clr-dropdown-line-height - $clr_baselineRem_1px;
+      line-height: $clr-dropdown-line-height-compact;
       margin: 0;
       padding: $clr_baselineRem_1px $clr_baselineRem_1 0;
       text-align: left;
