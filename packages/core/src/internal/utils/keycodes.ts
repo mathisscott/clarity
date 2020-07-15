@@ -30,7 +30,7 @@ const checkModifierKey = curryN(2, function (evt: KeyboardEvent, key: string) {
     case 'cmd':
     case 'win':
     case 'meta':
-      return evt.altKey;
+      return evt.metaKey;
     default:
       return false;
   }

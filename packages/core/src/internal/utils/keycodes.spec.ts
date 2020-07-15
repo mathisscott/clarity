@@ -162,6 +162,29 @@ describe('Keycodes Helpers – ', () => {
       expect(testme).toBe(1, 'onKeyCombo executes with shift + tab');
     });
 
+    it('handles meta key combos', () => {
+      const testEvent = new KeyboardEvent('keyup', { code: 'Space', key: ' ', metaKey: true });
+      onKeyCombo('meta+space', testEvent, fn);
+      expect(testme).toBe(1, 'onKeyCombo recognizes meta key');
+      onKeyCombo('cmd+space', testEvent, fn);
+      expect(testme).toBe(2, 'onKeyCombo recognizes cmd key');
+      onKeyCombo('win+space', testEvent, fn);
+      expect(testme).toBe(3, 'onKeyCombo recognizes win key');
+    });
+
+    it('is okay with no modifier keys', () => {
+      const testEvent = new KeyboardEvent('keyup', { code: 'Tab', key: 'Tab' });
+      onKeyCombo('tab', testEvent, fn);
+      expect(testme).toBe(1, 'onKeyCombo handles non-combos');
+    });
+
+    // as unlikely as this scenario is, we want the underlying code to be non-judgemental
+    it('is okay with just modifier keys', () => {
+      const testEvent = new KeyboardEvent('keyup', { altKey: true, metaKey: true });
+      onKeyCombo('meta+alt', testEvent, fn);
+      expect(testme).toBe(1, 'onKeyCombo handles non-combos that are just modifier keys');
+    });
+
     it('does not execute function if registry does not have keycode', () => {
       const testEvent = new KeyboardEvent('keyup', { code: 'KeyA', key: 'a', metaKey: true });
       onKeyCombo('cmd+key-a', testEvent, fn);

@@ -117,6 +117,9 @@ describe('Maybe data structure – ', () => {
       expect(maybeWithoutVal.equals(testNothing)).toBe(true, 'nothings from undefined nil types equate');
       expect(testNullMaybe.equals(nullMaybe)).toBe(true, 'nothings from null equate');
       expect(maybeWithoutVal.equals(testNullMaybe)).toBe(true, 'nothings equate even if from different nil types');
+
+      expect(maybeWithoutVal.equals()).toBe(true, 'falls through as a nothing check');
+      expect(maybeWithVal.equals()).toBe(false, 'falls through as a nothing check');
     });
   });
 
