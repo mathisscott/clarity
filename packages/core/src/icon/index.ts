@@ -6,6 +6,7 @@
 
 export * from './icon.element.js';
 export * from './icon.service.js';
+export { updateIconSizeStyleOrClassnames } from './utils/icon.classnames.js';
 
 // SHAPES
 export { unknownIcon } from './shapes/unknown.js';
