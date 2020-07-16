@@ -7,7 +7,7 @@
 import { Maybe } from '../data-structures/maybe.js';
 import { deepClone } from '../utils/identity.js';
 
-export enum KeyCodeTypes {
+const enum KeyCodeTypes {
   DEFAULT = 'code',
   IE = 'ie-code',
 }
