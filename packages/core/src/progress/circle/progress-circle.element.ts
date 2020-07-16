@@ -1,0 +1,62 @@
+/*
+ * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
+
+import { baseStyles, property, StatusTypes } from '@clr/core/internal';
+import { html, LitElement } from 'lit-element';
+import { styles } from './progress-circle.element.css.js';
+
+/**
+ * Badges provide a method to highlight a count of an element either next to it
+ * or inside the element itself.
+ *
+ * ```typescript
+ * import '@clr/core/progress/circle/register.js';
+ * ```
+ *
+ * ```html
+ * <cds-badge status="info">2</cds-badge>
+ * ```
+ * @beta
+ * @element cds-progress-circle
+ * @slot default - Content slot for inside the badge
+ * @cssprop --background
+ * @cssprop --border-color
+ * @cssprop --border-radius
+ * @cssprop --border-width
+ * @cssprop --color
+ * @cssprop --font-size
+ * @cssprop --font-weight
+ * @cssprop --padding
+ * @cssprop --size
+ */
+export class CdsProgressCircle extends LitElement {
+  /**
+   * Sets the color of the badge
+   */
+  @property({ type: String })
+  color: 'default' | 'gray' | 'purple' | 'blue' | 'orange' | 'light-blue';
+
+  /**
+   * @type {default | info | success | warning | danger}
+   * Sets the color of the badge
+   */
+  @property({ type: String })
+  status: StatusTypes;
+
+  render() {
+    return html`
+      <div class="private-host">
+        <span
+          ><span><slot></slot></span
+        ></span>
+      </div>
+    `;
+  }
+
+  static get styles() {
+    return [baseStyles, styles];
+  }
+}
