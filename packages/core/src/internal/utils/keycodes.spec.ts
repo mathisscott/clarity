@@ -144,10 +144,17 @@ describe('Keycodes Helpers – ', () => {
         ctrlKey: true,
         shiftKey: true,
       });
+      const gotchaEvent = new KeyboardEvent('keyup', {
+        code: 'ArrowLeft',
+        key: 'ArrowLeft',
+        ctrlKey: true,
+      });
       onKeyCombo('ctrl+shift+arrow-left', testEvent, fn);
-      expect(testme).toBe(0, 'onKeyCombo does not accept close');
+      expect(testme).toBe(0, 'onKeyCombo requires non-modifier keys to be present');
       onKeyCombo('ctrl+shift+arrow-left', testEventToo, fn);
       expect(testme).toBe(1, 'onKeyCombo executed function as expected');
+      onKeyCombo('ctrl+shift+arrow-left', gotchaEvent, fn);
+      expect(testme).toBe(1, 'onKeyCombo requires ALL modifier keys');
     });
 
     it('does not execute function if event does not contain key combo', () => {

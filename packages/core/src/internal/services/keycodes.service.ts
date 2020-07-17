@@ -4,7 +4,6 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Maybe } from '../data-structures/maybe.js';
 import { deepClone } from '../utils/identity.js';
 
 const enum KeyCodeTypes {
@@ -92,7 +91,6 @@ const keyCodeRegistry: KeyCodeHashmap = new Map([
  * outside of the module.
  *
  */
-// @dynamic
 export class KeyCodeService {
   /**
    * keycodes() returns a clone of the key codes dictionary/hashmap, not the actual registry.
@@ -131,9 +129,5 @@ export function getKeycodeFromRegistry(
   whichCodeType: 'code' | 'ie-code' = KeyCodeTypes.DEFAULT,
   registry = keyCodeRegistry
 ): string {
-  return Maybe.of(registry.get(codeToLookup))
-    .map(mbMapVal => {
-      return (mbMapVal.get && mbMapVal.get(whichCodeType)) || null;
-    })
-    .valueOr('').unsafeValue;
+  return registry.get(codeToLookup)?.get(whichCodeType) || '';
 }

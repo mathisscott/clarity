@@ -4,7 +4,6 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import curryN from 'ramda/es/curryN';
 import { KeyCodeService } from '../services/keycodes.service.js';
 
 /**
@@ -15,11 +14,10 @@ export function keyWasEvented(evt: KeyboardEvent, whichKey: string) {
   return KeyCodeService.getCode(whichKey) === evt.key || KeyCodeService.getIeCode(whichKey) === evt.key;
 }
 
-// placement matters! keep checkModifierKey() up top.
 /**
  * checkModifierKey() tests if a special key (Ctrl, Alt, Meta, Shift) part of a KeyboardEvent.
  */
-const checkModifierKey = curryN(2, function (evt: KeyboardEvent, key: string) {
+function checkModifierKey(evt: KeyboardEvent, key: string) {
   switch (key) {
     case 'ctrl':
       return evt.ctrlKey;
@@ -34,7 +32,7 @@ const checkModifierKey = curryN(2, function (evt: KeyboardEvent, key: string) {
     default:
       return false;
   }
-});
+}
 
 // handlers -> single keys or any of a collection of keys
 
@@ -74,6 +72,8 @@ export function onAnyKey(whichKeys: string[], evt: KeyboardEvent, handler: any) 
  * are all the same thing to onKeyCombo().
  */
 export function onKeyCombo(whichKeyCombo: string, evt: KeyboardEvent, handler: any) {
+  // TODO! need to make sure ALL combo modifier keys were pressed
+  // TESTME!
   if (wereModifierComboKeysPressed(whichKeyCombo, evt) && wereNonModifierComboKeysPressed(whichKeyCombo, evt)) {
     handler();
   }
@@ -119,11 +119,7 @@ function wereModifierComboKeysPressed(keyCombo: string, evt: KeyboardEvent) {
     return true;
   }
 
-  const myCheckerFn = checkModifierKey(evt);
-
-  return modifierKeyArray.reduce((acc: boolean, currentKey: string) => {
-    return acc !== false && myCheckerFn(currentKey);
-  }, true);
+  return modifierKeyArray.reduce((acc: boolean, currentKey: string) => acc && checkModifierKey(evt, currentKey), true);
 }
 
 /**
@@ -140,10 +136,5 @@ function wereNonModifierComboKeysPressed(keyCombo: string, evt: KeyboardEvent): 
     return true;
   }
 
-  const curriedChecker = curryN(2, keyWasEvented);
-  const myCheckerFn = curriedChecker(evt);
-
-  return keyArray.reduce((acc: boolean, currentKey: string) => {
-    return acc !== false && myCheckerFn(currentKey);
-  }, true);
+  return keyArray.reduce((acc: boolean, currentKey: string) => acc && keyWasEvented(evt, currentKey), true);
 }
