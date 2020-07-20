@@ -5,7 +5,7 @@
  */
 
 import { registerElementSafely } from '@clr/core/internal';
-import { CdsProgressCircle } from '@clr/core/progress/circle';
+import { CdsProgressCircle } from '@clr/core/progress-circle';
 
 registerElementSafely('cds-progress-circle', CdsProgressCircle);
 

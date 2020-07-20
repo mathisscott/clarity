@@ -2,105 +2,69 @@
 @import './../styles/mixins/mixins';
 
 :host {
-  --background: #{$cds-token-color-neutral-600};
-  --border-color: #{$cds-token-color-neutral-600};
-  --border-width: #{$cds-token-global-border-width};
-  --color: #{$cds-token-color-neutral-0};
-  --font-size: #{$cds-token-typography-p8-font-size};
-  --font-weight: #{$cds-token-typography-font-weight-regular};
-  --size: calc(#{$cds-token-space-size-7} - #{$cds-token-space-size-1});
-  --padding: calc(#{$cds-token-space-size-3} - var(--border-width));
-  --border-radius: calc(var(--size) / 2);
-  display: inline-block;
-  text-align: center;
+  --background: #{$cds-token-color-neutral-200};
+  --color: #{$cds-token-color-neutral-1000};
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  display: block;
 }
+
+svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+// PULLED IN...
 
 .private-host {
   @include center-content;
 
-  justify-content: center;
-  height: var(--size);
-  line-height: 1em;
-  border-radius: var(--border-radius);
-  border-width: var(--border-width);
-  border-style: solid;
-  border-color: var(--border-color);
-  font-size: var(--font-size);
-  font-weight: var(--font-weight);
-  letter-spacing: #{$cds-token-typography-body-letter-spacing};
-  white-space: nowrap;
-  background: var(--background);
-  color: var(--color);
-  padding: var(--padding);
+  // justify-content: center;
+  // height: var(--size);
+  // line-height: 1em;
 
   & > span {
     @include center-content;
-
-    height: var(--font-size);
-    min-width: calc(0.8 * var(--font-size));
-
-    & > span {
-      text-align: center;
-      width: 100%;
-      @include line-height-eraser(0em);
-    }
+    // display: block;
+    width: 100%;
+    height: 100%;
   }
 }
 
-:host(:visited) {
-  --color: #{$cds-token-color-neutral-0};
+.backstroke {
+  stroke: var(--background);
 }
 
-:host([color='gray']) {
-  --background: #{$cds-token-color-neutral-600};
-  --border-color: #{$cds-token-color-neutral-600};
-  --color: #{$cds-token-color-neutral-0};
+.arcstroke {
+  stroke: var(--color);
 }
 
-:host([color='purple']) {
-  --background: #{$cds-token-color-secondary-action-500};
-  --border-color: #{$cds-token-color-secondary-action-500};
-  --color: #{$cds-token-color-neutral-0};
+// LEFTOFF: !!!!!!!! USE SIZE='*' ATTR SELECTOR TO SET T-SHIRT SIZES
+
+:host[size='xs'] {
+  height: 24px;
+  width: 24px;
 }
 
-:host([color='blue']) {
-  --background: #{$cds-token-color-action-800};
-  --border-color: #{$cds-token-color-action-800};
-  --color: #{$cds-token-color-neutral-0};
-}
-
-:host([color='orange']) {
-  --background: #{$cds-token-color-warning-1000};
-  --border-color: #{$cds-token-color-warning-1000};
-  --color: #{$cds-token-color-neutral-0};
-}
-
-:host([color='light-blue']) {
-  --background: #{$cds-token-color-action-500};
-  --border-color: #{$cds-token-color-action-500};
-  --color: #{$cds-token-color-neutral-0};
-}
-
+:host([status='default']),
 :host([status='info']) {
-  --background: #{$cds-token-color-action-800};
-  --border-color: #{$cds-token-color-action-800};
-  --color: #{$cds-token-color-neutral-0};
+  --background: #{$cds-token-color-action-100};
+  --color: #{$cds-token-color-neutral-800};
 }
 
 :host([status='success']) {
-  --background: #{$cds-token-color-success-800};
-  --border-color: #{$cds-token-color-success-800};
-  --color: #{$cds-token-color-neutral-0};
+  --background: #{$cds-token-color-success-100};
+  --color: #{$cds-token-color-neutral-800};
 }
 
 :host([status='warning']) {
-  --background: #{$cds-token-color-warning-1000};
-  --border-color: #{$cds-token-color-warning-1000};
-  --color: #{$cds-token-color-neutral-0};
+  --background: #{$cds-token-color-warning-100};
+  --color: #{$cds-token-color-neutral-1000};
 }
 
 :host([status='danger']) {
-  --background: #{$cds-token-color-danger-900};
-  --border-color: #{$cds-token-color-danger-900};
-  --color: #{$cds-token-color-neutral-0};
+  --background: #{$cds-token-color-danger-100};
+  --color: #{$cds-token-color-neutral-900};
 }
