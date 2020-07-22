@@ -5,15 +5,15 @@
  */
 
 import {
-  applyMixins,
+  assignSlotNames,
   baseStyles,
-  CssHelpers,
   hasStringPropertyChanged,
   property,
   querySlot,
   StatusTypes,
   updateEquilateralSizeStyles,
 } from '@clr/core/internal';
+import { CdsIcon } from '@clr/core/icon';
 import { html, LitElement } from 'lit-element';
 import { styles } from './progress-circle.element.css.js';
 
@@ -26,22 +26,17 @@ interface XyPoints {
 
 // TESTME
 export function pctCompleteToRadians(pctComplete?: number): number {
+  // forcing a small dot if value is set to 0
+  pctComplete = pctComplete === 0 ? 1 : pctComplete;
   return 360 * ((pctComplete || 30) / 100);
 }
 
 // TESTME
-export function describeArc(x: number, y: number, radius: number, startAngle: number, endAngle: number): string {
-  // IN => centerX centerY radius angle
-  // LEFTOFF: WHY ARE START AND END FLIPPED?!
-  const start = getCartesianPointsForCircularProgress(endAngle, x, y);
-  const end = getCartesianPointsForCircularProgress(startAngle, x, y);
-  // OUT => point.x point.y
-
-  // IN => startAngle endAngle
+export function describeArc(radius: number, startAngle: number, endAngle: number): string {
+  // startAngle and endAngle are flipped here becuase that enables them to draw a continuous arc...
+  const start = getCartesianPointsForCircularProgress(endAngle, radius);
+  const end = getCartesianPointsForCircularProgress(startAngle, radius);
   const largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
-  // OUT => 0 or 1
-
-  // IN => start, end, radius, largeArcFlag
   return ['M', start.x, start.y, 'A', radius, radius, 0, largeArcFlag, 0, end.x, end.y].join(' ');
 }
 
@@ -49,26 +44,16 @@ export function describeArc(x: number, y: number, radius: number, startAngle: nu
 export function getCartesianPointsForCircularProgress(
   angleInDegrees: number,
   radius: number,
-  centerPointX = 18,
-  centerPointY = 18
+  centerPoint = 18
 ): XyPoints {
-  // viewbox for circular progress is 36. center is therefore 18. radius of 16 keeps bar off edge of
-  // viewbox to avoid being cutoff
   const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
-
   return {
-    x: centerPointX + radius * Math.cos(angleInRadians),
-    y: centerPointY + radius * Math.sin(angleInRadians),
+    x: centerPoint + radius * Math.cos(angleInRadians),
+    y: centerPoint + radius * Math.sin(angleInRadians),
   };
-
-  // LEFTOFF: !!! radius needs to be a function of the line-thickness!
 }
 
 // END --> MOVE TO HELPER FILE
-
-class ProgressCircleMixinClass extends LitElement {}
-
-applyMixins(ProgressCircleMixinClass, [CssHelpers]);
 
 /**
  * Circular progress indicators provide a method to track how close long-running tasks are to
@@ -83,18 +68,14 @@ applyMixins(ProgressCircleMixinClass, [CssHelpers]);
  * ```
  * @beta
  * @element cds-progress-circle
- * @slot default - Content slot for inside the badge
+ * @slot icon - Content slot for projected icon inside the progress ring
  * @cssprop --background
  * @cssprop --color
  */
-export class CdsProgressCircle extends ProgressCircleMixinClass {
-  private center: number;
-
-  private radius: number;
-
+export class CdsProgressCircle extends LitElement {
   private _size: string;
 
-  @querySlot('cds-icon') protected icon: HTMLElement;
+  @querySlot('cds-icon') protected icon: CdsIcon;
 
   /**
    * @type {default | info | success | warning | danger | inverse}
@@ -120,16 +101,15 @@ export class CdsProgressCircle extends ProgressCircleMixinClass {
   @property({ type: Number })
   line = 3;
 
-  /**
-   * Numerical width and height. We cannot use t-shirt sizes because we
-   * cannot predict overrides to our token system. Numbers are more specific
-   * and simplify the complexity of the internals of the circular progress
-   * when calculating radians.
-   *
-   * TODO: CAN WE CALCULATE DYNAMICALLY?
-   */
-  // @property({ type: Number })
-  // size = 36;
+  private get lineOffset() {
+    return Math.ceil(this.line / 2);
+  }
+
+  // 36 is the default viewbox dimensions
+  // because we are always drawing against the viewbox our radius is hardset to 18
+  private get radius() {
+    return 18 - this.lineOffset;
+  }
 
   get size() {
     return this._size;
@@ -149,50 +129,61 @@ export class CdsProgressCircle extends ProgressCircleMixinClass {
     }
   }
 
-  constructor() {
-    super();
-    // this.center = this.size / 2;
-    // this.radius = this.center - Math.ceil(this.line / 2);
+  get path(): string {
+    const startAt = 0 + this.lineOffset;
+    return describeArc(this.radius, startAt, pctCompleteToRadians(this.value));
   }
 
-  get path(): string {
-    return describeArc(18, 18, 16, 0, pctCompleteToRadians(this.value));
+  connectedCallback() {
+    super.connectedCallback();
+    if (this.icon) {
+      this.classList.add('has-icon');
+      this.icon.size = this.size || 'sm';
+      assignSlotNames([this.icon, 'icon']);
+    }
   }
 
   /*
-    NOTES
+    LEFTOFF
     - seems to be okay with rem sizing and filling its container!
-      ! hardcode to 36/36 like with icons
-        ! this means hardcoding center and everything else
+      X hardcode to 36/36 like with icons
+        X this means hardcoding center and everything else
       - we can also use icon-style sizing
-    - need slot for icons
-    - needs cushion around the edge, especially at smaller size
-    - need animation for spinner
+    X need slot for icons
+      > needs styles and sizing
+    X needs cushion around the edge, especially at smaller size
+    X needs animation for spinner
+    - needs purple 'unknown' status
+    - needs inverse styling
     ! deprecate cds-icon size classnames!
+    ! 0 value doesn't work ("!!! hide arcstroke if value = 0?")
 
   */
 
   render() {
     return html`
       <div class="private-host" aria-hidden="true">
-        <svg
-          version="1.1"
-          viewBox="0 0 ${this.size} ${this.size}"
-          preserveAspectRatio="xMidYMid meet"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          focusable="false"
-        >
-          <circle
-            stroke-width="${this.line}"
-            fill="none"
-            cx="${this.center}"
-            cy="${this.center}"
-            r="${this.radius}"
-            class="${this.value > 99 ? 'arcstroke' : 'backstroke'}"
-          />
-          <path d="${this.path}" class="arcstroke" stroke-width="${this.line}" fill="none" />
-        </svg>
+        ${this.icon ? html`<div class="icon-wrapper"><slot name="icon"></slot></div>` : ''}
+        <div class="progress-wrapper">
+          <svg
+            version="1.1"
+            viewBox="0 0 36 36"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            focusable="false"
+          >
+            <circle
+              stroke-width="${this.line}"
+              fill="none"
+              cx="18"
+              cy="18"
+              r="${this.radius}"
+              class="${this.value > 99 ? 'arcstroke' : 'backstroke'}"
+            />
+            <path d="${this.path}" class="arcstroke" stroke-width="${this.line}" fill="none" />
+          </svg>
+        </div>
       </div>
     `;
   }
@@ -201,5 +192,3 @@ export class CdsProgressCircle extends ProgressCircleMixinClass {
     return [baseStyles, styles];
   }
 }
-
-export interface CdsProgressCircle extends ProgressCircleMixinClass, CssHelpers {}

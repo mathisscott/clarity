@@ -3,11 +3,17 @@
 
 :host {
   --background: #{$cds-token-color-neutral-200};
-  --color: #{$cds-token-color-neutral-1000};
+  --color: #{$cds-token-color-action-800};
   font-family: inherit;
   font-size: inherit;
   color: inherit;
   display: block;
+
+  ::slotted(cds-icon) {
+    max-height: 24px;
+    max-width: 24px;
+    --color: #{$cds-token-color-action-800};
+  }
 }
 
 svg {
@@ -19,52 +25,114 @@ svg {
 // PULLED IN...
 
 .private-host {
-  @include center-content;
+  @include center-content('block');
+  @include equilateral(100%);
 
   // justify-content: center;
   // height: var(--size);
   // line-height: 1em;
 
-  & > span {
-    @include center-content;
-    // display: block;
-    width: 100%;
-    height: 100%;
+  .backstroke {
+    stroke: var(--background);
   }
-}
 
-.backstroke {
-  stroke: var(--background);
-}
-
-.arcstroke {
-  stroke: var(--color);
+  .arcstroke {
+    stroke: var(--color);
+  }
 }
 
 // LEFTOFF: !!!!!!!! USE SIZE='*' ATTR SELECTOR TO SET T-SHIRT SIZES
 
-:host[size='xs'] {
-  height: 24px;
-  width: 24px;
+:host,
+:host([size='sm']) {
+  @include equilateral(#{$cds-token-space-size-7});
 }
 
-:host([status='default']),
+:host([size='md']) {
+  @include equilateral(#{$cds-token-space-size-9});
+}
+
+:host([size='lg']) {
+  @include equilateral(#{$cds-token-space-size-11});
+}
+
+:host([size='xl']) {
+  @include equilateral(#{$cds-token-space-size-12});
+}
+
+:host([size='xxl']) {
+  // 64px
+  @include equilateral(calc(#{$cds-token-space-size-13} - #{$cds-token-space-size-5}));
+}
+
+:host(:not([value])) {
+  animation: spin 1s linear infinite;
+}
+
 :host([status='info']) {
   --background: #{$cds-token-color-action-100};
-  --color: #{$cds-token-color-neutral-800};
+  --color: #{$cds-token-color-action-800};
+
+  ::slotted(cds-icon) {
+    max-height: 24px;
+    max-width: 24px;
+    --color: #{$cds-token-color-action-800};
+  }
 }
 
 :host([status='success']) {
   --background: #{$cds-token-color-success-100};
-  --color: #{$cds-token-color-neutral-800};
+  --color: #{$cds-token-color-success-800};
+
+  ::slotted(cds-icon) {
+    max-height: 24px;
+    max-width: 24px;
+    --color: #{$cds-token-color-success-800};
+  }
 }
 
 :host([status='warning']) {
-  --background: #{$cds-token-color-warning-100};
-  --color: #{$cds-token-color-neutral-1000};
+  --background: #{$cds-token-color-warning-200};
+  --color: #{$cds-token-color-warning-1000};
+
+  ::slotted(cds-icon) {
+    max-height: 24px;
+    max-width: 24px;
+    --color: #{$cds-token-color-warning-1000};
+  }
 }
 
 :host([status='danger']) {
   --background: #{$cds-token-color-danger-100};
-  --color: #{$cds-token-color-neutral-900};
+  --color: #{$cds-token-color-danger-900};
+
+  ::slotted(cds-icon) {
+    max-height: 24px;
+    max-width: 24px;
+    --color: #{$cds-token-color-danger-900};
+  }
+}
+
+// TODO: ANIMATIONS TO GO IN A SEPARATE FILE?
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+:host(.has-icon) {
+  position: relative;
+
+  .icon-wrapper {
+    @include max-equilateral(100%);
+    @include center-content('block');
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

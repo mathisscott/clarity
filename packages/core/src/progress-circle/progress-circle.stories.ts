@@ -27,24 +27,41 @@ export const API = (args: any) => {
 };
 
 export const spinner = () => {
-  return html`
-    <p>OHAI</p>
-    <p><cds-progress-circle status="info"></cds-progress-circle></p>
-  `;
+  return html` <cds-progress-circle size="xl"></cds-progress-circle> `;
 };
 
 export const status = () => {
   return html`
-    <cds-progress-circle status="info" value="15"></cds-progress-circle>
-    <cds-progress-circle status="info" value="75"></cds-progress-circle>
+    <div cds-layout="horizontal gap:sm">
+      <cds-progress-circle size="xl" value="15"></cds-progress-circle>
+      <cds-progress-circle size="xl" status="info" value="75"></cds-progress-circle>
+      <cds-progress-circle size="xl" status="success" value="75"></cds-progress-circle>
+      <cds-progress-circle size="xl" status="warning" value="49"></cds-progress-circle>
+      <cds-progress-circle size="xl" status="danger" value="66"></cds-progress-circle>
+      <cds-progress-circle size="xl" value="0"></cds-progress-circle>
+    </div>
   `;
 };
 
 export const withIcon = () => {
   return html`
-    <cds-progress-circle value="42" status="info">
-      <cds-icon shape="unknown"></cds-icon>
-    </cds-progress-circle>
+    <div cds-layout="horizontal gap:sm">
+      <cds-progress-circle value="75" size="xxl">
+        <cds-icon shape="unknown"></cds-icon>
+      </cds-progress-circle>
+      <cds-progress-circle value="15" size="xxl" status="info">
+        <cds-icon shape="unknown"></cds-icon>
+      </cds-progress-circle>
+      <cds-progress-circle value="45" size="xxl" status="success">
+        <cds-icon shape="unknown"></cds-icon>
+      </cds-progress-circle>
+      <cds-progress-circle value="30" size="xxl" status="warning">
+        <cds-icon shape="unknown"></cds-icon>
+      </cds-progress-circle>
+      <cds-progress-circle value="60" size="xxl" status="danger">
+        <cds-icon shape="unknown"></cds-icon>
+      </cds-progress-circle>
+    </div>
   `;
 };
 
