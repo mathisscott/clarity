@@ -16,6 +16,7 @@ import {
 import { CdsIcon } from '@clr/core/icon';
 import { html, LitElement } from 'lit-element';
 import { styles } from './progress-circle.element.css.js';
+import { isNil } from 'ramda';
 
 // START --> MOVE TO HELPER FILE
 
@@ -78,7 +79,7 @@ export class CdsProgressCircle extends LitElement {
   @querySlot('cds-icon') protected icon: CdsIcon;
 
   /**
-   * @type {default | info | success | warning | danger | inverse}
+   * @type {default | info | success | warning | danger | inverse | unknown}
    * Sets the color of the badge
    */
   @property({ type: String })
@@ -131,7 +132,88 @@ export class CdsProgressCircle extends LitElement {
 
   get path(): string {
     const startAt = 0 + this.lineOffset;
-    return describeArc(this.radius, startAt, pctCompleteToRadians(this.value));
+
+    if (this.visualizedValue !== this.value) {
+      // TODO: make it funcy
+      const expectedValue = this.value;
+      let newVisualizedValue = this.visualizedValue;
+      const howFarOff = Math.abs(expectedValue - newVisualizedValue);
+      const goForward = expectedValue > newVisualizedValue;
+
+      if (howFarOff > 9) {
+        newVisualizedValue = goForward ? newVisualizedValue + 6 : newVisualizedValue - 6;
+      } else if (howFarOff > 1) {
+        newVisualizedValue = goForward ? newVisualizedValue + 2 : newVisualizedValue - 2;
+      } else {
+        newVisualizedValue = goForward ? newVisualizedValue + 1 : newVisualizedValue - 1;
+      }
+
+      if (goForward && newVisualizedValue > expectedValue) {
+        newVisualizedValue = expectedValue;
+      } else if (!goForward && newVisualizedValue < expectedValue) {
+        newVisualizedValue = expectedValue;
+      }
+
+      if (newVisualizedValue > 100) {
+        newVisualizedValue = 100;
+      } else if (newVisualizedValue < 0) {
+        newVisualizedValue = 0;
+      }
+
+      this.visualizedValue = newVisualizedValue;
+    }
+
+    return describeArc(this.radius, startAt, pctCompleteToRadians(this.visualizedValue));
+  }
+
+  private visualizedValue: number;
+
+  drawPath(): string {
+    const startAt = 0 + this.lineOffset;
+
+    if (this.value > 100) {
+      this.value = 100;
+    }
+
+    if (this.value < 0) {
+      this.value = 0;
+    }
+
+    while (this.visualizedValue !== this.value) {
+      // TODO: make it funcy
+      console.log('ohai');
+      const expectedValue = this.value;
+      let newVisualizedValue = this.visualizedValue;
+      const howFarOff = Math.abs(expectedValue - newVisualizedValue);
+      const goForward = expectedValue > newVisualizedValue;
+
+      if (howFarOff > 9) {
+        newVisualizedValue = goForward ? newVisualizedValue + 1 : newVisualizedValue - 1;
+      } else {
+        newVisualizedValue = goForward ? newVisualizedValue + 0.1 : newVisualizedValue - 0.1;
+      }
+
+      if (goForward && newVisualizedValue > expectedValue) {
+        newVisualizedValue = expectedValue;
+      } else if (!goForward && newVisualizedValue < expectedValue) {
+        newVisualizedValue = expectedValue;
+      }
+
+      if (newVisualizedValue > 100) {
+        newVisualizedValue = 100;
+      } else if (newVisualizedValue < 0) {
+        newVisualizedValue = 0;
+      }
+
+      this.visualizedValue = newVisualizedValue;
+
+      const timeoutId = setTimeout(() => {
+        requestAnimationFrame(this.drawPath.bind(this));
+        clearTimeout(timeoutId);
+      }, 1000);
+    }
+
+    return describeArc(this.radius, startAt, pctCompleteToRadians(this.visualizedValue));
   }
 
   connectedCallback() {
@@ -141,23 +223,26 @@ export class CdsProgressCircle extends LitElement {
       this.icon.size = this.size || 'sm';
       assignSlotNames([this.icon, 'icon']);
     }
+    if (!isNil(this.value)) {
+      this.visualizedValue = this.value;
+    }
   }
 
   /*
     LEFTOFF
-    - seems to be okay with rem sizing and filling its container!
-      X hardcode to 36/36 like with icons
-        X this means hardcoding center and everything else
-      - we can also use icon-style sizing
-    X need slot for icons
-      > needs styles and sizing
-    X needs cushion around the edge, especially at smaller size
-    X needs animation for spinner
-    - needs purple 'unknown' status
+    X needs purple 'unknown' status
     - needs inverse styling
     ! deprecate cds-icon size classnames!
-    ! 0 value doesn't work ("!!! hide arcstroke if value = 0?")
 
+    ! SIZING
+      ? can we dynamically size the icon?
+      ? do we need to preserve any custom sizing? (i say 'yeah'...)
+
+    X ANIMATION?
+      - split out animation code into its own utility
+      - can we handle the 0 <-> 100 value issue somewhere else?
+      ! will need a visual test in storybook to randomly and rapidly throw values out
+        * monkey-testing!
   */
 
   render() {
@@ -181,7 +266,7 @@ export class CdsProgressCircle extends LitElement {
               r="${this.radius}"
               class="${this.value > 99 ? 'arcstroke' : 'backstroke'}"
             />
-            <path d="${this.path}" class="arcstroke" stroke-width="${this.line}" fill="none" />
+            <path d="${this.drawPath()}" class="arcstroke" stroke-width="${this.line}" fill="none" />
           </svg>
         </div>
       </div>

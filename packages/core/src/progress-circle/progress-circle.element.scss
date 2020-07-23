@@ -66,11 +66,11 @@ svg {
 }
 
 :host(:not([value])) {
-  animation: spin 1s linear infinite;
+  animation: spin 0.8s cubic-bezier(0.17, 0.4, 0.8, 0.79) infinite;
 }
 
 :host([status='info']) {
-  --background: #{$cds-token-color-action-100};
+  --background: #{$cds-token-color-action-50};
   --color: #{$cds-token-color-action-800};
 
   ::slotted(cds-icon) {
@@ -81,7 +81,7 @@ svg {
 }
 
 :host([status='success']) {
-  --background: #{$cds-token-color-success-100};
+  --background: #{$cds-token-color-success-50};
   --color: #{$cds-token-color-success-800};
 
   ::slotted(cds-icon) {
@@ -92,24 +92,35 @@ svg {
 }
 
 :host([status='warning']) {
-  --background: #{$cds-token-color-warning-200};
-  --color: #{$cds-token-color-warning-1000};
+  --background: #{$cds-token-color-warning-100};
+  --color: #{$cds-token-color-warning-900};
 
   ::slotted(cds-icon) {
     max-height: 24px;
     max-width: 24px;
-    --color: #{$cds-token-color-warning-1000};
+    --color: #{$cds-token-color-warning-900};
   }
 }
 
 :host([status='danger']) {
-  --background: #{$cds-token-color-danger-100};
+  --background: #{$cds-token-color-danger-50};
   --color: #{$cds-token-color-danger-900};
 
   ::slotted(cds-icon) {
     max-height: 24px;
     max-width: 24px;
     --color: #{$cds-token-color-danger-900};
+  }
+}
+
+:host([status='unknown']) {
+  --background: #{$cds-token-color-secondary-action-50};
+  --color: #{$cds-token-color-secondary-action-900};
+
+  ::slotted(cds-icon) {
+    max-height: 24px;
+    max-width: 24px;
+    --color: #{$cds-token-color-secondary-action-900};
   }
 }
 

@@ -38,6 +38,7 @@ export const status = () => {
       <cds-progress-circle size="xl" status="success" value="75"></cds-progress-circle>
       <cds-progress-circle size="xl" status="warning" value="49"></cds-progress-circle>
       <cds-progress-circle size="xl" status="danger" value="66"></cds-progress-circle>
+      <cds-progress-circle size="xl" status="unknown" value="66"></cds-progress-circle>
       <cds-progress-circle size="xl" value="0"></cds-progress-circle>
     </div>
   `;
