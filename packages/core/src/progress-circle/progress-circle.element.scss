@@ -91,6 +91,17 @@ svg {
   }
 }
 
+:host([status='inverse']) {
+  --background: #{$cds-token-color-neutral-700};
+  --color: #{$cds-token-color-neutral-0};
+
+  ::slotted(cds-icon) {
+    max-height: 24px;
+    max-width: 24px;
+    --color: #{$cds-token-color-neutral-0};
+  }
+}
+
 :host([status='warning']) {
   --background: #{$cds-token-color-warning-100};
   --color: #{$cds-token-color-warning-900};

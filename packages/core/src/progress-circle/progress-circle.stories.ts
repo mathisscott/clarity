@@ -33,12 +33,15 @@ export const spinner = () => {
 export const status = () => {
   return html`
     <div cds-layout="horizontal gap:sm">
-      <cds-progress-circle size="xl" value="15"></cds-progress-circle>
-      <cds-progress-circle size="xl" status="info" value="75"></cds-progress-circle>
-      <cds-progress-circle size="xl" status="success" value="75"></cds-progress-circle>
-      <cds-progress-circle size="xl" status="warning" value="49"></cds-progress-circle>
-      <cds-progress-circle size="xl" status="danger" value="66"></cds-progress-circle>
-      <cds-progress-circle size="xl" status="unknown" value="66"></cds-progress-circle>
+      <cds-progress-circle size="xl" value="12"></cds-progress-circle>
+      <cds-progress-circle size="xl" status="info" value="48"></cds-progress-circle>
+      <cds-progress-circle size="xl" status="success" value="72"></cds-progress-circle>
+      <cds-progress-circle size="xl" status="warning" value="36"></cds-progress-circle>
+      <cds-progress-circle size="xl" status="danger" value="84"></cds-progress-circle>
+      <cds-progress-circle size="xl" status="unknown" value="60"></cds-progress-circle>
+      <div style="background: #313131">
+        <cds-progress-circle size="xl" status="inverse" value="24"></cds-progress-circle>
+      </div>
       <cds-progress-circle size="xl" value="0"></cds-progress-circle>
     </div>
   `;
@@ -62,6 +65,11 @@ export const withIcon = () => {
       <cds-progress-circle value="60" size="xxl" status="danger">
         <cds-icon shape="unknown"></cds-icon>
       </cds-progress-circle>
+      <div style="background: #313131">
+        <cds-progress-circle size="xxl" status="inverse" value="24">
+          <cds-icon shape="unknown"></cds-icon>
+        </cds-progress-circle>
+      </div>
     </div>
   `;
 };

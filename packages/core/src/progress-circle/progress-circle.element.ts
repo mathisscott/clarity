@@ -230,8 +230,7 @@ export class CdsProgressCircle extends LitElement {
 
   /*
     LEFTOFF
-    X needs purple 'unknown' status
-    - needs inverse styling
+    X needs inverse styling
     ! deprecate cds-icon size classnames!
 
     ! SIZING
