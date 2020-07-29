@@ -130,42 +130,6 @@ export class CdsProgressCircle extends LitElement {
     }
   }
 
-  get path(): string {
-    const startAt = 0 + this.lineOffset;
-
-    if (this.visualizedValue !== this.value) {
-      // TODO: make it funcy
-      const expectedValue = this.value;
-      let newVisualizedValue = this.visualizedValue;
-      const howFarOff = Math.abs(expectedValue - newVisualizedValue);
-      const goForward = expectedValue > newVisualizedValue;
-
-      if (howFarOff > 9) {
-        newVisualizedValue = goForward ? newVisualizedValue + 6 : newVisualizedValue - 6;
-      } else if (howFarOff > 1) {
-        newVisualizedValue = goForward ? newVisualizedValue + 2 : newVisualizedValue - 2;
-      } else {
-        newVisualizedValue = goForward ? newVisualizedValue + 1 : newVisualizedValue - 1;
-      }
-
-      if (goForward && newVisualizedValue > expectedValue) {
-        newVisualizedValue = expectedValue;
-      } else if (!goForward && newVisualizedValue < expectedValue) {
-        newVisualizedValue = expectedValue;
-      }
-
-      if (newVisualizedValue > 100) {
-        newVisualizedValue = 100;
-      } else if (newVisualizedValue < 0) {
-        newVisualizedValue = 0;
-      }
-
-      this.visualizedValue = newVisualizedValue;
-    }
-
-    return describeArc(this.radius, startAt, pctCompleteToRadians(this.visualizedValue));
-  }
-
   private visualizedValue: number;
 
   drawPath(): string {
@@ -181,16 +145,16 @@ export class CdsProgressCircle extends LitElement {
 
     while (this.visualizedValue !== this.value) {
       // TODO: make it funcy
-      console.log('ohai');
+      console.log('ohai: ', this.visualizedValue, '; time? ', Date.now().toString());
       const expectedValue = this.value;
       let newVisualizedValue = this.visualizedValue;
       const howFarOff = Math.abs(expectedValue - newVisualizedValue);
       const goForward = expectedValue > newVisualizedValue;
 
       if (howFarOff > 9) {
-        newVisualizedValue = goForward ? newVisualizedValue + 1 : newVisualizedValue - 1;
+        newVisualizedValue = goForward ? newVisualizedValue + 1 : newVisualizedValue - 0.0125;
       } else {
-        newVisualizedValue = goForward ? newVisualizedValue + 0.1 : newVisualizedValue - 0.1;
+        newVisualizedValue = goForward ? newVisualizedValue + 0.1 : newVisualizedValue - 0.0125;
       }
 
       if (goForward && newVisualizedValue > expectedValue) {
@@ -207,20 +171,56 @@ export class CdsProgressCircle extends LitElement {
 
       this.visualizedValue = newVisualizedValue;
 
+      // LEFTOFF: it appears the while loop is mashing our timing function. we should
+      // do a time-delay check to make sure that the while loop is only executing on
+      // the next anticipated frame...
+
+      // requestAnimationFrame(this.drawPath.bind(this));
       const timeoutId = setTimeout(() => {
         requestAnimationFrame(this.drawPath.bind(this));
         clearTimeout(timeoutId);
-      }, 1000);
+      }, 1000 / 60);
     }
 
     return describeArc(this.radius, startAt, pctCompleteToRadians(this.visualizedValue));
+  }
+
+  private dynamicIconSize = false;
+
+  // TODO: MAKE IT FUNCY
+  sizeIcon(icon: CdsIcon) {
+    // all sizes related to the progress circle are relative to the 36 x 36 viewbox
+    const viewBoxDimensions = 36;
+    const containerDimensions = this.clientHeight;
+    const arcLineThickness = this.line;
+    // let sizedNudge = 8;
+    const versusViewBoxRatio = containerDimensions / viewBoxDimensions;
+
+    // if (containerDimensions < 17) {
+    //   sizedNudge = 1;
+    // } else if (containerDimensions < 25) {
+    //   sizedNudge = arcLineThickness > 5 ? 1 : 2;
+    // } else if (containerDimensions < 37) {
+    //   sizedNudge = arcLineThickness > 5 ? 2 : 4;
+    // } else if (containerDimensions < 65) {
+    //   sizedNudge = arcLineThickness > 7 ? 2 : 6;
+    // };
+
+    const lineOnAxis = 2 * (versusViewBoxRatio * arcLineThickness);
+    const nudge = 2 * (versusViewBoxRatio * 6);
+    icon.size = Math.floor(this.clientHeight - lineOnAxis - nudge) + '';
   }
 
   connectedCallback() {
     super.connectedCallback();
     if (this.icon) {
       this.classList.add('has-icon');
-      this.icon.size = this.size || 'sm';
+
+      if (!this.icon.size) {
+        this.dynamicIconSize = true;
+        this.sizeIcon(this.icon);
+      }
+
       assignSlotNames([this.icon, 'icon']);
     }
     if (!isNil(this.value)) {
@@ -228,14 +228,25 @@ export class CdsProgressCircle extends LitElement {
     }
   }
 
+  updated(changedProperties: Map<string, any>) {
+    if (this.icon && this.dynamicIconSize && (changedProperties.has('size') || changedProperties.has('line'))) {
+      this.sizeIcon(this.icon);
+    }
+  }
+
   /*
     LEFTOFF
-    X needs inverse styling
-    ! deprecate cds-icon size classnames!
+    ! ENDGAME
+      - verify unknown and inverse StatusTypes aren't messing up other components
+        ? make our own status type?
+      - deprecate cds-icon size classnames!
 
-    ! SIZING
-      ? can we dynamically size the icon?
-      ? do we need to preserve any custom sizing? (i say 'yeah'...)
+    X SIZING
+      X can we dynamically size the icon?
+      X do we need to preserve any custom sizing? (i say 'yeah'...)
+        ! test this
+      - split out sizing code into its own utility
+      ! dynamic padding around isn't happy...
 
     X ANIMATION?
       - split out animation code into its own utility
@@ -245,6 +256,9 @@ export class CdsProgressCircle extends LitElement {
   */
 
   render() {
+    const circumference = 2 * Math.PI * this.radius;
+    const progressOffset = ((100 - (this.value || 30)) / 100) * circumference;
+
     return html`
       <div class="private-host" aria-hidden="true">
         ${this.icon ? html`<div class="icon-wrapper"><slot name="icon"></slot></div>` : ''}
@@ -265,7 +279,71 @@ export class CdsProgressCircle extends LitElement {
               r="${this.radius}"
               class="${this.value > 99 ? 'arcstroke' : 'backstroke'}"
             />
+            <path
+              d="M 18 18 m 0,-${this.radius} a ${this.radius},${this.radius} 0 1 1 0,${2 * this.radius} a ${this
+                .radius},${this.radius} 0 1 1 0,-${2 * this.radius}"
+              class="arcstroke"
+              stroke-width="${this.line}"
+              stroke-dasharray="${circumference}"
+              stroke-dashoffset="${progressOffset}"
+              fill="none"
+            />
+          </svg>
+        </div>
+      </div>
+    `;
+  }
+
+  oldRender() {
+    return html`
+      <div class="private-host" aria-hidden="true">
+        ${this.icon ? html`<div class="icon-wrapper"><slot name="icon"></slot></div>` : ''}
+        <div class="progress-wrapper" style="display:none">
+          <svg
+            version="1.1"
+            viewBox="0 0 36 36"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            focusable="false"
+          >
+            <circle
+              stroke-width="${this.line}"
+              fill="none"
+              cx="18"
+              cy="18"
+              r="${this.radius}"
+              class="${this.value > 99 ? 'arcstroke' : 'backstroke'}"
+            />
             <path d="${this.drawPath()}" class="arcstroke" stroke-width="${this.line}" fill="none" />
+          </svg>
+        </div>
+      </div>
+      <div class="private-host">
+        <div class="progress-wrapper">
+          <svg
+            version="1.1"
+            viewBox="0 0 36 36"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            focusable="false"
+          >
+            <circle
+              stroke-width="${this.line}"
+              fill="none"
+              cx="18"
+              cy="18"
+              r="${this.radius}"
+              class="${this.value > 99 ? 'arcstroke' : 'backstroke'}"
+            />
+            <path
+              d="M 18 18 m 0,-${this.radius} a ${this.radius},${this.radius} 0 1 1 0,${2 * this.radius} a ${this
+                .radius},${this.radius} 0 1 1 0,-${2 * this.radius}"
+              class="arcstroke"
+              stroke-width="${this.line}"
+              fill="none"
+            />
           </svg>
         </div>
       </div>

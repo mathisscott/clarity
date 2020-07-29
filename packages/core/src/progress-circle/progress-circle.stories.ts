@@ -4,10 +4,14 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
+import '@clr/core/icon/register.js';
 import '@clr/core/progress-circle/register.js';
+import { ClarityIcons, homeIcon, nodesIcon, stopIcon, warningStandardIcon } from '@clr/core/icon';
 import { getElementStorybookArgTypes, spreadProps, getElementStorybookArgs } from '@clr/core/internal';
 import { html } from 'lit-html';
 import customElements from '../../dist/core/custom-elements.json';
+
+ClarityIcons.addIcons(homeIcon, nodesIcon, stopIcon, warningStandardIcon);
 
 export default {
   title: 'Components/Circular Progress/Stories',
@@ -51,23 +55,23 @@ export const withIcon = () => {
   return html`
     <div cds-layout="horizontal gap:sm">
       <cds-progress-circle value="75" size="xxl">
-        <cds-icon shape="unknown"></cds-icon>
+        <cds-icon shape="stop" solid></cds-icon>
       </cds-progress-circle>
       <cds-progress-circle value="15" size="xxl" status="info">
-        <cds-icon shape="unknown"></cds-icon>
+        <cds-icon shape="home"></cds-icon>
       </cds-progress-circle>
       <cds-progress-circle value="45" size="xxl" status="success">
-        <cds-icon shape="unknown"></cds-icon>
+        <cds-icon shape="nodes"></cds-icon>
       </cds-progress-circle>
       <cds-progress-circle value="30" size="xxl" status="warning">
-        <cds-icon shape="unknown"></cds-icon>
+        <cds-icon shape="warning-standard"></cds-icon>
       </cds-progress-circle>
       <cds-progress-circle value="60" size="xxl" status="danger">
-        <cds-icon shape="unknown"></cds-icon>
+        <cds-icon shape="stop" solid></cds-icon>
       </cds-progress-circle>
       <div style="background: #313131">
         <cds-progress-circle size="xxl" status="inverse" value="24">
-          <cds-icon shape="unknown"></cds-icon>
+          <cds-icon shape="nodes"></cds-icon>
         </cds-progress-circle>
       </div>
     </div>

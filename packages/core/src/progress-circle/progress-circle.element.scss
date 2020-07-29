@@ -10,8 +10,6 @@
   display: block;
 
   ::slotted(cds-icon) {
-    max-height: 24px;
-    max-width: 24px;
     --color: #{$cds-token-color-action-800};
   }
 }
@@ -38,6 +36,7 @@ svg {
 
   .arcstroke {
     stroke: var(--color);
+    transition: stroke-dashoffset 300ms ease-in-out;
   }
 }
 
@@ -74,8 +73,6 @@ svg {
   --color: #{$cds-token-color-action-800};
 
   ::slotted(cds-icon) {
-    max-height: 24px;
-    max-width: 24px;
     --color: #{$cds-token-color-action-800};
   }
 }
@@ -85,8 +82,6 @@ svg {
   --color: #{$cds-token-color-success-800};
 
   ::slotted(cds-icon) {
-    max-height: 24px;
-    max-width: 24px;
     --color: #{$cds-token-color-success-800};
   }
 }
@@ -96,8 +91,6 @@ svg {
   --color: #{$cds-token-color-neutral-0};
 
   ::slotted(cds-icon) {
-    max-height: 24px;
-    max-width: 24px;
     --color: #{$cds-token-color-neutral-0};
   }
 }
@@ -107,8 +100,6 @@ svg {
   --color: #{$cds-token-color-warning-900};
 
   ::slotted(cds-icon) {
-    max-height: 24px;
-    max-width: 24px;
     --color: #{$cds-token-color-warning-900};
   }
 }
@@ -118,8 +109,6 @@ svg {
   --color: #{$cds-token-color-danger-900};
 
   ::slotted(cds-icon) {
-    max-height: 24px;
-    max-width: 24px;
     --color: #{$cds-token-color-danger-900};
   }
 }
@@ -129,8 +118,6 @@ svg {
   --color: #{$cds-token-color-secondary-action-900};
 
   ::slotted(cds-icon) {
-    max-height: 24px;
-    max-width: 24px;
     --color: #{$cds-token-color-secondary-action-900};
   }
 }
