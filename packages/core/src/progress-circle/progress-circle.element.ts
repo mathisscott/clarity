@@ -241,24 +241,21 @@ export class CdsProgressCircle extends LitElement {
     }
   }
 
-  /*
-    LEFTOFF
-    ! ENDGAME
-      X verify unknown and inverse StatusTypes aren't messing up other components
-      X deprecate cds-icon size classnames!
+  /* TODO:
+
+    ! TEST CSS-ONLY APPROACH IN IE (STILL WAITING ON VM TO DOWNLOAD)
+
+    ! WRITE UNIT TESTS
 
     X SIZING
-      X can we dynamically size the icon?
       X do we need to preserve any custom sizing? (i say 'yeah'...)
-        ! test this
+        ! TODO: VISUALLY VERIFY THIS
       - split out sizing code into its own utility
-      ! dynamic padding around isn't happy...
+      ! FIXME: dynamic padding around isn't happy...
 
-    X ANIMATION?
+    ? ANIMATION? <= REFERENCES THE JS-BASED TWEENING
       - split out animation code into its own utility
       - can we handle the 0 <-> 100 value issue somewhere else?
-      ! will need a visual test in storybook to randomly and rapidly throw values out
-        * monkey-testing!
   */
 
   render() {
