@@ -244,9 +244,8 @@ export class CdsProgressCircle extends LitElement {
   /*
     LEFTOFF
     ! ENDGAME
-      - verify unknown and inverse StatusTypes aren't messing up other components
-        ? make our own status type?
-      - deprecate cds-icon size classnames!
+      X verify unknown and inverse StatusTypes aren't messing up other components
+      X deprecate cds-icon size classnames!
 
     X SIZING
       X can we dynamically size the icon?
