@@ -78,6 +78,27 @@ export const withIcon = () => {
   `;
 };
 
+// TODO: hide this before final PR
+export const chaos = () => {
+  return html`
+    <cds-progress-circle value="12" size="xl" id="pureChaos"></cds-progress-circle>
+    <br />
+    <button
+      @click=${() => {
+        setInterval(
+          () =>
+            document
+              .getElementById('pureChaos')
+              .setAttribute('value', Math.floor(Math.random() * (100 - 1)).toString()),
+          500
+        );
+      }}
+    >
+      Start Me Up!
+    </button>
+  `;
+};
+
 // export const custom = () => {
 //   return html`
 //     <style>
