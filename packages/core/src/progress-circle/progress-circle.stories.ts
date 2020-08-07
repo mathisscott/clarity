@@ -44,7 +44,7 @@ export const status = () => {
       <cds-progress-circle size="xl" status="danger" value="84"></cds-progress-circle>
       <cds-progress-circle size="xl" status="unknown" value="60"></cds-progress-circle>
       <div style="background: #313131">
-        <cds-progress-circle size="xl" status="inverse" value="24"></cds-progress-circle>
+        <cds-progress-circle size="xl" inverse value="24"></cds-progress-circle>
       </div>
       <cds-progress-circle size="xl" value="0"></cds-progress-circle>
     </div>
@@ -70,7 +70,7 @@ export const withIcon = () => {
         <cds-icon shape="stop" solid></cds-icon>
       </cds-progress-circle>
       <div style="background: #313131">
-        <cds-progress-circle size="xxl" status="inverse" value="24">
+        <cds-progress-circle size="xxl" inverse value="24">
           <cds-icon shape="nodes"></cds-icon>
         </cds-progress-circle>
       </div>

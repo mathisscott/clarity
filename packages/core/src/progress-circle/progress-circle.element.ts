@@ -79,11 +79,18 @@ export class CdsProgressCircle extends LitElement {
   @querySlot('cds-icon') protected icon: CdsIcon;
 
   /**
-   * @type {default | info | success | warning | danger | inverse | unknown}
+   * @type {default | info | success | warning | danger | unknown}
    * Sets the color of the badge
    */
   @property({ type: String })
-  status: StatusTypes = 'default';
+  status: StatusTypes | 'unknown' | 'inverse' = 'default';
+
+  /**
+   * Inverts color of circular progress bar if `true`.
+   * Useful for displaying icons on a dark background.
+   */
+  @property({ type: Boolean })
+  inverse = false;
 
   /**
    * Represents the percent completed from 0 to 100.
