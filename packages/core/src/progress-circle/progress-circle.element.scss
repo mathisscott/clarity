@@ -64,7 +64,7 @@ svg {
   @include equilateral(calc(#{$cds-token-space-size-13} - #{$cds-token-space-size-5}));
 }
 
-:host(:not([value])) {
+:host(:not([value])) .progress-wrapper {
   animation: spin 0.8s cubic-bezier(0.17, 0.4, 0.8, 0.79) infinite;
 }
 
@@ -123,7 +123,6 @@ svg {
 }
 
 // TODO: ANIMATIONS TO GO IN A SEPARATE FILE?
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -134,7 +133,9 @@ svg {
 }
 
 :host(.has-icon) {
-  position: relative;
+  .private-host {
+    position: relative;
+  }
 
   .icon-wrapper {
     @include max-equilateral(100%);
@@ -143,5 +144,17 @@ svg {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+}
+
+// Hack for IE11
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .private-host {
+    display: block;
+  }
+
+  // IE is not playing well with nested icon
+  ::slotted(cds-icon) {
+    display: none;
   }
 }

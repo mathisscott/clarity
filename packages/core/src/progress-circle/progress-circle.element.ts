@@ -5,6 +5,7 @@
  */
 
 import {
+  addClassnames,
   assignSlotNames,
   baseStyles,
   hasStringPropertyChanged,
@@ -220,16 +221,22 @@ export class CdsProgressCircle extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    if (this.icon) {
-      this.classList.add('has-icon');
 
-      if (!this.icon.size) {
-        this.dynamicIconSize = true;
-        this.sizeIcon(this.icon);
+    // FIXME: this set timeout jumps outside synchronous execution to resolve after all the
+    // dependencies are resolved. without it, es5 angular won't show icons inside of progress-circles
+    setTimeout(() => {
+      if (this.icon) {
+        addClassnames(this, 'has-icon');
+
+        if (!this.icon.size) {
+          this.dynamicIconSize = true;
+          this.sizeIcon(this.icon);
+        }
+
+        assignSlotNames([this.icon, 'icon']);
       }
+    });
 
-      assignSlotNames([this.icon, 'icon']);
-    }
     if (!isNil(this.value)) {
       this.visualizedValue = this.value;
     }
@@ -243,7 +250,13 @@ export class CdsProgressCircle extends LitElement {
 
   /* TODO:
 
-    ! TEST CSS-ONLY APPROACH IN IE (STILL WAITING ON VM TO DOWNLOAD)
+    ! TEST IE
+      - IE does not like icons inside of the progress circle
+        ? do we drop that feature for IE?!
+          ^ the big question at this point is dropping it for IE vs. dropping it altogether
+      X chaos test in IE!
+        ! smooth animation doesn't work in IE; it just jumps
+        ? do we care?
 
     ! WRITE UNIT TESTS
 
