@@ -159,7 +159,7 @@ export const multiple = () => {
       }
     </style>
     <cds-button status="primary" type="button" @click=${showMultiOverlay}>Show Layered Overlays</cds-button>
-    <cds-internal-overlay hidden id="${multiOverlayId}">
+    <cds-internal-overlay hidden id="${multiOverlayId}" cds-motion="off">
       <div cds-layout="vertical gap:lg p:lg align:stretch" class="my-multi-overlay">
         <h1 cds-text="section">A demo of layered overlays</h1>
         <p cds-text="body">
@@ -179,7 +179,7 @@ export const multiple = () => {
         </div>
       </div>
     </cds-internal-overlay>
-    <cds-internal-overlay hidden id="${multiChildOverlayId}">
+    <cds-internal-overlay hidden id="${multiChildOverlayId}" cds-motion="off">
       <div cds-layout="vertical gap:lg p:lg align:stretch" class="my-multi-overlay" style="width: 300px">
         <h1 cds-text="section">An overlay on top of another overlay</h1>
         <p cds-text="body">I am a demo of an overlay layered over another overlay!</p>

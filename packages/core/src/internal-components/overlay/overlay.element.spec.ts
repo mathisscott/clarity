@@ -5,7 +5,7 @@
  */
 import { html } from 'lit-html';
 import '@cds/core/internal-components/overlay/register.js';
-import { CdsInternalOverlay, isNestedOverlay } from '@cds/core/internal-components/overlay';
+import { CdsInternalOverlay, getAnimationValue, isNestedOverlay } from '@cds/core/internal-components/overlay';
 import { componentIsStable, createTestElement, removeTestElement } from '@cds/core/test/utils';
 
 describe('Overlay helper functions: ', () => {
@@ -35,6 +35,21 @@ describe('Overlay helper functions: ', () => {
       expect(isNestedOverlay('ohai_1', 'ohai_', [])).toBe(false);
     });
   });
+
+  // TODO:
+  // describe('getAnimationValue() - ', () => {
+  //   it('should return "out" if trying to hide the overlay', () => {
+  //     expect(getAnimationValue(true, 'in')).toBe('out');
+  //   });
+
+  //   it('should return "in" if the overlay has already started showing', () => {
+  //     expect(getAnimationValue(false, 'start')).toBe('in');
+  //   });
+
+  //   it('should return "start" if starting to reveal the overlay', () => {
+  //     expect(getAnimationValue(false, 'out')).toBe('start');
+  //   });
+  // });
 });
 
 describe('Overlay element: ', () => {

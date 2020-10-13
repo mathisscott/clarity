@@ -5,6 +5,9 @@
   // TODO: backdrop appearing needs transitions; what should they be?
   --backdrop-background: #{$cds-alias-object-overlay-backdrop-background};
   --layered-backdrop-background: #{$cds-alias-object-opacity-0};
+  --animation-duration: 0.3s;
+  --animation-timing-function: cubic-bezier(0, 0.99, 0, 0.99);
+  --animation-properties: margin-top, opacity;
 
   position: fixed;
   top: 0;
@@ -18,9 +21,16 @@
 }
 
 .private-host {
-  position: relative;
   // position relative forces overlay content above the backdrop without z-index
   // shouldn't cause issues with overlays/dropdowns due to onion skinning
+  position: relative;
+  margin-top: -300px;
+
+  // TODO: NEED BETTER CSS PROP NAMES HERE. SOME OF THESE QUALIFY AS TOKENS
+  will-change: var(--animation-properties);
+  transition-duration: var(--animation-duration, 0.3s);
+  transition-timing-function: var(--animation-timing-function);
+  transition-property: var(--animation-properties);
 }
 
 .overlay-backdrop {
@@ -36,4 +46,51 @@
 
 :host([__demo-mode]) {
   position: absolute;
+}
+
+// animation fun here!
+
+:host([cds-motion='on']),
+:host([cds-motion='enter-start']),
+:host([cds-motion='leave-end']) {
+  .private-host {
+    opacity: 0;
+    margin-top: -300px;
+  }
+}
+
+:host([cds-motion='off']),
+:host([cds-motion='enter-end']),
+:host([cds-motion='leave-start']) {
+  --animation-duration: 0.4s;
+
+  .private-host {
+    opacity: 1;
+    margin-top: 0;
+
+    // transition properties
+    // transition-timing-function
+    // transition-delay
+    // transition-property
+    // transition-duration
+  }
+}
+
+:host([cds-motion='off']) {
+  .private-host {
+    transition: none;
+  }
+}
+
+// these animations have to override default host[hidden] styles
+:host([hidden][cds-motion]) {
+  display: inline-flex !important;
+}
+
+:host([hidden]:not(cds-motion)),
+:host([hidden][cds-motion='on']),
+:host([hidden][cds-motion='off']) {
+  // LEFTOFF: EXIT ANIMATIONS ARE NOT BEHAVING...
+  --backdrop-background: red;
+  display: none !important;
 }

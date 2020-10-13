@@ -134,3 +134,8 @@ export type AriaRoles =
   | 'doc-subtitle'
   | 'doc-tip'
   | 'doc-toc';
+
+// TODO: go with this one. easier to customize...
+// 'enter-start' | 'enter-something' | 'enter-done' | 'leave-start' | 'leave-done' | 'drag-active' | 'drag-done'
+// TODO: preference media query for motion instead of off? in same group that prefers dark theme...
+export type MotionValues = 'on' | 'enter-start' | 'enter-end' | 'leave-start' | 'leave-end' | 'off';

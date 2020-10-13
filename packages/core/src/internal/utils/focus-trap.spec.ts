@@ -275,6 +275,10 @@ describe('FocusTrap Class: ', () => {
       expect(focusTrap.active).toBe(true);
     });
 
+    it('should be set to active', () => {
+      expect(focusTrap.active).toBe(true);
+    });
+
     it('should throw an error if enabledFocusTrap is called again', () => {
       focusTrap = setUpFocusTrap(testElement);
       const secondCall = () => focusTrap.enableFocusTrap();
