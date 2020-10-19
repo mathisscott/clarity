@@ -186,33 +186,36 @@ export class PageCollectionService {
    * @memberof PageCollectionService
    */
   public pageRange(start: number, end: number): ClrWizardPage[] {
-    // OVERALL: ACTION...
+    // OVERALL: ACTION
+    // INPUT: takes a start page index and an end page index
+    // OUTPUT: returns an array of pages based on those inputs
     let pages: ClrWizardPage[] = [];
 
     if (start < 0 || end < 0) {
-      // CALCULATION
+      // CALCULATION: if start and end are 0, return empty array
       return [];
     }
 
     if (start === null || typeof start === 'undefined' || isNaN(start)) {
-      // CALCULATION
+      // CALCULATION: if start is Nil or NaN, return empty array
       return [];
     }
 
     if (end === null || typeof end === 'undefined' || isNaN(end)) {
-      // CALCULATION
+      // CALCULATION: if start is Nil or NaN, return empty array
       return [];
     }
 
     if (end > this.pagesCount) {
-      end = this.pagesCount; // ACTION
+      end = this.pagesCount; // ACTION: set end to length if it is larger than pages length
     }
 
-    pages = this.pagesAsArray; // ACTION
+    pages = this.pagesAsArray; // ACTION: get pages node list into an array structure
 
+    // if end and start are the same, return a single page
     if (end - start === 0) {
       // just return the one page they want
-      return [this.getPageByIndex(start)]; // CALCULATION
+      return [this.getPageByIndex(start)]; // ACTION
     }
 
     // slice end does not include item referenced by end index, which is weird for users
@@ -222,7 +225,7 @@ export class PageCollectionService {
 
     // slice does not return the last one in the range but it does include the first one
     // does not modify original array
-    return pages.slice(start, end); // CALCULATION
+    return pages.slice(start, end); // CALCULATION: returns a subset of the pages array
   }
 
   /**
