@@ -30,7 +30,9 @@ function isNumeric(val: any): boolean {
 
 // breaking things up into smaller pieces allows us to define them more clearly
 // here the function name basically spells out the internal logic for us...
-function isNumericAndNotNilOrZero(val: any): boolean {}
+function isNumericAndNotNilOrZero(val: any): boolean {
+  return isNumeric(val) && !(isNil(val) || val === 0);
+}
 
 /**
  * PageCollectionService manages the collection of pages assigned to the wizard and offers
