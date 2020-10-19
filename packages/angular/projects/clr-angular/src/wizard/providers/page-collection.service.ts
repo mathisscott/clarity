@@ -11,6 +11,28 @@ import { Subject } from 'rxjs';
 import { ClrWizardPage } from '../wizard-page';
 
 /**
+ * FUNCTION HELPERS
+ * • Can be tested independently
+ * • Can be reused in other areas of code
+ * • Can be put together to do complex tasks
+ */
+
+function isNil(item: any): boolean {
+  return item === null || typeof item === 'undefined';
+}
+
+function isNumeric(val: any): boolean {
+  // ! looking at things under a microscope means we can try to solve problems at a granular level
+  //   this gives us the opportunity to identify the best performing solution that may not be obvious
+  //   in imperative code.
+  return +val === +val;
+}
+
+// breaking things up into smaller pieces allows us to define them more clearly
+// here the function name basically spells out the internal logic for us...
+function isNumericAndNotNilOrZero(val: any): boolean {}
+
+/**
  * PageCollectionService manages the collection of pages assigned to the wizard and offers
  * a number of functions useful across the wizards providers and subcomponents -- all related
  * to essentially lookups on the collection of pages.
