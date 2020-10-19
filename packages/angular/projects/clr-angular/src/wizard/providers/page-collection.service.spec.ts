@@ -12,7 +12,7 @@ import { ClrWizardPage } from '../wizard-page';
 import { PageCollectionService } from './page-collection.service';
 
 export default function (): void {
-  describe('Page Collection Service', function () {
+  fdescribe('Page Collection Service', function () {
     let context: TestContext<ClrWizard, BasicWizardTestComponent>;
     let pageCollectionService: PageCollectionService;
 
@@ -78,27 +78,40 @@ export default function (): void {
     });
 
     it('.pageRange() should return the range of wizard pages', function () {
-      expect(pageCollectionService.pageRange(0, 0)).toEqual([pageCollectionService.firstPage]);
+      expect(pageCollectionService.pageRange(0, 0)).toEqual(
+        [pageCollectionService.firstPage],
+        'zero and zero return first page'
+      );
 
-      expect(pageCollectionService.pageRange(4, 4)).toEqual([pageCollectionService.lastPage]);
+      expect(pageCollectionService.pageRange(4, 4)).toEqual(
+        [pageCollectionService.lastPage],
+        'end and end return last page'
+      );
 
-      expect(pageCollectionService.pageRange(1, 3)).toEqual(pageCollectionService.pagesAsArray.slice(1, 4));
+      expect(pageCollectionService.pageRange(1, 3)).toEqual(
+        pageCollectionService.pagesAsArray.slice(1, 4),
+        'range returned as expected'
+      );
 
-      expect(pageCollectionService.pageRange(1, 3)).toEqual(pageCollectionService.pagesAsArray.slice(1, 4));
+      expect(pageCollectionService.pageRange(3, 3)).toEqual(
+        pageCollectionService.pagesAsArray.slice(3, 4),
+        'penultimate returns as expected'
+      );
 
-      expect(pageCollectionService.pageRange(3, 3)).toEqual(pageCollectionService.pagesAsArray.slice(3, 4));
+      expect(pageCollectionService.pageRange(-1, 3)).toEqual([], 'negative start index returns empty array');
 
-      expect(pageCollectionService.pageRange(-1, 3)).toEqual([]);
+      expect(pageCollectionService.pageRange(-3, -1)).toEqual([], 'negative start and end indeces return empty array');
 
-      expect(pageCollectionService.pageRange(-3, -1)).toEqual([]);
+      expect(pageCollectionService.pageRange(1, -3)).toEqual([], 'negative end index returns empty array');
 
-      expect(pageCollectionService.pageRange(1, -3)).toEqual([]);
+      expect(pageCollectionService.pageRange(null, 3)).toEqual([], 'nil start index returns empty array');
 
-      expect(pageCollectionService.pageRange(null, 3)).toEqual([]);
+      expect(pageCollectionService.pageRange(3, undefined)).toEqual([], 'nil end index returns empty array');
 
-      expect(pageCollectionService.pageRange(3, undefined)).toEqual([]);
-
-      expect(pageCollectionService.pageRange(null, undefined)).toEqual([]);
+      expect(pageCollectionService.pageRange(null, undefined)).toEqual(
+        [],
+        'nil start and end indeces returns empty array'
+      );
     });
 
     it('.getPageRangeFromPages() should return the range of wizard pages', function () {

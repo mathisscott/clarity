@@ -30,8 +30,8 @@ function isNumeric(val: any): boolean {
 
 // breaking things up into smaller pieces allows us to define them more clearly
 // here the function name basically spells out the internal logic for us...
-function isNumericAndNotNilOrZero(val: any): boolean {
-  return isNumeric(val) && !(isNil(val) || val === 0);
+function isNilOrNotNumericOrLessThanZero(val: any): boolean {
+  return isNil(val) || !isNumeric(val) || val < 0;
 }
 
 /**
@@ -215,20 +215,13 @@ export class PageCollectionService {
     // OUTPUT: returns an array of pages based on those inputs
     let pages: ClrWizardPage[] = [];
 
-    if (start < 0 || end < 0) {
-      // CALCULATION: if start and end are 0, return empty array
+    // CALCULATION: Testable outside of the context of the method. Reusable outside of service, if needed.
+    //              All in one place instead of multiple conditionals.
+    if (isNilOrNotNumericOrLessThanZero(start) || isNilOrNotNumericOrLessThanZero(end)) {
       return [];
     }
 
-    if (start === null || typeof start === 'undefined' || isNaN(start)) {
-      // CALCULATION: if start is Nil or NaN, return empty array <= isNumericAndNotNil
-      return [];
-    }
-
-    if (end === null || typeof end === 'undefined' || isNaN(end)) {
-      // CALCULATION: if start is Nil or NaN, return empty array <= isNumericAndNotNil
-      return [];
-    }
+    // ##LEFTOFF
 
     if (end > this.pagesCount) {
       end = this.pagesCount; // ACTION: set end to length if it is larger than pages length
