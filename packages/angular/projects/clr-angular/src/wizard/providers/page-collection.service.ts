@@ -197,12 +197,12 @@ export class PageCollectionService {
     }
 
     if (start === null || typeof start === 'undefined' || isNaN(start)) {
-      // CALCULATION: if start is Nil or NaN, return empty array
+      // CALCULATION: if start is Nil or NaN, return empty array <= isNumericAndNotNil
       return [];
     }
 
     if (end === null || typeof end === 'undefined' || isNaN(end)) {
-      // CALCULATION: if start is Nil or NaN, return empty array
+      // CALCULATION: if start is Nil or NaN, return empty array <= isNumericAndNotNil
       return [];
     }
 
@@ -210,18 +210,18 @@ export class PageCollectionService {
       end = this.pagesCount; // ACTION: set end to length if it is larger than pages length
     }
 
-    pages = this.pagesAsArray; // ACTION: get pages node list into an array structure
+    pages = this.pagesAsArray; // ACTION: get pages node list into an array structure <= we don't need this here, esp'ly as an action.
 
     // if end and start are the same, return a single page
     if (end - start === 0) {
       // just return the one page they want
-      return [this.getPageByIndex(start)]; // ACTION
+      return [this.getPageByIndex(start)]; // CALCULATION <= this is a lookup. but it's trying to do way too much!
     }
 
     // slice end does not include item referenced by end index, which is weird for users
     // incrementing end index here to correct that so users and other methods
     // don't have to think about it
-    end = end + 1;
+    end = end + 1; // <= there's no need for this to be like this
 
     // slice does not return the last one in the range but it does include the first one
     // does not modify original array
