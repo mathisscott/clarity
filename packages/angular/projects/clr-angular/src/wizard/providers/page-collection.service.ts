@@ -212,10 +212,6 @@ export class PageCollectionService {
     end = end > totalPages ? totalPages : end;
 
     // if end and start are the same, return a single page
-    if (end - start === 0) {
-      return [this.getPageByIndex(start)];
-    }
-
     return end - start === 0 ? [this.getPageByIndex(start)] : pagesArray.slice(start, end + 1);
   }
 
