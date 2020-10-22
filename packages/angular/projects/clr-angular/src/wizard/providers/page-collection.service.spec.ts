@@ -12,7 +12,7 @@ import { ClrWizardPage } from '../wizard-page';
 import { PageCollectionService } from './page-collection.service';
 
 export default function (): void {
-  fdescribe('Page Collection Service', function () {
+  describe('Page Collection Service', function () {
     let context: TestContext<ClrWizard, BasicWizardTestComponent>;
     let pageCollectionService: PageCollectionService;
 

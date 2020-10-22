@@ -11,10 +11,7 @@ import { Subject } from 'rxjs';
 import { ClrWizardPage } from '../wizard-page';
 
 /**
- * //TODO: FUNCTION HELPERS
- * • Can be tested independently
- * • Can be reused in other areas of code
- * • Can be put together to do complex tasks
+ * FUNCTION HELPERS
  */
 
 function isNil(item: any): boolean {
@@ -22,14 +19,9 @@ function isNil(item: any): boolean {
 }
 
 function isNumeric(val: any): boolean {
-  // ! looking at things under a microscope means we can try to solve problems at a granular level
-  //   this gives us the opportunity to identify the best performing solution that may not be obvious
-  //   in imperative code.
   return +val === +val;
 }
 
-// breaking things up into smaller pieces allows us to define them more clearly
-// here the function name basically spells out the internal logic for us...
 function isNilOrNotNumericOrLessThanZero(val: any): boolean {
   return isNil(val) || !isNumeric(val) || val < 0;
 }
@@ -204,38 +196,27 @@ export class PageCollectionService {
   }
 
   /**
-   * //TODO: Accepts two numeric indexes and returns an array of wizard page objects that include
+   * Accepts two numeric indexes and returns an array of wizard page objects that include
    * all wizard pages in the page collection from the first index to the second.
    *
    * @memberof PageCollectionService
    */
-  public pageRange(pages = this.pages, start: number, end: number): ClrWizardPage[] {
-    // OVERALL: ACTION
-    //          - still an action but action is limited to only one area :-)
-    // INPUT: takes a start page index and an end page index
-    // OUTPUT: returns an array of pages based on those inputs
-    const pagesArray = pages.toArray() || []; // <= moving pages into params means we are no longer tied to the lookup
-    const totalPages = pagesArray.length; // <= allows us to get rid of pagesCount. potentially forever!
+  public pageRange(start: number, end: number, pages = this.pages): ClrWizardPage[] {
+    const pagesArray = pages.toArray() || [];
+    const totalPages = pagesArray.length;
 
-    // CALCULATION: Testable outside of the context of the method. Reusable outside of service, if needed.
-    //              All in one place instead of multiple conditionals.
     if (isNilOrNotNumericOrLessThanZero(start) || isNilOrNotNumericOrLessThanZero(end)) {
       return [];
     }
 
-    end = end > totalPages ? totalPages : end; // CALCULATION: removing the lookup turned this action into a calculation
-
-    // pages = this.pagesAsArray; // ACTION: this lookup is no longer needed; making this DATA instead of an action.
+    end = end > totalPages ? totalPages : end;
 
     // if end and start are the same, return a single page
     if (end - start === 0) {
-      // just return the one page they want
-      return [this.getPageByIndex(start)]; // CALCULATION <= this is a lookup. but it's trying to do way too much!
+      return [this.getPageByIndex(start)];
     }
 
-    // slice does not return the last one in the range but it does include the first one
-    // does not modify original array
-    return pagesArray.slice(start, end + 1); // CALCULATION: returns a subset of the pages array
+    return end - start === 0 ? [this.getPageByIndex(start)] : pagesArray.slice(start, end + 1);
   }
 
   /**
