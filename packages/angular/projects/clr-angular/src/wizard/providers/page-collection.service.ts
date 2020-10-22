@@ -11,7 +11,7 @@ import { Subject } from 'rxjs';
 import { ClrWizardPage } from '../wizard-page';
 
 /**
- * FUNCTION HELPERS
+ * //TODO: FUNCTION HELPERS
  * • Can be tested independently
  * • Can be reused in other areas of code
  * • Can be put together to do complex tasks
@@ -204,16 +204,18 @@ export class PageCollectionService {
   }
 
   /**
-   * Accepts two numeric indexes and returns an array of wizard page objects that include
+   * //TODO: Accepts two numeric indexes and returns an array of wizard page objects that include
    * all wizard pages in the page collection from the first index to the second.
    *
    * @memberof PageCollectionService
    */
-  public pageRange(start: number, end: number): ClrWizardPage[] {
+  public pageRange(pages = this.pages, start: number, end: number): ClrWizardPage[] {
     // OVERALL: ACTION
+    //          - still an action but action is limited to only one area :-)
     // INPUT: takes a start page index and an end page index
     // OUTPUT: returns an array of pages based on those inputs
-    let pages: ClrWizardPage[] = [];
+    const pagesArray = pages.toArray() || []; // <= moving pages into params means we are no longer tied to the lookup
+    const totalPages = pagesArray.length; // <= allows us to get rid of pagesCount. potentially forever!
 
     // CALCULATION: Testable outside of the context of the method. Reusable outside of service, if needed.
     //              All in one place instead of multiple conditionals.
@@ -221,13 +223,9 @@ export class PageCollectionService {
       return [];
     }
 
-    // ##LEFTOFF
+    end = end > totalPages ? totalPages : end; // CALCULATION: removing the lookup turned this action into a calculation
 
-    if (end > this.pagesCount) {
-      end = this.pagesCount; // ACTION: set end to length if it is larger than pages length
-    }
-
-    pages = this.pagesAsArray; // ACTION: get pages node list into an array structure <= we don't need this here, esp'ly as an action.
+    // pages = this.pagesAsArray; // ACTION: this lookup is no longer needed; making this DATA instead of an action.
 
     // if end and start are the same, return a single page
     if (end - start === 0) {
@@ -235,14 +233,9 @@ export class PageCollectionService {
       return [this.getPageByIndex(start)]; // CALCULATION <= this is a lookup. but it's trying to do way too much!
     }
 
-    // slice end does not include item referenced by end index, which is weird for users
-    // incrementing end index here to correct that so users and other methods
-    // don't have to think about it
-    end = end + 1; // <= there's no need for this to be like this
-
     // slice does not return the last one in the range but it does include the first one
     // does not modify original array
-    return pages.slice(start, end); // CALCULATION: returns a subset of the pages array
+    return pagesArray.slice(start, end + 1); // CALCULATION: returns a subset of the pages array
   }
 
   /**
