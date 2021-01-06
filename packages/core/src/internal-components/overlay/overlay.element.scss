@@ -47,6 +47,12 @@
 :host([__demo-mode]) {
   position: absolute;
   z-index: 1;
+
+  .overlay-backdrop {
+    // we need this here because safari doesn't understand what to do with
+    // position: fixed inside of a constrained demo box...
+    position: absolute;
+  }
 }
 
 // animation fun here!
