@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -140,7 +140,6 @@ export class CdsInternalOverlay extends CdsBaseFocusTrap {
   }
 
   updated(props: Map<string, any>) {
-    super.updated(props);
     const oldLayered = this.isLayered;
     const isNested = isNestedOverlay(this.focusTrapId, this.overlayIdPrefix, FocusTrapTracker.getTrapIds());
     const newLayered = this.focusTrap.active && isNested;
@@ -150,18 +149,7 @@ export class CdsInternalOverlay extends CdsBaseFocusTrap {
       this.requestUpdate('isLayered', oldLayered);
     }
 
-    if (props.has('hidden') && this.cdsMotion !== 'off') {
-      /*
-       type Animatable has this.cdsMotion; noop if not present
-
-       doAnimation(class<Animatable>, timeIntervalInMilliseconds = 300)
-      */
-      if (!this.initted) {
-        this.initted = true; // avoid firstpass run through
-      } else {
-        this.runAnimation(this.hidden ? 'hide' : 'show');
-      }
-    }
+    super.updated(props);
   }
 
   // TODO: MAKE CDS-MOTION A DECORATOR
