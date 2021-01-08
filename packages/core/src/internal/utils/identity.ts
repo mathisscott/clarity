@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -80,4 +80,22 @@ export function deepClone(obj: any) {
   // be careful using this carelessly b/c it CAN have performance implications!
 
   return isMap(obj) ? cloneMap(obj) : JSON.parse(JSON.stringify(obj));
+}
+
+// TODO: TESTME
+export function getNumericValueFromCssSecondsStyleValue(styleValueInSeconds: string): number {
+  // '1.02s'
+  const secondsStringChecker = /(\d+)?\.?(\d+)?s/g;
+  if (!styleValueInSeconds || !styleValueInSeconds.match(secondsStringChecker)) {
+    return 0; // validate expected input
+  }
+  const copyVal = styleValueInSeconds.substr(0, styleValueInSeconds.length - 1); // cut off trailing 's'
+
+  return isNumericString(copyVal) ? Number(copyVal) * 1000 : 0;
+  // 1020
+}
+
+// TODO: TESTME
+export function getMillisecondsFromSeconds(sec: number): number {
+  return Number(sec) * 1000;
 }

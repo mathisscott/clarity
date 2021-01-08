@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -134,8 +134,3 @@ export type AriaRoles =
   | 'doc-subtitle'
   | 'doc-tip'
   | 'doc-toc';
-
-// TODO: go with this one. easier to customize...
-// 'enter-start' | 'enter-something' | 'enter-done' | 'leave-start' | 'leave-done' | 'drag-active' | 'drag-done'
-// TODO: preference media query for motion instead of off? in same group that prefers dark theme...
-export type MotionValues = 'on' | 'enter-start' | 'enter-end' | 'leave-start' | 'leave-end' | 'off';

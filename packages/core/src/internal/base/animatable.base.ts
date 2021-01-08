@@ -4,61 +4,82 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { LitElement } from 'lit-element';
 import { CdsBaseFocusTrap } from './focus-trap.base.js';
 import { property } from '../decorators/property.js';
+// import { sleep } from '../utils/async.js';
 
-export const enum EnterAnimationSteps {
-  EnterStart = 'enter-start',
-  EnterActive = 'enter-active',
-  EnterEnd = 'enter-end',
-}
+// ===============================================
 
-export const enum ExitAnimationSteps {
-  ExitStart = 'exit-start',
-  ExitActive = 'exit-active',
-  ExitEnd = 'exit-end',
+/*
+  THOUGHTS
+  - we may be able to overload the "trigger" attribute or remove it altogether
+    - if we apply the [hidden][cds-motion="start"] selectors we may be able to move
+      a lot of this internal logic into the CSS
+      - this may not be as "ergonomic" for vanilla JS/TS devs but webdevs would probably
+        like it a lot more
+    - changes AnimationSteps to 'on', 'off', 'start', 'active', 'end'
+    - presence or absence of "trigger" attribute determines which animation happens...
+  ? what about active animation steps?? how do we determine those?
+    ! what's happening now?!
+*/
+
+export const enum AnimationSteps {
+  Start = 'start',
+  Active = 'active',
+  End = 'end',
 }
 
 interface Animatable {
   motion: string;
   motionReady: boolean;
   motionScript: string[];
-  motionActiveSteps: string[];
   motionTiming: string;
   motionTrigger: string;
   motionRun(): void;
   updated(props: Map<string, any>): void;
 }
 
-const DefaultAnimationScript = [
-  EnterAnimationSteps.EnterStart,
-  EnterAnimationSteps.EnterActive,
-  EnterAnimationSteps.EnterEnd,
-  ExitAnimationSteps.ExitStart,
-  ExitAnimationSteps.ExitActive,
-  ExitAnimationSteps.ExitEnd,
-];
-
-const DefaultAnimationActiveSteps = [EnterAnimationSteps.EnterActive, ExitAnimationSteps.ExitActive];
+const DefaultAnimationScript = [AnimationSteps.Start, AnimationSteps.Active, AnimationSteps.End];
 
 // TODO: SHARED FUNCTIONS GO HERE...
 
-function runAnimation(animatable: CdsAnimatable | CdsAnimatableFocusTrap) {
-  if (props.has('hidden') && this.cdsMotion !== 'off') {
-    if (!animatable.motionReady) {
-      this.initted = true; // avoid firstpass run through
-    } else {
-      this.runAnimation(this.hidden ? 'hide' : 'show');
-    }
-  }
-}
+// async function runAnimation(animatable: CdsAnimatableFocusTrap) {
+//   if (props.has('hidden') && this.cdsMotion !== 'off') {
+//     if (!animatable.motionReady) {
+//       this.initted = true; // avoid firstpass run through
+//     } else {
+//       await sleep(100);
+//       this.runAnimation(this.hidden ? 'hide' : 'show');
+//     }
+//   }
+// }
 
 function checkPropsForMotionTrigger(trigger: string, props: Map<string, any>) {
   return props.has(trigger);
 }
 
-export class CdsAnimatable extends LitElement implements Animatable {
+// TODO: TESTME
+export function nextAnimationStep(currentAnimationStep: string) {
+  switch (currentAnimationStep) {
+    case 'off':
+      return 'off';
+    case 'on':
+      return 'start';
+    case 'start':
+      return 'active';
+    case 'active':
+      return 'end';
+    case 'end':
+      return 'on';
+  }
+}
+
+// NOTE: when/if we need a non-focus-trapped animated component,
+// we will need to copy the internals of the CdsAnimatableFocusTrap in here
+// export class CdsAnimatable extends LitElement implements Animatable {
+// }
+
+export class CdsAnimatableFocusTrap extends CdsBaseFocusTrap implements Animatable {
   motionReady = false;
 
   @property({ type: String })
@@ -66,10 +87,9 @@ export class CdsAnimatable extends LitElement implements Animatable {
 
   motionScript = DefaultAnimationScript;
 
-  motionActiveSteps = DefaultAnimationActiveSteps;
-
   @property({ type: String })
   motion = 'off';
+  // TODO: need an example of this! => 'end' MutationObserver watches for this value!
 
   @property({ type: String })
   motionTiming: string;
@@ -81,36 +101,33 @@ export class CdsAnimatable extends LitElement implements Animatable {
 
   updated(props: Map<string, any>) {
     // TODO: need more functional way to kick off the animations
-    runAnimation(this);
+    // runAnimation(this);
     super.updated(props);
   }
 
   motionRun() {
-    return;
-  }
-}
+    /*
+    const animationPlan = showOrHide === 'show' ? animationPlans.get('enter') : animationPlans.get('leave');
+    // TODO: MOVE COMPUTED STYLE INTO A UTILITY
+    const activeAnimationDuration = getComputedStyle(this).getPropertyValue('--animation-duration') || '0.3s';
 
-export class CdsAnimatableFocusTrap extends CdsBaseFocusTrap implements Animatable {
-  motionReady = false;
-
-  motionScript = DefaultAnimationScript;
-
-  motionActiveSteps = DefaultAnimationActiveSteps;
-
-  @property({ type: String })
-  motionTrigger = 'hidden';
-
-  @property({ type: String })
-  motion = 'off';
-
-  @property({ type: String })
-  motionTiming: string;
-
-  updated(props: Map<string, any>) {
-    super.updated(props);
-  }
-
-  motionRun() {
+    animationPlan?.forEach(async (step, index) => {
+      if (index === 0) {
+        console.log('0 ', step);
+        this.cdsMotion = step;
+      } else {
+        console.log(`${index} ${step}: ${getMillisecondsFromSecondsStyleValue(activeAnimationDuration) + 10}`);
+        if (showOrHide === 'show') {
+          await sleep(getMillisecondsFromSecondsStyleValue(activeAnimationDuration) + 10); // pad just a little
+          this.cdsMotion = step;
+        } else {
+          await sleep(getMillisecondsFromSecondsStyleValue(activeAnimationDuration) + 10); // pad just a little
+          this.cdsMotion = step;
+          await sleep(getMillisecondsFromSecondsStyleValue(activeAnimationDuration) * 2 + 10); // pad just a little
+        }
+      }
+    });
+*/
     return;
   }
 }
