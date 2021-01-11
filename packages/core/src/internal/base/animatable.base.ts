@@ -6,40 +6,35 @@
 
 import { CdsBaseFocusTrap } from './focus-trap.base.js';
 import { property } from '../decorators/property.js';
+import { event, EventEmitter } from '../decorators/event.js';
 // import { sleep } from '../utils/async.js';
 
-// ===============================================
-
-/*
-  THOUGHTS
-  - we may be able to overload the "trigger" attribute or remove it altogether
-    - if we apply the [hidden][cds-motion="start"] selectors we may be able to move
-      a lot of this internal logic into the CSS
-      - this may not be as "ergonomic" for vanilla JS/TS devs but webdevs would probably
-        like it a lot more
-    - changes AnimationSteps to 'on', 'off', 'start', 'active', 'end'
-    - presence or absence of "trigger" attribute determines which animation happens...
-  ? what about active animation steps?? how do we determine those?
-    ! what's happening now?!
-*/
-
-export const enum AnimationSteps {
+export const enum AnimationStepLabels {
   Start = 'start',
   Active = 'active',
   End = 'end',
 }
 
+type AnimationStep = {
+  step: string;
+  isActive: boolean;
+};
+
 interface Animatable {
   motion: string;
   motionReady: boolean;
-  motionScript: string[];
+  motionScript: AnimationStep[];
   motionTiming: string;
   motionTrigger: string;
   motionRun(): void;
   updated(props: Map<string, any>): void;
 }
 
-const DefaultAnimationScript = [AnimationSteps.Start, AnimationSteps.Active, AnimationSteps.End];
+const DefaultAnimationScript: AnimationStep[] = [
+  { step: AnimationStepLabels.Start, isActive: false },
+  { step: AnimationStepLabels.Active, isActive: true },
+  { step: AnimationStepLabels.End, isActive: false },
+];
 
 // TODO: SHARED FUNCTIONS GO HERE...
 
@@ -56,6 +51,12 @@ const DefaultAnimationScript = [AnimationSteps.Start, AnimationSteps.Active, Ani
 
 function checkPropsForMotionTrigger(trigger: string, props: Map<string, any>) {
   return props.has(trigger);
+}
+
+function checkPropsAndRunAnimation(trigger: string, props: Map<string, any>, runFn: () => void) {
+  if (checkPropsForMotionTrigger(trigger, props)) {
+    runFn();
+  }
 }
 
 // TODO: TESTME
@@ -82,10 +83,32 @@ export function nextAnimationStep(currentAnimationStep: string) {
 export class CdsAnimatableFocusTrap extends CdsBaseFocusTrap implements Animatable {
   motionReady = false;
 
+  motionScript = DefaultAnimationScript;
+
+  motionContainerSelector: string;
+
+  // TODO: TESTME and make it funcy!
+  get motionContainer() {
+    if (!this.motionContainerSelector) {
+      return this;
+    } else {
+      const sel = this.motionContainerSelector;
+      const shadowDomContainer = this.shadowRoot.querySelector<HTMLElement>(sel);
+      const lightDomContainer = this.querySelector<HTMLElement>(sel);
+      return shadowDomContainer || lightDomContainer || this;
+    }
+  }
+
+  // TODO: TESTME
+  @event() protected motionChange: EventEmitter<boolean>;
+
+  // TODO: EXAMPLE USAGE OF EVENT DECORATOR. REMOVE
+  // private toggle() {
+  //   this.motionChange.emit(this.motion);
+  // }
+
   @property({ type: String })
   motionTrigger = 'hidden';
-
-  motionScript = DefaultAnimationScript;
 
   @property({ type: String })
   motion = 'off';
@@ -94,14 +117,10 @@ export class CdsAnimatableFocusTrap extends CdsBaseFocusTrap implements Animatab
   @property({ type: String })
   motionTiming: string;
 
-  firstUpdated(props: Map<string, any>) {
-    // TODO: check here to see if animation needs to start at the enter-end or on state
-    super.firstUpdated(props);
-  }
-
   updated(props: Map<string, any>) {
     // TODO: need more functional way to kick off the animations
     // runAnimation(this);
+    checkPropsAndRunAnimation(this.motionTrigger, props, this.motionRun);
     super.updated(props);
   }
 
@@ -109,6 +128,7 @@ export class CdsAnimatableFocusTrap extends CdsBaseFocusTrap implements Animatab
     /*
     const animationPlan = showOrHide === 'show' ? animationPlans.get('enter') : animationPlans.get('leave');
     // TODO: MOVE COMPUTED STYLE INTO A UTILITY
+    !! getCssPropertyValue
     const activeAnimationDuration = getComputedStyle(this).getPropertyValue('--animation-duration') || '0.3s';
 
     animationPlan?.forEach(async (step, index) => {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -9,6 +9,7 @@ import { removeTestElement, createTestElement, componentIsStable } from '@cds/co
 import { CdsControl } from '@cds/core/forms';
 import '@cds/core/forms/register.js';
 import { CdsFormGroup } from './form-group.element';
+import { getCssPropertyValue } from '@cds/core/internal';
 
 let element: HTMLElement;
 let formGroup: CdsFormGroup;
@@ -96,7 +97,7 @@ describe('cds-form-group', () => {
     await componentIsStable(formGroup); // firstUpdated
 
     expect(controls[0].querySelector('label').getBoundingClientRect().width).toBe(200);
-    expect(getComputedStyle(formGroup).getPropertyValue('--internal-label-min-width')).toBe('10rem');
+    expect(getCssPropertyValue('--internal-label-min-width', formGroup)).toBe('10rem');
   });
 
   it('should sync layouts when a control overflows', async () => {
