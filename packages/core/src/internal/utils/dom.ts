@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -157,4 +157,11 @@ export function spanWrapper(nodeList: NodeListOf<ChildNode>): void {
       node.after(spanWrapper);
       spanWrapper.appendChild(node);
     });
+}
+
+// TODO: TESTME
+export function queryElementFromShadowOrLightDom(selector: string, el = document.body): Element | null {
+  const foundInShadowDom = el.shadowRoot.querySelector(selector);
+  const foundInLightDom = el.querySelector(selector);
+  return foundInShadowDom || foundInLightDom || null;
 }

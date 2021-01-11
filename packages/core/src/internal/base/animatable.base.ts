@@ -7,73 +7,10 @@
 import { CdsBaseFocusTrap } from './focus-trap.base.js';
 import { property } from '../decorators/property.js';
 import { event, EventEmitter } from '../decorators/event.js';
+import { Animatable, AnimationStep, DefaultAnimationScript } from '../animatable/interfaces.js';
+import { getMotionContainer, checkPropsAndRunAnimation } from '../animatable/utils.js';
+
 // import { sleep } from '../utils/async.js';
-
-export const enum AnimationStepLabels {
-  Start = 'start',
-  Active = 'active',
-  End = 'end',
-}
-
-type AnimationStep = {
-  step: string;
-  isActive: boolean;
-};
-
-interface Animatable {
-  motion: string;
-  motionReady: boolean;
-  motionScript: AnimationStep[];
-  motionTiming: string;
-  motionTrigger: string;
-  motionRun(): void;
-  updated(props: Map<string, any>): void;
-}
-
-const DefaultAnimationScript: AnimationStep[] = [
-  { step: AnimationStepLabels.Start, isActive: false },
-  { step: AnimationStepLabels.Active, isActive: true },
-  { step: AnimationStepLabels.End, isActive: false },
-];
-
-// TODO: SHARED FUNCTIONS GO HERE...
-
-// async function runAnimation(animatable: CdsAnimatableFocusTrap) {
-//   if (props.has('hidden') && this.cdsMotion !== 'off') {
-//     if (!animatable.motionReady) {
-//       this.initted = true; // avoid firstpass run through
-//     } else {
-//       await sleep(100);
-//       this.runAnimation(this.hidden ? 'hide' : 'show');
-//     }
-//   }
-// }
-
-function checkPropsForMotionTrigger(trigger: string, props: Map<string, any>) {
-  return props.has(trigger);
-}
-
-function checkPropsAndRunAnimation(trigger: string, props: Map<string, any>, runFn: () => void) {
-  if (checkPropsForMotionTrigger(trigger, props)) {
-    runFn();
-  }
-}
-
-// TODO: TESTME
-export function nextAnimationStep(currentAnimationStep: string) {
-  switch (currentAnimationStep) {
-    case 'off':
-      return 'off';
-    case 'on':
-      return 'start';
-    case 'start':
-      return 'active';
-    case 'active':
-      return 'end';
-    case 'end':
-      return 'on';
-  }
-}
 
 // NOTE: when/if we need a non-focus-trapped animated component,
 // we will need to copy the internals of the CdsAnimatableFocusTrap in here
@@ -81,22 +18,15 @@ export function nextAnimationStep(currentAnimationStep: string) {
 // }
 
 export class CdsAnimatableFocusTrap extends CdsBaseFocusTrap implements Animatable {
+  // TODO: IS THIS STILL NEEDED?
   motionReady = false;
 
-  motionScript = DefaultAnimationScript;
+  motionScript: AnimationStep[] = DefaultAnimationScript;
 
   motionContainerSelector: string;
 
-  // TODO: TESTME and make it funcy!
   get motionContainer() {
-    if (!this.motionContainerSelector) {
-      return this;
-    } else {
-      const sel = this.motionContainerSelector;
-      const shadowDomContainer = this.shadowRoot.querySelector<HTMLElement>(sel);
-      const lightDomContainer = this.querySelector<HTMLElement>(sel);
-      return shadowDomContainer || lightDomContainer || this;
-    }
+    return getMotionContainer(this.motionContainerSelector, this);
   }
 
   // TODO: TESTME
@@ -107,19 +37,20 @@ export class CdsAnimatableFocusTrap extends CdsBaseFocusTrap implements Animatab
   //   this.motionChange.emit(this.motion);
   // }
 
+  // TODO: TESTME
   @property({ type: String })
   motionTrigger = 'hidden';
 
+  // TODO: TESTME
   @property({ type: String })
   motion = 'off';
   // TODO: need an example of this! => 'end' MutationObserver watches for this value!
 
+  // TODO: TESTME? i don't think this is necessary. should be able to check for animation timing via CSS
   @property({ type: String })
   motionTiming: string;
 
   updated(props: Map<string, any>) {
-    // TODO: need more functional way to kick off the animations
-    // runAnimation(this);
     checkPropsAndRunAnimation(this.motionTrigger, props, this.motionRun);
     super.updated(props);
   }
