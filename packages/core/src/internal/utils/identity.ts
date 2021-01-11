@@ -91,7 +91,7 @@ export function getNumericValueFromCssSecondsStyleValue(styleValueInSeconds: str
   }
   const copyVal = styleValueInSeconds.substr(0, styleValueInSeconds.length - 1); // cut off trailing 's'
 
-  return isNumericString(copyVal) ? Number(copyVal) * 1000 : 0;
+  return isNumericString(copyVal) ? Number(copyVal) : 0;
   // 1020
 }
 

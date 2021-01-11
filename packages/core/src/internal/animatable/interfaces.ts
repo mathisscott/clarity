@@ -13,7 +13,6 @@ export interface Animatable {
   motion: string;
   motionReady: boolean;
   motionScript: AnimationStep[];
-  motionTiming: string;
   motionTrigger: string;
   motionRun(): void;
   updated(props: Map<string, any>): void;

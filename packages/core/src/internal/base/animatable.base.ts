@@ -8,9 +8,7 @@ import { CdsBaseFocusTrap } from './focus-trap.base.js';
 import { property } from '../decorators/property.js';
 import { event, EventEmitter } from '../decorators/event.js';
 import { Animatable, AnimationStep, DefaultAnimationScript } from '../animatable/interfaces.js';
-import { getMotionContainer, checkPropsAndRunAnimation } from '../animatable/utils.js';
-
-// import { sleep } from '../utils/async.js';
+import { getMotionContainer, onAnimatableUpdate } from '../animatable/utils.js';
 
 // NOTE: when/if we need a non-focus-trapped animated component,
 // we will need to copy the internals of the CdsAnimatableFocusTrap in here
@@ -20,9 +18,7 @@ import { getMotionContainer, checkPropsAndRunAnimation } from '../animatable/uti
 export class CdsAnimatableFocusTrap extends CdsBaseFocusTrap implements Animatable {
   // TODO: IS THIS STILL NEEDED?
   motionReady = false;
-
   motionScript: AnimationStep[] = DefaultAnimationScript;
-
   motionContainerSelector: string;
 
   get motionContainer() {
@@ -44,14 +40,10 @@ export class CdsAnimatableFocusTrap extends CdsBaseFocusTrap implements Animatab
   // TODO: TESTME
   @property({ type: String })
   motion = 'off';
-  // TODO: need an example of this! => 'end' MutationObserver watches for this value!
-
-  // TODO: TESTME? i don't think this is necessary. should be able to check for animation timing via CSS
-  @property({ type: String })
-  motionTiming: string;
 
   updated(props: Map<string, any>) {
-    checkPropsAndRunAnimation(this.motionTrigger, props, this.motionRun);
+    // check and update timing before each run
+    onAnimatableUpdate(props, this);
     super.updated(props);
   }
 
