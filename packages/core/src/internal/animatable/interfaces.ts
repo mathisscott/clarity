@@ -5,8 +5,8 @@
  */
 
 export type AnimationStep = {
-  step: string;
-  isActive: boolean;
+  value: string;
+  duration?: string;
 };
 
 export interface Animatable {
@@ -14,18 +14,23 @@ export interface Animatable {
   motionReady: boolean;
   motionScript: AnimationStep[];
   motionTrigger: string;
-  motionRun(): void;
   updated(props: Map<string, any>): void;
 }
 
-export const enum AnimationStepLabels {
+export const enum AnimationStepValues {
   Start = 'start',
   Active = 'active',
   End = 'end',
+  Enabled = 'on',
+  Disabled = 'off',
 }
 
 export const DefaultAnimationScript: AnimationStep[] = [
-  { step: AnimationStepLabels.Start, isActive: false },
-  { step: AnimationStepLabels.Active, isActive: true },
-  { step: AnimationStepLabels.End, isActive: false },
+  { value: AnimationStepValues.Start },
+  {
+    value: AnimationStepValues.Active,
+    duration: '--cds-global-animation-duration-4',
+    easing: '--cds-global-animation-easing-0',
+  },
+  { value: AnimationStepValues.End },
 ];

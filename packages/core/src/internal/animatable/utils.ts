@@ -6,22 +6,15 @@
 
 import { indexOfObjectFromValue } from '../utils/array.js';
 import { queryElementFromShadowOrLightDom } from '../utils/dom.js';
-import { AnimationStep, DefaultAnimationScript } from './interfaces.js';
-import { getCssPropertyValue } from '../utils/css.js';
-import { getMillisecondsFromSeconds, getNumericValueFromCssSecondsStyleValue } from '../utils/identity.js';
+import { AnimationStep, AnimationStepValues, DefaultAnimationScript } from './interfaces.js';
+import { getCssPropertyValue, isCssPropertyName } from '../utils/css.js';
+import {
+  getMillisecondsFromSeconds,
+  getNumericValueFromCssSecondsStyleValue,
+  isNumericString,
+} from '../utils/identity.js';
 import { sleep } from '../utils/async.js';
-
-// TODO: TESTME
-export function checkPropsForMotionTrigger(trigger: string, props: Map<string, any>) {
-  return props.has(trigger);
-}
-
-// TODO: TESTME
-export function checkPropsAndRunAnimation(trigger: string, props: Map<string, any>, runFn: () => void, timing = 300) {
-  if (checkPropsForMotionTrigger(trigger, props) && timing) {
-    runFn();
-  }
-}
+import { EventEmitter } from '../decorators/event.js';
 
 // TODO: TESTME
 export function getMotionContainer(selector: string, hostElement: Element): Element {
@@ -29,24 +22,27 @@ export function getMotionContainer(selector: string, hostElement: Element): Elem
 }
 
 // TODO: TESTME; REALLY HAVE TO TEST ME HERE!!!
-export function getNextAnimationStep(currentAnimationValue: string, animationSteps = DefaultAnimationScript) {
+export function getNextAnimationStep(
+  currentAnimationValue: string,
+  animationSteps = DefaultAnimationScript
+): AnimationStep {
   if (animationSteps.length < 1 || currentAnimationValue === 'off') {
-    return 'off';
+    return { value: AnimationStepValues.Disabled };
   }
 
   if (currentAnimationValue === 'on') {
-    return animationSteps[0].step;
+    return animationSteps[0];
   }
 
   const currentAnimationValueIndex = indexOfObjectFromValue(animationSteps, 'step', currentAnimationValue);
 
   switch (currentAnimationValueIndex) {
     case -1:
-      return 'off';
+      return { value: AnimationStepValues.Disabled };
     case animationSteps.length - 1:
-      return 'on';
+      return { value: AnimationStepValues.Enabled };
     default:
-      return animationSteps[currentAnimationValueIndex + 1].step;
+      return animationSteps[currentAnimationValueIndex + 1];
   }
 }
 
@@ -58,11 +54,12 @@ export function getTimingInMillisecondsFromToken(timingPropertyName: string, hos
 }
 
 // this class only exists to make typescript happy...
-class Animator extends Element implements Animatable {
+export class Animator extends Element implements Animatable {
   motion: string;
   motionReady: boolean;
   motionScript: AnimationStep[];
   motionTrigger: string;
+  motionChange: EventEmitter<string>;
   motionRun() {}
   updated(props: Map<string, any>) {
     if (props) {
@@ -75,28 +72,65 @@ class Animator extends Element implements Animatable {
 // TODO: TESTME
 // encapsulating this to keep our super-classes light
 export function onAnimatableUpdate(props: Map<string, any>, hostEl: Animator): void {
-  if (hostEl.motion === 'off') {
-    return;
-  }
-  const timingToken = hostEl.hasAttribute('hidden') ? '--cds-global-animation-3' : '--cds-global-animation-4';
-  const timing = getTimingInMillisecondsFromToken(timingToken, hostEl);
-
-  if (hostEl.motion !== 'off' && timing === 0) {
-    hostEl.motion = 'off';
-  } else {
-    checkPropsAndRunAnimation(hostEl.motionTrigger, props, hostEl.motionRun, timing);
+  if (hostEl.motion !== 'off' && props.has(hostEl.motionTrigger)) {
+    runAnimation(props, hostEl);
   }
 }
 
 // TODO: TESTME
-export async function runAnimation(props: Map<string, any>, hostEl: Animator) {
+export function getStepDurationValue(stepDuration: string, hostEl: Element = document.body): number {
+  const stepDurationIsNumeric = isNumericString(stepDuration) && stepDuration.indexOf('.') < 0; // assumes numeric string in milliseconds
+  const stepDurationIsCssProp = isCssPropertyName(stepDuration);
+
+  switch (true) {
+    case stepDurationIsNumeric:
+      return +stepDuration;
+    case stepDurationIsCssProp:
+      return getMillisecondsFromSeconds(
+        getNumericValueFromCssSecondsStyleValue(getCssPropertyValue(stepDuration, hostEl))
+      );
+    default:
+      return 0;
+  }
+}
+
+// TODO: TESTME
+export async function runTimedAnimationStep(step: AnimationStep, hostEl: Animator) {
+  const stepNudge = 10;
+  const stepDurationValue = getStepDurationValue(step.duration, hostEl);
+
+  if (stepDurationValue === 0) {
+    // hold up for a bit then apply step value
+    runStaticAnimationStep(step, hostEl);
+  } else {
+    // apply step value, then give time for animation to run
+    hostEl.motion = step.value;
+    hostEl.motionChange.emit('begin');
+    await sleep(stepDurationValue + stepNudge);
+    hostEl.motionChange.emit('complete');
+  }
+}
+
+// TODO: TESTME
+export async function runStaticAnimationStep(step: AnimationStep, hostEl: Animator) {
+  await sleep(100);
+  hostEl.motion = step.value;
+}
+
+// TODO: TESTME
+export function runAnimation(props: Map<string, any>, hostEl: Animator) {
   if (props.has('hidden') && hostEl.motion !== 'off') {
     if (!hostEl.motionReady) {
       hostEl.motionReady = true; // avoid firstpass run through
     } else {
-      await sleep(100);
+      const script = hostEl.motionScript || [];
+      const nextStep = getNextAnimationStep(hostEl.motion, script);
 
-      // LEFTOFF: ANIMATION RUN GOES HERE!
+      if (nextStep.value === 'on' || nextStep.value === 'off') {
+        runStaticAnimationStep(nextStep, hostEl);
+      } else {
+        runTimedAnimationStep(nextStep, hostEl);
+      }
     }
   }
 }

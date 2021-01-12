@@ -60,3 +60,9 @@ export function getCssPropertyValue(
     return '';
   }
 }
+
+// TODO: TESTME
+
+export function isCssPropertyName(str: string): boolean {
+  return str.slice(0, 2) === '--';
+}
