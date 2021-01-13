@@ -10,9 +10,9 @@ export type AnimationStep = {
 };
 
 export interface Animatable {
-  motion: string;
+  cdsMotion: string;
   motionReady: boolean;
-  motionScript: AnimationStep[];
+  motionSequence: AnimationStep[];
   motionTrigger: string;
   updated(props: Map<string, any>): void;
 }
@@ -25,12 +25,11 @@ export const enum AnimationStepValues {
   Disabled = 'off',
 }
 
-export const DefaultAnimationScript: AnimationStep[] = [
+export const DefaultAnimationSequence: AnimationStep[] = [
   { value: AnimationStepValues.Start },
   {
     value: AnimationStepValues.Active,
     duration: '--cds-global-animation-duration-4',
-    easing: '--cds-global-animation-easing-0',
   },
   { value: AnimationStepValues.End },
 ];

@@ -6,15 +6,17 @@
 
 import { LitElement } from 'lit-element';
 import { CdsBaseFocusTrap } from './focus-trap.base.js';
-import { property } from '../decorators/property.js';
+import { internalProperty, property } from '../decorators/property.js';
 import { event, EventEmitter } from '../decorators/event.js';
-import { Animatable, AnimationStep, DefaultAnimationScript } from '../animatable/interfaces.js';
+import { Animatable, AnimationStep, DefaultAnimationSequence } from '../animatable/interfaces.js';
 import { getMotionContainer, onAnimatableUpdate } from '../animatable/utils.js';
 
 export class CdsAnimatable extends LitElement implements Animatable {
   motionReady = false;
-  motionScript: AnimationStep[] = DefaultAnimationScript;
+
   motionContainerSelector: string;
+
+  motionSequence: AnimationStep[] = DefaultAnimationSequence;
 
   get motionContainer() {
     return getMotionContainer(this.motionContainerSelector, this);
@@ -24,12 +26,12 @@ export class CdsAnimatable extends LitElement implements Animatable {
   @event() protected motionChange: EventEmitter<string>;
 
   // TODO: TESTME
-  @property({ type: String })
+  @internalProperty({ type: String })
   motionTrigger = 'hidden';
 
   // TODO: TESTME
   @property({ type: String })
-  motion = 'off';
+  cdsMotion = 'off';
 
   updated(props: Map<string, any>) {
     // check and update timing before each run
@@ -40,7 +42,7 @@ export class CdsAnimatable extends LitElement implements Animatable {
 
 export class CdsAnimatableFocusTrap extends CdsBaseFocusTrap implements Animatable {
   motionReady = false;
-  motionScript: AnimationStep[] = DefaultAnimationScript;
+  motionSequence: AnimationStep[] = DefaultAnimationSequence;
   motionContainerSelector: string;
 
   get motionContainer() {
@@ -56,7 +58,7 @@ export class CdsAnimatableFocusTrap extends CdsBaseFocusTrap implements Animatab
 
   // TODO: TESTME
   @property({ type: String })
-  motion = 'off';
+  cdsMotion = 'off';
 
   updated(props: Map<string, any>) {
     // check and update timing before each run

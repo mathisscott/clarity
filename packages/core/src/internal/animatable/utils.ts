@@ -6,7 +6,7 @@
 
 import { indexOfObjectFromValue } from '../utils/array.js';
 import { queryElementFromShadowOrLightDom } from '../utils/dom.js';
-import { AnimationStep, AnimationStepValues, DefaultAnimationScript } from './interfaces.js';
+import { AnimationStep, AnimationStepValues, DefaultAnimationSequence } from './interfaces.js';
 import { getCssPropertyValue, isCssPropertyName } from '../utils/css.js';
 import {
   getMillisecondsFromSeconds,
@@ -16,6 +16,14 @@ import {
 import { sleep } from '../utils/async.js';
 import { EventEmitter } from '../decorators/event.js';
 
+type Animator = Element & {
+  motionReady: boolean;
+  motionTrigger: string;
+  cdsMotion: string;
+  motionChange: EventEmitter<string>;
+  motionSequence: AnimationStep[];
+};
+
 // TODO: TESTME
 export function getMotionContainer(selector: string, hostElement: Element): Element {
   return selector ? queryElementFromShadowOrLightDom(selector) || hostElement : hostElement;
@@ -24,7 +32,7 @@ export function getMotionContainer(selector: string, hostElement: Element): Elem
 // TODO: TESTME; REALLY HAVE TO TEST ME HERE!!!
 export function getNextAnimationStep(
   currentAnimationValue: string,
-  animationSteps = DefaultAnimationScript
+  animationSteps = DefaultAnimationSequence
 ): AnimationStep {
   if (animationSteps.length < 1 || currentAnimationValue === 'off') {
     return { value: AnimationStepValues.Disabled };
@@ -53,26 +61,10 @@ export function getTimingInMillisecondsFromToken(timingPropertyName: string, hos
   return getMillisecondsFromSeconds(propNumericInSeconds);
 }
 
-// this class only exists to make typescript happy...
-export class Animator extends Element implements Animatable {
-  motion: string;
-  motionReady: boolean;
-  motionScript: AnimationStep[];
-  motionTrigger: string;
-  motionChange: EventEmitter<string>;
-  motionRun() {}
-  updated(props: Map<string, any>) {
-    if (props) {
-      return;
-    }
-    return;
-  }
-}
-
 // TODO: TESTME
 // encapsulating this to keep our super-classes light
 export function onAnimatableUpdate(props: Map<string, any>, hostEl: Animator): void {
-  if (hostEl.motion !== 'off' && props.has(hostEl.motionTrigger)) {
+  if (hostEl.cdsMotion !== 'off' && props.has(hostEl.motionTrigger)) {
     runAnimation(props, hostEl);
   }
 }
@@ -104,27 +96,27 @@ export async function runTimedAnimationStep(step: AnimationStep, hostEl: Animato
     runStaticAnimationStep(step, hostEl);
   } else {
     // apply step value, then give time for animation to run
-    hostEl.motion = step.value;
-    hostEl.motionChange.emit('begin');
+    hostEl.cdsMotion = step.value;
+    hostEl.motionChange.emit(`${step.value}`);
     await sleep(stepDurationValue + stepNudge);
-    hostEl.motionChange.emit('complete');
+    hostEl.motionChange.emit(`${step.value} complete`);
   }
 }
 
 // TODO: TESTME
 export async function runStaticAnimationStep(step: AnimationStep, hostEl: Animator) {
   await sleep(100);
-  hostEl.motion = step.value;
+  hostEl.cdsMotion = step.value;
 }
 
 // TODO: TESTME
 export function runAnimation(props: Map<string, any>, hostEl: Animator) {
-  if (props.has('hidden') && hostEl.motion !== 'off') {
+  // TODO: 'hidden' needs to be motion trigger
+  if (props.has('hidden') && hostEl.cdsMotion !== 'off') {
     if (!hostEl.motionReady) {
       hostEl.motionReady = true; // avoid firstpass run through
     } else {
-      const script = hostEl.motionScript || [];
-      const nextStep = getNextAnimationStep(hostEl.motion, script);
+      const nextStep = getNextAnimationStep(hostEl.cdsMotion, hostEl.motionSequence || []);
 
       if (nextStep.value === 'on' || nextStep.value === 'off') {
         runStaticAnimationStep(nextStep, hostEl);

@@ -16,12 +16,12 @@ export function arrayTail(arr: any[]) {
 }
 
 // TODO: TESTME
-export function indexOfObjectFromValue(objArray: object[], prop: string, value: boolean | string | number) {
+export function indexOfObjectFromValue(objArray: object[], key: string, value: boolean | string | number) {
   let index = -1;
   objArray.forEach((obj, idx) => {
     if (index > -1) {
       return;
-    } else if (obj.hasOwnProperty(prop) && (obj as any)[prop] === value) {
+    } else if (obj.hasOwnProperty(key) && (obj as any)[key] === value) {
       index = idx;
     }
   });
