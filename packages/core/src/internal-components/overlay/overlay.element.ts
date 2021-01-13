@@ -5,14 +5,15 @@
  */
 
 import {
+  AnimationStep,
+  AnimationStepValues,
   baseStyles,
   createId,
-  CdsBaseFocusTrap,
+  CdsAnimatableFocusTrap,
   event,
   EventEmitter,
   FocusTrapTracker,
   internalProperty,
-  isNumericString,
   onKey,
   property,
 } from '@cds/core/internal';
@@ -58,7 +59,12 @@ type CloseChangeSources = 'backdrop-click' | 'escape-keypress' | 'close-button-c
  * @cssprop --backdrop-background
  * @cssprop --layered-backdrop-background
  */
-export class CdsInternalOverlay extends CdsBaseFocusTrap {
+export class CdsInternalOverlay extends CdsAnimatableFocusTrap {
+  motionSequence: AnimationStep[] = [
+    { value: AnimationStepValues.Start, duration: '--cds-global-animation-duration-4' },
+    { value: AnimationStepValues.End },
+  ];
+
   @property({ type: String })
   ariaModal = 'true';
 

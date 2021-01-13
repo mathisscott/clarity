@@ -161,7 +161,7 @@ export function spanWrapper(nodeList: NodeListOf<ChildNode>): void {
 
 // TODO: TESTME
 export function queryElementFromShadowOrLightDom(selector: string, el = document.body): Element | null {
-  const foundInShadowDom = el.shadowRoot.querySelector(selector);
-  const foundInLightDom = el.querySelector(selector);
+  const foundInShadowDom = el && el.shadowRoot && el.shadowRoot.querySelector(selector);
+  const foundInLightDom = el && el.querySelector(selector);
   return foundInShadowDom || foundInLightDom || null;
 }

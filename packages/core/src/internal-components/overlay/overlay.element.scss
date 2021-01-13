@@ -57,29 +57,35 @@
 
 // animation fun here!
 
-:host([cds-motion='on']),
-:host([cds-motion='enter-start']),
-:host([cds-motion='leave-end']) {
-  .private-host {
-    opacity: 0;
-    margin-top: -300px;
-  }
+:host([cds-motion]) {
+  // different timings for enter/leave animations
+  --cds-global-animation-duration-4: 0.4s;
 }
 
 :host([cds-motion='off']),
-:host([cds-motion='enter-end']),
-:host([cds-motion='leave-start']) {
-  --animation-duration: 0.4s;
-
+:host([cds-motion='on']),
+:host([cds-motion='end']),
+:host([hidden][cds-motion='start']) {
   .private-host {
     opacity: 1;
     margin-top: 0;
 
-    // transition properties
-    // transition-timing-function
-    // transition-delay
-    // transition-property
-    // transition-duration
+    transition-property: margin-top, opacity;
+    transition-timing-function: var(--cds-global-animation-easing-0, ease-out);
+    transition-duration: var(--cds-global-animation-duration-4, 0.3);
+  }
+}
+
+:host([hidden][cds-motion]) {
+  --cds-global-animation-duration-4: 0.3s;
+}
+
+:host([hidden][cds-motion='on']),
+:host([cds-motion='start']),
+:host([hidden][cds-motion='end']) {
+  .private-host {
+    opacity: 0;
+    margin-top: -300px;
   }
 }
 
@@ -94,10 +100,8 @@
   display: inline-flex !important;
 }
 
-:host([hidden]:not(cds-motion)),
+:host([hidden]:not([cds-motion])),
 :host([hidden][cds-motion='on']),
 :host([hidden][cds-motion='off']) {
-  // LEFTOFF: EXIT ANIMATIONS ARE NOT BEHAVING...
-  --backdrop-background: red;
   display: none !important;
 }

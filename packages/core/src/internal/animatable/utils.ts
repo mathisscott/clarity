@@ -64,8 +64,12 @@ export function getTimingInMillisecondsFromToken(timingPropertyName: string, hos
 // TODO: TESTME
 // encapsulating this to keep our super-classes light
 export function onAnimatableUpdate(props: Map<string, any>, hostEl: Animator): void {
+  console.log('🟡: ohai');
   if (hostEl.cdsMotion !== 'off' && props.has(hostEl.motionTrigger)) {
-    runAnimation(props, hostEl);
+    console.log('🟡: is animation running?');
+    runAnimation(hostEl);
+  } else {
+    console.log('🔴: animation is being skipped');
   }
 }
 
@@ -89,10 +93,15 @@ export function getStepDurationValue(stepDuration: string, hostEl: Element = doc
 // TODO: TESTME
 export async function runTimedAnimationStep(step: AnimationStep, hostEl: Animator) {
   const stepNudge = 10;
-  const stepDurationValue = getStepDurationValue(step.duration, hostEl);
+  const stepDuration = step.duration || '0';
+  const stepDurationValue = getStepDurationValue(stepDuration, hostEl);
+
+  console.log('🟣: step = ', step.value);
+  console.log('🟣: stepDurationValue = ', stepDurationValue);
 
   if (stepDurationValue === 0) {
     // hold up for a bit then apply step value
+    console.log('🟣: no step duration');
     runStaticAnimationStep(step, hostEl);
   } else {
     // apply step value, then give time for animation to run
@@ -106,23 +115,36 @@ export async function runTimedAnimationStep(step: AnimationStep, hostEl: Animato
 // TODO: TESTME
 export async function runStaticAnimationStep(step: AnimationStep, hostEl: Animator) {
   await sleep(100);
+  console.log('⭕️: static run');
   hostEl.cdsMotion = step.value;
 }
 
 // TODO: TESTME
-export function runAnimation(props: Map<string, any>, hostEl: Animator) {
-  // TODO: 'hidden' needs to be motion trigger
-  if (props.has('hidden') && hostEl.cdsMotion !== 'off') {
-    if (!hostEl.motionReady) {
-      hostEl.motionReady = true; // avoid firstpass run through
-    } else {
-      const nextStep = getNextAnimationStep(hostEl.cdsMotion, hostEl.motionSequence || []);
+export function runAnimation(hostEl: Animator) {
+  if (hostEl.cdsMotion === 'off') {
+    console.log('🔴: treating as off');
+    return;
+  }
 
-      if (nextStep.value === 'on' || nextStep.value === 'off') {
-        runStaticAnimationStep(nextStep, hostEl);
+  console.log('🔵: ohai');
+
+  if (!hostEl.motionReady) {
+    // TODO: STILL NECESSARY?!
+    console.log('🔵: motion ready...');
+    hostEl.motionReady = true; // avoid firstpass run through
+  } else {
+    // append 'on' to the end so it cycles back
+    const animationSequence: AnimationStep[] = [...hostEl.motionSequence, { value: AnimationStepValues.Enabled }];
+
+    animationSequence.forEach((stp: AnimationStep) => {
+      const val = stp.value;
+      if (val === 'on' || val === 'off') {
+        console.log('🔴: static step; value = ', val);
+        runStaticAnimationStep(stp, hostEl);
       } else {
-        runTimedAnimationStep(nextStep, hostEl);
+        console.log('🟢: active step; value = ', val);
+        runTimedAnimationStep(stp, hostEl);
       }
-    }
+    });
   }
 }
