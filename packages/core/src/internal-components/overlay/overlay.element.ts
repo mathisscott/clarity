@@ -61,8 +61,9 @@ type CloseChangeSources = 'backdrop-click' | 'escape-keypress' | 'close-button-c
  */
 export class CdsInternalOverlay extends CdsAnimatableFocusTrap {
   motionSequence: AnimationStep[] = [
-    { value: AnimationStepValues.Start, duration: '--cds-global-animation-duration-4' },
-    { value: AnimationStepValues.End },
+    { value: AnimationStepValues.Start, duration: '3000' },
+    { value: AnimationStepValues.End, duration: '3000' },
+    { value: AnimationStepValues.Awaiting, duration: '3000' },
   ];
 
   @property({ type: String })
@@ -91,7 +92,7 @@ export class CdsInternalOverlay extends CdsAnimatableFocusTrap {
     this.backdrop.addEventListener('click', this.fireEventOnBackdropClick);
   }
 
-  updated(props: Map<string, any>) {
+  async updated(props: Map<string, any>) {
     const oldLayered = this.isLayered;
     const isNested = isNestedOverlay(this.focusTrapId, this.overlayIdPrefix, FocusTrapTracker.getTrapIds());
     const newLayered = this.focusTrap.active && isNested;
@@ -101,7 +102,7 @@ export class CdsInternalOverlay extends CdsAnimatableFocusTrap {
       this.requestUpdate('isLayered', oldLayered);
     }
 
-    super.updated(props);
+    await super.updated(props);
   }
 
   connectedCallback() {

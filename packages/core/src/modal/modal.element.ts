@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -77,11 +77,11 @@ export class CdsModal extends CdsInternalOverlay {
 
   // TODO: Document what's going on here with the role dialog and aria modal true
   // Also document why we have to keep everything in the light Dom
-  updated(props: Map<string, any>) {
+  async updated(props: Map<string, any>) {
     if (props.has('closable')) {
       this.toggleCloseButton();
     }
-    super.update(props);
+    await super.update(props);
   }
 
   // modal-body requires a tab index so it can be scrolled

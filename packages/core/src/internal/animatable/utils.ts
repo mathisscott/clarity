@@ -12,16 +12,21 @@ import {
   getMillisecondsFromSeconds,
   getNumericValueFromCssSecondsStyleValue,
   isNumericString,
+  isString,
+  isNilOrEmpty,
 } from '../utils/identity.js';
 import { sleep } from '../utils/async.js';
 import { EventEmitter } from '../decorators/event.js';
 
 type Animator = Element & {
+  motionActive: boolean;
   motionReady: boolean;
   motionTrigger: string;
   cdsMotion: string;
   motionChange: EventEmitter<string>;
   motionSequence: AnimationStep[];
+  cdsMotionType: string;
+  cdsMotionTypes: string;
 };
 
 // TODO: TESTME
@@ -61,15 +66,65 @@ export function getTimingInMillisecondsFromToken(timingPropertyName: string, hos
   return getMillisecondsFromSeconds(propNumericInSeconds);
 }
 
+// TODO: TESTME IF STILL NEEDED
+export function getAnimationValue(stepValue: string | (() => string)): string {
+  switch (true) {
+    case isNilOrEmpty(stepValue):
+      return '';
+    case isString(stepValue):
+      return stepValue as string;
+    default:
+      return (stepValue as () => string)();
+  }
+}
+
+// TODO: TESTME AND MOVE TO ARRAY UTILS
+export function pluckNextValue<T>(ary: T[], currentValue: T): T | null {
+  const currentIndex = ary.indexOf(currentValue);
+
+  if (currentIndex === -1) {
+    if (ary.length < 1) {
+      return null;
+    } else {
+      return ary[0];
+    }
+  }
+
+  if (ary.length < 1) {
+    return null;
+  }
+
+  if (ary.length === 1) {
+    return ary[0];
+  }
+
+  if (currentIndex + 1 >= ary.length) {
+    return ary[0];
+  }
+
+  return ary[currentIndex + 1];
+}
+
 // TODO: TESTME
 // encapsulating this to keep our super-classes light
-export function onAnimatableUpdate(props: Map<string, any>, hostEl: Animator): void {
+export async function onAnimatableUpdate(props: Map<string, any>, hostEl: Animator) {
   console.log('🟡: ohai');
-  if (hostEl.cdsMotion !== 'off' && props.has(hostEl.motionTrigger)) {
-    console.log('🟡: is animation running?');
-    runAnimation(hostEl);
+
+  if (hostEl.cdsMotion !== 'off' && props.has(hostEl.motionTrigger) && !hostEl.motionActive) {
+    console.log('🟡: animation is running on: ', hostEl);
+
+    const motionTypesAsArray = hostEl.cdsMotionTypes.split(' ');
+
+    // set animation type <= functionalize?
+    if (!hostEl.cdsMotionType) {
+      hostEl.cdsMotionType = motionTypesAsArray[0];
+    } else {
+      hostEl.cdsMotionType = pluckNextValue(motionTypesAsArray, hostEl.cdsMotionType) as string;
+    }
+
+    await runAnimation(hostEl);
   } else {
-    console.log('🔴: animation is being skipped');
+    console.log('🔴: animation or update is being skipped on: ', hostEl);
   }
 }
 
@@ -105,10 +160,8 @@ export async function runTimedAnimationStep(step: AnimationStep, hostEl: Animato
     runStaticAnimationStep(step, hostEl);
   } else {
     // apply step value, then give time for animation to run
-    hostEl.cdsMotion = step.value;
-    hostEl.motionChange.emit(`${step.value}`);
+    hostEl.cdsMotion = getAnimationValue(step.value);
     await sleep(stepDurationValue + stepNudge);
-    hostEl.motionChange.emit(`${step.value} complete`);
   }
 }
 
@@ -116,11 +169,11 @@ export async function runTimedAnimationStep(step: AnimationStep, hostEl: Animato
 export async function runStaticAnimationStep(step: AnimationStep, hostEl: Animator) {
   await sleep(100);
   console.log('⭕️: static run');
-  hostEl.cdsMotion = step.value;
+  hostEl.cdsMotion = getAnimationValue(step.value);
 }
 
 // TODO: TESTME
-export function runAnimation(hostEl: Animator) {
+export async function runAnimation(hostEl: Animator) {
   if (hostEl.cdsMotion === 'off') {
     console.log('🔴: treating as off');
     return;
@@ -136,15 +189,17 @@ export function runAnimation(hostEl: Animator) {
     // append 'on' to the end so it cycles back
     const animationSequence: AnimationStep[] = [...hostEl.motionSequence, { value: AnimationStepValues.Enabled }];
 
-    animationSequence.forEach((stp: AnimationStep) => {
+    hostEl.motionChange.emit(`${hostEl.cdsMotionType} begin`);
+    await animationSequence.forEach(async (stp: AnimationStep) => {
       const val = stp.value;
       if (val === 'on' || val === 'off') {
         console.log('🔴: static step; value = ', val);
         runStaticAnimationStep(stp, hostEl);
       } else {
         console.log('🟢: active step; value = ', val);
-        runTimedAnimationStep(stp, hostEl);
+        await runTimedAnimationStep(stp, hostEl);
       }
     });
+    hostEl.motionChange.emit(`${hostEl.cdsMotionType} complete`);
   }
 }

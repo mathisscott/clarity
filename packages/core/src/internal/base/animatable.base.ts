@@ -12,6 +12,8 @@ import { Animatable, AnimationStep, DefaultAnimationSequence } from '../animatab
 import { getMotionContainer, onAnimatableUpdate } from '../animatable/utils.js';
 
 export class CdsAnimatable extends LitElement implements Animatable {
+  motionActive = false;
+
   motionReady = false;
 
   motionContainerSelector: string;
@@ -33,7 +35,13 @@ export class CdsAnimatable extends LitElement implements Animatable {
   @property({ type: String })
   cdsMotion = 'off';
 
-  updated(props: Map<string, any>) {
+  @property({ type: String })
+  cdsMotionType: string;
+
+  @property({ type: String })
+  cdsMotionTypes: string = 'enter leave';
+
+  async updated(props: Map<string, any>) {
     // check and update timing before each run
     onAnimatableUpdate(props, this as any); // 'any' here required to keep typescript happy
     super.updated(props);
@@ -41,8 +49,13 @@ export class CdsAnimatable extends LitElement implements Animatable {
 }
 
 export class CdsAnimatableFocusTrap extends CdsBaseFocusTrap implements Animatable {
+  motionActive = false;
+
   motionReady = false;
+
   motionSequence: AnimationStep[] = DefaultAnimationSequence;
+
+  // TODO: IS THIS NEEDED?
   motionContainerSelector: string;
 
   get motionContainer() {
@@ -60,9 +73,15 @@ export class CdsAnimatableFocusTrap extends CdsBaseFocusTrap implements Animatab
   @property({ type: String })
   cdsMotion = 'off';
 
-  updated(props: Map<string, any>) {
+  @property({ type: String })
+  cdsMotionType: string;
+
+  @property({ type: String })
+  cdsMotionTypes: string = 'enter leave';
+
+  async updated(props: Map<string, any>) {
     // check and update timing before each run
-    onAnimatableUpdate(props, this as any); // 'any' here required to keep typescript happy
     super.updated(props);
+    await onAnimatableUpdate(props, this as any); // 'any' here required to keep typescript happy
   }
 }

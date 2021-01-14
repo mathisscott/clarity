@@ -5,16 +5,18 @@
  */
 
 export type AnimationStep = {
-  value: string;
+  value: string | (() => string); // TODO: may not need string fn()
   duration?: string;
 };
 
 export interface Animatable {
   cdsMotion: string;
+  cdsMotionType: string;
+  cdsMotionTypes: string;
   motionReady: boolean;
   motionSequence: AnimationStep[];
   motionTrigger: string;
-  updated(props: Map<string, any>): void;
+  updated(props: Map<string, any>): Promise<void>;
 }
 
 export const enum AnimationStepValues {
@@ -23,6 +25,7 @@ export const enum AnimationStepValues {
   End = 'end',
   Enabled = 'on',
   Disabled = 'off',
+  Awaiting = 'ready',
 }
 
 export const DefaultAnimationSequence: AnimationStep[] = [
