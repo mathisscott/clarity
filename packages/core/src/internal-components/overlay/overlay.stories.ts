@@ -87,6 +87,9 @@ export const interactive = () => {
       myOverlay.addEventListener('closeChange', () => {
         myOverlay.setAttribute('hidden', 'true');
       });
+      myOverlay.addEventListener('motionChange', (e: any) => {
+        console.log(e.detail);
+      });
       initted = true;
     }
   }

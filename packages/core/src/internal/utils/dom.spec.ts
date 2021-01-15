@@ -1,11 +1,12 @@
 /*
- * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { html } from 'lit-html';
+import { LitElement, html } from 'lit-element';
 import { createTestElement, removeTestElement } from '@cds/core/test/utils';
+import { registerElementSafely } from '@cds/core/internal';
 import {
   addAttributeValue,
   assignSlotNames,
@@ -22,7 +23,17 @@ import {
   setOrRemoveAttribute,
   spanWrapper,
   isFocusable,
+  queryChildFromLightOrShadowDom,
 } from './dom.js';
+
+/** @element test-dom-spec-element */
+export class TestElement extends LitElement {
+  render() {
+    return html`<div class="shadow-dom-el" id="shady"><slot></slot></div>`;
+  }
+}
+
+registerElementSafely('test-dom-spec-element', TestElement);
 
 describe('Functional Helper: ', () => {
   describe('getElementWidth() ', () => {
@@ -540,6 +551,47 @@ describe('Functional Helper: ', () => {
         testElement = await createTestElement(html`<div id="${testId}"></div>`);
         expect(isFocusable(testElement.querySelector('#' + testId))).toBe(false);
       });
+    });
+  });
+
+  describe('queryChildFromLightOrShadowDom', () => {
+    let testElement: HTMLElement;
+    let component: TestElement;
+
+    beforeEach(async () => {
+      testElement = await createTestElement(
+        html`<test-dom-spec-element><div class="light-dom-el" id="light">ohai</div></test-dom-spec-element>`
+      );
+      component = testElement.querySelector<TestElement>('test-dom-spec-element');
+    });
+
+    afterEach(() => {
+      removeTestElement(testElement);
+    });
+
+    it('retrieves element from light dom as expected', () => {
+      const el = queryChildFromLightOrShadowDom('.light-dom-el', component);
+      expect(el).not.toBeNull();
+      expect(el.id).toBe('light');
+    });
+
+    it('retrieves element from shadow dom as expected', () => {
+      const el = queryChildFromLightOrShadowDom('.shadow-dom-el', component);
+      expect(el).not.toBeNull();
+      expect(el.id).toBe('shady');
+    });
+
+    it('returns null if element not found in light dom or shadow dom', () => {
+      const el = queryChildFromLightOrShadowDom('.jabberwocky', component);
+      expect(el).toBeNull();
+    });
+
+    it('does not die if host el does not have a shadow dom', async () => {
+      const nonShadyHost = await createTestElement(html`<div><span class="find-me" id="found">ohai</span></div>`);
+      const el = queryChildFromLightOrShadowDom('.find-me', nonShadyHost);
+      expect(el).not.toBeNull();
+      expect(el.id).toBe('found');
+      removeTestElement(nonShadyHost);
     });
   });
 });

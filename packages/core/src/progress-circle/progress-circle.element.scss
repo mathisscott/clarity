@@ -5,6 +5,7 @@
   --ring-opacity: 1;
   --ring-color: #{$cds-alias-status-neutral-tint};
   --fill-color: #{$cds-alias-status-neutral};
+  --fill-speed: #{$cds-global-animation-duration-4};
   font-family: inherit;
   font-size: inherit;
   color: inherit;
@@ -29,7 +30,7 @@ svg {
 
   .arcstroke {
     stroke: var(--fill-color);
-    transition: stroke-dashoffset 300ms ease-in-out;
+    transition: stroke-dashoffset var(--fill-speed) ease-in-out;
   }
 }
 

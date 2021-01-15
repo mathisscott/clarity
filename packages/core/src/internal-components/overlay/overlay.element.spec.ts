@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -15,12 +15,24 @@ describe('Overlay helper functions: ', () => {
       expect(isNestedOverlay('ohai_2', 'ohai_', ['ohai_1', 'ohai_2', 'ohai_3'])).toBe(true, 'middle one checks');
     });
 
+    // this situation happens during an update loop when the focus trap list is updated just
+    // prior to the rest of the component and the component still needs to think of itself as
+    // "nested" or "layered". a good example is running an exit animation asynchronously
+    // outside of the update loop.
+    it('should return true if id is not present and it was previously present', () => {
+      expect(isNestedOverlay('ohai_2', 'ohai_', ['abcd', 'ohai_1', 'efgh', 'ijkl'], true)).toBe(true);
+    });
+
     it('should ignore non-prefixed ids', () => {
       expect(isNestedOverlay('ohai_2', 'ohai_', ['abcd', 'ohai_1', 'efgh', 'ijkl', 'ohai_2'])).toBe(true);
     });
 
     it('should return false if id is not present', () => {
       expect(isNestedOverlay('ohai_2', 'ohai_', ['abcd', 'ohai_1', 'efgh', 'ijkl'])).toBe(false);
+    });
+
+    it('should return false if id is not present and it was previously not present', () => {
+      expect(isNestedOverlay('ohai_2', 'ohai_', ['abcd', 'ohai_1', 'efgh', 'ijkl'], false)).toBe(false);
     });
 
     it('should return false if id is first in the list', () => {

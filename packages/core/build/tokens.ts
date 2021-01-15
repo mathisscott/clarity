@@ -417,6 +417,25 @@ const typography = {
   },
 };
 
+const animation = {
+  duration: {
+    0: token('0s'),
+    1: token('0.1s'),
+    2: token('0.15s'),
+    3: token('0.2s'),
+    4: token('0.3s'),
+    5: token('0.4s'),
+    6: token('0.5s'),
+    7: token('0.7s'),
+    8: token('0.8s'),
+  },
+  easing: {
+    0: token('cubic-bezier(0,.99,0,.99)'),
+    1: token('cubic-bezier(0, 1.5, 0.5, 1)'),
+    2: token('cubic-bezier(0.17, 0.4, 0.8, 0.79)'),
+  },
+};
+
 const aliases = {
   object: {
     border: {
@@ -518,6 +537,6 @@ const aliases = {
 };
 
 export const baseTheme: CdsTheme = {
-  global: { layout, space, color, typography },
+  global: { layout, space, color, typography, animation },
   aliases,
 };
