@@ -74,6 +74,9 @@ type CloseChangeSources = 'backdrop-click' | 'escape-keypress' | 'close-button-c
  * @cssprop --layered-backdrop-background
  * @cssprop --animation-duration
  * @cssprop --animation-easing
+ *
+ * KNOWN ISSUE: Safari jumps through the exit animation but only when the ESC key is pressed.
+ *
  */
 @animate({
   hidden: {

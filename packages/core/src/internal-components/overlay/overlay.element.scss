@@ -49,11 +49,6 @@
 
 // animation related styles
 
-// https://developers.google.com/web/fundamentals/web-components/best-practices#add-a-:host-display-style-that-respects-the-hidden-attribute.
-:host([hidden][_cds-animation-status='ready']) {
-  display: none !important;
-}
-
 :host([cds-motion='on'][_cds-animation-status='active']) {
   display: inline-flex !important;
 }

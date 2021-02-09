@@ -130,12 +130,12 @@ export const multiple = () => {
     if (!initted) {
       const parentOverlay = document.getElementById(multiOverlayId) as CdsInternalOverlay;
       parentOverlay.addEventListener('closeChange', () => {
-        parentOverlay.setAttribute('hidden', 'true');
+        parentOverlay.setAttribute('hidden', '');
       });
 
       const childOverlay = document.getElementById(multiChildOverlayId) as CdsInternalOverlay;
       childOverlay.addEventListener('closeChange', () => {
-        childOverlay.setAttribute('hidden', 'true');
+        childOverlay.setAttribute('hidden', '');
       });
 
       initted = true;
