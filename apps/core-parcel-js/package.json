@@ -12,9 +12,7 @@
   "targets": {
     "browserModern": {
       "engines": {
-        "browserslist": [
-          "last 1 Chrome version"
-        ]
+        "browsers": "last 1 Chrome version"
       }
     }
   },
