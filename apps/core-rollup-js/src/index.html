@@ -14,15 +14,147 @@
         This is a minimal Clarity Core demo demonstrating performance characteristics with RollupJS.
       </p>
 
+      <div>
+        <cds-accordion>
+          <cds-accordion-panel cds-motion="off" expanded>
+            <cds-accordion-header>Static panel #1</cds-accordion-header>
+            <cds-accordion-content>
+              <p cds-text="body">Expanded accordion panel content</p>
+            </cds-accordion-content>
+          </cds-accordion-panel>
+          <cds-accordion-panel cds-motion="off">
+            <cds-accordion-header>Static panel #2</cds-accordion-header>
+            <cds-accordion-content>
+              <cds-button status="primary" type="button" onclick="showFocusModal()">Show Modal</cds-button>
+              <cds-modal hidden id="modal-focus">
+                <cds-modal-header>
+                  <h3 cds-text="title" cds-first-focus tabindex="-1">
+                    Managing Focus in a Modal
+                  </h3>
+                </cds-modal-header>
+                <cds-modal-content>
+                  <p cds-text="body">
+                    This example shows how focus can be managed inside a modal.
+                  </p>
+                </cds-modal-content>
+                <cds-modal-actions>
+                  <cds-button onClick="hideFocusModal()">Ok</cds-button>
+                </cds-modal-actions>
+              </cds-modal>
+            </cds-accordion-content>
+          </cds-accordion-panel>
+          <cds-accordion-panel cds-motion="off" disabled>
+            <cds-accordion-header>Disabled accordion panel</cds-accordion-header>
+            <cds-accordion-content>
+              <p cds-text="body">Disabled accordion content</p>
+            </cds-accordion-content>
+          </cds-accordion-panel>
+          <cds-accordion-panel cds-motion="off">
+            <cds-accordion-header>Static panel #3</cds-accordion-header>
+            <cds-accordion-content>
+              <p cds-text="body">
+                Finite but unbounded stirred by starlight vanquish the impossible the ash of stellar alchemy two ghostly
+                white figures in coveralls and helmets are softly dancing muse.
+              </p>
+            </cds-accordion-content>
+          </cds-accordion-panel>
+        </cds-accordion>
+      </div>
+
+      <div style="transform: translateZ(0); height: 320px; width: 100%;">
+        <p cds-text="body" cds-layout="p:md">I have transform Z!</p>
+        <cds-button status="primary" type="button" onclick="showFocusModal2()">Show Modal</cds-button>
+        <cds-modal hidden id="modal-focus-2">
+          <cds-modal-header>
+            <h3 cds-text="title" cds-first-focus tabindex="-1">
+              Managing Focus in a Modal
+            </h3>
+          </cds-modal-header>
+          <cds-modal-content>
+            <p cds-text="body">
+              This example shows how focus can be managed inside a modal.
+            </p>
+          </cds-modal-content>
+          <cds-modal-actions>
+            <cds-button onClick="hideFocusModal2()">Ok</cds-button>
+          </cds-modal-actions>
+        </cds-modal>
+      </div>
+
       <p cds-text="body">
         <cds-icon shape="search"></cds-icon>
         <a href="https://clarity.design/storybook/core" cds-text="link">API Documentation</a>
       </p>
 
       <p cds-text="body">
-        <cds-icon shape="pencil"></cds-icon> <a href="#" cds-text="link">Blog Post (coming soon)</a>
+        <cds-icon shape="pencil"></cds-icon>
+        <a href="#" cds-text="link">Blog Post (coming soon)</a>
       </p>
     </main>
     <script src="/index.js"></script>
+    <script type="text/javascript">
+      const onExpandedChange = {
+        // handleEvent method is required.
+        handleEvent(e) {
+          const myPanel = e.target;
+          if (!myPanel.disabled) {
+            if (e.target.id === 'async' && e.detail === true) {
+              const asyncPanel = e.target.querySelector('cds-accordion-content');
+              asyncPanel.innerHTML = `<div cds-layout="horizontal align:center"><cds-progress-circle size="md"></cds-progress-circle></div>`;
+              const timerId = setTimeout(() => {
+                asyncPanel.innerHTML = `<p cds-text="body">Paroxysm of global death quasar citizens of distant epochs dispassionate extraterrestrial observer laws of physics colonies. How far away stirred by starlight bits of moving fluff as a patch of light descended from astronomers across the centuries. Invent the universe finite but unbounded the ash of stellar alchemy made in the interiors of collapsing stars not a sunrise but a galaxyrise hearts of the stars. Citizens of distant epochs a still more glorious dawn awaits the carbon in our apple pies hearts of the stars a very small stage in a vast cosmic arena the carbon in our apple pies and billions upon billions upon billions upon billions upon billions upon billions upon billions.</p>`;
+                clearTimeout(timerId);
+              }, 3000);
+            }
+            myPanel.expanded = e.detail;
+          }
+        },
+        // event listener objects can also define zero or more of the event
+        // listener options: capture, passive, and once.
+        capture: true,
+      };
+
+      document.querySelectorAll('cds-accordion-panel').forEach(acc => {
+        acc.addEventListener('expandedChange', onExpandedChange);
+      });
+
+      let initted = false;
+      const modalId = 'modal-focus';
+      const modalIdToo = 'modal-focus-2';
+
+      function showFocusModal() {
+        const myOverlay = document.getElementById(modalId);
+        myOverlay.removeAttribute('hidden');
+
+        if (!initted) {
+          myOverlay.addEventListener('closeChange', () => {
+            myOverlay.setAttribute('hidden', 'true');
+          });
+          initted = true;
+        }
+      }
+
+      function hideFocusModal() {
+        const myOverlay = document.getElementById(modalId);
+        myOverlay.closeOverlay();
+      }
+
+      function showFocusModal2() {
+        const myOverlay = document.getElementById(modalIdToo);
+        myOverlay.removeAttribute('hidden');
+
+        if (!initted) {
+          myOverlay.addEventListener('closeChange', () => {
+            myOverlay.setAttribute('hidden', 'true');
+          });
+          initted = true;
+        }
+      }
+
+      function hideFocusModal2() {
+        const myOverlay = document.getElementById(modalIdToo);
+        myOverlay.closeOverlay();
+      }
+    </script>
   </body>
 </html>
