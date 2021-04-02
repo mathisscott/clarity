@@ -6,6 +6,8 @@ import { CdaCounter } from './counter.element.js';
 import '@cds/core/button/register.js';
 import '@cds/core/icon/register.js';
 
+import '@cds/core/internal-components/popup/register.js';
+
 ClarityIcons.addIcons(plusIcon, minusIcon);
 
 @customElement('cda-counter')

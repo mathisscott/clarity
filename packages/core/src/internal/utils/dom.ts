@@ -7,6 +7,8 @@ import includes from 'ramda/es/includes.js';
 import without from 'ramda/es/without.js';
 
 import { isStringAndNotNilOrEmpty } from './identity.js';
+import { getCssPropertyValue } from './css.js';
+import { pluckPixelValue, transformSpacedStringToArray } from './string.js';
 
 /**
  * We are not going to be opinionated about the use of the disabled attribute here.
@@ -109,7 +111,7 @@ export function removeAttributeValue(element: HTMLElement, attr: string, value: 
     const currentAttrVal = element.getAttribute(attr);
     if (currentAttrVal) {
       // remove the specified value from the list of values currently set
-      const attrValues: string[] = without([value], currentAttrVal.split(' '));
+      const attrValues: string[] = without([value], transformSpacedStringToArray(currentAttrVal));
       const newAttrValue = attrValues.join(' ');
 
       if (newAttrValue) {
@@ -159,10 +161,23 @@ export function spanWrapper(nodeList: NodeListOf<ChildNode>): void {
     });
 }
 
-export function queryChildFromLightOrShadowDom(hostEl: Element, selector?: string): Element | null {
+export function queryChildFromLightOrShadowDom(hostEl: HTMLElement, selector?: string): HTMLElement | null {
   if (!selector) {
     return null;
   }
 
   return hostEl.querySelector(selector) || hostEl?.shadowRoot?.querySelector(selector) || null;
+}
+
+export function getWindowDimensions(win: Window = window): { width: number; height: number } {
+  const doc = win?.document;
+  const h = win?.innerHeight || doc?.documentElement?.clientHeight || 0;
+  const w = win?.innerWidth || doc?.documentElement?.clientWidth || 0;
+  return { width: w, height: h };
+}
+
+export function windowIsAboveMobileBreakpoint(breakpointAsPixelValue?: string): boolean {
+  const breakpointVal =
+    breakpointAsPixelValue || (getCssPropertyValue('--cds-global-layout-width-xs') as string).trim();
+  return breakpointAsPixelValue?.endsWith('px') ? pluckPixelValue(breakpointVal) >= getWindowDimensions().width : false;
 }

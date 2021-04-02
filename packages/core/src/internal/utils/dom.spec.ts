@@ -12,8 +12,10 @@ import {
   assignSlotNames,
   getElementWidth,
   getElementWidthUnless,
+  getWindowDimensions,
   hasAttributeAndIsNotEmpty,
   HTMLAttributeTuple,
+  windowIsAboveMobileBreakpoint,
   isHTMLElement,
   removeAttributes,
   removeAttributeValue,
@@ -592,6 +594,49 @@ describe('Functional Helper: ', () => {
       expect(el).not.toBeNull();
       expect(el.id).toBe('found');
       removeTestElement(nonShadyHost);
+    });
+  });
+
+  describe('getWindowDimensions(): ', () => {
+    it('returns a dimension object with window height and width as expected', () => {
+      const bodyEl = window.document.body;
+      bodyEl.style.height = '100vh';
+      bodyEl.style.width = '100vw';
+
+      const bodyElRect = bodyEl.getBoundingClientRect();
+      const { height, width } = getWindowDimensions(); // defaults to base window object if no arguments sent
+
+      expect(height).toBe(bodyElRect.height, 'height is as expected');
+      expect(width).toBe(bodyElRect.width, 'width is as expected');
+    });
+
+    it('handles bad input', () => {
+      const testWindowWithoutDocument = {} as Window;
+
+      expect(getWindowDimensions(null)).toEqual({ width: 0, height: 0 }, 'handles null');
+      expect(() => {
+        getWindowDimensions(null);
+      }).not.toThrowError('does not die on null');
+
+      expect(getWindowDimensions(testWindowWithoutDocument)).toEqual(
+        { width: 0, height: 0 },
+        'handles a bad window object'
+      );
+      expect(() => {
+        getWindowDimensions(testWindowWithoutDocument);
+      }).not.toThrowError('does not die with a bad window object');
+    });
+  });
+
+  describe('windowIsAboveMobileBreakpoint(): ', () => {
+    it('should break if test suite changes default dimensions', () => {
+      // default window width in tests is 800
+      expect(window.innerWidth).toBe(800, 'width checks out');
+    });
+
+    it('returns as expected', () => {
+      expect(windowIsAboveMobileBreakpoint()).toBe(false, 'defaults to mobile breakpoint (576px)');
+      expect(windowIsAboveMobileBreakpoint('802px')).toBe(true, 'handles px values');
     });
   });
 });

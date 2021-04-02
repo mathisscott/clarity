@@ -125,6 +125,8 @@ export default /** @type {import('@web/dev-server').DevServerConfig} */ ({
             '@cds/core/internal-components/overlay/register.js': '/dist/core/internal-components/overlay/register.js',
             '@cds/core/internal-components/panel': '/dist/core/internal-components/panel/index.js',
             '@cds/core/internal-components/panel/register.js': '/dist/core/internal-components/panel/register.js',
+            '@cds/core/internal-components/popup': '/dist/core/internal-components/popup/index.js',
+            '@cds/core/internal-components/popup/register.js': '/dist/core/internal-components/popup/register.js',
             '@cds/core/modal': '/dist/core/modal/index.js',
             '@cds/core/modal/register.js': '/dist/core/modal/register.js',
             '@cds/core/pagination': '/dist/core/pagination/index.js',

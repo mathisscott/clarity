@@ -20,7 +20,7 @@ export interface CDSGlobal {
     /** Set to true for production env to disable dev time logging and tooling */
     production: boolean;
   };
-  state?: CDSState;
+  state: CDSState;
 }
 
 export interface CDSLog {

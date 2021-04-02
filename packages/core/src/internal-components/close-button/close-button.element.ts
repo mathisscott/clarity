@@ -5,14 +5,15 @@
  */
 
 import { html } from 'lit';
-import { CdsBaseButton, baseStyles, isBrowser, property, setAttributes, HTMLAttributeTuple } from '@cds/core/internal';
+import { CdsBaseButton, baseStyles, isBrowser, property, setAttributes, HTMLAttributeTuple, queryChildFromLightOrShadowDom } from '@cds/core/internal';
 import { ClarityIcons } from '@cds/core/icon/icon.service.js';
 import { timesIcon } from '@cds/core/icon/shapes/times.js';
 import styles from './close-button.element.scss';
 
 export const CdsCloseButtonTagName = 'cds-internal-close-button';
 
-export function appendCloseButton(
+// TODO: TESTME
+export function createCloseButton(
   hostElement: HTMLElement,
   attributes?: HTMLAttributeTuple[],
   clickHandler?: () => void
@@ -27,13 +28,45 @@ export function appendCloseButton(
     if (clickHandler) {
       closeBtn.addEventListener('click', clickHandler.bind(hostElement));
     }
-    hostElement.appendChild(closeBtn);
+
+    return closeBtn;
+  } else {
+    return false;
+  }
+}
+
+// TODO: TESTME
+export function prependCloseButton(
+  hostElement: HTMLElement,
+  attributes?: HTMLAttributeTuple[],
+  clickHandler?: () => void
+) {
+  const closeButton = createCloseButton(hostElement, attributes, clickHandler);
+
+  if (closeButton === false) {
+    return;
+  } else {
+    hostElement.insertBefore(closeButton, hostElement.children[0]);
+  }
+}
+
+export function appendCloseButton(
+  hostElement: HTMLElement,
+  attributes?: HTMLAttributeTuple[],
+  clickHandler?: () => void
+) {
+  const closeButton = createCloseButton(hostElement, attributes, clickHandler);
+
+  if (closeButton === false) {
+    return;
+  } else {
+    hostElement.appendChild(closeButton);
   }
 }
 
 export function removeCloseButton(hostElement: HTMLElement) {
   if (isBrowser() && !!hostElement) {
-    const closeBtn = hostElement.querySelector(CdsCloseButtonTagName);
+    const closeBtn = queryChildFromLightOrShadowDom(hostElement, CdsCloseButtonTagName);
 
     if (closeBtn) {
       hostElement.removeChild(closeBtn);

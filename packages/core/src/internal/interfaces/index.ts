@@ -16,9 +16,9 @@ export type StatusTypes = 'neutral' | 'info' | 'success' | 'warning' | 'danger';
 
 // MISC
 export type AriaLivePolitenessSettings = 'off' | 'polite' | 'assertive';
-
 export type Directions = 'up' | 'down' | 'left' | 'right';
-
+// TODO: do we need sides?!
+// export type Sides = 'top' | 'right' | 'bottom' | 'left';
 export type Orientations = 'horizontal' | 'vertical';
 
 // A11y

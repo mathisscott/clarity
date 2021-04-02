@@ -26,6 +26,22 @@
 
     <p cds-text="body">Current Count: <span id="current-count"></span></p>
 
+    <div style="margin: 240px 0 0 240px;">
+      <cds-button
+        id="yephai"
+        status="primary"
+        type="button"
+        onclick="showOverlay()"
+        >Show</cds-button
+      >
+      <cds-internal-popup hidden id="ohai">
+        <div cds-layout="vertical gap:lg p:lg align:stretch">
+          <h1 cds-text="section">Popup</h1>
+          <p cds-text="body">I am a popup.</p>
+        </div>
+      </cds-internal-popup>
+    </div>
+
     <script type="module" src="./index.js"></script>
     <script type="text/javascript">
       window.onload = function () {
@@ -43,6 +59,25 @@
           location.reload();
         }
       };
+
+      let initted = false;
+      const popupId2 = 'ohai';
+      const anchorId = 'yephai';
+
+      function showOverlay() {
+        const myAnchor = document.getElementById(anchorId);
+        const myPopup = document.getElementById(popupId2);
+
+        myPopup.anchor = myAnchor;
+        myPopup.removeAttribute('hidden');
+
+        if (!initted) {
+          myPopup.addEventListener('closeChange', () => {
+            myPopup.setAttribute('hidden', '');
+          });
+          initted = true;
+        }
+      }
     </script>
   </body>
 </html>

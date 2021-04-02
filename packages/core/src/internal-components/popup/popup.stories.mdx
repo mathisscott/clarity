@@ -1,0 +1,53 @@
+import '@cds/core/alert/register.js';
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { html, LitElement } from 'lit';
+
+<Meta title="Internal API/Popup" />
+
+<cds-alert-group status="danger" cds-layout="m-b:lg">
+  <cds-alert>This is an internal API and should only be used for developing Clarity Components.</cds-alert>
+</cds-alert-group>
+
+# Popup
+
+// TODO:
+
+## Interaction
+
+## Installation
+
+To use the internal component add the register import to the `register.ts` of
+the consuming component.
+
+```typescript
+import '@cds/core/internal-components/popup/register.js';
+```
+
+```html
+<cds-internal-popup>
+  <div>
+    <h1>I am a popup</h1>
+    <p>Hello, I am a popup. You can put whatever content you want in me.</p>
+  </div>
+</cds-internal-popup>
+```
+
+## Test
+
+// TODO:
+
+<Preview>
+  <Story id="internal-stories-popup--test" />
+</Preview>
+
+## Overflow Test
+
+// TODO:
+
+<Preview>
+  <Story id="internal-stories-popup--scroll-test" />
+</Preview>
+
+## API
+
+<Props of={'cds-internal-popup'} />

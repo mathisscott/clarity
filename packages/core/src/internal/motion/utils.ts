@@ -24,7 +24,8 @@ import clone from 'ramda/es/clone.js';
 import { getCssPropertyValue, isCssPropertyName } from '../utils/css.js';
 import { isPrefixedBy, isSuffixedBy, getNumericValueFromCssSecondsStyleValue, removePrefix } from '../utils/string.js';
 import { queryChildFromLightOrShadowDom } from '../utils/dom.js';
-import { allPropertiesPass, getMillisecondsFromSeconds } from '../utils/identity.js';
+import { allPropertiesPass } from '../utils/identity.js';
+import { getMillisecondsFromSeconds } from '../utils/math.js';
 
 /**
  * runPropertyAnimations() is a utility function called by the @animate(). It is a single point of entry
@@ -177,13 +178,13 @@ export function getAnimationPromiseInstructions(
     });
 }
 
-export function getAnimationTarget(hostEl: Element, targetSelector?: string): Element {
+export function getAnimationTarget(hostEl: HTMLElement, targetSelector?: string): Element {
   return queryChildFromLightOrShadowDom(hostEl, targetSelector) || hostEl;
 }
 
 export function getAnimationKeyframesOrPropertyIndexedFrames(
   animationConfig: AnimationKeyframes | PropertyIndexedKeyframes,
-  hostEl: Element
+  hostEl: HTMLElement
 ): AnimationKeyframes | PropertyIndexedKeyframes {
   return !Array.isArray(animationConfig) ? animationConfig : sizeDimensionKeyframes(animationConfig, hostEl);
 }
@@ -323,7 +324,10 @@ export function setAnimationProperty(
 }
 
 // -- TRANSFORM PROPERTY-DRIVEN ANIMATION OBJECTS TO ANIMATION CONFIG OBJECTS ---
-export function sizeDimensionKeyframes(animationKeyframes: AnimationKeyframes, hostEl: Element): AnimationKeyframes {
+export function sizeDimensionKeyframes(
+  animationKeyframes: AnimationKeyframes,
+  hostEl: HTMLElement
+): AnimationKeyframes {
   if (!Array.isArray(animationKeyframes)) {
     return animationKeyframes;
   }

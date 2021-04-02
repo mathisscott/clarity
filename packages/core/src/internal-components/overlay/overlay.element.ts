@@ -22,6 +22,7 @@ import {
 import { html } from 'lit';
 import { query } from 'lit/decorators/query.js';
 import styles from './overlay.element.scss';
+import { styles as sharedStyles } from './shared.element.css.js';
 
 export function isNestedOverlay(
   myId: string,
@@ -187,6 +188,6 @@ export class CdsInternalOverlay extends CdsBaseFocusTrap implements Animatable {
   };
 
   static get styles() {
-    return [baseStyles, styles];
+    return [baseStyles, styles, sharedStyles];
   }
 }

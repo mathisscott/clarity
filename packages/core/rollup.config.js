@@ -48,6 +48,7 @@ const config = {
       './src/internal-components/close-button',
       './src/internal-components/overlay',
       './src/internal-components/panel',
+      './src/internal-components/popup',
       './src/modal',
       './src/pagination',
       './src/password',

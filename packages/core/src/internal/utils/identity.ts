@@ -165,6 +165,13 @@ export function anyPropertiesPass(obj: any, propValuePairs: string): boolean {
   return anyOrAllPropertiesPass(obj, propValuePairs, 'any');
 }
 
-export function getMillisecondsFromSeconds(sec: number): number {
-  return isNil(sec) ? 0 : Number(sec) * 1000;
+export function allAre<T>(testFn: (val: T) => boolean, ...itemsToCheck: T[]): boolean {
+  return itemsToCheck.map(item => testFn(item)).indexOf(false) < 0;
+}
+
+export function allAreDefined<U>(...items: U[]): boolean {
+  const testFn = (val: U) => {
+    return val !== undefined;
+  };
+  return allAre(testFn, ...items);
 }

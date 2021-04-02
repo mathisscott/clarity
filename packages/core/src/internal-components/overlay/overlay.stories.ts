@@ -62,6 +62,18 @@ export const basic = () => {
         width: 240px;
         height: auto;
       }
+
+      @media screen and (max-width: 576px) {
+        .my-overlay {
+          width: 100%;
+          height: 100%;
+        }
+
+        .my-overlay h3,
+        .my-overlay cds-button {
+          flex-grow: 0 !important;
+        }
+      }
     </style>
     <cds-demo popover>
       <cds-internal-overlay _demo-mode>
@@ -104,6 +116,18 @@ export const interactive = () => {
         border: 1px solid #565656;
         width: 240px;
         height: auto;
+      }
+
+      @media screen and (max-width: 576px) {
+        .my-overlay {
+          width: 100%;
+          height: 100%;
+        }
+
+        .my-overlay h1,
+        .my-overlay cds-button {
+          flex-grow: 0 !important;
+        }
       }
     </style>
     <cds-button status="primary" type="button" @click=${showOverlay}>Show Overlay Demo</cds-button>
@@ -158,6 +182,18 @@ export const multiple = () => {
         border: 1px solid #565656;
         width: 480px;
         height: auto;
+      }
+
+      @media screen and (max-width: 576px) {
+        .my-multi-overlay {
+          width: 100%;
+          height: 100%;
+        }
+
+        .my-multi-overlay h1,
+        .my-multi-overlay cds-button {
+          flex-grow: 0 !important;
+        }
       }
     </style>
     <cds-button status="primary" type="button" @click=${showMultiOverlay}>Show Layered Overlays</cds-button>
@@ -219,6 +255,18 @@ export const firstFocus = () => {
         width: 480px;
         height: auto;
       }
+
+      @media screen and (max-width: 576px) {
+        .my-overlay {
+          width: 100%;
+          height: 100%;
+        }
+
+        .my-overlay h1,
+        .my-overlay cds-button {
+          flex-grow: 0 !important;
+        }
+      }
     </style>
     <cds-button status="primary" type="button" @click=${showOverlay}>Show Overlay With Managed Focus</cds-button>
     <cds-internal-overlay hidden id="${overlayId}">
@@ -259,8 +307,19 @@ export const custom = () => {
       .orange-overlay {
         --layered-backdrop-background: orange;
       }
-    </style>
 
+      @media screen and (max-width: 576px) {
+        .my-multi-overlay {
+          width: 100%;
+          height: 100%;
+        }
+
+        .my-multi-overlay h1,
+        .my-multi-overlay cds-button {
+          flex-grow: 0 !important;
+        }
+      }
+    </style>
     <cds-demo popover>
       <cds-internal-overlay _demo-mode id="${purpleOverlayId}" class="purple-overlay">
         <div
@@ -393,6 +452,18 @@ export const overrideAnimation = () => {
         width: 480px;
         height: auto;
       }
+
+      @media screen and (max-width: 576px) {
+        .my-overlay {
+          width: 100%;
+          height: 100%;
+        }
+
+        .my-overlay h1,
+        .my-overlay cds-button {
+          flex-grow: 0 !important;
+        }
+      }
     </style>
     <cds-button status="primary" type="button" @click=${showOverrideOverlay}>Show Custom Exit</cds-button>
     <cds-internal-overlay hidden id="${overlayId}" cds-motion='{ "hidden": { "true": "cds-modal-hinge-exit" } }'>
@@ -434,6 +505,18 @@ export const lowMotion = () => {
         border: 1px solid #565656;
         width: 480px;
         height: auto;
+      }
+
+      @media screen and (max-width: 576px) {
+        .my-overlay {
+          width: 100%;
+          height: 100%;
+        }
+
+        .my-overlay h1,
+        .my-overlay cds-button {
+          flex-grow: 0 !important;
+        }
       }
     </style>
     <div cds-theme="low-motion">

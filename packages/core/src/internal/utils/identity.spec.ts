@@ -5,6 +5,8 @@
  */
 
 import {
+  allAre,
+  allAreDefined,
   createId,
   deepClone,
   getEnumValues,
@@ -20,8 +22,8 @@ import {
   isStringOrNil,
   isStringAndNotNilOrEmpty,
   anyOrAllPropertiesPass,
-  getMillisecondsFromSeconds,
   convertStringPropValuePairsToTuple,
+  anyPropertiesPass,
 } from './identity.js';
 
 enum TestEnum {
@@ -274,6 +276,13 @@ describe('Functional Helper: ', () => {
     });
   });
 
+  describe('anyPropertiesPass(): ', () => {
+    it('handles "any" case as expected', () => {
+      const propValStringToCheck = 'ohai:howdy kthxbye:nope';
+      expect(anyPropertiesPass({ ohai: 'howdy' }, propValStringToCheck)).toBe(true);
+    });
+  });
+
   describe('anyOrAllPropertiesPass(): ', () => {
     const propValStringToCheck = 'isValid:true status:success currentPage:3';
 
@@ -299,6 +308,7 @@ describe('Functional Helper: ', () => {
     });
 
     it('returns true if propValue string is empty', () => {
+      expect(anyOrAllPropertiesPass({}, '', 'all')).toBe(true);
       expect(anyOrAllPropertiesPass({ isValid: true }, '', 'all')).toBe(true);
       expect(anyOrAllPropertiesPass({ isValid: true }, null, 'all')).toBe(true);
       expect(anyOrAllPropertiesPass({ isValid: true }, undefined, 'all')).toBe(true);
@@ -319,25 +329,6 @@ describe('Functional Helper: ', () => {
       expect(anyOrAllPropertiesPass(null, propValStringToCheck, 'all')).toBe(false);
       expect(anyOrAllPropertiesPass(undefined, propValStringToCheck, 'any')).toBe(false);
       expect(anyOrAllPropertiesPass(undefined, propValStringToCheck, 'all')).toBe(false);
-    });
-  });
-
-  describe('getMillisecondsFromSeconds(): ', () => {
-    it('converts seconds to milliseconds as expected', () => {
-      expect(getMillisecondsFromSeconds(0.1)).toBe(100);
-      expect(getMillisecondsFromSeconds(2)).toBe(2000);
-      expect(getMillisecondsFromSeconds(0.025)).toBe(25);
-    });
-
-    it('converts falsy value to 0 as expected', () => {
-      expect(getMillisecondsFromSeconds(null)).toBe(0);
-      expect(getMillisecondsFromSeconds(undefined)).toBe(0);
-      expect(getMillisecondsFromSeconds(0)).toBe(0);
-    });
-
-    it('converts negative values as expected', () => {
-      expect(getMillisecondsFromSeconds(-1)).toBe(-1000);
-      expect(getMillisecondsFromSeconds(-0.5)).toBe(-500);
     });
   });
 
@@ -371,6 +362,30 @@ describe('Functional Helper: ', () => {
       expect(convertStringPropValuePairsToTuple('hereIsJunk:#[["ohai","howdy","hello"]]**{}')).toEqual([
         ['hereIsJunk', '#[["ohai","howdy","hello"]]**{}'],
       ]);
+    });
+  });
+
+  describe('allAre(): ', () => {
+    const greaterThanZero = (num: number) => {
+      return num > 0;
+    };
+
+    it('returns true if all values pass the function it is given', () => {
+      expect(allAre(greaterThanZero, 1, 2, 3, 4, 5)).toBe(true);
+    });
+
+    it('returns false if a value does not pass the function it is given', () => {
+      expect(allAre(greaterThanZero, 0, 1, 2)).toBe(false);
+    });
+  });
+
+  describe('allAreDefined(): ', () => {
+    it('returns true if all values are defined', () => {
+      expect(allAreDefined('ohai', 'howdy', 'svirfneblin')).toBe(true);
+    });
+
+    it('returns false if it is given an undefined value', () => {
+      expect(allAreDefined('ohai', 'howdy', void 0, 'svirfneblin')).toBe(false);
     });
   });
 });

@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
 import { hasAttributeAndIsNotEmpty, setAttributes } from '../utils/dom.js';
-import { arrayTail } from '../utils/array.js';
+import { arrayTail, arrayRemoveAllInstances } from '../utils/array.js';
 
 /**
  * FocusTrapTracker is a static class that keeps track of the active element with focus trap,
@@ -43,20 +43,16 @@ export class FocusTrapTracker {
       return;
     }
 
-    const trapIds = this.getTrapIds();
+    const oldTrapIds = this.getTrapIds();
 
     // this is a just-in-case situation. we should never encounter it.
     // but in the event that we do, this guard will ensure no id is in the
     // focus trap list more than once.
-    if (arrayTail(trapIds) === myTrapId) {
+    if (arrayTail(oldTrapIds) === myTrapId) {
       return;
     }
 
-    const existingIndex = trapIds.indexOf(myTrapId);
-    if (existingIndex > -1) {
-      trapIds.splice(existingIndex, 1);
-    }
-
+    const trapIds = arrayRemoveAllInstances(myTrapId, oldTrapIds);
     trapIds.push(myTrapId);
     this.setTrapIds(trapIds);
   }

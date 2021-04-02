@@ -1,0 +1,40 @@
+@import './../../styles/tokens/generated/index';
+@import './../../styles/mixins/mixins';
+
+:host {
+  --transform: translateY(#{$cds-global-space-1});
+  --pointer-fill: #{$cds-alias-object-interaction-background};
+  --pointer-outline: #{$cds-alias-object-border-color};
+  --height: #{$cds-global-layout-space-md};
+  --width: #{$cds-global-layout-space-md};
+
+  height: var(--height);
+  width: var(--width);
+}
+
+:host([type='angle']) {
+  --height: #{$cds-global-layout-space-md};
+}
+
+.pointer-img {
+  transform: var(--transform);
+  height: var(--height);
+  width: var(--width);
+}
+
+.pointer-img.compact {
+  --height: #{$cds-global-layout-space-sm};
+}
+
+.pointer-fill {
+  fill: var(--pointer-fill, #{$cds-alias-object-interaction-background});
+}
+
+.pointer-border {
+  fill: var(--pointer-outline, #{$cds-alias-object-border-color});
+}
+
+svg,
+::slotted(*) {
+  display: block;
+}

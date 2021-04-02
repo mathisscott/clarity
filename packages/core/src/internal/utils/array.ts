@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -13,4 +13,25 @@ export function arrayToObject(arr: any[], key: string) {
 
 export function arrayTail(arr: any[]) {
   return arr.length ? arr[arr.length - 1] : void 0;
+}
+
+export function arrayRemoveFirstInstance<T>(val: T, arr: Array<T>): Array<T> {
+  const newArr = Array.from(arr);
+  const i = arr.indexOf(val);
+
+  if (i > -1) {
+    newArr.splice(i, 1);
+  }
+
+  return newArr;
+}
+
+export function arrayRemoveLastInstance<T>(val: T, arr: Array<T>): Array<T> {
+  const reversedArr = Array.from(arr).reverse();
+  return arrayRemoveFirstInstance(val, reversedArr).reverse();
+}
+
+export function arrayRemoveAllInstances<T>(val: T | Array<T>, arr: Array<T>): Array<T> {
+  const arrayRemovalMachine = ([].concat(val as never) as unknown) as T[];
+  return arr.filter(item => !arrayRemovalMachine.includes(item));
 }

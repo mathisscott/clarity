@@ -460,9 +460,9 @@ const aliases = {
       },
     },
     shadow: {
-      100: token('0 1px 3px 0 hsla(198, 30%, 15%, 0.5)'),
-      200: token('0 1px 3px 0 hsla(198, 30%, 15%, 0.3)'),
-      300: token('0 1px 3px 0 hsla(198, 30%, 15%, 0.2)'),
+      100: token('0 0.05rem 0.15rem 0 hsla(198, 30%, 15%, 0.5)'),
+      200: token('0 0.05rem 0.15rem 0 hsla(198, 30%, 15%, 0.3)'),
+      300: token('0 0.05rem 0.15rem 0 hsla(198, 30%, 15%, 0.2)'),
     },
     opacity: {
       0: token('hsla(0, 0%, 0%, 0)'),

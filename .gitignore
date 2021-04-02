@@ -22,6 +22,7 @@ packages/angular/projects/cds-angular/src/cds/components
 /.ng_build
 src/clr-angular/.ng_build
 src/clr-angular/.ng_pkg_build
+apps/core-simple-devapp/dist
 
 /reports
 

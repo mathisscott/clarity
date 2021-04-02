@@ -1,0 +1,189 @@
+@import './../../styles/tokens/generated/index';
+@import './../../styles/mixins/mixins';
+
+:host {
+  --backdrop-background: #{$cds-alias-object-opacity-0};
+  --layered-backdrop-background: #{$cds-alias-object-opacity-0};
+  --border-color: #{$cds-alias-object-border-color};
+  --border-width: #{$cds-alias-object-border-width-100};
+  --border-radius: #{$cds-alias-object-border-radius-100};
+  --active-corner-border-radius: 0;
+  --color: #{$cds-global-typography-color-500};
+  --background: #{$cds-alias-object-interaction-background};
+  --box-shadow: #{$cds-alias-object-shadow-100};
+  --min-width: 6rem;
+  --max-width: 18rem;
+  --width: max-content;
+  --height: auto;
+  --max-height: 33vh;
+  --mobile-max-height: 66vh;
+  --overflow: hidden auto; // overflow x and y settings
+
+  // these CSS custom properties are read the Clarity animation
+  --animation-duration: #{$cds-global-animation-duration-primary};
+  --animation-easing: #{$cds-global-animation-easing-primary};
+
+  --pointer-height: 0.6rem;
+  --pointer-width: 0.6rem;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 1000000;
+}
+
+.pointer-wrapper {
+  // height: var(--pointer-height);
+  // width: var(--pointer-width);
+  transform-origin: center;
+}
+
+::slotted(cds-internal-pointer) {
+  // TODO: HAVE TO FIGURE THIS OUT...
+  // --height: var(--pointer-height);
+  // --width: var(--pointer-width);
+  --pointer-fill: var(--background);
+  --pointer-outline: var(--border-color);
+  transform-origin: center;
+}
+
+.private-host {
+  position: relative;
+  // position relative forces overlay content above the backdrop without z-index
+  // shouldn't cause issues with overlays/dropdowns due to onion skinning
+
+  background: var(--background);
+  color: var(--color);
+  border-radius: var(--border-radius);
+  border-color: var(--border-color);
+  border-width: var(--border-width);
+  border-style: solid;
+  box-shadow: var(--box-shadow);
+  min-width: var(--min-width);
+  width: var(--width);
+  max-width: var(--max-width);
+  height: var(--height);
+  max-height: var(--max-height);
+  overflow: var(--overflow);
+}
+
+:host([_position-at='popup-left pointer-top']),
+:host([_position-at='popup-top pointer-left']) {
+  .private-host {
+    border-top-left-radius: var(--active-corner-border-radius);
+  }
+}
+
+:host([_position-at='popup-top pointer-right']),
+:host([_position-at='popup-right pointer-top']) {
+  .private-host {
+    border-top-right-radius: var(--active-corner-border-radius);
+  }
+}
+
+:host([_position-at='popup-bottom pointer-right']),
+:host([_position-at='popup-right pointer-bottom']) {
+  .private-host {
+    border-bottom-right-radius: var(--active-corner-border-radius);
+  }
+}
+
+:host([_position-at='popup-bottom pointer-left']),
+:host([_position-at='popup-left pointer-bottom']) {
+  .private-host {
+    border-bottom-left-radius: var(--active-corner-border-radius);
+  }
+}
+
+:host([_position-at='popup-top pointer-right']) {
+  .pointer-wrapper {
+    transform: scaleX(-1);
+  }
+}
+
+:host([_position-at*='popup-right']) {
+  .pointer-wrapper {
+    transform: translateX(-0.1rem) rotate(90deg);
+  }
+}
+
+:host([_position-at='popup-right pointer-bottom']) {
+  .pointer-wrapper {
+    transform: scaleY(-1) translateX(-0.1rem) rotate(90deg);
+  }
+}
+
+:host([_position-at*='popup-bottom']) {
+  .pointer-wrapper {
+    transform: scaleX(-1) translateY(-0.1rem) rotate(180deg);
+  }
+}
+
+:host([_position-at*='popup-left']) {
+  .pointer-wrapper {
+    transform: scaleY(-1) rotate(270deg);
+  }
+}
+
+:host([_position-at='popup-left pointer-bottom']) {
+  .pointer-wrapper {
+    transform: translateX(-0.01rem) translateY(0.05rem) rotate(270deg) scaleX(1);
+  }
+}
+
+:host(:not([_responsive])) {
+  --backdrop-background: #{$cds-alias-object-opacity-0};
+}
+
+:host([_responsive]) {
+  --backdrop-background: #{$cds-alias-object-overlay-backdrop-background};
+
+  cds-internal-pointer {
+    display: none;
+  }
+
+  .private-host {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: var(--mobile-max-height);
+  }
+}
+
+:host([_responsive]),
+:host([closable]) {
+  cds-internal-close-button {
+    display: block;
+  }
+}
+
+cds-internal-close-button {
+  display: none;
+  position: absolute;
+  // TODO: need to allow for customization here...
+  top: 1px;
+  right: 1px;
+}
+
+// animation related styles
+// TODO:
+
+// :host([cds-motion][_cds-animation-status='active']) {
+//   display: inline-flex !important;
+// }
+
+// :host([hidden]) {
+//   --animation-duration: #{$cds-global-animation-duration-secondary};
+// }
+
+// we need the check against hidden='false' here because React is pushing string through instead of adding/removing the boolean attribute
+// :host([hidden*='false']) {
+//   display: inline-flex !important;
+// }

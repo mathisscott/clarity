@@ -8,7 +8,7 @@ import { CDSState, setupCDSGlobal } from '../utils/global.js';
 import { LogService } from './log.service.js';
 
 export class GlobalState {
-  static get state(): Readonly<CDSState> {
+  static get state(): CDSState {
     setupCDSGlobal();
     return window?.CDS?.state as CDSState;
   }
