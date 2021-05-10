@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/nav-group/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,wBAAwB,CAAC","sourcesContent":["export { CdaNavGroup } from './nav-group.element.js';\n"]}

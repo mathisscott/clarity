@@ -21,10 +21,7 @@ export class CdaCounter extends LitElement {
     render() {
         return html `
       <div cds-layout="horizontal gap:md align:center">
-        <cds-icon-button
-          aria-label="decrement"
-          @click=${() => this.emit('decrement')}
-        >
+        <cds-icon-button aria-label="decrement" @click=${() => this.emit('decrement')}>
           <cds-icon shape="minus"></cds-icon>
         </cds-icon-button>
         <div class="value">
@@ -33,10 +30,7 @@ export class CdaCounter extends LitElement {
             <slot></slot>
           </p>
         </div>
-        <cds-icon-button
-          aria-label="increment"
-          @click=${() => this.emit('increment')}
-        >
+        <cds-icon-button aria-label="increment" @click=${() => this.emit('increment')}>
           <cds-icon shape="plus"></cds-icon>
         </cds-icon-button>
       </div>

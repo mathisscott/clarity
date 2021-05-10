@@ -21,10 +21,30 @@
 
     <h1 cds-text="heading">Clarity Core Simple Dev Environment</h1>
 
-    <!-- your addon -->
-    <cda-counter></cda-counter>
-
-    <p cds-text="body">Current Count: <span id="current-count"></span></p>
+    <cda-nav id="myNav">
+      <span slot="title">Navigation</span>
+      <cda-nav-item>A</cda-nav-item>
+      <cda-nav-group>
+        <span slot="title">B</span>
+        <cda-nav-item>B1</cda-nav-item>
+        <cda-nav-group>
+          <span slot="title">B2</span>
+          <cda-nav-item>B2a</cda-nav-item>
+          <cda-nav-item>B2b</cda-nav-item>
+          <cda-nav-item>B2c</cda-nav-item>
+        </cda-nav-group>
+        <cda-nav-item>B3</cda-nav-item>
+        <cda-nav-item>B4</cda-nav-item>
+      </cda-nav-group>
+      <cda-nav-item>C</cda-nav-item>
+      <cda-nav-group>
+        <span slot="title">D</span>
+        <cda-nav-item>D1</cda-nav-item>
+        <cda-nav-item>D2</cda-nav-item>
+        <cda-nav-item>D3</cda-nav-item>
+      </cda-nav-group>
+      <cda-nav-item>E</cda-nav-item>
+    </cda-nav>
 
     <script type="module" src="./index.js"></script>
     <script type="text/javascript">
