@@ -1,14 +1,5 @@
-import '../dist/src/counter/register.js';
-
-const counter = document.querySelector('cda-counter');
-const currentCount = document.querySelector('#current-count');
-
-counter.addEventListener('increment', () => updateCount(counter.value + 1));
-counter.addEventListener('decrement', () => updateCount(counter.value - 1));
-
-updateCount(0);
-
-function updateCount(value) {
-  counter.value = value;
-  currentCount.textContent = value;
-}
+import '../node_modules/@cds/core/button/register.js';
+import '../node_modules/@cds/core/select/register.js';
+import '../node_modules/@cds/core/checkbox/register.js';
+import '../node_modules/@cds/core/forms/register.js';
+import '../node_modules/@cds/core/internal-components/popup/register.js';

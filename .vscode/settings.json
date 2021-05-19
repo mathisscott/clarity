@@ -3,5 +3,22 @@
   "files.exclude": {
     "**/*.element.css.ts": true,
     "**/*.global.css.ts": true
-  }
+  },
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#996289",
+    "activityBar.activeBorder": "#a8b48a",
+    "activityBar.background": "#996289",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#a8b48a",
+    "activityBarBadge.foreground": "#15202b",
+    "statusBar.background": "#7a4e6d",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#996289",
+    "titleBar.activeBackground": "#7a4e6d",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#7a4e6d99",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#7a4e6d"
 }
