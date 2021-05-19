@@ -16,19 +16,238 @@
     />
     <link href="./index.css" rel="stylesheet" />
   </head>
-  <body cds-theme="" cds-text="body" cds-layout="vertical gap:lg p:lg">
+  <body cds-theme="" cds-text="body">
     <!-- cds-theme="dark" to preview in dark theme -->
+    <div class="wrapper" cds-layout="grid cols:4 gap:md align:stretch">
+      <div cds-layout="p:lg">
+        <cds-button
+          id="topleft"
+          status="primary"
+          type="button"
+          onclick="showOverlay(this)"
+          >Show A</cds-button
+        >
+      </div>
+      <div cds-layout="vertical p:lg align:horizontal-center">
+        <cds-button
+          id="topcenter"
+          status="primary"
+          type="button"
+          onclick="showOverlay(this)"
+          >Show B</cds-button
+        >
+      </div>
+      <div cds-layout="p:lg">
+        <div style="width: 100%; text-align: right; height: 36px;">
+          <cds-button
+            id="topright"
+            status="primary"
+            type="button"
+            onclick="showOverlay(this)"
+            >Show C</cds-button
+          >
+        </div>
+      </div>
+      <div cds-layout="grid p:lg align:center">
+        <cds-button
+          id="midleft"
+          status="primary"
+          type="button"
+          onclick="showOverlay(this)"
+          >Show D</cds-button
+        >
+      </div>
 
-    <h1 cds-text="heading">Clarity Core Simple Dev Environment</h1>
+      <div id="midcenter" cds-layout="p:lg vertical align:center gap:md">
+        <h3 cds-text="title" cds-layout="p-b:lg">Configure your popup</h3>
+        <form id="popupForm">
+          <cds-form-group cds-layout="vertical" layout="compact">
+            <cds-select control-width="shrink">
+              <label>Cross-axis alignment</label>
+              <select onchange="syncAnchorAlignments(this)">
+                <option selected value="start">Start</option>
+                <option value="mid">Middle</option>
+                <option value="end">End</option>
+              </select>
+            </cds-select>
+            <cds-select control-width="shrink">
+              <label>Pointer alignment</label>
+              <select onchange="syncPointerAlignments(this)">
+                <option selected value="start">Start</option>
+                <option value="mid">Middle</option>
+                <option value="end">End</option>
+              </select>
+            </cds-select>
+            <cds-select control-width="shrink">
+              <label>Pointer</label>
+              <select onchange="syncPointer(this)">
+                <option selected value="dot">Dot</option>
+                <option value="sq">Square</option>
+              </select>
+            </cds-select>
+            <cds-select control-width="shrink">
+              <label>Popup Orientation Prefs</label>
+              <select onchange="syncPrefs(this)">
+                <option selected value="">Default</option>
+                <option value="top left">Top Left</option>
+                <option value="left top">Left Top</option>
+                <option value="not:top not:bottom">Only Horizontal</option>
+                <option value="not:left not:right">Only Vertical</option>
+                <option value="only:right">Only Right</option>
+              </select>
+            </cds-select>
+            <cds-checkbox>
+              <label>Show overlay</label>
+              <input type="checkbox" onclick="toggleOverlay(this)" />
+            </cds-checkbox>
+            <cds-checkbox>
+              <label>Close on backdrop click</label>
+              <input type="checkbox" onclick="allowBackdropClick(this)" />
+            </cds-checkbox>
+            <cds-checkbox>
+              <label>Bigger Popup</label>
+              <input type="checkbox" onclick="embiggenPopup(this)" />
+            </cds-checkbox>
+          </cds-form-group>
+        </form>
+      </div>
 
-    <!-- your addon -->
-    <cda-counter></cda-counter>
+      <div cds-layout="grid p:lg align:center cols:12">
+        <div style="width: 100%; text-align: right; height: 36px;">
+          <cds-button
+            id="midright"
+            status="primary"
+            type="button"
+            onclick="showOverlay(this)"
+            >Show E</cds-button
+          >
+        </div>
+      </div>
+      <div cds-layout="grid p:lg align:bottom">
+        <cds-button
+          id="btmleft"
+          status="primary"
+          type="button"
+          onclick="showOverlay(this)"
+          >Show F</cds-button
+        >
+      </div>
+      <div cds-layout="grid p:lg align:bottom cols:12">
+        <div style="width: 100%; text-align: center; height: 36px;">
+          <cds-button
+            id="btmcenter"
+            status="primary"
+            type="button"
+            onclick="showOverlay(this)"
+            >Show G</cds-button
+          >
+        </div>
+      </div>
+      <div cds-layout="grid p:lg align:bottom cols:12">
+        <div style="width: 100%; text-align: right; height: 36px;">
+          <cds-button
+            id="btmright"
+            status="primary"
+            type="button"
+            onclick="showOverlay(this)"
+            >Show H</cds-button
+          >
+        </div>
+      </div>
+    </div>
 
-    <p cds-text="body">Current Count: <span id="current-count"></span></p>
+    <cds-internal-popup hidden id="mypopup">
+      <div id="popupContent" cds-layout="vertical gap:lg p:lg align:stretch">
+        <h1 cds-text="section">Ohai</h1>
+        <p cds-text="body">I am a popup.</p>
+        <cds-button
+          style="max-height: 36px;"
+          type="button"
+          onclick="closeOverlay('button-click')"
+          >Ok</cds-button
+        >
+      </div>
+    </cds-internal-popup>
 
     <script type="module" src="./index.js"></script>
+
     <script type="text/javascript">
-      window.onload = function () {
+      let initted = false;
+      const popup = document.getElementById('mypopup');
+
+      function showOverlay(anchor) {
+        console.log(anchor);
+        console.log(popup);
+
+        popup.anchor = anchor;
+        popup.hidden = false;
+
+        if (!initted) {
+          popup.addEventListener('closeChange', e => {
+            closeOverlay(e.detail);
+          });
+          initted = true;
+        }
+      }
+
+      function closeOverlay(src) {
+        if (
+          closeOnBackdropClick ||
+          src === 'escape-keypress' ||
+          src === 'button-click'
+        ) {
+          popup.hidden = true;
+        }
+      }
+
+      function syncAnchorAlignments(sel) {
+        const selectedOption = sel.selectedOptions[0].value;
+        popup.anchorAlign = selectedOption;
+      }
+
+      function syncPointerAlignments(sel) {
+        const selectedOption = sel.selectedOptions[0].value;
+        popup.pointerAlign = selectedOption;
+      }
+
+      function syncPointer(sel) {
+        const selectedOption = sel.selectedOptions[0].value;
+        popup.ptr = selectedOption;
+      }
+
+      function syncPrefs(sel) {
+        const selectedOption = sel.selectedOptions[0].value;
+        popup.orientation = selectedOption;
+      }
+
+      function toggleOverlay(chkbox) {
+        const body = document.documentElement;
+        const overlayAttr = '_show-overlay';
+
+        if (chkbox.checked) {
+          body.setAttribute(overlayAttr, 'true');
+        } else {
+          body.removeAttribute(overlayAttr);
+        }
+      }
+
+      function embiggenPopup(chkbox) {
+        const popupContent = document.getElementById('popupContent');
+
+        if (chkbox.checked) {
+          popupContent.classList.add('embiggen');
+        } else {
+          popupContent.classList.remove('embiggen');
+        }
+      }
+
+      let closeOnBackdropClick = false;
+
+      function allowBackdropClick(chkbox) {
+        closeOnBackdropClick = chkbox.checked;
+      }
+
+      window.onload = async function () {
         if (
           navigator.userAgent.indexOf('Firefox') &&
           document.querySelector('body').getBoundingClientRect().width === 0
@@ -41,6 +260,8 @@
            *
            */
           location.reload();
+        } else {
+          document.getElementById('popupForm')?.reset();
         }
       };
     </script>
