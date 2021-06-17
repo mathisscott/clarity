@@ -1,11 +1,12 @@
 /*
- * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { hasAttributeAndIsNotEmpty, setAttributes } from '../utils/dom.js';
+import { setAttributes } from '../utils/dom.js';
 import { arrayTail } from '../utils/array.js';
+import { GlobalState } from './global.service.js';
 
 /**
  * FocusTrapTracker is a static class that keeps track of the active element with focus trap,
@@ -13,72 +14,123 @@ import { arrayTail } from '../utils/array.js';
  */
 
 export const CDS_FOCUS_TRAP_ID_ATTR = 'focus-trap-id';
-export const CDS_FOCUS_TRAP_DOCUMENT_ATTR = 'cds-focus-trap-ids';
+export const FOCUS_TRAP_ACTIVE_ATTR = '_focus-trap-active';
+export const FOCUS_TRAP_GLOBAL_KEY = 'focusTraps';
+
+// TODO: ###LEFTOFF -- REFACTOR TO USE THE GLOBAL CDS SERVICE INSTEAD OF BODY ATTR
+
+let docRoot: HTMLElement;
 
 export class FocusTrapTracker {
-  static getDocroot(): HTMLElement {
-    return document.documentElement as HTMLElement;
-  }
-
-  static getTrapIds(): string[] {
-    const docroot = this.getDocroot();
-
-    if (hasAttributeAndIsNotEmpty(docroot, CDS_FOCUS_TRAP_DOCUMENT_ATTR)) {
-      // the function in the conditional handles all nil references. zero chance of null making it through here.
-      const myAttribute = docroot.getAttribute(CDS_FOCUS_TRAP_DOCUMENT_ATTR) || '';
-      // TS forcing us to write an unreachable codepath. this is where monads would be useful.
-      return myAttribute === '' ? [] : myAttribute.split(' ');
-    } else {
-      return [];
+  static get docroot(): HTMLElement {
+    if (!docRoot) {
+      docRoot = document.querySelector('html');
     }
+    return docRoot;
   }
 
-  static setTrapIds(trapIds: string[]): void {
-    const myTrapIds = trapIds.length > 0 ? trapIds.join(' ') : false;
-    setAttributes(this.getDocroot(), [CDS_FOCUS_TRAP_DOCUMENT_ATTR, myTrapIds]);
+  static get trapIds(): string[] {
+    return GlobalState.getValue(FOCUS_TRAP_GLOBAL_KEY);
   }
 
-  static setCurrent(myTrapId: string): void {
-    if (myTrapId === '') {
+  static set trapIds(ids: string[]) {
+    const hasIds = ids.length > 0 ? '' : false;
+    // both sets and removes scroll-blocking attr if there are or aren't any focus traps
+    setAttributes(this.docroot, [FOCUS_TRAP_ACTIVE_ATTR, hasIds]);
+    GlobalState.setValue(FOCUS_TRAP_GLOBAL_KEY, ids);
+  }
+
+  static set activeTrapId(myId: string) {
+    if (myId === '') {
       return;
     }
 
-    const trapIds = this.getTrapIds();
+    const trapIds = Array.from(this.trapIds);
 
     // this is a just-in-case situation. we should never encounter it.
     // but in the event that we do, this guard will ensure no id is in the
     // focus trap list more than once.
-    if (arrayTail(trapIds) === myTrapId) {
+    if (arrayTail(trapIds) === myId) {
       return;
     }
 
-    const existingIndex = trapIds.indexOf(myTrapId);
+    const existingIndex = trapIds.indexOf(myId);
     if (existingIndex > -1) {
       trapIds.splice(existingIndex, 1);
     }
 
-    trapIds.push(myTrapId);
-    this.setTrapIds(trapIds);
+    trapIds.push(myId);
+    this.trapIds = trapIds;
   }
 
-  static activatePreviousCurrent(): void {
-    const trapIds = this.getTrapIds();
-    trapIds.pop();
-    this.setTrapIds(trapIds);
+  static get activeTrapId(): string {
+    return arrayTail(this.trapIds) || '';
   }
 
-  static getCurrentTrapId(): string {
-    return arrayTail(this.getTrapIds()) || '';
-  }
-
-  static getCurrent(): HTMLElement | null {
-    const docroot = this.getDocroot();
-    const currentId = this.getCurrentTrapId();
+  static getActiveTrapElement(): HTMLElement | null {
+    const root = this.docroot;
+    const currentId = this.activeTrapId;
 
     if (currentId !== '') {
-      return docroot.querySelector(`[${CDS_FOCUS_TRAP_ID_ATTR}="${currentId}"]`);
+      return root.querySelector(`[${CDS_FOCUS_TRAP_ID_ATTR}="${currentId}"]`);
     } else {
       return null;
     }
   }
+
+  static activatePreviousTrap(): void {
+    const trapIds = Array.from(this.trapIds);
+    trapIds.pop();
+    this.trapIds = trapIds;
+  }
+
+  // TODO: DELETE IF GETTERS/SETTERS DON'T WORK OUT
+  // static getTrapIds(): string[] {
+  //   return GlobalState.getValue(FOCUS_TRAP_GLOBAL_KEY);
+  // }
+
+  // static setTrapIds(trapIds: string[]): void {
+  //   const hasIds = trapIds.length > 0 ? '' : false;
+  //   GlobalState.setValue(FOCUS_TRAP_GLOBAL_KEY, trapIds);
+  //   // both sets and removes scroll-blocking attr if there are or aren't any focus traps
+  //   setAttributes(this.docroot, [FOCUS_TRAP_ACTIVE_ATTR, hasIds]);
+  // }
+
+  // static setCurrent(myTrapId: string): void {
+  //   if (myTrapId === '') {
+  //     return;
+  //   }
+
+  //   const trapIds = Array.from(this.getTrapIds());
+
+  //   // this is a just-in-case situation. we should never encounter it.
+  //   // but in the event that we do, this guard will ensure no id is in the
+  //   // focus trap list more than once.
+  //   if (arrayTail(trapIds) === myTrapId) {
+  //     return;
+  //   }
+
+  //   const existingIndex = trapIds.indexOf(myTrapId);
+  //   if (existingIndex > -1) {
+  //     trapIds.splice(existingIndex, 1);
+  //   }
+
+  //   trapIds.push(myTrapId);
+  //   this.setTrapIds(trapIds);
+  // }
+
+  // static getCurrentTrapId(): string {
+  //   return arrayTail(this.getTrapIds()) || '';
+  // }
+
+  // static getCurrent(): HTMLElement | null {
+  //   const docbody = this.getDocRoot();
+  //   const currentId = this.getCurrentTrapId();
+
+  //   if (currentId !== '') {
+  //     return docbody.querySelector(`[${CDS_FOCUS_TRAP_ID_ATTR}="${currentId}"]`);
+  //   } else {
+  //     return null;
+  //   }
+  // }
 }

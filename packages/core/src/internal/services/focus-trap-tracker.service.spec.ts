@@ -6,11 +6,7 @@
 
 import { html } from 'lit';
 import { createTestElement, removeTestElement } from '@cds/core/test';
-import {
-  CDS_FOCUS_TRAP_DOCUMENT_ATTR,
-  CDS_FOCUS_TRAP_ID_ATTR,
-  FocusTrapTracker,
-} from './focus-trap-tracker.service.js';
+import { FOCUS_TRAP_ACTIVE_ATTR, CDS_FOCUS_TRAP_ID_ATTR, FocusTrapTracker } from './focus-trap-tracker.service.js';
 import { arrayTail } from '../utils/array.js';
 
 describe('Focus Trap Tracker Service - ', () => {
@@ -19,70 +15,55 @@ describe('Focus Trap Tracker Service - ', () => {
 
   afterEach(() => {
     // reset
-    service.getDocroot().removeAttribute(CDS_FOCUS_TRAP_DOCUMENT_ATTR);
+    service.docroot.removeAttribute(FOCUS_TRAP_ACTIVE_ATTR);
   });
 
-  describe('getDocroot(): ', () => {
+  describe('.docroot: ', () => {
     it('should return something', () => {
-      const myDocroot: HTMLElement = service.getDocroot();
+      const myDocroot: HTMLElement = service.docroot;
       expect(myDocroot).not.toBeNull('Docroot node should exist');
       expect(myDocroot.tagName.toLowerCase()).toBe('html', 'should return the documentElement(html) node');
     });
   });
 
-  describe('getTrapIds(): ', () => {
+  describe('.trapIds: ', () => {
     it('should return empty array if docroot attr is not present', () => {
-      expect(service.getTrapIds()).toEqual([]);
+      expect(service.trapIds).toEqual([]);
     });
 
     it('should return the trap ids if present', () => {
-      service.setTrapIds(testTrapIds);
-      expect(service.getTrapIds()).toEqual(testTrapIds);
+      service.trapIds = testTrapIds;
+      expect(service.trapIds).toEqual(testTrapIds);
     });
 
-    it('should return empty array if docroot attr is present but empty', () => {
-      const myDocroot: HTMLElement = service.getDocroot();
-      myDocroot.setAttribute(CDS_FOCUS_TRAP_DOCUMENT_ATTR, '');
-      expect(service.getTrapIds()).toEqual([]);
-    });
-  });
-
-  describe('setTrapIds(): ', () => {
     it('should not set anything to docroot if passed no ids', () => {
-      const myDocroot: HTMLElement = service.getDocroot();
-      service.setTrapIds([]);
-      expect(myDocroot.hasAttribute(CDS_FOCUS_TRAP_DOCUMENT_ATTR)).toBe(
+      const myDocroot: HTMLElement = service.docroot;
+      service.trapIds = [];
+      expect(myDocroot.hasAttribute(FOCUS_TRAP_ACTIVE_ATTR)).toBe(
         false,
         'Focus trap attr should not be added to docroot'
       );
     });
 
     it('should set the trap ids to docroot', () => {
-      const myDocroot: HTMLElement = service.getDocroot();
-      service.setTrapIds(testTrapIds);
-      expect(myDocroot.hasAttribute(CDS_FOCUS_TRAP_DOCUMENT_ATTR)).toBe(true, 'Docroot should have focus trap attr');
-      expect(myDocroot.getAttribute(CDS_FOCUS_TRAP_DOCUMENT_ATTR)).toBe(
-        testTrapIds.join(' '),
-        'should return the html node'
-      );
+      const myDocroot: HTMLElement = service.docroot;
+      service.trapIds = testTrapIds;
+      expect(myDocroot.hasAttribute(FOCUS_TRAP_ACTIVE_ATTR)).toBe(true, 'Docroot should have focus trap attr');
     });
 
     it('should unset the trap ids to docroot', () => {
-      const myDocroot: HTMLElement = service.getDocroot();
-      service.setTrapIds(testTrapIds);
-      expect(myDocroot.hasAttribute(CDS_FOCUS_TRAP_DOCUMENT_ATTR)).toBe(true, 'Docroot should have focus trap attr');
-      expect(myDocroot.getAttribute(CDS_FOCUS_TRAP_DOCUMENT_ATTR)).toBe(
-        testTrapIds.join(' '),
-        'should return the html node'
-      );
-      service.setTrapIds([]);
-      expect(myDocroot.hasAttribute(CDS_FOCUS_TRAP_DOCUMENT_ATTR)).toBe(
+      const myDocroot: HTMLElement = service.docroot;
+      service.trapIds = testTrapIds;
+      expect(myDocroot.hasAttribute(FOCUS_TRAP_ACTIVE_ATTR)).toBe(true, 'Docroot should have focus trap attr');
+      service.trapIds = [];
+      expect(myDocroot.hasAttribute(FOCUS_TRAP_ACTIVE_ATTR)).toBe(
         false,
         'Focus trap attr should not be added to docroot'
       );
     });
   });
 
+  // TODO: LEFTOFF
   describe('activatePreviousCurrent(): ', () => {
     it('should set id passed as the tail of the docroot attr', () => {
       service.setTrapIds(testTrapIds);
@@ -152,16 +133,13 @@ describe('Focus Trap Tracker Service - ', () => {
 
   describe('setCurrent(): ', () => {
     it('should set id passed as the tail of the docroot attr', () => {
-      const myDocroot: HTMLElement = service.getDocroot();
+      const myDocroot: HTMLElement = service.docroot;
       const myTestId = 'qrstuv';
 
       service.setTrapIds(testTrapIds);
       service.setCurrent(myTestId);
 
-      expect(myDocroot.getAttribute(CDS_FOCUS_TRAP_DOCUMENT_ATTR)).toContain(
-        myTestId,
-        'should add id to the docroot attr'
-      );
+      expect(myDocroot.getAttribute(FOCUS_TRAP_ACTIVE_ATTR)).toContain(myTestId, 'should add id to the docroot attr');
       expect(arrayTail(service.getTrapIds())).toBe(myTestId, 'should have id at the tail of the docroot ids');
     });
 
@@ -175,13 +153,13 @@ describe('Focus Trap Tracker Service - ', () => {
     });
 
     it('should keep id passed as the tail of the docroot attr if it already is', () => {
-      const myDocroot: HTMLElement = service.getDocroot();
+      const myDocroot: HTMLElement = service.docroot;
       const myTestId = 'lmnop';
 
       service.setTrapIds(testTrapIds);
       service.setCurrent(myTestId);
 
-      expect(myDocroot.getAttribute(CDS_FOCUS_TRAP_DOCUMENT_ATTR)).toContain(
+      expect(myDocroot.getAttribute(FOCUS_TRAP_ACTIVE_ATTR)).toContain(
         myTestId,
         'should keep id at head of docroot attr'
       );
@@ -189,7 +167,7 @@ describe('Focus Trap Tracker Service - ', () => {
     });
 
     it('should move id passed to the tail of the docroot attr if it is already present but not current', () => {
-      const myDocroot: HTMLElement = service.getDocroot();
+      const myDocroot: HTMLElement = service.docroot;
       const myTestId = 'abcd';
       const myTestId2 = 'hijk';
 
@@ -199,7 +177,7 @@ describe('Focus Trap Tracker Service - ', () => {
 
       let updatedIds = service.getTrapIds();
 
-      expect(myDocroot.getAttribute(CDS_FOCUS_TRAP_DOCUMENT_ATTR)).toContain(
+      expect(myDocroot.getAttribute(FOCUS_TRAP_ACTIVE_ATTR)).toContain(
         myTestId,
         'should include id in the docroot attr (1)'
       );
@@ -213,7 +191,7 @@ describe('Focus Trap Tracker Service - ', () => {
 
       updatedIds = service.getTrapIds();
 
-      expect(myDocroot.getAttribute(CDS_FOCUS_TRAP_DOCUMENT_ATTR)).toContain(
+      expect(myDocroot.getAttribute(FOCUS_TRAP_ACTIVE_ATTR)).toContain(
         myTestId2,
         'should include id in the docroot attr (2)'
       );
