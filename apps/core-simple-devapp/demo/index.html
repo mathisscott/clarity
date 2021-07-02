@@ -79,13 +79,6 @@
               </select>
             </cds-select>
             <cds-select control-width="shrink">
-              <label>Pointer</label>
-              <select onchange="syncPointer(this)">
-                <option selected value="dot">Dot</option>
-                <option value="sq">Square</option>
-              </select>
-            </cds-select>
-            <cds-select control-width="shrink">
               <label>Popup Orientation Prefs</label>
               <select onchange="syncPrefs(this)">
                 <option selected value="">Default</option>
@@ -167,6 +160,7 @@
           >Ok</cds-button
         >
       </div>
+      <cds-internal-pointer></cds-internal-pointer>
     </cds-internal-popup>
 
     <script type="module" src="./index.js"></script>
@@ -208,11 +202,6 @@
       function syncPointerAlignments(sel) {
         const selectedOption = sel.selectedOptions[0].value;
         popup.pointerAlign = selectedOption;
-      }
-
-      function syncPointer(sel) {
-        const selectedOption = sel.selectedOptions[0].value;
-        popup.ptr = selectedOption;
       }
 
       function syncPrefs(sel) {

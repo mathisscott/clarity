@@ -111,24 +111,69 @@
         "signature": "ea7abf23498b7c214c67fc14f22f41983fbb7bf7c4826c7fcdef542b2022545f",
         "affectsGlobalScope": false
       },
+      "../node_modules/@lit/reactive-element/css-tag.d.ts": {
+        "version": "76bf4e94647fb00f21005a76e94807c3993e199aec99ddd770d3bf9a0d236aa8",
+        "signature": "76bf4e94647fb00f21005a76e94807c3993e199aec99ddd770d3bf9a0d236aa8",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/@lit/reactive-element/reactive-controller.d.ts": {
+        "version": "1e5743b25a63fd34ffbae89adcbf248ee17db6ed08d90079ffa93803c3e80d2a",
+        "signature": "1e5743b25a63fd34ffbae89adcbf248ee17db6ed08d90079ffa93803c3e80d2a",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/@lit/reactive-element/reactive-element.d.ts": {
+        "version": "6224fecfbe2acbe961962601ad248045755f8d2331816a5b60e43c1086bb98e9",
+        "signature": "6224fecfbe2acbe961962601ad248045755f8d2331816a5b60e43c1086bb98e9",
+        "affectsGlobalScope": true
+      },
+      "../node_modules/@types/trusted-types/index.d.ts": {
+        "version": "18c4cbdee4d865759f66d0ebbf45f7a986610e03f2c73f6da00374ddd7f4c619",
+        "signature": "18c4cbdee4d865759f66d0ebbf45f7a986610e03f2c73f6da00374ddd7f4c619",
+        "affectsGlobalScope": true
+      },
+      "../node_modules/lit/node_modules/lit-html/directive.d.ts": {
+        "version": "192f47d70d89f788cc74f2e4704d604b10e27db01e85aa7f63dd30fcb4b69a5a",
+        "signature": "192f47d70d89f788cc74f2e4704d604b10e27db01e85aa7f63dd30fcb4b69a5a",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/lit/node_modules/lit-html/lit-html.d.ts": {
+        "version": "c00995df6ffb32e227dddffbfe078f86b4aa2df2ee1be1fc07132229a49c69d2",
+        "signature": "c00995df6ffb32e227dddffbfe078f86b4aa2df2ee1be1fc07132229a49c69d2",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/lit/node_modules/lit-element/lit-element.d.ts": {
+        "version": "ce58bc187c624062755022fc5eb45c52581a48d7889a98755d89c4c1349fefa9",
+        "signature": "ce58bc187c624062755022fc5eb45c52581a48d7889a98755d89c4c1349fefa9",
+        "affectsGlobalScope": true
+      },
+      "../node_modules/lit/index.d.ts": {
+        "version": "f07a77a7fb1d49aa2b61cb68bf712a083487acd7130d20223a83de03af0c257d",
+        "signature": "f07a77a7fb1d49aa2b61cb68bf712a083487acd7130d20223a83de03af0c257d",
+        "affectsGlobalScope": false
+      },
+      "../src/counter/counter.element.styles.ts": {
+        "version": "64790053c07ebaaf700f6b05577d7f7c889f88a03eef76426efa6ac467aad5e9",
+        "signature": "65a9cfb17e42beca2e8c024597f0b9b3b30a13407668ad6574926aaf6d823d6c",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/@lit/reactive-element/decorators/base.d.ts": {
+        "version": "d7aea087473852c5b957233fa38d99f92b04c1ed92b5dd5a5861d76b71fbd8e4",
+        "signature": "d7aea087473852c5b957233fa38d99f92b04c1ed92b5dd5a5861d76b71fbd8e4",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/@lit/reactive-element/decorators/property.d.ts": {
+        "version": "d9fd524cc010d81636a1b39c0821e4207896672babd763de7424df4f3e6335a5",
+        "signature": "d9fd524cc010d81636a1b39c0821e4207896672babd763de7424df4f3e6335a5",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/lit/decorators/property.d.ts": {
+        "version": "d3890804856d6e2c7fdb024fb5eb1f59c4663545327894dba8f7429723fc5f71",
+        "signature": "d3890804856d6e2c7fdb024fb5eb1f59c4663545327894dba8f7429723fc5f71",
+        "affectsGlobalScope": false
+      },
       "../node_modules/lit-html/lib/part.d.ts": {
         "version": "6f50729be2e6572691c3bc3a048c0590113427949f661c19dc4d9d6b0b002ec8",
         "signature": "6f50729be2e6572691c3bc3a048c0590113427949f661c19dc4d9d6b0b002ec8",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/lit-html/lib/parts.d.ts": {
-        "version": "462c24ab9ab2d1e4a5e4e39712e4ee0f21f98503f0a47693efd9021ac20de213",
-        "signature": "462c24ab9ab2d1e4a5e4e39712e4ee0f21f98503f0a47693efd9021ac20de213",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/lit-html/lib/template-processor.d.ts": {
-        "version": "6bfc18f74ce170237dcbe1811fc451777636241c91e8fddafbce965b5b541650",
-        "signature": "6bfc18f74ce170237dcbe1811fc451777636241c91e8fddafbce965b5b541650",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/lit-html/lib/template-result.d.ts": {
-        "version": "1d5238003ef4188c37bf66a0010426ef80323ae121b4d7fd71b1e4d3f2468072",
-        "signature": "1d5238003ef4188c37bf66a0010426ef80323ae121b4d7fd71b1e4d3f2468072",
         "affectsGlobalScope": false
       },
       "../node_modules/lit-html/lib/template.d.ts": {
@@ -144,6 +189,21 @@
       "../node_modules/lit-html/lib/render-options.d.ts": {
         "version": "14b525e11e22e192c4f66d4a6ae04ccd30b5859623509d8db0ab1e1333d1d7e7",
         "signature": "14b525e11e22e192c4f66d4a6ae04ccd30b5859623509d8db0ab1e1333d1d7e7",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/lit-html/lib/parts.d.ts": {
+        "version": "462c24ab9ab2d1e4a5e4e39712e4ee0f21f98503f0a47693efd9021ac20de213",
+        "signature": "462c24ab9ab2d1e4a5e4e39712e4ee0f21f98503f0a47693efd9021ac20de213",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/lit-html/lib/template-processor.d.ts": {
+        "version": "6bfc18f74ce170237dcbe1811fc451777636241c91e8fddafbce965b5b541650",
+        "signature": "6bfc18f74ce170237dcbe1811fc451777636241c91e8fddafbce965b5b541650",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/lit-html/lib/template-result.d.ts": {
+        "version": "1d5238003ef4188c37bf66a0010426ef80323ae121b4d7fd71b1e4d3f2468072",
+        "signature": "1d5238003ef4188c37bf66a0010426ef80323ae121b4d7fd71b1e4d3f2468072",
         "affectsGlobalScope": false
       },
       "../node_modules/lit-html/lib/default-template-processor.d.ts": {
@@ -176,39 +236,9 @@
         "signature": "98a780cce6e0c824539a52b0d983c54bbdd75d06caf8ab2166e90c721458fd8b",
         "affectsGlobalScope": true
       },
-      "../node_modules/lit-html/lib/shady-render.d.ts": {
-        "version": "812782c8e9f322040ff874107875d68b9388467df9789d214ce88ec2141bcefa",
-        "signature": "812782c8e9f322040ff874107875d68b9388467df9789d214ce88ec2141bcefa",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/lit-element/lib/updating-element.d.ts": {
-        "version": "8f6b43f3b48b283fc2085889756951c982adc02e2ed30b61daedb47ba4e9d00c",
-        "signature": "8f6b43f3b48b283fc2085889756951c982adc02e2ed30b61daedb47ba4e9d00c",
-        "affectsGlobalScope": true
-      },
-      "../node_modules/lit-element/lib/decorators.d.ts": {
-        "version": "5790da39e66a3b67698cbc16bc02570066fb655d688cec22a4313f39c21053a3",
-        "signature": "5790da39e66a3b67698cbc16bc02570066fb655d688cec22a4313f39c21053a3",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/lit-element/lib/css-tag.d.ts": {
-        "version": "b78215ac58a5663c4c52ab3ae1a18ca74d7746e389d08cfc0ed2a6be86578105",
-        "signature": "b78215ac58a5663c4c52ab3ae1a18ca74d7746e389d08cfc0ed2a6be86578105",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/lit-element/lit-element.d.ts": {
-        "version": "4221ae5712e79fb7ebd6edcbfc4c733b295e3885dc0f3f5ff5bb618ea2609ec4",
-        "signature": "4221ae5712e79fb7ebd6edcbfc4c733b295e3885dc0f3f5ff5bb618ea2609ec4",
-        "affectsGlobalScope": true
-      },
-      "../src/counter/counter.element.styles.ts": {
-        "version": "8f3632cabe2d065f3bed4dc1c247bcc64b9cdbda45a9cf231e324ca85ff5aa77",
-        "signature": "f1a1d8f20ba1fbbcc596bc708db7bbc4248602f5cbb05e1d2fa650ac9b6b2f5a",
-        "affectsGlobalScope": false
-      },
       "../node_modules/@cds/core/internal/base/button.base.d.ts": {
-        "version": "ef18ffe5bc1062855e90ab5dd880ff2ea0426fe06b7d5c80db3cb01cfee8db21",
-        "signature": "ef18ffe5bc1062855e90ab5dd880ff2ea0426fe06b7d5c80db3cb01cfee8db21",
+        "version": "c339a148f86e112a5644fe86fbe54d4f6c459d40e78aded7ec15f72d7d713778",
+        "signature": "c339a148f86e112a5644fe86fbe54d4f6c459d40e78aded7ec15f72d7d713778",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/internal/utils/focus-trap.d.ts": {
@@ -217,8 +247,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/internal/base/focus-trap.base.d.ts": {
-        "version": "5fa5d74d13f41d15bfb3ce5db29724d3938116d4102428c8cfba60f544b50c7f",
-        "signature": "5fa5d74d13f41d15bfb3ce5db29724d3938116d4102428c8cfba60f544b50c7f",
+        "version": "2390b731c9b9a91734195f559a95e01f32aa7c9d60c3c549da960de1adaee853",
+        "signature": "2390b731c9b9a91734195f559a95e01f32aa7c9d60c3c549da960de1adaee853",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/internal/utils/css.d.ts": {
@@ -252,23 +282,28 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/internal/decorators/query-slot.d.ts": {
-        "version": "3942079de8995025a554ffae5baed54191947273dc38db8a8bc3c46a6a613a87",
-        "signature": "3942079de8995025a554ffae5baed54191947273dc38db8a8bc3c46a6a613a87",
+        "version": "bbc96d995f29a978f6d40aa8dfbf3be3b0978fb2eba6083875a7a1f0df1a7a16",
+        "signature": "bbc96d995f29a978f6d40aa8dfbf3be3b0978fb2eba6083875a7a1f0df1a7a16",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/internal/decorators/property.d.ts": {
-        "version": "7190a0efc7039c6f2c77850e312ede808c4cc14083b4ac9e931b2c2b24bbf4db",
-        "signature": "7190a0efc7039c6f2c77850e312ede808c4cc14083b4ac9e931b2c2b24bbf4db",
+        "version": "7705e4b4f32e574177bfaadf1042d5edc205a0ec5f02a1635ea60efec49bd8ae",
+        "signature": "7705e4b4f32e574177bfaadf1042d5edc205a0ec5f02a1635ea60efec49bd8ae",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/lit/directive.d.ts": {
+        "version": "31f6059c66e7df3d4127a55e4049f390ad129d5f039b52b7b4055e76854ad388",
+        "signature": "31f6059c66e7df3d4127a55e4049f390ad129d5f039b52b7b4055e76854ad388",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/internal/directives/spread-props.d.ts": {
-        "version": "f16f6ba9923ac9ac79f74fbdcef5271609bbc067f9f42e222c24215f15d17faf",
-        "signature": "f16f6ba9923ac9ac79f74fbdcef5271609bbc067f9f42e222c24215f15d17faf",
+        "version": "2b5b47d06a8e6c253f9750f60cdbcd7da4bd86a94afce9c04e7ae618642a13cb",
+        "signature": "2b5b47d06a8e6c253f9750f60cdbcd7da4bd86a94afce9c04e7ae618642a13cb",
         "affectsGlobalScope": true
       },
       "../node_modules/@cds/core/internal/decorators/id.d.ts": {
-        "version": "3540af0fe09eefeed6570653e80043a7a024a587f3bd9775dd97f6d78a067c4a",
-        "signature": "3540af0fe09eefeed6570653e80043a7a024a587f3bd9775dd97f6d78a067c4a",
+        "version": "a91c3f882f49df09753024e74cb42ec7664c78978609e7abb85161d5a3f6efe2",
+        "signature": "a91c3f882f49df09753024e74cb42ec7664c78978609e7abb85161d5a3f6efe2",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/internal/decorators/i18n.d.ts": {
@@ -281,44 +316,24 @@
         "signature": "701c1b2aa3ffcc1f679ed7f6925972ce2ca899ce44d08fc4045f485337f3b947",
         "affectsGlobalScope": false
       },
-      "../node_modules/@cds/core/internal/motion/motion.service.d.ts": {
-        "version": "26a47e6d64ae344114c50cc232ac447bdaaf0e451bb28a570591aa52d9554c64",
-        "signature": "26a47e6d64ae344114c50cc232ac447bdaaf0e451bb28a570591aa52d9554c64",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/@cds/core/internal/motion/utils.d.ts": {
-        "version": "4c14ae4458440d2f016c0968d8ad6e5b16817d13529bd60dcda9231a695fe12b",
-        "signature": "4c14ae4458440d2f016c0968d8ad6e5b16817d13529bd60dcda9231a695fe12b",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/@cds/core/internal/motion/animations/cds-modal-enter.d.ts": {
-        "version": "190d8e5bdcd4345109c2af3b22cb7c28930524e32d9dcdbd82f81bbcf1fda51a",
-        "signature": "190d8e5bdcd4345109c2af3b22cb7c28930524e32d9dcdbd82f81bbcf1fda51a",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/@cds/core/internal/motion/animations/cds-accordion-panel-open.d.ts": {
-        "version": "35a7558f18cec257a3b79b11333a16c12f327b1f4c3f6bd8cda46829137d7a7c",
-        "signature": "35a7558f18cec257a3b79b11333a16c12f327b1f4c3f6bd8cda46829137d7a7c",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/@cds/core/internal/motion/animations/cds-overlay-hinge-example.d.ts": {
-        "version": "34448d54e2fb4e9c5df92c794e51722b5c0431793aeb039fd6e727073e9a32df",
-        "signature": "34448d54e2fb4e9c5df92c794e51722b5c0431793aeb039fd6e727073e9a32df",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/@cds/core/internal/motion/animations/cds-component-shake.d.ts": {
-        "version": "855a3bcc1eaa1e4bb3789c708d73bfffa551e35d0dfb9fe3fe9121d7f04b87ee",
-        "signature": "855a3bcc1eaa1e4bb3789c708d73bfffa551e35d0dfb9fe3fe9121d7f04b87ee",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/@cds/core/internal/motion/index.d.ts": {
-        "version": "9216707a48e2f5b50e966bf41272f8a31437dd0d608a6dce821f6c69b20943e6",
-        "signature": "9216707a48e2f5b50e966bf41272f8a31437dd0d608a6dce821f6c69b20943e6",
-        "affectsGlobalScope": false
-      },
       "../node_modules/@cds/core/internal/services/focus-trap-tracker.service.d.ts": {
         "version": "b3132b20f5df006722e18aad669c2d15d4340c87485aaf146fefc0b7339153aa",
         "signature": "b3132b20f5df006722e18aad669c2d15d4340c87485aaf146fefc0b7339153aa",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/@cds/core/internal/utils/supports.d.ts": {
+        "version": "fc8d157164d7e163a8f8669dec873f53274eb174c75e9ec4740a7b47c2bc33e6",
+        "signature": "fc8d157164d7e163a8f8669dec873f53274eb174c75e9ec4740a7b47c2bc33e6",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/@cds/core/internal/utils/global.d.ts": {
+        "version": "17dc9aa1c422443a065f31205080fc79f238f25d894c44f183f3068e44db5a81",
+        "signature": "17dc9aa1c422443a065f31205080fc79f238f25d894c44f183f3068e44db5a81",
+        "affectsGlobalScope": true
+      },
+      "../node_modules/@cds/core/internal/services/global.service.d.ts": {
+        "version": "33ff62f555833e7d5b564162139befd59096a667d6030cd03d4e5e8a42d49f87",
+        "signature": "33ff62f555833e7d5b564162139befd59096a667d6030cd03d4e5e8a42d49f87",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/internal/services/i18n.service.d.ts": {
@@ -386,9 +401,9 @@
         "signature": "6303e3ffed7159c535c15927d27ee5442516ab1dbf83b3ff232ce34aa82353e2",
         "affectsGlobalScope": false
       },
-      "../node_modules/@cds/core/internal/utils/lit-element.d.ts": {
-        "version": "ca7be42649e11030087554e76c9ba8ee473fb70fbdf65833a8d03a8682bffca9",
-        "signature": "ca7be42649e11030087554e76c9ba8ee473fb70fbdf65833a8d03a8682bffca9",
+      "../node_modules/@cds/core/internal/utils/lit.d.ts": {
+        "version": "47a16781b56cd9be313c2c56b660e344f1a2fbc522f5f36a18312634d948079e",
+        "signature": "47a16781b56cd9be313c2c56b660e344f1a2fbc522f5f36a18312634d948079e",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/internal/utils/math.d.ts": {
@@ -401,14 +416,9 @@
         "signature": "56bb288073eae7e900680d20bdff39152c2610daa43d50aeebcbf52c783a8d04",
         "affectsGlobalScope": false
       },
-      "../node_modules/@types/resize-observer-browser/index.d.ts": {
-        "version": "e4f6d89d21579a37d7246c863bea94c288c60bd3f4dae45b75258c6f473e85e3",
-        "signature": "e4f6d89d21579a37d7246c863bea94c288c60bd3f4dae45b75258c6f473e85e3",
-        "affectsGlobalScope": true
-      },
       "../node_modules/@cds/core/internal/utils/responsive.d.ts": {
-        "version": "4931e68e05485d8d1fb4d8703afc6dea2a59281452eac14a05afb79251de96e2",
-        "signature": "4931e68e05485d8d1fb4d8703afc6dea2a59281452eac14a05afb79251de96e2",
+        "version": "b75415b064d7d32286f45e899c35e105d5781797433ad3ede49c7eb041a83128",
+        "signature": "b75415b064d7d32286f45e899c35e105d5781797433ad3ede49c7eb041a83128",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/internal/utils/size.d.ts": {
@@ -417,13 +427,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/internal/utils/string.d.ts": {
-        "version": "ee7fbd4990110503070024dec5d12f469b5dc7be85536bda9cb8b7d2e6558110",
-        "signature": "ee7fbd4990110503070024dec5d12f469b5dc7be85536bda9cb8b7d2e6558110",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/@cds/core/internal/utils/supports.d.ts": {
-        "version": "fc8d157164d7e163a8f8669dec873f53274eb174c75e9ec4740a7b47c2bc33e6",
-        "signature": "fc8d157164d7e163a8f8669dec873f53274eb174c75e9ec4740a7b47c2bc33e6",
+        "version": "3aa3a6335b685b27c9074fd9ee3b8ce7c2b49450cc992194fce7a89ceb268d59",
+        "signature": "3aa3a6335b685b27c9074fd9ee3b8ce7c2b49450cc992194fce7a89ceb268d59",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/internal/utils/events.d.ts": {
@@ -441,19 +446,44 @@
         "signature": "9211a7f9ebc5f8448cb931ae78367c9d6887cdd876c46cd2b2d111163e8e80be",
         "affectsGlobalScope": false
       },
-      "../node_modules/@cds/core/internal/base/base.element.css.d.ts": {
-        "version": "f1a1d8f20ba1fbbcc596bc708db7bbc4248602f5cbb05e1d2fa650ac9b6b2f5a",
-        "signature": "f1a1d8f20ba1fbbcc596bc708db7bbc4248602f5cbb05e1d2fa650ac9b6b2f5a",
+      "../node_modules/@cds/core/internal/motion/motion.service.d.ts": {
+        "version": "26a47e6d64ae344114c50cc232ac447bdaaf0e451bb28a570591aa52d9554c64",
+        "signature": "26a47e6d64ae344114c50cc232ac447bdaaf0e451bb28a570591aa52d9554c64",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/@cds/core/internal/motion/utils.d.ts": {
+        "version": "4c14ae4458440d2f016c0968d8ad6e5b16817d13529bd60dcda9231a695fe12b",
+        "signature": "4c14ae4458440d2f016c0968d8ad6e5b16817d13529bd60dcda9231a695fe12b",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/@cds/core/internal/motion/animations/cds-modal-enter.d.ts": {
+        "version": "190d8e5bdcd4345109c2af3b22cb7c28930524e32d9dcdbd82f81bbcf1fda51a",
+        "signature": "190d8e5bdcd4345109c2af3b22cb7c28930524e32d9dcdbd82f81bbcf1fda51a",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/@cds/core/internal/motion/animations/cds-accordion-panel-open.d.ts": {
+        "version": "35a7558f18cec257a3b79b11333a16c12f327b1f4c3f6bd8cda46829137d7a7c",
+        "signature": "35a7558f18cec257a3b79b11333a16c12f327b1f4c3f6bd8cda46829137d7a7c",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/@cds/core/internal/motion/animations/cds-overlay-hinge-example.d.ts": {
+        "version": "34448d54e2fb4e9c5df92c794e51722b5c0431793aeb039fd6e727073e9a32df",
+        "signature": "34448d54e2fb4e9c5df92c794e51722b5c0431793aeb039fd6e727073e9a32df",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/@cds/core/internal/motion/animations/cds-component-shake.d.ts": {
+        "version": "855a3bcc1eaa1e4bb3789c708d73bfffa551e35d0dfb9fe3fe9121d7f04b87ee",
+        "signature": "855a3bcc1eaa1e4bb3789c708d73bfffa551e35d0dfb9fe3fe9121d7f04b87ee",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/internal/index.d.ts": {
-        "version": "6d470417ac93a3045a0a28990152fbb531e4347aafe1ee9e398460103cc0d390",
-        "signature": "6d470417ac93a3045a0a28990152fbb531e4347aafe1ee9e398460103cc0d390",
+        "version": "5e5ab57b6ad1eacc74f98b6fd94173edbd5a827fcbceff753408011c1a08cb5d",
+        "signature": "5e5ab57b6ad1eacc74f98b6fd94173edbd5a827fcbceff753408011c1a08cb5d",
         "affectsGlobalScope": false
       },
       "../src/counter/counter.element.ts": {
-        "version": "c7dacadfab9c27c474b3a6613bdeb03b756a01e4313a468871abff94b7429f76",
-        "signature": "4125d57f3e501dc1b5c02b31e7ebc5e029763d24c6480cd2124802c11fe43a24",
+        "version": "29efe4edc3b571e4f36ee547e939e40038eb745bd9d801342f714cf6541c098e",
+        "signature": "b9c3243b09afc7200e3d7ee92f3c862d93282b652ed5a38a7cb1a41c7453a289",
         "affectsGlobalScope": false
       },
       "../src/counter/index.ts": {
@@ -482,8 +512,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/icon/icon.element.d.ts": {
-        "version": "5200ec64cc8491e46832f3cf8a9ed0856da58ac1c953e8ebd8b46e813d13ca57",
-        "signature": "5200ec64cc8491e46832f3cf8a9ed0856da58ac1c953e8ebd8b46e813d13ca57",
+        "version": "fa23fad278da6f61e3efe25ad72097a521262bb14039c0f7d3c80864ec0a1d3c",
+        "signature": "fa23fad278da6f61e3efe25ad72097a521262bb14039c0f7d3c80864ec0a1d3c",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/icon/register.d.ts": {
@@ -492,8 +522,8 @@
         "affectsGlobalScope": true
       },
       "../node_modules/@cds/core/progress-circle/progress-circle.element.d.ts": {
-        "version": "39f6fe74147f73fc2a24161a31b4d0b0eb3311b4b68c61cb994f8bee2f943019",
-        "signature": "39f6fe74147f73fc2a24161a31b4d0b0eb3311b4b68c61cb994f8bee2f943019",
+        "version": "7a17fbc33659df81e8a94e7e422b78003834a0e93adef9a708bcf4176f169817",
+        "signature": "7a17fbc33659df81e8a94e7e422b78003834a0e93adef9a708bcf4176f169817",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/progress-circle/register.d.ts": {
@@ -502,18 +532,18 @@
         "affectsGlobalScope": true
       },
       "../node_modules/@cds/core/button/button.element.d.ts": {
-        "version": "0077e7ae133f156935e54012584daab8d9250ec091a3cb9afc5d2beaed9af226",
-        "signature": "0077e7ae133f156935e54012584daab8d9250ec091a3cb9afc5d2beaed9af226",
+        "version": "948df10f9b42db6e369197a8735779ca598563882d7a331f7fead309d0a041cd",
+        "signature": "948df10f9b42db6e369197a8735779ca598563882d7a331f7fead309d0a041cd",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/button/icon-button.element.d.ts": {
-        "version": "f2ad48c74201efe75ce107fd97e55b97761c71aa775eced915bf5b4d768a75b0",
-        "signature": "f2ad48c74201efe75ce107fd97e55b97761c71aa775eced915bf5b4d768a75b0",
+        "version": "7dfa2547489fb7582f6e30f79a166fdfb3c5826152ef7162a637a0371946404d",
+        "signature": "7dfa2547489fb7582f6e30f79a166fdfb3c5826152ef7162a637a0371946404d",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/button/inline-button.element.d.ts": {
-        "version": "6f05a85e60be8d78b6dcf5bb5962962fddd5fb902137aa3a16e7ecfb946e7a3f",
-        "signature": "6f05a85e60be8d78b6dcf5bb5962962fddd5fb902137aa3a16e7ecfb946e7a3f",
+        "version": "58a83f99418d9504b9cb3ce4732434f4d146671eeb851be24e591ff030a14640",
+        "signature": "58a83f99418d9504b9cb3ce4732434f4d146671eeb851be24e591ff030a14640",
         "affectsGlobalScope": false
       },
       "../node_modules/@cds/core/button/register.d.ts": {
@@ -522,7 +552,7 @@
         "affectsGlobalScope": true
       },
       "../src/counter/register.ts": {
-        "version": "cae8c374ea33fbef5302286727be4e3582bf6bbaec5ccb0f6671852cfc66551b",
+        "version": "68a801da100d04599b9045f0bb4703e9efcc5f8137225cc918e875521a09a625",
         "signature": "cb391cb95f0b110344845019da0b2423f480a641fe58a1b2f424ae9f4c1a8445",
         "affectsGlobalScope": true
       }
@@ -554,15 +584,18 @@
     "referencedMap": {
       "../node_modules/@cds/core/button/button.element.d.ts": [
         "../node_modules/@cds/core/internal/index.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/button/icon-button.element.d.ts": [
         "../node_modules/@cds/core/button/button.element.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/button/inline-button.element.d.ts": [
         "../node_modules/@cds/core/internal/index.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/button/register.d.ts": [
         "../node_modules/@cds/core/button/button.element.d.ts",
@@ -573,7 +606,8 @@
       ],
       "../node_modules/@cds/core/icon/icon.element.d.ts": [
         "../node_modules/@cds/core/internal/index.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/icon/icon.service.d.ts": [
         "../node_modules/@cds/core/icon/interfaces/icon.interfaces.d.ts",
@@ -591,21 +625,22 @@
       "../node_modules/@cds/core/icon/shapes/plus.d.ts": [
         "../node_modules/@cds/core/icon/interfaces/icon.interfaces.d.ts"
       ],
-      "../node_modules/@cds/core/internal/base/base.element.css.d.ts": [
-        "../node_modules/lit-element/lit-element.d.ts"
-      ],
       "../node_modules/@cds/core/internal/base/button.base.d.ts": [
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/internal/base/focus-trap.base.d.ts": [
         "../node_modules/@cds/core/internal/utils/focus-trap.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/internal/decorators/animate.d.ts": [
         "../node_modules/@cds/core/internal/motion/interfaces.d.ts"
       ],
+      "../node_modules/@cds/core/internal/directives/spread-props.d.ts": [
+        "../node_modules/lit/directive.d.ts"
+      ],
       "../node_modules/@cds/core/internal/index.d.ts": [
-        "../node_modules/@cds/core/internal/base/base.element.css.d.ts",
         "../node_modules/@cds/core/internal/base/button.base.d.ts",
         "../node_modules/@cds/core/internal/base/focus-trap.base.d.ts",
         "../node_modules/@cds/core/internal/decorators/animate.d.ts",
@@ -618,8 +653,15 @@
         "../node_modules/@cds/core/internal/directives/spread-props.d.ts",
         "../node_modules/@cds/core/internal/i18n/utils.d.ts",
         "../node_modules/@cds/core/internal/interfaces/index.d.ts",
-        "../node_modules/@cds/core/internal/motion/index.d.ts",
+        "../node_modules/@cds/core/internal/motion/animations/cds-accordion-panel-open.d.ts",
+        "../node_modules/@cds/core/internal/motion/animations/cds-component-shake.d.ts",
+        "../node_modules/@cds/core/internal/motion/animations/cds-modal-enter.d.ts",
+        "../node_modules/@cds/core/internal/motion/animations/cds-overlay-hinge-example.d.ts",
+        "../node_modules/@cds/core/internal/motion/interfaces.d.ts",
+        "../node_modules/@cds/core/internal/motion/motion.service.d.ts",
+        "../node_modules/@cds/core/internal/motion/utils.d.ts",
         "../node_modules/@cds/core/internal/services/focus-trap-tracker.service.d.ts",
+        "../node_modules/@cds/core/internal/services/global.service.d.ts",
         "../node_modules/@cds/core/internal/services/i18n.service.d.ts",
         "../node_modules/@cds/core/internal/services/keycodes.service.d.ts",
         "../node_modules/@cds/core/internal/services/log.service.d.ts",
@@ -637,14 +679,15 @@
         "../node_modules/@cds/core/internal/utils/framework.d.ts",
         "../node_modules/@cds/core/internal/utils/identity.d.ts",
         "../node_modules/@cds/core/internal/utils/keycodes.d.ts",
-        "../node_modules/@cds/core/internal/utils/lit-element.d.ts",
+        "../node_modules/@cds/core/internal/utils/lit.d.ts",
         "../node_modules/@cds/core/internal/utils/math.d.ts",
         "../node_modules/@cds/core/internal/utils/metadata.d.ts",
         "../node_modules/@cds/core/internal/utils/register.d.ts",
         "../node_modules/@cds/core/internal/utils/responsive.d.ts",
         "../node_modules/@cds/core/internal/utils/size.d.ts",
         "../node_modules/@cds/core/internal/utils/string.d.ts",
-        "../node_modules/@cds/core/internal/utils/supports.d.ts"
+        "../node_modules/@cds/core/internal/utils/supports.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/internal/motion/animations/cds-accordion-panel-open.d.ts": [
         "../node_modules/@cds/core/internal/motion/interfaces.d.ts"
@@ -658,15 +701,6 @@
       "../node_modules/@cds/core/internal/motion/animations/cds-overlay-hinge-example.d.ts": [
         "../node_modules/@cds/core/internal/motion/interfaces.d.ts"
       ],
-      "../node_modules/@cds/core/internal/motion/index.d.ts": [
-        "../node_modules/@cds/core/internal/motion/animations/cds-accordion-panel-open.d.ts",
-        "../node_modules/@cds/core/internal/motion/animations/cds-component-shake.d.ts",
-        "../node_modules/@cds/core/internal/motion/animations/cds-modal-enter.d.ts",
-        "../node_modules/@cds/core/internal/motion/animations/cds-overlay-hinge-example.d.ts",
-        "../node_modules/@cds/core/internal/motion/interfaces.d.ts",
-        "../node_modules/@cds/core/internal/motion/motion.service.d.ts",
-        "../node_modules/@cds/core/internal/motion/utils.d.ts"
-      ],
       "../node_modules/@cds/core/internal/motion/interfaces.d.ts": [
         "../node_modules/@cds/core/internal/decorators/event.d.ts"
       ],
@@ -676,29 +710,36 @@
       "../node_modules/@cds/core/internal/motion/utils.d.ts": [
         "../node_modules/@cds/core/internal/motion/interfaces.d.ts"
       ],
-      "../node_modules/@cds/core/internal/utils/lit-element.d.ts": [
-        "../node_modules/lit-element/lit-element.d.ts"
+      "../node_modules/@cds/core/internal/services/global.service.d.ts": [
+        "../node_modules/@cds/core/internal/utils/global.d.ts"
+      ],
+      "../node_modules/@cds/core/internal/utils/global.d.ts": [
+        "../node_modules/@cds/core/internal/utils/supports.d.ts"
+      ],
+      "../node_modules/@cds/core/internal/utils/lit.d.ts": [
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/internal/utils/responsive.d.ts": [
-        "../node_modules/@types/resize-observer-browser/index.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/progress-circle/progress-circle.element.d.ts": [
         "../node_modules/@cds/core/internal/index.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/progress-circle/register.d.ts": [
         "../node_modules/@cds/core/progress-circle/progress-circle.element.d.ts"
       ],
-      "../node_modules/lit-element/lib/decorators.d.ts": [
-        "../node_modules/lit-element/lib/updating-element.d.ts"
+      "../node_modules/@lit/reactive-element/decorators/base.d.ts": [
+        "../node_modules/@lit/reactive-element/reactive-element.d.ts"
       ],
-      "../node_modules/lit-element/lit-element.d.ts": [
-        "../node_modules/lit-element/lib/css-tag.d.ts",
-        "../node_modules/lit-element/lib/decorators.d.ts",
-        "../node_modules/lit-element/lib/updating-element.d.ts",
-        "../node_modules/lit-html/lib/shady-render.d.ts",
-        "../node_modules/lit-html/lit-html.d.ts"
+      "../node_modules/@lit/reactive-element/decorators/property.d.ts": [
+        "../node_modules/@lit/reactive-element/decorators/base.d.ts",
+        "../node_modules/@lit/reactive-element/reactive-element.d.ts"
+      ],
+      "../node_modules/@lit/reactive-element/reactive-element.d.ts": [
+        "../node_modules/@lit/reactive-element/css-tag.d.ts",
+        "../node_modules/@lit/reactive-element/reactive-controller.d.ts"
       ],
       "../node_modules/lit-html/lib/default-template-processor.d.ts": [
         "../node_modules/lit-html/lib/part.d.ts",
@@ -719,12 +760,6 @@
       "../node_modules/lit-html/lib/render.d.ts": [
         "../node_modules/lit-html/lib/parts.d.ts",
         "../node_modules/lit-html/lib/render-options.d.ts"
-      ],
-      "../node_modules/lit-html/lib/shady-render.d.ts": [
-        "../node_modules/lit-html/lib/render-options.d.ts",
-        "../node_modules/lit-html/lib/template-result.d.ts",
-        "../node_modules/lit-html/lib/template.d.ts",
-        "../node_modules/lit-html/lit-html.d.ts"
       ],
       "../node_modules/lit-html/lib/template-factory.d.ts": [
         "../node_modules/lit-html/lib/template-result.d.ts",
@@ -760,13 +795,36 @@
         "../node_modules/lit-html/lib/template-result.d.ts",
         "../node_modules/lit-html/lib/template.d.ts"
       ],
+      "../node_modules/lit/decorators/property.d.ts": [
+        "../node_modules/@lit/reactive-element/decorators/property.d.ts"
+      ],
+      "../node_modules/lit/directive.d.ts": [
+        "../node_modules/lit/node_modules/lit-html/directive.d.ts"
+      ],
+      "../node_modules/lit/index.d.ts": [
+        "../node_modules/@lit/reactive-element/reactive-element.d.ts",
+        "../node_modules/lit/node_modules/lit-element/lit-element.d.ts",
+        "../node_modules/lit/node_modules/lit-html/lit-html.d.ts"
+      ],
+      "../node_modules/lit/node_modules/lit-element/lit-element.d.ts": [
+        "../node_modules/@lit/reactive-element/reactive-element.d.ts",
+        "../node_modules/lit/node_modules/lit-html/lit-html.d.ts"
+      ],
+      "../node_modules/lit/node_modules/lit-html/directive.d.ts": [
+        "../node_modules/lit/node_modules/lit-html/lit-html.d.ts"
+      ],
+      "../node_modules/lit/node_modules/lit-html/lit-html.d.ts": [
+        "../node_modules/@types/trusted-types/index.d.ts",
+        "../node_modules/lit/node_modules/lit-html/directive.d.ts"
+      ],
       "../src/counter/counter.element.styles.ts": [
-        "../node_modules/lit-element/lit-element.d.ts",
+        "../node_modules/lit/index.d.ts",
         "../node_modules/tslib/tslib.d.ts"
       ],
       "../src/counter/counter.element.ts": [
         "../node_modules/@cds/core/internal/index.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts",
+        "../node_modules/lit/decorators/property.d.ts",
+        "../node_modules/lit/index.d.ts",
         "../node_modules/tslib/tslib.d.ts",
         "../src/counter/counter.element.styles.ts"
       ],
@@ -780,7 +838,7 @@
         "../node_modules/@cds/core/icon/register.d.ts",
         "../node_modules/@cds/core/icon/shapes/minus.d.ts",
         "../node_modules/@cds/core/icon/shapes/plus.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts",
+        "../node_modules/lit/index.d.ts",
         "../node_modules/tslib/tslib.d.ts",
         "../src/counter/counter.element.ts"
       ]
@@ -788,15 +846,18 @@
     "exportedModulesMap": {
       "../node_modules/@cds/core/button/button.element.d.ts": [
         "../node_modules/@cds/core/internal/index.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/button/icon-button.element.d.ts": [
         "../node_modules/@cds/core/button/button.element.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/button/inline-button.element.d.ts": [
         "../node_modules/@cds/core/internal/index.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/button/register.d.ts": [
         "../node_modules/@cds/core/button/button.element.d.ts",
@@ -807,7 +868,8 @@
       ],
       "../node_modules/@cds/core/icon/icon.element.d.ts": [
         "../node_modules/@cds/core/internal/index.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/icon/icon.service.d.ts": [
         "../node_modules/@cds/core/icon/interfaces/icon.interfaces.d.ts",
@@ -825,21 +887,22 @@
       "../node_modules/@cds/core/icon/shapes/plus.d.ts": [
         "../node_modules/@cds/core/icon/interfaces/icon.interfaces.d.ts"
       ],
-      "../node_modules/@cds/core/internal/base/base.element.css.d.ts": [
-        "../node_modules/lit-element/lit-element.d.ts"
-      ],
       "../node_modules/@cds/core/internal/base/button.base.d.ts": [
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/internal/base/focus-trap.base.d.ts": [
         "../node_modules/@cds/core/internal/utils/focus-trap.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/internal/decorators/animate.d.ts": [
         "../node_modules/@cds/core/internal/motion/interfaces.d.ts"
       ],
+      "../node_modules/@cds/core/internal/directives/spread-props.d.ts": [
+        "../node_modules/lit/directive.d.ts"
+      ],
       "../node_modules/@cds/core/internal/index.d.ts": [
-        "../node_modules/@cds/core/internal/base/base.element.css.d.ts",
         "../node_modules/@cds/core/internal/base/button.base.d.ts",
         "../node_modules/@cds/core/internal/base/focus-trap.base.d.ts",
         "../node_modules/@cds/core/internal/decorators/animate.d.ts",
@@ -852,8 +915,15 @@
         "../node_modules/@cds/core/internal/directives/spread-props.d.ts",
         "../node_modules/@cds/core/internal/i18n/utils.d.ts",
         "../node_modules/@cds/core/internal/interfaces/index.d.ts",
-        "../node_modules/@cds/core/internal/motion/index.d.ts",
+        "../node_modules/@cds/core/internal/motion/animations/cds-accordion-panel-open.d.ts",
+        "../node_modules/@cds/core/internal/motion/animations/cds-component-shake.d.ts",
+        "../node_modules/@cds/core/internal/motion/animations/cds-modal-enter.d.ts",
+        "../node_modules/@cds/core/internal/motion/animations/cds-overlay-hinge-example.d.ts",
+        "../node_modules/@cds/core/internal/motion/interfaces.d.ts",
+        "../node_modules/@cds/core/internal/motion/motion.service.d.ts",
+        "../node_modules/@cds/core/internal/motion/utils.d.ts",
         "../node_modules/@cds/core/internal/services/focus-trap-tracker.service.d.ts",
+        "../node_modules/@cds/core/internal/services/global.service.d.ts",
         "../node_modules/@cds/core/internal/services/i18n.service.d.ts",
         "../node_modules/@cds/core/internal/services/keycodes.service.d.ts",
         "../node_modules/@cds/core/internal/services/log.service.d.ts",
@@ -871,14 +941,15 @@
         "../node_modules/@cds/core/internal/utils/framework.d.ts",
         "../node_modules/@cds/core/internal/utils/identity.d.ts",
         "../node_modules/@cds/core/internal/utils/keycodes.d.ts",
-        "../node_modules/@cds/core/internal/utils/lit-element.d.ts",
+        "../node_modules/@cds/core/internal/utils/lit.d.ts",
         "../node_modules/@cds/core/internal/utils/math.d.ts",
         "../node_modules/@cds/core/internal/utils/metadata.d.ts",
         "../node_modules/@cds/core/internal/utils/register.d.ts",
         "../node_modules/@cds/core/internal/utils/responsive.d.ts",
         "../node_modules/@cds/core/internal/utils/size.d.ts",
         "../node_modules/@cds/core/internal/utils/string.d.ts",
-        "../node_modules/@cds/core/internal/utils/supports.d.ts"
+        "../node_modules/@cds/core/internal/utils/supports.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/internal/motion/animations/cds-accordion-panel-open.d.ts": [
         "../node_modules/@cds/core/internal/motion/interfaces.d.ts"
@@ -892,15 +963,6 @@
       "../node_modules/@cds/core/internal/motion/animations/cds-overlay-hinge-example.d.ts": [
         "../node_modules/@cds/core/internal/motion/interfaces.d.ts"
       ],
-      "../node_modules/@cds/core/internal/motion/index.d.ts": [
-        "../node_modules/@cds/core/internal/motion/animations/cds-accordion-panel-open.d.ts",
-        "../node_modules/@cds/core/internal/motion/animations/cds-component-shake.d.ts",
-        "../node_modules/@cds/core/internal/motion/animations/cds-modal-enter.d.ts",
-        "../node_modules/@cds/core/internal/motion/animations/cds-overlay-hinge-example.d.ts",
-        "../node_modules/@cds/core/internal/motion/interfaces.d.ts",
-        "../node_modules/@cds/core/internal/motion/motion.service.d.ts",
-        "../node_modules/@cds/core/internal/motion/utils.d.ts"
-      ],
       "../node_modules/@cds/core/internal/motion/interfaces.d.ts": [
         "../node_modules/@cds/core/internal/decorators/event.d.ts"
       ],
@@ -910,29 +972,36 @@
       "../node_modules/@cds/core/internal/motion/utils.d.ts": [
         "../node_modules/@cds/core/internal/motion/interfaces.d.ts"
       ],
-      "../node_modules/@cds/core/internal/utils/lit-element.d.ts": [
-        "../node_modules/lit-element/lit-element.d.ts"
+      "../node_modules/@cds/core/internal/services/global.service.d.ts": [
+        "../node_modules/@cds/core/internal/utils/global.d.ts"
+      ],
+      "../node_modules/@cds/core/internal/utils/global.d.ts": [
+        "../node_modules/@cds/core/internal/utils/supports.d.ts"
+      ],
+      "../node_modules/@cds/core/internal/utils/lit.d.ts": [
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/internal/utils/responsive.d.ts": [
-        "../node_modules/@types/resize-observer-browser/index.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/progress-circle/progress-circle.element.d.ts": [
         "../node_modules/@cds/core/internal/index.d.ts",
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit-html/lit-html.d.ts",
+        "../node_modules/lit/index.d.ts"
       ],
       "../node_modules/@cds/core/progress-circle/register.d.ts": [
         "../node_modules/@cds/core/progress-circle/progress-circle.element.d.ts"
       ],
-      "../node_modules/lit-element/lib/decorators.d.ts": [
-        "../node_modules/lit-element/lib/updating-element.d.ts"
+      "../node_modules/@lit/reactive-element/decorators/base.d.ts": [
+        "../node_modules/@lit/reactive-element/reactive-element.d.ts"
       ],
-      "../node_modules/lit-element/lit-element.d.ts": [
-        "../node_modules/lit-element/lib/css-tag.d.ts",
-        "../node_modules/lit-element/lib/decorators.d.ts",
-        "../node_modules/lit-element/lib/updating-element.d.ts",
-        "../node_modules/lit-html/lib/shady-render.d.ts",
-        "../node_modules/lit-html/lit-html.d.ts"
+      "../node_modules/@lit/reactive-element/decorators/property.d.ts": [
+        "../node_modules/@lit/reactive-element/decorators/base.d.ts",
+        "../node_modules/@lit/reactive-element/reactive-element.d.ts"
+      ],
+      "../node_modules/@lit/reactive-element/reactive-element.d.ts": [
+        "../node_modules/@lit/reactive-element/css-tag.d.ts",
+        "../node_modules/@lit/reactive-element/reactive-controller.d.ts"
       ],
       "../node_modules/lit-html/lib/default-template-processor.d.ts": [
         "../node_modules/lit-html/lib/part.d.ts",
@@ -953,12 +1022,6 @@
       "../node_modules/lit-html/lib/render.d.ts": [
         "../node_modules/lit-html/lib/parts.d.ts",
         "../node_modules/lit-html/lib/render-options.d.ts"
-      ],
-      "../node_modules/lit-html/lib/shady-render.d.ts": [
-        "../node_modules/lit-html/lib/render-options.d.ts",
-        "../node_modules/lit-html/lib/template-result.d.ts",
-        "../node_modules/lit-html/lib/template.d.ts",
-        "../node_modules/lit-html/lit-html.d.ts"
       ],
       "../node_modules/lit-html/lib/template-factory.d.ts": [
         "../node_modules/lit-html/lib/template-result.d.ts",
@@ -994,11 +1057,33 @@
         "../node_modules/lit-html/lib/template-result.d.ts",
         "../node_modules/lit-html/lib/template.d.ts"
       ],
+      "../node_modules/lit/decorators/property.d.ts": [
+        "../node_modules/@lit/reactive-element/decorators/property.d.ts"
+      ],
+      "../node_modules/lit/directive.d.ts": [
+        "../node_modules/lit/node_modules/lit-html/directive.d.ts"
+      ],
+      "../node_modules/lit/index.d.ts": [
+        "../node_modules/@lit/reactive-element/reactive-element.d.ts",
+        "../node_modules/lit/node_modules/lit-element/lit-element.d.ts",
+        "../node_modules/lit/node_modules/lit-html/lit-html.d.ts"
+      ],
+      "../node_modules/lit/node_modules/lit-element/lit-element.d.ts": [
+        "../node_modules/@lit/reactive-element/reactive-element.d.ts",
+        "../node_modules/lit/node_modules/lit-html/lit-html.d.ts"
+      ],
+      "../node_modules/lit/node_modules/lit-html/directive.d.ts": [
+        "../node_modules/lit/node_modules/lit-html/lit-html.d.ts"
+      ],
+      "../node_modules/lit/node_modules/lit-html/lit-html.d.ts": [
+        "../node_modules/@types/trusted-types/index.d.ts",
+        "../node_modules/lit/node_modules/lit-html/directive.d.ts"
+      ],
       "../src/counter/counter.element.styles.ts": [
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit/index.d.ts"
       ],
       "../src/counter/counter.element.ts": [
-        "../node_modules/lit-element/lit-element.d.ts"
+        "../node_modules/lit/index.d.ts"
       ],
       "../src/counter/index.ts": [
         "../src/counter/counter.element.ts"
@@ -1010,19 +1095,122 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "../node_modules/@cds/core/button/button.element.d.ts",
-      "../node_modules/@cds/core/button/icon-button.element.d.ts",
-      "../node_modules/@cds/core/button/inline-button.element.d.ts",
+      [
+        "../node_modules/@cds/core/button/button.element.d.ts",
+        [
+          {
+            "file": "../node_modules/@cds/core/button/button.element.d.ts",
+            "start": 104,
+            "length": 36,
+            "messageText": "Type 'TemplateResult' is not generic.",
+            "category": 1,
+            "code": 2315
+          },
+          {
+            "file": "../node_modules/@cds/core/button/button.element.d.ts",
+            "start": 174,
+            "length": 36,
+            "messageText": "Type 'TemplateResult' is not generic.",
+            "category": 1,
+            "code": 2315
+          },
+          {
+            "file": "../node_modules/@cds/core/button/button.element.d.ts",
+            "start": 244,
+            "length": 36,
+            "messageText": "Type 'TemplateResult' is not generic.",
+            "category": 1,
+            "code": 2315
+          },
+          {
+            "file": "../node_modules/@cds/core/button/button.element.d.ts",
+            "start": 2933,
+            "length": 36,
+            "messageText": "Type 'TemplateResult' is not generic.",
+            "category": 1,
+            "code": 2315
+          }
+        ]
+      ],
+      [
+        "../node_modules/@cds/core/button/icon-button.element.d.ts",
+        [
+          {
+            "file": "../node_modules/@cds/core/button/icon-button.element.d.ts",
+            "start": 1034,
+            "length": 36,
+            "messageText": "Type 'TemplateResult' is not generic.",
+            "category": 1,
+            "code": 2315
+          }
+        ]
+      ],
+      [
+        "../node_modules/@cds/core/button/inline-button.element.d.ts",
+        [
+          {
+            "file": "../node_modules/@cds/core/button/inline-button.element.d.ts",
+            "start": 696,
+            "length": 36,
+            "messageText": "Type 'TemplateResult' is not generic.",
+            "category": 1,
+            "code": 2315
+          }
+        ]
+      ],
       "../node_modules/@cds/core/button/register.d.ts",
-      "../node_modules/@cds/core/icon/icon.element.d.ts",
+      [
+        "../node_modules/@cds/core/icon/icon.element.d.ts",
+        [
+          {
+            "file": "../node_modules/@cds/core/icon/icon.element.d.ts",
+            "start": 3215,
+            "length": 36,
+            "messageText": "Type 'TemplateResult' is not generic.",
+            "category": 1,
+            "code": 2315
+          },
+          {
+            "file": "../node_modules/@cds/core/icon/icon.element.d.ts",
+            "start": 3254,
+            "length": 36,
+            "messageText": "Type 'TemplateResult' is not generic.",
+            "category": 1,
+            "code": 2315
+          }
+        ]
+      ],
       "../node_modules/@cds/core/icon/icon.service.d.ts",
       "../node_modules/@cds/core/icon/interfaces/icon.interfaces.d.ts",
       "../node_modules/@cds/core/icon/register.d.ts",
       "../node_modules/@cds/core/icon/shapes/minus.d.ts",
       "../node_modules/@cds/core/icon/shapes/plus.d.ts",
-      "../node_modules/@cds/core/internal/base/base.element.css.d.ts",
-      "../node_modules/@cds/core/internal/base/button.base.d.ts",
-      "../node_modules/@cds/core/internal/base/focus-trap.base.d.ts",
+      [
+        "../node_modules/@cds/core/internal/base/button.base.d.ts",
+        [
+          {
+            "file": "../node_modules/@cds/core/internal/base/button.base.d.ts",
+            "start": 522,
+            "length": 36,
+            "messageText": "Type 'TemplateResult' is not generic.",
+            "category": 1,
+            "code": 2315
+          }
+        ]
+      ],
+      [
+        "../node_modules/@cds/core/internal/base/focus-trap.base.d.ts",
+        [
+          {
+            "file": "../node_modules/@cds/core/internal/base/focus-trap.base.d.ts",
+            "start": 714,
+            "length": 36,
+            "messageText": "Type 'TemplateResult' is not generic.",
+            "category": 1,
+            "code": 2315
+          }
+        ]
+      ],
       "../node_modules/@cds/core/internal/decorators/animate.d.ts",
       "../node_modules/@cds/core/internal/decorators/event.d.ts",
       "../node_modules/@cds/core/internal/decorators/global-style.d.ts",
@@ -1038,11 +1226,11 @@
       "../node_modules/@cds/core/internal/motion/animations/cds-component-shake.d.ts",
       "../node_modules/@cds/core/internal/motion/animations/cds-modal-enter.d.ts",
       "../node_modules/@cds/core/internal/motion/animations/cds-overlay-hinge-example.d.ts",
-      "../node_modules/@cds/core/internal/motion/index.d.ts",
       "../node_modules/@cds/core/internal/motion/interfaces.d.ts",
       "../node_modules/@cds/core/internal/motion/motion.service.d.ts",
       "../node_modules/@cds/core/internal/motion/utils.d.ts",
       "../node_modules/@cds/core/internal/services/focus-trap-tracker.service.d.ts",
+      "../node_modules/@cds/core/internal/services/global.service.d.ts",
       "../node_modules/@cds/core/internal/services/i18n.service.d.ts",
       "../node_modules/@cds/core/internal/services/keycodes.service.d.ts",
       "../node_modules/@cds/core/internal/services/log.service.d.ts",
@@ -1058,9 +1246,10 @@
       "../node_modules/@cds/core/internal/utils/exists.d.ts",
       "../node_modules/@cds/core/internal/utils/focus-trap.d.ts",
       "../node_modules/@cds/core/internal/utils/framework.d.ts",
+      "../node_modules/@cds/core/internal/utils/global.d.ts",
       "../node_modules/@cds/core/internal/utils/identity.d.ts",
       "../node_modules/@cds/core/internal/utils/keycodes.d.ts",
-      "../node_modules/@cds/core/internal/utils/lit-element.d.ts",
+      "../node_modules/@cds/core/internal/utils/lit.d.ts",
       "../node_modules/@cds/core/internal/utils/math.d.ts",
       "../node_modules/@cds/core/internal/utils/metadata.d.ts",
       "../node_modules/@cds/core/internal/utils/register.d.ts",
@@ -1068,13 +1257,26 @@
       "../node_modules/@cds/core/internal/utils/size.d.ts",
       "../node_modules/@cds/core/internal/utils/string.d.ts",
       "../node_modules/@cds/core/internal/utils/supports.d.ts",
-      "../node_modules/@cds/core/progress-circle/progress-circle.element.d.ts",
+      [
+        "../node_modules/@cds/core/progress-circle/progress-circle.element.d.ts",
+        [
+          {
+            "file": "../node_modules/@cds/core/progress-circle/progress-circle.element.d.ts",
+            "start": 1781,
+            "length": 36,
+            "messageText": "Type 'TemplateResult' is not generic.",
+            "category": 1,
+            "code": 2315
+          }
+        ]
+      ],
       "../node_modules/@cds/core/progress-circle/register.d.ts",
-      "../node_modules/@types/resize-observer-browser/index.d.ts",
-      "../node_modules/lit-element/lib/css-tag.d.ts",
-      "../node_modules/lit-element/lib/decorators.d.ts",
-      "../node_modules/lit-element/lib/updating-element.d.ts",
-      "../node_modules/lit-element/lit-element.d.ts",
+      "../node_modules/@lit/reactive-element/css-tag.d.ts",
+      "../node_modules/@lit/reactive-element/decorators/base.d.ts",
+      "../node_modules/@lit/reactive-element/decorators/property.d.ts",
+      "../node_modules/@lit/reactive-element/reactive-controller.d.ts",
+      "../node_modules/@lit/reactive-element/reactive-element.d.ts",
+      "../node_modules/@types/trusted-types/index.d.ts",
       "../node_modules/lit-html/lib/default-template-processor.d.ts",
       "../node_modules/lit-html/lib/directive.d.ts",
       "../node_modules/lit-html/lib/dom.d.ts",
@@ -1082,13 +1284,18 @@
       "../node_modules/lit-html/lib/parts.d.ts",
       "../node_modules/lit-html/lib/render-options.d.ts",
       "../node_modules/lit-html/lib/render.d.ts",
-      "../node_modules/lit-html/lib/shady-render.d.ts",
       "../node_modules/lit-html/lib/template-factory.d.ts",
       "../node_modules/lit-html/lib/template-instance.d.ts",
       "../node_modules/lit-html/lib/template-processor.d.ts",
       "../node_modules/lit-html/lib/template-result.d.ts",
       "../node_modules/lit-html/lib/template.d.ts",
       "../node_modules/lit-html/lit-html.d.ts",
+      "../node_modules/lit/decorators/property.d.ts",
+      "../node_modules/lit/directive.d.ts",
+      "../node_modules/lit/index.d.ts",
+      "../node_modules/lit/node_modules/lit-element/lit-element.d.ts",
+      "../node_modules/lit/node_modules/lit-html/directive.d.ts",
+      "../node_modules/lit/node_modules/lit-html/lit-html.d.ts",
       "../node_modules/tslib/tslib.d.ts",
       "../node_modules/typescript/lib/lib.dom.d.ts",
       "../node_modules/typescript/lib/lib.es2015.collection.d.ts",
@@ -1113,8 +1320,398 @@
       "../src/counter/counter.element.styles.ts",
       "../src/counter/counter.element.ts",
       "../src/counter/index.ts",
-      "../src/counter/register.ts",
+      [
+        "../src/counter/register.ts",
+        [
+          {
+            "file": "../src/counter/register.ts",
+            "start": 9,
+            "length": 13,
+            "messageText": "Module '\"lit\"' has no exported member 'customElement'.",
+            "category": 1,
+            "code": 2305
+          }
+        ]
+      ],
       "../src/index.ts"
+    ],
+    "affectedFilesPendingEmit": [
+      [
+        "../node_modules/@cds/core/button/button.element.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/button/icon-button.element.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/button/inline-button.element.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/button/register.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/icon/icon.element.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/icon/icon.service.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/icon/interfaces/icon.interfaces.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/icon/register.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/icon/shapes/minus.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/icon/shapes/plus.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/base/button.base.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/base/focus-trap.base.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/decorators/animate.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/decorators/event.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/decorators/global-style.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/decorators/i18n.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/decorators/id.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/decorators/property.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/decorators/query-slot.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/directives/spread-props.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/i18n/utils.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/index.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/interfaces/index.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/motion/animations/cds-accordion-panel-open.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/motion/animations/cds-component-shake.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/motion/animations/cds-modal-enter.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/motion/animations/cds-overlay-hinge-example.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/motion/interfaces.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/motion/motion.service.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/motion/utils.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/services/focus-trap-tracker.service.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/services/global.service.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/services/i18n.service.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/services/keycodes.service.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/services/log.service.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/a11y.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/array.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/async.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/conditional.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/css.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/dom.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/enum.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/event-subject.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/events.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/exists.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/focus-trap.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/framework.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/global.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/identity.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/keycodes.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/lit.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/math.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/metadata.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/register.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/responsive.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/size.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/string.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/internal/utils/supports.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/progress-circle/progress-circle.element.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@cds/core/progress-circle/register.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@lit/reactive-element/css-tag.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@lit/reactive-element/decorators/base.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@lit/reactive-element/decorators/property.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@lit/reactive-element/reactive-controller.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@lit/reactive-element/reactive-element.d.ts",
+        1
+      ],
+      [
+        "../node_modules/@types/trusted-types/index.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit-html/lib/default-template-processor.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit-html/lib/directive.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit-html/lib/dom.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit-html/lib/part.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit-html/lib/parts.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit-html/lib/render-options.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit-html/lib/render.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit-html/lib/template-factory.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit-html/lib/template-instance.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit-html/lib/template-processor.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit-html/lib/template-result.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit-html/lib/template.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit-html/lit-html.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit/decorators/property.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit/directive.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit/index.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit/node_modules/lit-element/lit-element.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit/node_modules/lit-html/directive.d.ts",
+        1
+      ],
+      [
+        "../node_modules/lit/node_modules/lit-html/lit-html.d.ts",
+        1
+      ],
+      [
+        "../node_modules/tslib/tslib.d.ts",
+        1
+      ],
+      [
+        "../node_modules/typescript/lib/lib.es2015.d.ts",
+        1
+      ],
+      [
+        "../node_modules/typescript/lib/lib.es2016.d.ts",
+        1
+      ],
+      [
+        "../node_modules/typescript/lib/lib.es2017.d.ts",
+        1
+      ],
+      [
+        "../src/counter/counter.element.styles.ts",
+        1
+      ],
+      [
+        "../src/counter/counter.element.ts",
+        1
+      ],
+      [
+        "../src/counter/index.ts",
+        1
+      ],
+      [
+        "../src/counter/register.ts",
+        1
+      ],
+      [
+        "../src/index.ts",
+        1
+      ]
     ]
   },
   "version": "4.2.4"
