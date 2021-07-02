@@ -38,7 +38,7 @@
         >
       </div>
       <div cds-layout="p:lg">
-        <div style="width: 100%; text-align: right; height: 36px;">
+        <div style="width: 100%; text-align: right; height: 36px">
           <cds-button
             id="topright"
             status="primary"
@@ -79,6 +79,16 @@
               </select>
             </cds-select>
             <cds-select control-width="shrink">
+              <label>Pointer type</label>
+              <select onchange="syncPointerType(this)">
+                <option selected value="none">None</option>
+                <option value="default">Default</option>
+                <option value="angle">Angle</option>
+                <option value="custom">Custom 1</option>
+                <option value="emoji">Emoji</option>
+              </select>
+            </cds-select>
+            <cds-select control-width="shrink">
               <label>Popup Orientation Prefs</label>
               <select onchange="syncPrefs(this)">
                 <option selected value="">Default</option>
@@ -106,7 +116,7 @@
       </div>
 
       <div cds-layout="grid p:lg align:center cols:12">
-        <div style="width: 100%; text-align: right; height: 36px;">
+        <div style="width: 100%; text-align: right; height: 36px">
           <cds-button
             id="midright"
             status="primary"
@@ -126,7 +136,7 @@
         >
       </div>
       <div cds-layout="grid p:lg align:bottom cols:12">
-        <div style="width: 100%; text-align: center; height: 36px;">
+        <div style="width: 100%; text-align: center; height: 36px">
           <cds-button
             id="btmcenter"
             status="primary"
@@ -137,7 +147,7 @@
         </div>
       </div>
       <div cds-layout="grid p:lg align:bottom cols:12">
-        <div style="width: 100%; text-align: right; height: 36px;">
+        <div style="width: 100%; text-align: right; height: 36px">
           <cds-button
             id="btmright"
             status="primary"
@@ -150,11 +160,30 @@
     </div>
 
     <cds-internal-popup hidden id="mypopup">
-      <div id="popupContent" cds-layout="vertical gap:lg p:lg align:stretch">
-        <h1 cds-text="section">Ohai</h1>
-        <p cds-text="body">I am a popup.</p>
+      <div
+        class="popup-content"
+        cds-layout="vertical gap:lg p:lg align:stretch"
+      >
+        <h1 cds-text="section">Popup</h1>
+        <p cds-text="body">I am a popup with no pointer, like a dropdown.</p>
         <cds-button
-          style="max-height: 36px;"
+          style="max-height: 36px"
+          type="button"
+          onclick="closeOverlay('button-click')"
+          >Ok</cds-button
+        >
+      </div>
+    </cds-internal-popup>
+
+    <cds-internal-popup hidden id="mypopup-default">
+      <div
+        class="popup-content"
+        cds-layout="vertical gap:lg p:lg align:stretch"
+      >
+        <h1 cds-text="section">Popup</h1>
+        <p cds-text="body">I am a popup with a default pointer.</p>
+        <cds-button
+          style="max-height: 36px"
           type="button"
           onclick="closeOverlay('button-click')"
           >Ok</cds-button
@@ -163,24 +192,134 @@
       <cds-internal-pointer></cds-internal-pointer>
     </cds-internal-popup>
 
+    <cds-internal-popup hidden id="mypopup-angle">
+      <div
+        class="popup-content"
+        cds-layout="vertical gap:lg p:lg align:stretch"
+      >
+        <h1 cds-text="section">Angle Popup</h1>
+        <p cds-text="body">My pointer is an angle like signposts have.</p>
+        <cds-button
+          style="max-height: 36px"
+          type="button"
+          onclick="closeOverlay('button-click')"
+          >Ok</cds-button
+        >
+      </div>
+      <cds-internal-pointer type="angle"></cds-internal-pointer>
+    </cds-internal-popup>
+
+    <cds-internal-popup hidden id="mypopup-bubbles">
+      <div
+        class="popup-content"
+        cds-layout="vertical gap:lg p:lg align:stretch"
+      >
+        <h1 cds-text="section">Bubbles Popup</h1>
+        <p cds-text="body">Everyone likes bubbles.</p>
+        <cds-button
+          style="max-height: 36px"
+          type="button"
+          onclick="closeOverlay('button-click')"
+          >Ok</cds-button
+        >
+      </div>
+      <cds-internal-pointer type="">
+        <svg
+          width="49px"
+          height="57px"
+          viewBox="0 0 49 57"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          style="transform: translateY(0.1rem)"
+        >
+          <path
+            d="M36,56.5 C28,56.5 4,56.5 0,56.5 C0,49.0441559 8.0588745,43 18,43 C27.9411255,43 36,49.0441559 36,56.5 Z M34.5,56.5 C26.5,56.5 5.5,56.5 1.5,56.5 C1.5,49.0441559 9,44.2999878 18,44.2999878 C27,44.2999878 34.5,49.0441559 34.5,56.5 Z"
+            style="fill: var(--pointer-outline)"
+          ></path>
+          <path
+            style="fill: var(--pointer-fill); transform: translateY(0.05rem)"
+            d="M34,56.5 C36,49.0441559 27.9411255,43 18,43 C8.0588745,43 1,49.0441559 1,56.5 C4,56.5 28,56.5 34,56.5 Z"
+          ></path>
+          <ellipse
+            style="fill: var(--pointer-fill)"
+            cx="35"
+            cy="29.5"
+            rx="14"
+            ry="11.5"
+          ></ellipse>
+          <path
+            style="fill: var(--pointer-outline)"
+            d="M35,41 C27.2680135,41 21,35.8512746 21,29.5 C21,23.1487254 27.2680135,18 35,18 C42.7319865,18 49,23.1487254 49,29.5 C49,35.8512746 42.7319865,41 35,41 Z M35,40 C42.1797017,40 48,35.2989899 48,29.5 C48,23.7010101 42.1797017,19 35,19 C27.8202983,19 22,23.7010101 22,29.5 C22,35.2989899 27.8202983,40 35,40 Z"
+          ></path>
+          <path
+            style="fill: var(--pointer-fill)"
+            d="M17.5,17 C22.1294457,17 27,13.1944204 27,8.5 C27,3.80557963 22.1294457,0 17.5,0 C12.8705543,0 8,3.80557963 8,8.5 C8,13.1944204 12.8705543,17 17.5,17 Z"
+          ></path>
+          <path
+            style="fill: var(--pointer-outline)"
+            d="M17.5,17 C12.8705543,17 8,13.1944204 8,8.5 C8,3.80557963 12.8705543,0 17.5,0 C22.1294457,0 27,3.80557963 27,8.5 C27,13.1944204 22.1294457,17 17.5,17 Z M17.5,16 C21.6421356,16 26,12.6421356 26,8.5 C26,4.35786438 21.6421356,1 17.5,1 C13.3578644,1 9,4.35786438 9,8.5 C9,12.6421356 13.3578644,16 17.5,16 Z"
+          ></path>
+        </svg>
+      </cds-internal-pointer>
+    </cds-internal-popup>
+
+    <cds-internal-popup hidden id="mypopup-emoji">
+      <div
+        class="popup-content"
+        cds-layout="vertical gap:lg p:lg align:stretch"
+      >
+        <h1 cds-text="section">Emoji Popup</h1>
+        <p cds-text="body">I am a popup with a real pointing pointer!</p>
+        <cds-button
+          style="max-height: 36px"
+          type="button"
+          onclick="closeOverlay('button-click')"
+          >Ok</cds-button
+        >
+      </div>
+      <cds-internal-pointer id="popupPointer" type=""
+        ><span style="font-size: 32px; padding-bottom: 2px"
+          >👆</span
+        ></cds-internal-pointer
+      >
+    </cds-internal-popup>
+
     <script type="module" src="./index.js"></script>
 
     <script type="text/javascript">
-      let initted = false;
-      const popup = document.getElementById('mypopup');
+      let pointerType = 'none';
+      const allPopups = document.querySelectorAll('cds-internal-popup');
+      const getPopup = () => {
+        switch (pointerType) {
+          case 'default':
+            return document.getElementById('mypopup-default');
+          case 'angle':
+            return document.getElementById('mypopup-angle');
+          case 'emoji':
+            return document.getElementById('mypopup-emoji');
+          case 'custom':
+            return document.getElementById('mypopup-bubbles');
+          case 'none':
+          default:
+            return document.getElementById('mypopup');
+        }
+      };
 
       function showOverlay(anchor) {
+        const popup = getPopup();
+
         console.log(anchor);
         console.log(popup);
 
         popup.anchor = anchor;
         popup.hidden = false;
 
-        if (!initted) {
+        if (!popup.hasAttribute('_initted')) {
           popup.addEventListener('closeChange', e => {
             closeOverlay(e.detail);
           });
-          initted = true;
+          popup.setAttribute('_initted', '');
         }
       }
 
@@ -190,23 +329,33 @@
           src === 'escape-keypress' ||
           src === 'button-click'
         ) {
-          popup.hidden = true;
+          getPopup().hidden = true;
         }
       }
 
       function syncAnchorAlignments(sel) {
         const selectedOption = sel.selectedOptions[0].value;
-        popup.anchorAlign = selectedOption;
+        allPopups.forEach(p => {
+          p.anchorAlign = selectedOption;
+        });
       }
 
       function syncPointerAlignments(sel) {
         const selectedOption = sel.selectedOptions[0].value;
-        popup.pointerAlign = selectedOption;
+        allPopups.forEach(p => {
+          p.pointerAlign = selectedOption;
+        });
+      }
+
+      function syncPointerType(sel) {
+        pointerType = sel.selectedOptions[0].value;
       }
 
       function syncPrefs(sel) {
         const selectedOption = sel.selectedOptions[0].value;
-        popup.orientation = selectedOption;
+        allPopups.forEach(p => {
+          p.orientation = selectedOption;
+        });
       }
 
       function toggleOverlay(chkbox) {
@@ -221,12 +370,14 @@
       }
 
       function embiggenPopup(chkbox) {
-        const popupContent = document.getElementById('popupContent');
-
         if (chkbox.checked) {
-          popupContent.classList.add('embiggen');
+          allPopups.forEach(p => {
+            p.querySelector('.popup-content').classList.add('embiggen');
+          });
         } else {
-          popupContent.classList.remove('embiggen');
+          allPopups.forEach(p => {
+            p.querySelector('.popup-content').classList.remove('embiggen');
+          });
         }
       }
 
