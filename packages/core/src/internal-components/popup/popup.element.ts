@@ -116,11 +116,15 @@ export class CdsInternalPopup extends CdsInternalOverlay {
   @property({ type: String })
   anchorAlign: AxisAligns = 'start';
 
-  @query('.pointer-wrapper') pointerWrapper: HTMLElement;
+  @query('.popup-pointer') pointerWrapper: HTMLElement;
 
   @querySlot('cds-internal-pointer', { assign: 'pointer' }) pointer: CdsInternalPointer;
 
-  @query('.private-host') contentWrapper: HTMLElement;
+  @query('.private-host') hostWrapper: HTMLElement; // TODO: THIS GETS POSITIONED
+
+  @query('.popup-wrapper') popupWrapper: HTMLElement; // TODO: THIS GETS FLEXED!
+
+  @query('.popup-content') contentWrapper: HTMLElement; // TODO: THIS GETS MEASURED AND GETS CLOSE BTNS INJECTED INTO IT!
 
   disconnectedCallback() {
     super.disconnectedCallback();
@@ -169,19 +173,13 @@ export class CdsInternalPopup extends CdsInternalOverlay {
             // have to manually set this here because the CSS needs it and the work happens
             // outside of the update loop
             setAttributes(this, ['_responsive', ''], ['_position-at', false]);
-            updateElementStyles(this.contentWrapper, ['position', ''], ['top', ''], ['left', '']);
+            updateElementStyles(this.hostWrapper, ['position', ''], ['top', ''], ['left', '']);
             updateElementStyles(this.pointerWrapper, ['visibility', 'hidden']);
           } else {
             if (this.pointer) {
               // TODO: will need to adjust pointer ROTATION based on position
               // TODO: we will need an active corner/cross-axis internalProp so people can style the pointer based on location
-              updateElementStyles(
-                this.pointerWrapper,
-                ['visibility', 'visible'],
-                ['position', 'absolute'],
-                ['top', ((myPosition as unknown) as PositionObj).pointer.top + 'px'],
-                ['left', ((myPosition as unknown) as PositionObj).pointer.left + 'px']
-              );
+              updateElementStyles(this.pointerWrapper, ['visibility', 'visible']);
 
               setAttributes(this, ['_position-at', ((myPosition as unknown) as PositionObj).pointerLocation as string]);
             } else {
@@ -189,7 +187,7 @@ export class CdsInternalPopup extends CdsInternalOverlay {
             }
 
             updateElementStyles(
-              this.contentWrapper,
+              this.hostWrapper,
               ['position', 'absolute'],
               ['top', ((myPosition as unknown) as PositionObj).popup.top + 'px'],
               ['left', ((myPosition as unknown) as PositionObj).popup.left + 'px']
@@ -200,19 +198,20 @@ export class CdsInternalPopup extends CdsInternalOverlay {
     );
   }
 
-  // TODO: content wrappers will need a _positioned attr that will allow us to zero out border radius
-  //       if we need to
-
   // TODO: Double check if tabindex here needs to be zero instead!
   // keep same render body fn and provide protected props on popup that are blank
   // that are rendered inside the render method
   protected render() {
     return html`
       ${this.backdropTemplate}
-      <div class="private-host" tabindex="-1" aria-modal="true" role="dialog" part="host-wrapper">
-        <slot></slot>
+      <div class="private-host">
+        <div class="popup-wrapper">
+          <div class="popup-content" tabindex="-1" aria-modal="true" role="dialog">
+            <slot></slot>
+          </div>
+          <div class="popup-pointer"><slot name="pointer"></slot></div>
+        </div>
       </div>
-      <div class="pointer-wrapper"><slot name="pointer"></slot></div>
     `;
   }
 

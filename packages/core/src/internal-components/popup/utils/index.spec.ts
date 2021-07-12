@@ -18,7 +18,6 @@ import {
   getPositions,
   getMainAxisPositionOrViolation,
   getMainAxisPosition,
-  modifyPointerPositionByCrossAxisAlignment,
   testMainAxisPosition,
   testCrossAxisPosition,
 } from './index.js';
@@ -491,21 +490,14 @@ describe('Functional Utilities: ', () => {
         expect(startPos).not.toBe((false as unknown) as PositionObj);
         expect(startPos.popup.top).toBe(300, 'sanity check "start" popup coords (1 of 2)');
         expect(startPos.popup.left).toBe(50, 'sanity check "start" popup coords (2 of 2)');
-        // pointer is empty but should have a position...
-        expect(startPos.pointer.top).toBe(400, 'sanity check "start" pointer coords (1 of 2)');
-        expect(startPos.pointer.left).toBe(50, 'sanity check "start" pointer coords (2 of 2)');
 
         expect(midPos).not.toBe((false as unknown) as PositionObj);
         expect(midPos.popup.top).toBe(300, 'sanity check "mid" popup coords (1 of 2)');
         expect(midPos.popup.left).toBe(100, 'sanity check "mid" popup coords (2 of 2)');
-        expect(midPos.pointer.top).toBe(400, 'sanity check "mid" pointer coords (1 of 2)');
-        expect(midPos.pointer.left).toBe(100, 'sanity check "mid" pointer coords (2 of 2)');
 
         expect(endPos).not.toBe((false as unknown) as PositionObj);
         expect(endPos.popup.top).toBe(300, 'sanity check "end" popup coords (1 of 2)');
         expect(endPos.popup.left).toBe(150, 'sanity check "end" popup coords (2 of 2)');
-        expect(endPos.pointer.top).toBe(400, 'sanity check "end" pointer coords (1 of 2)');
-        expect(endPos.pointer.left).toBe(150, 'sanity check "end" pointer coords (2 of 2)');
       });
     });
 
@@ -544,20 +536,14 @@ describe('Functional Utilities: ', () => {
         expect(startPos).not.toBe((false as unknown) as PositionObj);
         expect(startPos.popup.top).toBe(100, 'sanity check "start" popup coords (1 of 2)');
         expect(startPos.popup.left).toBe(50, 'sanity check "start" popup coords (2 of 2)');
-        expect(startPos.pointer.top).toBe(100, 'sanity check "start" pointer coords (1 of 2)');
-        expect(startPos.pointer.left).toBe(50, 'sanity check "start" pointer coords (2 of 2)');
 
         expect(midPos).not.toBe((false as unknown) as PositionObj);
         expect(midPos.popup.top).toBe(100, 'sanity check "mid" popup coords (1 of 2)');
         expect(midPos.popup.left).toBe(100, 'sanity check "mid" popup coords (2 of 2)');
-        expect(midPos.pointer.top).toBe(100, 'sanity check "mid" pointer coords (1 of 2)');
-        expect(midPos.pointer.left).toBe(100, 'sanity check "mid" pointer coords (2 of 2)');
 
         expect(endPos).not.toBe((false as unknown) as PositionObj);
         expect(endPos.popup.top).toBe(100, 'sanity check "end" popup coords (1 of 2)');
         expect(endPos.popup.left).toBe(150, 'sanity check "end" popup coords (2 of 2)');
-        expect(endPos.pointer.top).toBe(100, 'sanity check "end" pointer coords (1 of 2)');
-        expect(endPos.pointer.left).toBe(150, 'sanity check "end" pointer coords (2 of 2)');
       });
     });
 
@@ -596,20 +582,14 @@ describe('Functional Utilities: ', () => {
         expect(startPos).not.toBe((false as unknown) as PositionObj);
         expect(startPos.popup.top).toBe(100, 'sanity check "start" popup coords (1 of 2)');
         expect(startPos.popup.left).toBe(400, 'sanity check "start" popup coords (2 of 2)');
-        expect(startPos.pointer.top).toBe(100, 'sanity check "start" pointer coords (1 of 2)');
-        expect(startPos.pointer.left).toBe(500, 'sanity check "start" pointer coords (2 of 2)');
 
         expect(midPos).not.toBe((false as unknown) as PositionObj);
         expect(midPos.popup.top).toBe(125, 'sanity check "mid" popup coords (1 of 2)');
         expect(midPos.popup.left).toBe(400, 'sanity check "mid" popup coords (2 of 2)');
-        expect(midPos.pointer.top).toBe(125, 'sanity check "mid" pointer coords (1 of 2)');
-        expect(midPos.pointer.left).toBe(500, 'sanity check "mid" pointer coords (2 of 2)');
 
         expect(endPos).not.toBe((false as unknown) as PositionObj);
         expect(endPos.popup.top).toBe(150, 'sanity check "end" popup coords (1 of 2)');
         expect(endPos.popup.left).toBe(400, 'sanity check "end" popup coords (2 of 2)');
-        expect(endPos.pointer.top).toBe(150, 'sanity check "end" pointer coords (1 of 2)');
-        expect(endPos.pointer.left).toBe(500, 'sanity check "end" pointer coords (2 of 2)');
       });
     });
 
@@ -648,20 +628,14 @@ describe('Functional Utilities: ', () => {
         expect(startPos).not.toBe((false as unknown) as PositionObj);
         expect(startPos.popup.top).toBe(100, 'sanity check "start" popup coords (1 of 2)');
         expect(startPos.popup.left).toBe(200, 'sanity check "start" popup coords (2 of 2)');
-        expect(startPos.pointer.top).toBe(100, 'sanity check "start" pointer coords (1 of 2)');
-        expect(startPos.pointer.left).toBe(200, 'sanity check "start" pointer coords (2 of 2)');
 
         expect(midPos).not.toBe((false as unknown) as PositionObj);
         expect(midPos.popup.top).toBe(125, 'sanity check "mid" popup coords (1 of 2)');
         expect(midPos.popup.left).toBe(200, 'sanity check "mid" popup coords (2 of 2)');
-        expect(midPos.pointer.top).toBe(125, 'sanity check "mid" pointer coords (1 of 2)');
-        expect(midPos.pointer.left).toBe(200, 'sanity check "mid" pointer coords (2 of 2)');
 
         expect(endPos).not.toBe((false as unknown) as PositionObj);
         expect(endPos.popup.top).toBe(150, 'sanity check "end" popup coords (1 of 2)');
         expect(endPos.popup.left).toBe(200, 'sanity check "end" popup coords (2 of 2)');
-        expect(endPos.pointer.top).toBe(150, 'sanity check "end" pointer coords (1 of 2)');
-        expect(endPos.pointer.left).toBe(200, 'sanity check "end" pointer coords (2 of 2)');
       });
     });
   });
@@ -891,29 +865,6 @@ describe('Utilites: ', () => {
           'it returns false if start popup edge extends past limit'
         );
       });
-    });
-  });
-
-  describe('modifyPointerPositionByCrossAxisAlignment(): ', () => {
-    it('accounts for half of the popup and pointer length when "mid"', () => {
-      const testMe = modifyPointerPositionByCrossAxisAlignment(0, 100, 20, 'mid');
-      expect(testMe).toBe(40);
-    });
-
-    it('accounts for full popup and pointer length when "end"', () => {
-      const testMe = modifyPointerPositionByCrossAxisAlignment(0, 100, 20, 'end');
-      expect(testMe).toBe(80);
-    });
-
-    it('does not account for popup or pointer length when "start"', () => {
-      const testMe = modifyPointerPositionByCrossAxisAlignment(0, 100, 20, 'start');
-      expect(testMe).toBe(0);
-    });
-
-    it('falls through to "start"', () => {
-      const testMe = modifyPointerPositionByCrossAxisAlignment(0, 100, 20, 'ohai');
-      const start = modifyPointerPositionByCrossAxisAlignment(0, 100, 20, 'start');
-      expect(testMe).toBe(start);
     });
   });
 });

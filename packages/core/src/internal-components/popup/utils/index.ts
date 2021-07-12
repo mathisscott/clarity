@@ -183,6 +183,7 @@ export function getBestPositionForPreferences(
   return returnPref as PositionObjOrNot;
 }
 
+// FIXME: WE NO LONGER NEED TO POSITION THE POINTER!
 export function getPopupPosition(
   orientationPrefs: string,
   anchorRect: DOMRect,
@@ -202,6 +203,7 @@ export function getPopupPosition(
   // that does not seem to be a big risk, however, because these pointers are created by users.
   // if there is a rounding issue, it's likely because a rem sizing has something set to a fractional value
   // and any rounding error would likely be negligible in effect
+  // FIXME: IS THIS STILL THE CASE? PROBABLY... BUT IT WOULDN'T HURT TO CHECK
   const pointerDims = pointer ? { height: pointer.offsetHeight, width: pointer.offsetWidth } : { height: 0, width: 0 };
   const windowDims = getWindowDimensions();
 
@@ -323,15 +325,6 @@ export function getPositionConfig(
                   top: mainAxisPosition as number,
                   left: cross_axis_pos,
                 },
-                pointer: {
-                  top: anchor.top - pointer.height,
-                  left: modifyPointerPositionByCrossAxisAlignment(
-                    cross_axis_pos,
-                    popup.width,
-                    pointer.width,
-                    pointerAlign
-                  ),
-                },
               };
             }
           }
@@ -340,7 +333,7 @@ export function getPositionConfig(
     case 'bottom':
       mainAxisPosition = getMainAxisPositionOrViolation(
         anchor.bottom,
-        pointer.height,
+        0, // pointer doesn't need to be in this calc
         popup.height,
         mainAxisOffset,
         win.height
@@ -364,17 +357,8 @@ export function getPositionConfig(
             } else {
               return {
                 popup: {
-                  top: anchor.bottom + pointer.height,
-                  left: cross_axis_pos,
-                },
-                pointer: {
                   top: anchor.bottom,
-                  left: modifyPointerPositionByCrossAxisAlignment(
-                    cross_axis_pos,
-                    popup.width,
-                    pointer.width,
-                    pointerAlign
-                  ),
+                  left: cross_axis_pos,
                 },
               };
             }
@@ -390,7 +374,7 @@ export function getPositionConfig(
         return getPositionOrViolationFromCrossAxis(
           anchor.top,
           anchor.height,
-          popup.height,
+          popup.width,
           crossAxisOffset,
           0,
           win.height,
@@ -405,15 +389,6 @@ export function getPositionConfig(
                   top: cross_axis_pos,
                   left: mainAxisPosition as number,
                 },
-                pointer: {
-                  top: modifyPointerPositionByCrossAxisAlignment(
-                    cross_axis_pos,
-                    popup.height,
-                    pointer.width,
-                    pointerAlign
-                  ),
-                  left: anchor.left - pointer.height,
-                },
               };
             }
           }
@@ -422,8 +397,8 @@ export function getPositionConfig(
     case 'right':
       mainAxisPosition = getMainAxisPositionOrViolation(
         anchor.right,
-        pointer.height,
-        popup.width,
+        0, // pointer doesn't need to be in this calc
+        popup.height,
         mainAxisOffset,
         win.width
       );
@@ -447,15 +422,6 @@ export function getPositionConfig(
               return {
                 popup: {
                   top: cross_axis_pos,
-                  left: (mainAxisPosition as number) + pointer.width,
-                },
-                pointer: {
-                  top: modifyPointerPositionByCrossAxisAlignment(
-                    cross_axis_pos,
-                    popup.height,
-                    pointer.width,
-                    pointerAlign
-                  ),
                   left: mainAxisPosition as number,
                 },
               };
@@ -464,37 +430,6 @@ export function getPositionConfig(
         );
       }
   }
-}
-
-export function modifyPointerPositionByCrossAxisAlignment(
-  startPos: number,
-  popupLength: number,
-  pointerLength: number,
-  crossAxisAlignment: string
-) {
-  // TODO: stringified cross axis alignment can probably use an enum
-
-  let positionModifier;
-  let pointerModifier;
-
-  switch (crossAxisAlignment as AxisAligns) {
-    case 'mid':
-      positionModifier = 0.5;
-      // pulling up on itself it has to pull twice
-      pointerModifier = 0.5 * pointerLength;
-      break;
-    case 'end':
-      positionModifier = 1;
-      // ßpulling up on itself it has to pull twice
-      pointerModifier = pointerLength;
-      break;
-    case 'start':
-    default:
-      positionModifier = 0;
-      pointerModifier = 0;
-  }
-
-  return startPos + popupLength * positionModifier - pointerModifier;
 }
 
 type PositionOrViolation = false | number;

@@ -38,7 +38,6 @@
 .pointer-wrapper {
   // height: var(--pointer-height);
   // width: var(--pointer-width);
-  transform-origin: center;
 }
 
 ::slotted(cds-internal-pointer) {
@@ -47,14 +46,16 @@
   // --width: var(--pointer-width);
   --pointer-fill: var(--background);
   --pointer-outline: var(--border-color);
-  transform-origin: center;
 }
 
 .private-host {
+  display: block;
   position: relative;
   // position relative forces overlay content above the backdrop without z-index
   // shouldn't cause issues with overlays/dropdowns due to onion skinning
+}
 
+.popup-content {
   background: var(--background);
   color: var(--color);
   border-radius: var(--border-radius);
@@ -68,71 +69,157 @@
   height: var(--height);
   max-height: var(--max-height);
   overflow: var(--overflow);
+
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.popup-pointer {
+  flex: 0 0 auto;
+}
+
+.popup-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 :host([_position-at='popup-left pointer-top']),
 :host([_position-at='popup-top pointer-left']) {
-  .private-host {
+  .popup-content {
     border-top-left-radius: var(--active-corner-border-radius);
   }
 }
 
 :host([_position-at='popup-top pointer-right']),
 :host([_position-at='popup-right pointer-top']) {
-  .private-host {
+  .popup-content {
     border-top-right-radius: var(--active-corner-border-radius);
   }
 }
 
 :host([_position-at='popup-bottom pointer-right']),
 :host([_position-at='popup-right pointer-bottom']) {
-  .private-host {
+  .popup-content {
     border-bottom-right-radius: var(--active-corner-border-radius);
   }
 }
 
 :host([_position-at='popup-bottom pointer-left']),
 :host([_position-at='popup-left pointer-bottom']) {
-  .private-host {
+  .popup-content {
     border-bottom-left-radius: var(--active-corner-border-radius);
   }
 }
 
-:host([_position-at='popup-top pointer-right']) {
-  .pointer-wrapper {
-    transform: scaleX(-1);
-  }
-}
-
 :host([_position-at*='popup-right']) {
-  .pointer-wrapper {
-    transform: translateX(-0.1rem) rotate(90deg);
+  .popup-wrapper {
+    flex-direction: row;
   }
-}
 
-:host([_position-at='popup-right pointer-bottom']) {
-  .pointer-wrapper {
-    transform: scaleY(-1) translateX(-0.1rem) rotate(90deg);
-  }
-}
-
-:host([_position-at*='popup-bottom']) {
-  .pointer-wrapper {
-    transform: scaleX(-1) translateY(-0.1rem) rotate(180deg);
+  .popup-pointer {
+    // transform: rotate(0.25turn) translateY(0.05rem);
+    transform: rotate(0.25turn);
   }
 }
 
 :host([_position-at*='popup-left']) {
-  .pointer-wrapper {
-    transform: scaleY(-1) rotate(270deg);
+  .popup-wrapper {
+    flex-direction: row-reverse;
+  }
+
+  .popup-pointer {
+    // transform: rotate(0.25turn) scaleY(-1) translateY(0.05rem);
+    transform: rotate(0.25turn) scaleY(-1);
   }
 }
 
-:host([_position-at='popup-left pointer-bottom']) {
-  .pointer-wrapper {
-    transform: translateX(-0.01rem) translateY(0.05rem) rotate(270deg) scaleX(1);
+:host([_position-at*='popup-top']) {
+  .popup-wrapper {
+    flex-direction: column-reverse;
+  }
+
+  .popup-pointer {
+    // transform: translateY(0.05rem);
   }
 }
+
+:host([_position-at*='popup-bottom']) {
+  .popup-pointer {
+    // transform: scaleY(-1) translateY(0.06rem);
+    transform: scaleY(-1);
+  }
+}
+
+:host([_position-at*='pointer-mid']),
+:host([_position-at*='pointer-center']) {
+  .popup-wrapper {
+    align-items: center;
+  }
+}
+
+:host([_position-at*='pointer-bottom']),
+:host([_position-at*='pointer-right']) {
+  .popup-wrapper {
+    align-items: flex-end;
+  }
+}
+
+// :host([_position-at='popup-top pointer-right']) {
+//   .pointer-wrapper {
+//     transform: scaleX(-1);
+//   }
+// }
+
+// :host([_position-at*='popup-left']) {
+//   .pointer-wrapper {
+//     transform: rotate(0.75turn);
+//     transform-origin: bottom center;
+//   }
+
+//   ::slotted(cds-internal-pointer) {
+//     --transform: translateY(0.05rem);
+//   }
+// }
+
+// :host([_position-at='popup-left pointer-bottom']) {
+//   .pointer-wrapper {
+//     transform: scaleY(-1) translateX(-0.1rem) rotate(90deg);
+//   }
+// }
+
+// :host([_position-at*='popup-bottom']) {
+//   .pointer-wrapper {
+//     transform: rotate(0.5turn);
+//   }
+
+//   ::slotted(cds-internal-pointer) {
+//     --transform: translateY(50%);
+//   }
+// }
+
+// :host([_position-at*='popup-right']) {
+//   .pointer-wrapper {
+//     transform: rotate(0.25turn);
+//     transform-origin: center bottom;
+//   }
+
+//   ::slotted(cds-internal-pointer) {
+//     --transform: translateY(50%);
+//   }
+// }
+
+// :host([_position-at*='popup-top']) {
+//   ::slotted(cds-internal-pointer) {
+//     --transform: translateY(0.05rem);
+//   }
+// }
+
+// :host([_position-at='popup-right pointer-bottom']) {
+//   .pointer-wrapper {
+//     transform: translateX(-0.01rem) translateY(0.05rem) rotate(270deg) scaleX(1);
+//   }
+// }
 
 :host(:not([_responsive])) {
   --backdrop-background: #{$cds-alias-object-opacity-0};
@@ -144,6 +231,8 @@
   cds-internal-pointer {
     display: none;
   }
+
+  // FIXME: NEED TO ACCOUNT FOR INNER-WRAPPER HERE TOO!
 
   .private-host {
     position: absolute;

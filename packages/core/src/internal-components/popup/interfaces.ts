@@ -8,7 +8,6 @@ export type WindowDims = { height: number; width: number };
 
 export type PositionObj = {
   popup: { top: number; left: number };
-  pointer: { top: number; left: number };
   pointerLocation?: string;
 };
 
